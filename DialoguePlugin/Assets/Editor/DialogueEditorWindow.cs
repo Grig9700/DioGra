@@ -2,46 +2,47 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.Experimental;
 using UnityEditor.PackageManager.UI;
 
 public class DialogueEditorWindow : EditorWindow
 {
+    
+
     private Dictionary<int, Segment> segments = new Dictionary<int, Segment>();
     private int _lastID = 0;
     private Event current;
+    private Texture buttonTexture;
+    private Vector2 scroll;
 
     //Creates a menu item for the window
-    [MenuItem("Window/Dialogue")]
+    [MenuItem("Window/Flowchart")]
     public static void ShowWindow()
     {
-        GetWindow<DialogueEditorWindow>("Dialogue");
+        GetWindow<DialogueEditorWindow>("Flowchart");
     }
     
     private void OnGUI()
     {
+        GetButtonTexture();
+        
         current = Event.current;
         RightClickDropdownMenu();
         
         BeginWindows();
+        scroll = EditorGUILayout.BeginScrollView(scroll);
         foreach (KeyValuePair<int, Segment> segment in segments)
         {
-            switch (segment.Value.SegmentType)
-            {
-                case SegmentType.Dialogue:
-                    segment.Value.SegmentSize = GUI.Window(segment.Key, segment.Value.SegmentSize, DialogueSegment.DiaSegment, "Dialogue");
-                    break;
-                case SegmentType.CallFunction:
-                    break;
-                case SegmentType.MultipleChoice:
-                    break;
-                case SegmentType.RandomizeInt:
-                    break;
-                case SegmentType.Null:
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            segment.Value.OnDraw();
         }
+        EditorGUILayout.EndScrollView();
         EndWindows();
+    }
+
+    private void GetButtonTexture()
+    {
+        if (buttonTexture != null) return; 
+        buttonTexture = Resources.Load("button") as Texture2D;
     }
 
     private void RightClickDropdownMenu()
@@ -60,7 +61,8 @@ public class DialogueEditorWindow : EditorWindow
         _lastID++;
         DialogueSegment dSegment = ScriptableObject.CreateInstance<DialogueSegment>();
         dSegment.id = _lastID;
-        dSegment.SegmentType = SegmentType.Dialogue;
+        //dSegment.SegmentType = SegmentType.Dialogue;
+        dSegment.buttonTexture = buttonTexture;
         dSegment.SegmentSize = new Rect(current.mousePosition, dSegment.SegmentSize.size);
         segments.Add(_lastID, dSegment);
     }
