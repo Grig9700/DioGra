@@ -19,9 +19,12 @@ MonoBehaviour:
   - GUID: c46f5b1c-5b1e-4341-ab94-524473f0a281
     dialogueText: Dialogue Node
     position: {x: 497.6, y: 300}
+  - GUID: 70be8418-a94f-4bf1-8447-9934d47620b4
+    dialogueText: Dialogue Node
+    position: {x: 714.4, y: 87.2}
   - GUID: 80b2fb8e-f135-4903-8f25-a5916c54f94c
     dialogueText: Dialogue Node
-    position: {x: 497.6, y: 122.40001}
+    position: {x: 404.80002, y: -79.2}
   nodeLinks:
   - baseNodeGUID: bf5ed7b7e6edc6e4b9a51de1168cfecc
     portName: Next
@@ -32,3 +35,6 @@ MonoBehaviour:
   - baseNodeGUID: bba08f7d-2c01-44a2-a67d-17458158428e
     portName: Fuck
     targetNodeGUID: c46f5b1c-5b1e-4341-ab94-524473f0a281
+  - baseNodeGUID: c46f5b1c-5b1e-4341-ab94-524473f0a281
+    portName: Output 0
+    targetNodeGUID: 70be8418-a94f-4bf1-8447-9934d47620b4
