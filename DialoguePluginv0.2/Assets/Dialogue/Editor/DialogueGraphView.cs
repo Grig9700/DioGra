@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
@@ -8,7 +9,7 @@ using UnityEngine.UIElements;
 
 public class DialogueGraphView : GraphView
 {
-    private readonly Vector2 defaultNodeSize = new Vector2(150, 200);
+    public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
     public DialogueGraphView()
     {
         styleSheets.Add(Resources.Load<StyleSheet>("DialogueGraph"));
@@ -18,6 +19,7 @@ public class DialogueGraphView : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
 
+        //sets up grid backgrouns
         var grid = new GridBackground();
         Insert(0, grid);
         grid.StretchToParentSize();
@@ -57,6 +59,10 @@ public class DialogueGraphView : GraphView
         generatedPort.portName = "Next";
         node.outputContainer.Add(generatedPort);
         
+        //Prevents moving or deleting start node
+        node.capabilities &= ~Capabilities.Movable;
+        node.capabilities &= ~Capabilities.Deletable;
+        
         //prevents visual glitch
         node.RefreshExpandedState();
         node.RefreshPorts();
@@ -79,6 +85,8 @@ public class DialogueGraphView : GraphView
             GUID = Guid.NewGuid().ToString()
         };
 
+        dialogueNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
+        
         //Generates input port
         var inputPort = GeneratePort(dialogueNode, Direction.Input, Port.Capacity.Single);
         inputPort.portName = "Input";
@@ -88,6 +96,10 @@ public class DialogueGraphView : GraphView
         button.text = "New Output";
         dialogueNode.titleContainer.Add(button);
 
+        var textField = new TextField(string.Empty);
+        textField.RegisterValueChangedCallback(evt => dialogueNode.dialogueText = evt.newValue);
+        dialogueNode.mainContainer.Add(textField);
+            
         //prevents visual glitch
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
@@ -97,16 +109,52 @@ public class DialogueGraphView : GraphView
         return dialogueNode;
     }
 
-    private void AddChoicePort(DialogueNode dialogueNode)
+    public void AddChoicePort(DialogueNode dialogueNode, string overriddenPortName = "")
     {
         var generatedPort = GeneratePort(dialogueNode, Direction.Output);
 
+        //removes duplicate label
+        var oldLabel = generatedPort.contentContainer.Q<Label>("type");
+        generatedPort.contentContainer.Remove(oldLabel);
+        
         var outputPortCount = dialogueNode.outputContainer.Query("connector").ToList().Count;
         
-        generatedPort.portName = $"Output {outputPortCount}";
+        //creates name of port
+        var choicePortName = string.IsNullOrEmpty(overriddenPortName)? $"Output {outputPortCount}" : overriddenPortName;
+        var textField = new TextField
+        {
+            name = string.Empty,
+            value = choicePortName
+        };
+        textField.RegisterValueChangedCallback(evt => generatedPort.portName = evt.newValue);
+        generatedPort.contentContainer.Add(new Label("    "));
+        generatedPort.contentContainer.Add(textField);
+
+        //permits removal of port
+        var deleteButton = new Button((() => RemovePort(dialogueNode, generatedPort))) { text = "X" };
+        generatedPort.contentContainer.Add(deleteButton);
+        
+        generatedPort.portName = choicePortName;
         dialogueNode.outputContainer.Add(generatedPort);
         
         //prevents visual glitch
+        dialogueNode.RefreshExpandedState();
+        dialogueNode.RefreshPorts();
+    }
+
+    private void RemovePort(DialogueNode dialogueNode, Port generatedPort)
+    {
+        var targetEdge = edges.ToList().Where(
+            edge => edge.output.portName == generatedPort.portName && edge.output.node == generatedPort.node);
+
+        if (targetEdge.Any())
+        {
+            var edge = targetEdge.First();
+            edge.input.Disconnect(edge);
+            RemoveElement(targetEdge.First());
+        }
+        
+        dialogueNode.outputContainer.Remove(generatedPort);
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
     }

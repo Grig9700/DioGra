@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
+  m_Name: box
+  m_EditorClassIdentifier: 
+  dialogueNodes:
+  - GUID: bba08f7d-2c01-44a2-a67d-17458158428e
+    dialogueText: Dialogue Node
+    position: {x: 217.59999, y: 199.2}
+  - GUID: c46f5b1c-5b1e-4341-ab94-524473f0a281
+    dialogueText: Dialogue Node
+    position: {x: 497.6, y: 300}
+  - GUID: 1a0ee0cc-4497-46cf-8b84-faa4959dd103
+    dialogueText: Dialogue Node
+    position: {x: 776, y: 199.2}
+  - GUID: 80b2fb8e-f135-4903-8f25-a5916c54f94c
+    dialogueText: Dialogue Node
+    position: {x: 497.6, y: 122.40001}
+  nodeLinks:
+  - baseNodeGUID: bf5ed7b7e6edc6e4b9a51de1168cfecc
+    portName: Next
+    targetNodeGUID: bba08f7d-2c01-44a2-a67d-17458158428e
+  - baseNodeGUID: bba08f7d-2c01-44a2-a67d-17458158428e
+    portName: Hi
+    targetNodeGUID: 80b2fb8e-f135-4903-8f25-a5916c54f94c
+  - baseNodeGUID: bba08f7d-2c01-44a2-a67d-17458158428e
+    portName: Fuck
+    targetNodeGUID: c46f5b1c-5b1e-4341-ab94-524473f0a281
+  - baseNodeGUID: 80b2fb8e-f135-4903-8f25-a5916c54f94c
+    portName: Output 0
+    targetNodeGUID: 1a0ee0cc-4497-46cf-8b84-faa4959dd103
