@@ -4,11 +4,6 @@
     <list default="true" id="8217f0ec-785b-4582-843f-37a3bc148b4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/BackupBeforeLoad.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/BackupBeforeLoad.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/New Narrative.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/New Narrative.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1663168061166</updated>
       <workItem from="1663168065292" duration="5482000" />
-      <workItem from="1663230453510" duration="26084000" />
+      <workItem from="1663230453510" duration="28155000" />
     </task>
     <servers />
   </component>

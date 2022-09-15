@@ -13,7 +13,8 @@ public class DialogueGraph : EditorWindow
     private DialogueGraphView _graphView;
     private string _filename = "New Narrative";
     private MiniMap _miniMap;
-    private bool _showMiniMap;
+    private bool _showMiniMap = true;
+    private bool _showBlackboard = true;
 
     [MenuItem("Window/Dialogue Graph")]
     public static void OpenDialogueGraphWindow()
@@ -26,15 +27,22 @@ public class DialogueGraph : EditorWindow
     {
         ConstructGraph();
         GenerateToolbar();
-        GenerateMiniMap(true);
+        GenerateMiniMap();
         GenerateBlackboard();
+        FixFunkyButtons();
+    }
+
+    private void FixFunkyButtons()
+    {
+        ShowHideMiniMap();
+        ShowHideBlackboard();
     }
 
     private void GenerateBlackboard()
     {
         var blackboard = new Blackboard(_graphView);
         blackboard.Add(new BlackboardSection{ title = "Exposed Variables"});
-        blackboard.addItemRequested = blackboard => { _graphView.AddPropertyToBlackboard(new ExposedProperty()); };
+        blackboard.addItemRequested = blackboard1 => { _graphView.AddPropertyToBlackboard(new ExposedProperty()); };
         blackboard.editTextRequested = (blackboard1, element, newValue) =>
         {
             var oldPropertyName = ((BlackboardField)element).text;
@@ -54,22 +62,13 @@ public class DialogueGraph : EditorWindow
         _graphView.Add(blackboard);
     }
 
-    private void GenerateMiniMap(bool showMap)
+    private void GenerateMiniMap()
     {
-        if (showMap)
-        {
-            _showMiniMap = true;
-            _miniMap = new MiniMap { anchored = true };
-            var coords = _graphView.contentViewContainer.WorldToLocal(
-                new Vector2(position.width - _miniMap.maxWidth - 10, 50));
-            _miniMap.SetPosition(new Rect(coords.x, coords.y, 200, 140));
-            _graphView.Add(_miniMap);
-        }
-        else
-        {
-            _showMiniMap = false;
-            _graphView.Remove(_miniMap);
-        }
+        _miniMap = new MiniMap { anchored = true };
+        var coords = _graphView.contentViewContainer.WorldToLocal(
+            new Vector2(position.width - _miniMap.maxWidth - 10, 30));
+        _miniMap.SetPosition(new Rect(coords.x, coords.y, 200, 140));
+        _graphView.Add(_miniMap);
     }
 
     private void ConstructGraph()
@@ -87,7 +86,8 @@ public class DialogueGraph : EditorWindow
     {
         var toolbar = new Toolbar();
 
-        toolbar.Add(new Button(() => GenerateMiniMap(!_showMiniMap)) { text = "Show/Hide Map" });
+        toolbar.Add(new Button(ShowHideBlackboard) { text = "S/H Board" });
+        toolbar.Add(new Button(ShowHideMiniMap) { text = "S/H Map" });
 
         var filenameTextField = new TextField("File Name:");
         filenameTextField.SetValueWithoutNotify(_filename);
@@ -105,6 +105,20 @@ public class DialogueGraph : EditorWindow
         rootVisualElement.Add(toolbar);
     }
 
+    private void ShowHideBlackboard()
+    {
+        if (_graphView.Blackboard == null) return;
+        _showBlackboard = !_showBlackboard;
+        _graphView.Blackboard.visible = _showBlackboard;
+    }
+
+    private void ShowHideMiniMap()
+    {
+        if (_miniMap == null) return;
+        _showMiniMap = !_showMiniMap;
+        _miniMap.visible = _showMiniMap;
+    }
+    
     private void RequestDataOperation(bool save)
     {
         if (string.IsNullOrEmpty(_filename))
