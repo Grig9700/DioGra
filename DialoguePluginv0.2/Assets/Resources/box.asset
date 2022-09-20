@@ -12,29 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
   m_Name: box
   m_EditorClassIdentifier: 
-  dialogueNodes:
-  - GUID: bba08f7d-2c01-44a2-a67d-17458158428e
+  DialogueNodes:
+  - GUID: 7916ddb8-c3a2-4e89-a627-409834b6e967
+    speaker: 
     dialogueText: Dialogue Node
-    position: {x: 217.59999, y: 199.2}
-  - GUID: c46f5b1c-5b1e-4341-ab94-524473f0a281
+    position: {x: 280, y: 200}
+  - GUID: a284293b-7395-464b-9a59-dc52af54f32e
+    speaker: 
     dialogueText: Dialogue Node
-    position: {x: 497.6, y: 300}
-  - GUID: 1a0ee0cc-4497-46cf-8b84-faa4959dd103
+    position: {x: 530.4, y: 343.19998}
+  - GUID: 0411ef57-897f-4586-9308-56c38ce2378e
+    speaker: 
     dialogueText: Dialogue Node
-    position: {x: 776, y: 199.2}
-  - GUID: 80b2fb8e-f135-4903-8f25-a5916c54f94c
+    position: {x: 530.4, y: 157.6}
+  - GUID: 617357da-21dd-4e20-ac33-7861a9b927a2
+    speaker: 
     dialogueText: Dialogue Node
-    position: {x: 497.6, y: 122.40001}
-  nodeLinks:
-  - baseNodeGUID: bf5ed7b7e6edc6e4b9a51de1168cfecc
+    position: {x: 795.2, y: 343.19998}
+  - GUID: cc95f3c7-37f9-43b5-a21c-0db6cd65b6a9
+    speaker: 
+    dialogueText: Dialogue Node
+    position: {x: 795.2, y: 157.6}
+  NodeLinks:
+  - baseNodeGUID: StartPoint
     portName: Next
-    targetNodeGUID: bba08f7d-2c01-44a2-a67d-17458158428e
-  - baseNodeGUID: bba08f7d-2c01-44a2-a67d-17458158428e
-    portName: Hi
-    targetNodeGUID: 80b2fb8e-f135-4903-8f25-a5916c54f94c
-  - baseNodeGUID: bba08f7d-2c01-44a2-a67d-17458158428e
-    portName: Fuck
-    targetNodeGUID: c46f5b1c-5b1e-4341-ab94-524473f0a281
-  - baseNodeGUID: 80b2fb8e-f135-4903-8f25-a5916c54f94c
+    targetNodeGUID: 7916ddb8-c3a2-4e89-a627-409834b6e967
+  - baseNodeGUID: 7916ddb8-c3a2-4e89-a627-409834b6e967
+    portName: Output 1
+    targetNodeGUID: 0411ef57-897f-4586-9308-56c38ce2378e
+  - baseNodeGUID: 7916ddb8-c3a2-4e89-a627-409834b6e967
     portName: Output 0
-    targetNodeGUID: 1a0ee0cc-4497-46cf-8b84-faa4959dd103
+    targetNodeGUID: a284293b-7395-464b-9a59-dc52af54f32e
+  - baseNodeGUID: a284293b-7395-464b-9a59-dc52af54f32e
+    portName: Output 0
+    targetNodeGUID: 617357da-21dd-4e20-ac33-7861a9b927a2
+  - baseNodeGUID: 0411ef57-897f-4586-9308-56c38ce2378e
+    portName: Output 0
+    targetNodeGUID: cc95f3c7-37f9-43b5-a21c-0db6cd65b6a9
+  ExposedProperties: []

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
-  m_Name: New Narrative
+  m_Name: ban
   m_EditorClassIdentifier: 
   DialogueNodes:
   - GUID: 7916ddb8-c3a2-4e89-a627-409834b6e967
@@ -25,6 +25,10 @@ MonoBehaviour:
     speaker: 
     dialogueText: Dialogue Node
     position: {x: 530.4, y: 157.6}
+  - GUID: 617357da-21dd-4e20-ac33-7861a9b927a2
+    speaker: 
+    dialogueText: Dialogue Node
+    position: {x: 795.2, y: 343.19998}
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next
@@ -35,4 +39,7 @@ MonoBehaviour:
   - baseNodeGUID: 7916ddb8-c3a2-4e89-a627-409834b6e967
     portName: Output 0
     targetNodeGUID: a284293b-7395-464b-9a59-dc52af54f32e
+  - baseNodeGUID: a284293b-7395-464b-9a59-dc52af54f32e
+    portName: Output 0
+    targetNodeGUID: 617357da-21dd-4e20-ac33-7861a9b927a2
   ExposedProperties: []

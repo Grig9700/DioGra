@@ -65,6 +65,7 @@ public class GraphSaveUtility
             dialogueContainer.DialogueNodes.Add(new DialogueNodeData
             {
                 GUID = dialogueNode.GUID,
+                speaker = dialogueNode.speaker,
                 dialogueText = dialogueNode.dialogueText,
                 position = dialogueNode.GetPosition().position
             });
@@ -83,7 +84,7 @@ public class GraphSaveUtility
         }
 
         //Creates a backup in case Load was pushed without having saved.
-        //This file will be overridden each time save is clicked
+        //This file will be overridden each time load or clear is clicked
         CreateGraphBackup();
         
         ClearGraph();
@@ -92,6 +93,12 @@ public class GraphSaveUtility
         CreateExposedVariables();
     }
 
+    public void Clear()
+    {
+        CreateGraphBackup();
+        ClearGraph();
+    }
+    
     private void CreateExposedVariables()
     {
         _targetGraphView.ClearBlackboardAndExposedProperties();
@@ -148,10 +155,6 @@ public class GraphSaveUtility
 
     private void ClearGraph()
     {
-        //Assign entry to Start
-        Nodes.Find(node => node.entryPoint).GUID =
-            _containerCache.NodeLinks.Find(node => node.portName == "Next").baseNodeGUID;
-
         foreach (var node in Nodes)
         {
             if (node.entryPoint) continue;

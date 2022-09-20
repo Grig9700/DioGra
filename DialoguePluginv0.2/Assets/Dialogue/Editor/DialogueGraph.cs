@@ -97,6 +97,7 @@ public class DialogueGraph : EditorWindow
         
         toolbar.Add(new Button( () => RequestDataOperation(true)) {text = "Save"});
         toolbar.Add(new Button( () => RequestDataOperation(false)) {text = "Load"});
+        toolbar.Add(new Button( ClearGraph) {text = "Clear"});
         
         // var nodeCreateButton = new Button(() => { _graphView.CreateNode("Dialogue Node"); });
         // nodeCreateButton.text = "Create Node";
@@ -134,6 +135,12 @@ public class DialogueGraph : EditorWindow
             saveUtility.LoadData(_filename);
     }
 
+    private void ClearGraph()
+    {
+        var saveUtility = GraphSaveUtility.GetInstance(_graphView);
+        saveUtility.Clear();
+    }
+    
     private void OnDisable()
     {
         rootVisualElement.Remove(_graphView);

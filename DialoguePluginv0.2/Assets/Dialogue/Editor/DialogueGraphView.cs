@@ -64,7 +64,7 @@ public class DialogueGraphView : GraphView
         var node = new DialogueNode()
         {
             title = "START",
-            GUID = GUID.Generate().ToString(),
+            GUID = "StartPoint",
             dialogueText = "ENTRY POINT",
             entryPoint = true
         };
@@ -96,6 +96,7 @@ public class DialogueGraphView : GraphView
         var dialogueNode = new DialogueNode()
         {
             title = nodeName,
+            speaker = "",
             dialogueText = nodeName,
             GUID = Guid.NewGuid().ToString()
         };
@@ -110,7 +111,11 @@ public class DialogueGraphView : GraphView
         var button = new Button(() => { AddChoicePort(dialogueNode); });
         button.text = "New Output";
         dialogueNode.titleContainer.Add(button);
-
+        
+        var speakerField = new TextField("Speaker");
+        speakerField.RegisterValueChangedCallback(evt => dialogueNode.speaker = evt.newValue);
+        dialogueNode.mainContainer.Add(speakerField);
+        
         var textField = new TextField(string.Empty);
         textField.RegisterValueChangedCallback(evt => dialogueNode.dialogueText = evt.newValue);
         dialogueNode.mainContainer.Add(textField);
