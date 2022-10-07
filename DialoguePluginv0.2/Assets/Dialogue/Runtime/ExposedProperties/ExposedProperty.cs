@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class ExposedProperty
+public class ExposedProperty<T>
 {
-    public string propertyName = "New Property";
-    public string propertyValue = "";
+    public string name = "New Property";
+    public T value;
 }

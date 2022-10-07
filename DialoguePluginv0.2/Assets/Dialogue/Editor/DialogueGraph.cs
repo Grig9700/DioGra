@@ -42,24 +42,35 @@ public class DialogueGraph : EditorWindow
     {
         var blackboard = new Blackboard(_graphView);
         blackboard.Add(new BlackboardSection{ title = "Exposed Variables"});
-        blackboard.addItemRequested = blackboard1 => { _graphView.AddPropertyToBlackboard(new ExposedProperty()); };
+        blackboard.addItemRequested = blackboard1 => { _graphView.AddPropertyToBlackboard(new ExposedProperty<string>()); };
         blackboard.editTextRequested = (blackboard1, element, newValue) =>
         {
             var oldPropertyName = ((BlackboardField)element).text;
-            if (_graphView.ExposedProperties.Any(x => x.propertyName == newValue))
+            if (_graphView.ExposedPropertiesString.Any(x => x.name == newValue))
             {
                 Debug.LogError("Property name of that type is already present");
                 return;
             }
 
-            var propertyIndex = _graphView.ExposedProperties.FindIndex(x => x.propertyName == oldPropertyName);
-            _graphView.ExposedProperties[propertyIndex].propertyName = newValue;
+            var propertyIndex = _graphView.ExposedPropertiesString.FindIndex(x => x.name == oldPropertyName);
+            _graphView.ExposedPropertiesString[propertyIndex].name = newValue;
             ((BlackboardField)element).text = newValue;
+            //blackboardField.RegisterCallback<ContextualMenuPopulateEvent>(MyMenuPopulateCB);
         };
 
         blackboard.SetPosition(new Rect(10, 30, 200, 140));
         _graphView.Blackboard = blackboard;
         _graphView.Add(blackboard);
+    }
+
+    private void MyMenuPopulateCB(ContextualMenuPopulateEvent evt)
+    {
+        //evt.menu.AppendAction("Delete", MyAction(), DropdownMenuAction.AlwaysEnabled);
+    }
+
+    void MyAction()
+    {
+        
     }
 
     private void GenerateMiniMap()

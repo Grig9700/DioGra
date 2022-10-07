@@ -5,15 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueNode.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Resources/Node.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Resources/Node.uss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueNodeData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueNodeData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueContainer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperty.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/BackupBeforeLoad.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/BackupBeforeLoad.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/New Narrative.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/New Narrative.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/box.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/box.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +21,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/eae584ce26bc40229c1b1aa476bfa5893e2600/ee/9bd0b5c1/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/NodeSearchWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperty.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedPropertyBool.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/NodeLinkData.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -68,10 +61,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="18312">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="18312" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -90,7 +83,8 @@
       <workItem from="1663168065292" duration="5482000" />
       <workItem from="1663230453510" duration="28456000" />
       <workItem from="1663327726467" duration="788000" />
-      <workItem from="1663672424100" duration="6512000" />
+      <workItem from="1663672424100" duration="7744000" />
+      <workItem from="1665135276159" duration="12915000" />
     </task>
     <servers />
   </component>

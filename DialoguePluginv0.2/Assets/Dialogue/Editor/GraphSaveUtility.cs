@@ -39,7 +39,10 @@ public class GraphSaveUtility
 
     private void SaveExposedProperties(DialogueContainer dialogueContainer)
     {
-        dialogueContainer.ExposedProperties.AddRange(_targetGraphView.ExposedProperties);
+        dialogueContainer.ExposedPropertiesBool.AddRange(_targetGraphView.ExposedPropertiesBool);
+        dialogueContainer.ExposedPropertiesFloat.AddRange(_targetGraphView.ExposedPropertiesFloat);
+        dialogueContainer.ExposedPropertiesInt.AddRange(_targetGraphView.ExposedPropertiesInt);
+        dialogueContainer.ExposedPropertiesString.AddRange(_targetGraphView.ExposedPropertiesString);
     }
 
     private bool SaveNode(DialogueContainer dialogueContainer)
@@ -102,7 +105,19 @@ public class GraphSaveUtility
     private void CreateExposedVariables()
     {
         _targetGraphView.ClearBlackboardAndExposedProperties();
-        foreach (var property in _containerCache.ExposedProperties)
+        foreach (var property in _containerCache.ExposedPropertiesBool)
+        {
+            _targetGraphView.AddPropertyToBlackboard(property);
+        }
+        foreach (var property in _containerCache.ExposedPropertiesString)
+        {
+            _targetGraphView.AddPropertyToBlackboard(property);
+        }
+        foreach (var property in _containerCache.ExposedPropertiesFloat)
+        {
+            _targetGraphView.AddPropertyToBlackboard(property);
+        }
+        foreach (var property in _containerCache.ExposedPropertiesInt)
         {
             _targetGraphView.AddPropertyToBlackboard(property);
         }
