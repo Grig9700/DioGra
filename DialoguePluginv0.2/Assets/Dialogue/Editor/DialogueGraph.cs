@@ -15,7 +15,18 @@ public class DialogueGraph : EditorWindow
     private MiniMap _miniMap;
     private bool _showMiniMap = true;
     private bool _showBlackboard = true;
-
+    
+    private Type _type;
+    //private ButtonWithMenu typeButton;
+    
+    private enum Type
+    {
+        Bool,
+        Float,
+        Int,
+        String
+    }
+    
     [MenuItem("Window/Dialogue Graph")]
     public static void OpenDialogueGraphWindow()
     {
@@ -37,16 +48,21 @@ public class DialogueGraph : EditorWindow
         ShowHideMiniMap();
         ShowHideBlackboard();
     }
-
+    
     private void GenerateBlackboard()
     {
         var blackboard = new Blackboard(_graphView);
+        
+        EnumField typeField = new EnumField(_type);
+        typeField.RegisterValueChangedCallback(evt => _type = (Type)evt.newValue);
+        blackboard.Add(typeField);
         blackboard.Add(new BlackboardSection{ title = "Exposed Variables"});
-        blackboard.addItemRequested = blackboard1 => { _graphView.AddPropertyToBlackboard(new ExposedProperty<string>()); };
+        
+        blackboard.addItemRequested = blackboard1 => { AddBlackboardProperty(_type);};
         blackboard.editTextRequested = (blackboard1, element, newValue) =>
         {
             var oldPropertyName = ((BlackboardField)element).text;
-            if (_graphView.ExposedPropertiesString.Any(x => x.name == newValue))
+            if (_graphView.CheckIfNameExists(newValue))
             {
                 Debug.LogError("Property name of that type is already present");
                 return;
@@ -73,6 +89,25 @@ public class DialogueGraph : EditorWindow
         
     }
 
+    private void AddBlackboardProperty(Type current)
+    {
+        switch (current)
+        {
+            case Type.Bool:
+                _graphView.AddPropertyToBlackboard(new ExposedProperty<bool>()); 
+                break;
+            case Type.Float:
+                _graphView.AddPropertyToBlackboard(new ExposedProperty<float>()); 
+                break;
+            case Type.Int:
+                _graphView.AddPropertyToBlackboard(new ExposedProperty<int>()); 
+                break;
+            case Type.String:
+                _graphView.AddPropertyToBlackboard(new ExposedProperty<string>()); 
+                break;
+        }
+    }
+    
     private void GenerateMiniMap()
     {
         _miniMap = new MiniMap { anchored = true };

@@ -170,6 +170,7 @@ public class GraphSaveUtility
 
     private void ClearGraph()
     {
+        _targetGraphView.ClearBlackboardAndExposedProperties();
         foreach (var node in Nodes)
         {
             if (node.entryPoint) continue;
