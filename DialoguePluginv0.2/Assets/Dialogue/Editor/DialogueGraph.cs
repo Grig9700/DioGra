@@ -15,11 +15,12 @@ public class DialogueGraph : EditorWindow
     private MiniMap _miniMap;
     private bool _showMiniMap = true;
     private bool _showBlackboard = true;
+    private Blackboard _blackboard;
     
-    private Type _type;
+    private ExposedVariableType _exposedVariableType;
     //private ButtonWithMenu typeButton;
     
-    private enum Type
+    private enum ExposedVariableType
     {
         Bool,
         Float,
@@ -50,19 +51,24 @@ public class DialogueGraph : EditorWindow
         ShowHideMiniMap();
         ShowHideBlackboard();
     }
+
+    private void CreateBlackBoardElements()
+    {
+        EnumField typeField = new EnumField(_exposedVariableType);
+        typeField.RegisterValueChangedCallback(evt => _exposedVariableType = (ExposedVariableType)evt.newValue);
+        _blackboard.Add(typeField);
+        _blackboard.Add(new BlackboardSection{ title = "Exposed Variables"});
+        _blackboard.title = "Exposed Variables";
+    }
     
     private void GenerateBlackboard()
     {
-        var blackboard = new Blackboard(_graphView);
+        _blackboard = new Blackboard(_graphView);
         
-        EnumField typeField = new EnumField(_type);
-        typeField.RegisterValueChangedCallback(evt => _type = (Type)evt.newValue);
-        blackboard.Add(typeField);
-        blackboard.Add(new BlackboardSection{ title = "Exposed Variables"});
-        //blackboard.title = "Exposed Variables";
+        CreateBlackBoardElements();
         
-        blackboard.addItemRequested = blackboard1 => { AddBlackboardProperty(_type);};
-        blackboard.editTextRequested = (blackboard1, element, newValue) =>
+        _blackboard.addItemRequested = blackboard1 => { AddBlackboardProperty(_exposedVariableType);};
+        _blackboard.editTextRequested = (blackboard1, element, newValue) =>
         {
             var oldPropertyName = ((BlackboardField)element).text;
             if (_graphView.CheckIfNameExists(newValue))
@@ -77,9 +83,9 @@ public class DialogueGraph : EditorWindow
             //blackboardField.RegisterCallback<ContextualMenuPopulateEvent>(MyMenuPopulateCB);
         };
 
-        blackboard.SetPosition(new Rect(10, 30, 200, 140));
-        _graphView.Blackboard = blackboard;
-        _graphView.Add(blackboard);
+        _blackboard.SetPosition(new Rect(10, 30, 200, 140));
+        _graphView.Blackboard = _blackboard;
+        _graphView.Add(_blackboard);
     }
 
     private void MyMenuPopulateCB(ContextualMenuPopulateEvent evt)
@@ -92,20 +98,20 @@ public class DialogueGraph : EditorWindow
         
     }
 
-    private void AddBlackboardProperty(Type current)
+    private void AddBlackboardProperty(ExposedVariableType current)
     {
         switch (current)
         {
-            case Type.Bool:
+            case ExposedVariableType.Bool:
                 _graphView.AddPropertyToBlackboard(new ExposedProperty<bool>()); 
                 break;
-            case Type.Float:
+            case ExposedVariableType.Float:
                 _graphView.AddPropertyToBlackboard(new ExposedProperty<float>()); 
                 break;
-            case Type.Int:
+            case ExposedVariableType.Int:
                 _graphView.AddPropertyToBlackboard(new ExposedProperty<int>()); 
                 break;
-            case Type.String:
+            case ExposedVariableType.String:
                 _graphView.AddPropertyToBlackboard(new ExposedProperty<string>()); 
                 break;
         }
@@ -181,13 +187,17 @@ public class DialogueGraph : EditorWindow
         if (save)
             saveUtility.SaveData(_filename);
         else
+        {
             saveUtility.LoadData(_filename);
+            CreateBlackBoardElements();
+        }
     }
 
     private void ClearGraph()
     {
         var saveUtility = GraphSaveUtility.GetInstance(_graphView);
         saveUtility.Clear();
+        CreateBlackBoardElements();
     }
     
     private void OnDisable()
