@@ -23,6 +23,8 @@ public class DialogueGraphView : GraphView
     public List<ExposedProperty<float>> ExposedPropertiesFloat = new List<ExposedProperty<float>>();
     public List<ExposedProperty<string>> ExposedPropertiesString = new List<ExposedProperty<string>>();
     public List<ExposedProperty<bool>> ExposedPropertiesBool = new List<ExposedProperty<bool>>();
+
+    public List<ExposedProperties> ExposedPropertiesList = new List<ExposedProperties>();
     //public List<ExposedProperty> ExposedProperties = new List<ExposedProperty>();
 
     private NodeSearchWindow _nodeSearchWindow;

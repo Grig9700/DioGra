@@ -12,58 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
   m_Name: New Narrative
   m_EditorClassIdentifier: 
-  DialogueNodes:
+  GraphNodes:
   - nodeName: Dialogue Node
-    GUID: 0bb74cf4-9315-4a4e-9574-779db0e32ff4
-    speaker: 
-    dialogueText: 
-    position: {x: 238.4, y: 200}
+    GUID: 8938d3c5-6151-4357-a7d0-76c9280763b0
+    position: {x: 234.4, y: 200}
   - nodeName: Dialogue Node
-    GUID: 3cd6cd70-d5e4-4276-9188-312792ef7e21
-    speaker: 
-    dialogueText: 
-    position: {x: 429.6, y: 200}
+    GUID: a9c2c1ba-8f76-4808-b0ad-4e9a44962488
+    position: {x: 684, y: 80.8}
   - nodeName: Dialogue Node
-    GUID: 0063bb44-7830-422d-a439-ad2bd6134bfe
-    speaker: 
-    dialogueText: 
-    position: {x: 876.8, y: 140}
-  - nodeName: Dialogue Node
-    GUID: cd353cb5-89b5-406b-a24d-ed025a86ad44
-    speaker: 
-    dialogueText: 
-    position: {x: 876.8, y: 259.19998}
-  ChoiceNodes:
+    GUID: bc659152-c7ef-4489-ab93-37bb24dadd9d
+    position: {x: 684, y: 300.8}
   - nodeName: Choice Node
-    GUID: 5140bb69-7a93-4617-b93a-15a52bee8cb3
-    position: {x: 608, y: 200}
-  IfNodes:
+    GUID: f3b13d83-8152-4ac7-b93e-205f42d47698
+    position: {x: 434.40002, y: 200}
   - nodeName: If Node
-    GUID: 571a2bff-d100-4161-b3a5-a4accb2dad4d
-    position: {x: 1102.3999, y: 200}
+    GUID: 64ad0eb0-3cb1-4f0d-a6e0-28ec27fc0a86
+    position: {x: 872, y: 200}
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next
-    targetNodeGUID: 0bb74cf4-9315-4a4e-9574-779db0e32ff4
-  - baseNodeGUID: 0bb74cf4-9315-4a4e-9574-779db0e32ff4
+    targetNodeGUID: 8938d3c5-6151-4357-a7d0-76c9280763b0
+  - baseNodeGUID: 8938d3c5-6151-4357-a7d0-76c9280763b0
     portName: Output
-    targetNodeGUID: 3cd6cd70-d5e4-4276-9188-312792ef7e21
-  - baseNodeGUID: 3cd6cd70-d5e4-4276-9188-312792ef7e21
-    portName: Output
-    targetNodeGUID: 5140bb69-7a93-4617-b93a-15a52bee8cb3
-  - baseNodeGUID: 5140bb69-7a93-4617-b93a-15a52bee8cb3
+    targetNodeGUID: f3b13d83-8152-4ac7-b93e-205f42d47698
+  - baseNodeGUID: f3b13d83-8152-4ac7-b93e-205f42d47698
     portName: Output 0
-    targetNodeGUID: 0063bb44-7830-422d-a439-ad2bd6134bfe
-  - baseNodeGUID: 5140bb69-7a93-4617-b93a-15a52bee8cb3
+    targetNodeGUID: a9c2c1ba-8f76-4808-b0ad-4e9a44962488
+  - baseNodeGUID: f3b13d83-8152-4ac7-b93e-205f42d47698
     portName: Output 1
-    targetNodeGUID: cd353cb5-89b5-406b-a24d-ed025a86ad44
-  - baseNodeGUID: 0063bb44-7830-422d-a439-ad2bd6134bfe
+    targetNodeGUID: bc659152-c7ef-4489-ab93-37bb24dadd9d
+  - baseNodeGUID: a9c2c1ba-8f76-4808-b0ad-4e9a44962488
     portName: Output
-    targetNodeGUID: 571a2bff-d100-4161-b3a5-a4accb2dad4d
-  - baseNodeGUID: cd353cb5-89b5-406b-a24d-ed025a86ad44
+    targetNodeGUID: 64ad0eb0-3cb1-4f0d-a6e0-28ec27fc0a86
+  - baseNodeGUID: bc659152-c7ef-4489-ab93-37bb24dadd9d
     portName: Output
-    targetNodeGUID: 571a2bff-d100-4161-b3a5-a4accb2dad4d
-  ExposedPropertiesInt: []
-  ExposedPropertiesFloat: []
-  ExposedPropertiesString: []
-  ExposedPropertiesBool: []
+    targetNodeGUID: 64ad0eb0-3cb1-4f0d-a6e0-28ec27fc0a86

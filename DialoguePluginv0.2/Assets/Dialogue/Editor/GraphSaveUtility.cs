@@ -40,10 +40,11 @@ public class GraphSaveUtility
 
     private void SaveExposedProperties(DialogueContainer dialogueContainer)
     {
-        dialogueContainer.ExposedPropertiesBool.AddRange(_targetGraphView.ExposedPropertiesBool);
-        dialogueContainer.ExposedPropertiesFloat.AddRange(_targetGraphView.ExposedPropertiesFloat);
-        dialogueContainer.ExposedPropertiesInt.AddRange(_targetGraphView.ExposedPropertiesInt);
-        dialogueContainer.ExposedPropertiesString.AddRange(_targetGraphView.ExposedPropertiesString);
+        //dialogueContainer.ExposedPropertiesBool.AddRange(_targetGraphView.ExposedPropertiesBool);
+        //dialogueContainer.ExposedPropertiesFloat.AddRange(_targetGraphView.ExposedPropertiesFloat);
+        //dialogueContainer.ExposedPropertiesInt.AddRange(_targetGraphView.ExposedPropertiesInt);
+        //dialogueContainer.ExposedPropertiesString.AddRange(_targetGraphView.ExposedPropertiesString);
+        dialogueContainer.ExposedPropertiesList.AddRange(_targetGraphView.ExposedPropertiesList);
     }
 
     private bool SaveNode(DialogueContainer dialogueContainer)
@@ -69,7 +70,7 @@ public class GraphSaveUtility
             switch (graphNode)
             {
                 case DialogueNode dialogueNode:
-                    dialogueContainer.DialogueNodes.Add(new DialogueNodeData
+                    dialogueContainer.GraphNodes.Add(new DialogueNodeData
                     {
                         nodeName = dialogueNode.title,
                         GUID = dialogueNode.GUID,
@@ -79,7 +80,7 @@ public class GraphSaveUtility
                     });
                     break;
                 case ChoiceNode choiceNode:
-                    dialogueContainer.ChoiceNodes.Add(new ChoiceNodeData
+                    dialogueContainer.GraphNodes.Add(new ChoiceNodeData
                     {
                         nodeName = choiceNode.title,
                         GUID = choiceNode.GUID,
@@ -87,7 +88,7 @@ public class GraphSaveUtility
                     });
                     break;
                 case IfNode ifNode:
-                    dialogueContainer.IfNodes.Add(new IfNodeData
+                    dialogueContainer.GraphNodes.Add(new IfNodeData
                     {
                         nodeName = ifNode.title,
                         GUID = ifNode.GUID,
@@ -128,22 +129,40 @@ public class GraphSaveUtility
     private void CreateExposedVariables()
     {
         _targetGraphView.ClearBlackboardAndExposedProperties();
-        foreach (var property in _containerCache.ExposedPropertiesBool)
+        foreach (var property in _containerCache.ExposedPropertiesList)
         {
-            _targetGraphView.AddPropertyToBlackboard(property);
+            switch (property)
+            {
+                case ExposedProperty<bool> boolProperty:
+                    _targetGraphView.AddPropertyToBlackboard(boolProperty);
+                    break;
+                case ExposedProperty<float> floatProperty:
+                    _targetGraphView.AddPropertyToBlackboard(floatProperty);
+                    break;
+                case ExposedProperty<int> intProperty:
+                    _targetGraphView.AddPropertyToBlackboard(intProperty);
+                    break;
+                case ExposedProperty<string> stringProperty:
+                    _targetGraphView.AddPropertyToBlackboard(stringProperty);
+                    break;
+            }
         }
-        foreach (var property in _containerCache.ExposedPropertiesString)
-        {
-            _targetGraphView.AddPropertyToBlackboard(property);
-        }
-        foreach (var property in _containerCache.ExposedPropertiesFloat)
-        {
-            _targetGraphView.AddPropertyToBlackboard(property);
-        }
-        foreach (var property in _containerCache.ExposedPropertiesInt)
-        {
-            _targetGraphView.AddPropertyToBlackboard(property);
-        }
+        // foreach (var property in _containerCache.ExposedPropertiesBool)
+        // {
+        //     _targetGraphView.AddPropertyToBlackboard(property);
+        // }
+        // foreach (var property in _containerCache.ExposedPropertiesString)
+        // {
+        //     _targetGraphView.AddPropertyToBlackboard(property);
+        // }
+        // foreach (var property in _containerCache.ExposedPropertiesFloat)
+        // {
+        //     _targetGraphView.AddPropertyToBlackboard(property);
+        // }
+        // foreach (var property in _containerCache.ExposedPropertiesInt)
+        // {
+        //     _targetGraphView.AddPropertyToBlackboard(property);
+        // }
     }
     private void ConnectNodes()
     {
@@ -176,33 +195,60 @@ public class GraphSaveUtility
 
     private void CreateNodes()
     {
-        foreach (var nodeData in _containerCache.DialogueNodes)
+        foreach (var cachedNode in _containerCache.GraphNodes)
         {
-            var tempNode = _targetGraphView.CreateDialogueNode(nodeData.nodeName, nodeData.position, nodeData.speaker , nodeData.dialogueText);
-            tempNode.GUID = nodeData.GUID;
-            _targetGraphView.AddElement(tempNode);
+            switch (cachedNode)
+            {
+                case DialogueNodeData nodeData:
+                    var dNode = _targetGraphView.CreateDialogueNode(nodeData.nodeName, nodeData.position, nodeData.speaker , nodeData.dialogueText);
+                    dNode.GUID = nodeData.GUID;
+                    _targetGraphView.AddElement(dNode);
+                    break;
+                case ChoiceNodeData nodeData:
+                    var cNode = _targetGraphView.CreateChoiceNode(nodeData.nodeName, nodeData.position);
+                    cNode.GUID = nodeData.GUID;
+                    _targetGraphView.AddElement(cNode);
 
-            //var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
-            //nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
-        }
-        foreach (var nodeData in _containerCache.ChoiceNodes)
-        {
-            var tempNode = _targetGraphView.CreateChoiceNode(nodeData.nodeName, nodeData.position);
-            tempNode.GUID = nodeData.GUID;
-            _targetGraphView.AddElement(tempNode);
+                    var cNodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
+                    cNodePorts.ForEach(port => _targetGraphView.AddChoicePort(cNode, port.portName));
+                    break;
+                case IfNodeData nodeData:
+                    var iNode = _targetGraphView.CreateIfNode(nodeData.nodeName, nodeData.position);
+                    iNode.GUID = nodeData.GUID;
+                    _targetGraphView.AddElement(iNode);
 
-            var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
-            nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
+                    var iNodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
+                    iNodePorts.ForEach(port => _targetGraphView.AddChoicePort(iNode, port.portName));
+                    break;
+            }
         }
-        foreach (var nodeData in _containerCache.IfNodes)
-        {
-            var tempNode = _targetGraphView.CreateIfNode(nodeData.nodeName, nodeData.position);
-            tempNode.GUID = nodeData.GUID;
-            _targetGraphView.AddElement(tempNode);
-
-            var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
-            nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
-        }
+        // foreach (var nodeData in _containerCache.DialogueNodes)
+        // {
+        //     var tempNode = _targetGraphView.CreateDialogueNode(nodeData.nodeName, nodeData.position, nodeData.speaker , nodeData.dialogueText);
+        //     tempNode.GUID = nodeData.GUID;
+        //     _targetGraphView.AddElement(tempNode);
+        //
+        //     //var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
+        //     //nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
+        // }
+        // foreach (var nodeData in _containerCache.ChoiceNodes)
+        // {
+        //     var tempNode = _targetGraphView.CreateChoiceNode(nodeData.nodeName, nodeData.position);
+        //     tempNode.GUID = nodeData.GUID;
+        //     _targetGraphView.AddElement(tempNode);
+        //
+        //     var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
+        //     nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
+        // }
+        // foreach (var nodeData in _containerCache.IfNodes)
+        // {
+        //     var tempNode = _targetGraphView.CreateIfNode(nodeData.nodeName, nodeData.position);
+        //     tempNode.GUID = nodeData.GUID;
+        //     _targetGraphView.AddElement(tempNode);
+        //
+        //     var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
+        //     nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
+        // }
     }
 
     private void ClearGraph()
