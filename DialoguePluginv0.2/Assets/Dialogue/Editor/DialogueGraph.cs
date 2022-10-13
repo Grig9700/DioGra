@@ -16,6 +16,7 @@ public class DialogueGraph : EditorWindow
     private bool _showMiniMap = true;
     private bool _showBlackboard = true;
     private Blackboard _blackboard;
+    private Toolbar _toolbar;
     
     private ExposedVariableType _exposedVariableType;
     //private ButtonWithMenu typeButton;
@@ -144,26 +145,26 @@ public class DialogueGraph : EditorWindow
 
     private void GenerateToolbar()
     {
-        var toolbar = new Toolbar();
+        _toolbar = new Toolbar();
 
-        toolbar.Add(new Button(ShowHideBlackboard) { text = "S/H Board" });
-        toolbar.Add(new Button(ShowHideMiniMap) { text = "S/H Map" });
+        _toolbar.Add(new Button(ShowHideBlackboard) { text = "S/H Board" });
+        _toolbar.Add(new Button(ShowHideMiniMap) { text = "S/H Map" });
 
         var filenameTextField = new TextField("File Name:");
         filenameTextField.SetValueWithoutNotify(_filename);
         filenameTextField.MarkDirtyRepaint();
         filenameTextField.RegisterValueChangedCallback(evt => _filename = evt.newValue);
-        toolbar.Add(filenameTextField);
+        _toolbar.Add(filenameTextField);
         
-        toolbar.Add(new Button( () => RequestDataOperation(true)) {text = "Save"});
-        toolbar.Add(new Button( () => RequestDataOperation(false)) {text = "Load"});
-        toolbar.Add(new Button( ClearGraph) {text = "Clear"});
+        _toolbar.Add(new Button( () => RequestDataOperation(true)) {text = "Save"});
+        _toolbar.Add(new Button( () => RequestDataOperation(false)) {text = "Load"});
+        _toolbar.Add(new Button( ClearGraph) {text = "Clear"});
         
         // var nodeCreateButton = new Button(() => { _graphView.CreateNode("Dialogue Node"); });
         // nodeCreateButton.text = "Create Node";
         // toolbar.Add(nodeCreateButton);
         
-        rootVisualElement.Add(toolbar);
+        rootVisualElement.Add(_toolbar);
     }
 
     private void ShowHideBlackboard()
@@ -205,5 +206,17 @@ public class DialogueGraph : EditorWindow
     private void OnDisable()
     {
         rootVisualElement.Remove(_graphView);
+    }
+
+    private void OnSelectionChange()
+    {
+        DialogueContainer container = Selection.activeObject as DialogueContainer;
+        if (container)
+        {
+            var saveUtility = GraphSaveUtility.GetInstance(_graphView);
+            saveUtility.LoadData(container.name, this);
+            _filename = container.name;
+            _toolbar.MarkDirtyRepaint();
+        }
     }
 }

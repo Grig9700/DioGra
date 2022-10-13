@@ -125,9 +125,14 @@ public class DialogueGraphView : GraphView
         inputPort.portName = "Input";
         ifNode.inputContainer.Add(inputPort);
         
-        var button = new Button(() => { AddChoicePort(ifNode); });
-        button.text = "New Output";
-        ifNode.titleContainer.Add(button);
+        
+        
+        var outputPortTrue = GeneratePort(ifNode, Direction.Output, Port.Capacity.Single);
+        outputPortTrue.portName = "True";
+        ifNode.outputContainer.Add(outputPortTrue);
+        var outputPortFalse = GeneratePort(ifNode, Direction.Output, Port.Capacity.Single);
+        outputPortFalse.portName = "False";
+        ifNode.outputContainer.Add(outputPortFalse);
         
         ifNode.RefreshExpandedState();
         ifNode.RefreshPorts();

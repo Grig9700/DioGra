@@ -14,9 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphNodes:
   - nodeName: Dialogue Node
-    GUID: cab4d93c-a687-496b-adc6-ae22e05802fc
-    position: {x: 234.4, y: 105.600006}
+    GUID: 0254aa54-e739-4a5c-93f3-8e6aef80d79a
+    position: {x: 222.4, y: 259.19998}
+  - nodeName: Choice Node
+    GUID: f66469a6-ecd6-4a67-82ac-1be67e5e0ff6
+    position: {x: 402.40002, y: 205.6}
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next
-    targetNodeGUID: cab4d93c-a687-496b-adc6-ae22e05802fc
+    targetNodeGUID: 0254aa54-e739-4a5c-93f3-8e6aef80d79a
+  - baseNodeGUID: 0254aa54-e739-4a5c-93f3-8e6aef80d79a
+    portName: Output
+    targetNodeGUID: f66469a6-ecd6-4a67-82ac-1be67e5e0ff6
