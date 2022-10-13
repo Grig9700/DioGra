@@ -13,26 +13,48 @@ MonoBehaviour:
   m_Name: New Narrative
   m_EditorClassIdentifier: 
   DialogueNodes:
-  - GUID: 7916ddb8-c3a2-4e89-a627-409834b6e967
+  - nodeName: Dialogue Node
+    GUID: 0bb74cf4-9315-4a4e-9574-779db0e32ff4
     speaker: 
-    dialogueText: Dialogue Node
-    position: {x: 280, y: 200}
-  - GUID: a284293b-7395-464b-9a59-dc52af54f32e
+    dialogueText: 
+    position: {x: 238.4, y: 200}
+  - nodeName: Dialogue Node
+    GUID: 3cd6cd70-d5e4-4276-9188-312792ef7e21
     speaker: 
-    dialogueText: Dialogue Node
-    position: {x: 530.4, y: 343.19998}
-  - GUID: 0411ef57-897f-4586-9308-56c38ce2378e
+    dialogueText: 
+    position: {x: 429.6, y: 200}
+  - nodeName: Dialogue Node
+    GUID: 0063bb44-7830-422d-a439-ad2bd6134bfe
     speaker: 
-    dialogueText: Dialogue Node
-    position: {x: 530.4, y: 157.6}
+    dialogueText: 
+    position: {x: 876.8, y: 140}
+  - nodeName: Dialogue Node
+    GUID: cd353cb5-89b5-406b-a24d-ed025a86ad44
+    speaker: 
+    dialogueText: 
+    position: {x: 876.8, y: 259.19998}
+  ChoiceNodes:
+  - nodeName: Choice Node
+    GUID: 5140bb69-7a93-4617-b93a-15a52bee8cb3
+    position: {x: 608, y: 200}
+  IfNodes: []
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next
-    targetNodeGUID: 7916ddb8-c3a2-4e89-a627-409834b6e967
-  - baseNodeGUID: 7916ddb8-c3a2-4e89-a627-409834b6e967
-    portName: Output 1
-    targetNodeGUID: 0411ef57-897f-4586-9308-56c38ce2378e
-  - baseNodeGUID: 7916ddb8-c3a2-4e89-a627-409834b6e967
+    targetNodeGUID: 0bb74cf4-9315-4a4e-9574-779db0e32ff4
+  - baseNodeGUID: 0bb74cf4-9315-4a4e-9574-779db0e32ff4
+    portName: Output
+    targetNodeGUID: 3cd6cd70-d5e4-4276-9188-312792ef7e21
+  - baseNodeGUID: 3cd6cd70-d5e4-4276-9188-312792ef7e21
+    portName: Output
+    targetNodeGUID: 5140bb69-7a93-4617-b93a-15a52bee8cb3
+  - baseNodeGUID: 5140bb69-7a93-4617-b93a-15a52bee8cb3
     portName: Output 0
-    targetNodeGUID: a284293b-7395-464b-9a59-dc52af54f32e
-  ExposedProperties: []
+    targetNodeGUID: 0063bb44-7830-422d-a439-ad2bd6134bfe
+  - baseNodeGUID: 5140bb69-7a93-4617-b93a-15a52bee8cb3
+    portName: Output 1
+    targetNodeGUID: cd353cb5-89b5-406b-a24d-ed025a86ad44
+  ExposedPropertiesInt: []
+  ExposedPropertiesFloat: []
+  ExposedPropertiesString: []
+  ExposedPropertiesBool: []

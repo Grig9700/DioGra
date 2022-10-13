@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using NUnit.Framework.Internal.Execution;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class GraphSaveUtility
     private DialogueGraphView _targetGraphView;
     private DialogueContainer _containerCache;
     private List<Edge> Edges => _targetGraphView.edges.ToList();
-    private List<DialogueNode> Nodes => _targetGraphView.nodes.ToList().Cast<DialogueNode>().ToList();
+    private List<GraphNode> GraphNodes => _targetGraphView.nodes.ToList().Cast<GraphNode>().ToList();
 
     public static GraphSaveUtility GetInstance(DialogueGraphView targetGraphView)
     {
@@ -52,8 +53,8 @@ public class GraphSaveUtility
         var connectedPorts = Edges.Where(x => x.input.node != null).ToArray();
         for (int i = 0; i < connectedPorts.Length; i++)
         {
-            var inputNode = connectedPorts[i].input.node as DialogueNode;
-            var outputNode = connectedPorts[i].output.node as DialogueNode;
+            var inputNode = connectedPorts[i].input.node as GraphNode;
+            var outputNode = connectedPorts[i].output.node as GraphNode;
             
             dialogueContainer.NodeLinks.Add(new NodeLinkData
             {
@@ -62,18 +63,40 @@ public class GraphSaveUtility
                 targetNodeGUID = inputNode.GUID
             });
         }
-
-        foreach (var dialogueNode in Nodes.Where(node => !node.entryPoint))
+        
+        foreach (var graphNode in GraphNodes.Where(node => !node.entryPoint))
         {
-            dialogueContainer.DialogueNodes.Add(new DialogueNodeData
+            switch (graphNode)
             {
-                GUID = dialogueNode.GUID,
-                speaker = dialogueNode.speaker,
-                dialogueText = dialogueNode.dialogueText,
-                position = dialogueNode.GetPosition().position
-            });
+                case DialogueNode dialogueNode:
+                    dialogueContainer.DialogueNodes.Add(new DialogueNodeData
+                    {
+                        nodeName = dialogueNode.title,
+                        GUID = dialogueNode.GUID,
+                        speaker = dialogueNode.speaker,
+                        dialogueText = dialogueNode.dialogueText,
+                        position = dialogueNode.GetPosition().position
+                    });
+                    break;
+                case ChoiceNode choiceNode:
+                    dialogueContainer.ChoiceNodes.Add(new ChoiceNodeData
+                    {
+                        nodeName = choiceNode.title,
+                        GUID = choiceNode.GUID,
+                        position = choiceNode.GetPosition().position
+                    });
+                    break;
+                case IfNode ifNode:
+                    dialogueContainer.IfNodes.Add(new IfNodeData
+                    {
+                        nodeName = ifNode.title,
+                        GUID = ifNode.GUID,
+                        position = ifNode.GetPosition().position
+                    });
+                    break;
+            }
+            
         }
-
         return true;
     }
     
@@ -122,22 +145,18 @@ public class GraphSaveUtility
             _targetGraphView.AddPropertyToBlackboard(property);
         }
     }
-
     private void ConnectNodes()
     {
-        for (int i = 0; i < Nodes.Count; i++)
+        for (int i = 0; i < GraphNodes.Count; i++)
         {
-            var connections = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == Nodes[i].GUID).ToList();
-
+            var connections = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == GraphNodes[i].GUID).ToList();
+            
             for (int j = 0; j < connections.Count; j++)
             {
                 var targetNodeGUID = connections[j].targetNodeGUID;
-                var targetNode = Nodes.First(node => node.GUID == targetNodeGUID);
-                LinkNodes(Nodes[i].outputContainer[j].Q<Port>(), (Port) targetNode.inputContainer[0]);
-                
-                targetNode.SetPosition(new Rect(
-                    _containerCache.DialogueNodes.First(node => node.GUID == targetNodeGUID).position, 
-                    _targetGraphView.defaultNodeSize));
+                var targetNode = GraphNodes.First(node => node.GUID == targetNodeGUID);
+            
+                LinkNodes(GraphNodes[i].outputContainer[j].Q<Port>(), (Port) targetNode.inputContainer[0]);
             }
         }
     }
@@ -159,7 +178,25 @@ public class GraphSaveUtility
     {
         foreach (var nodeData in _containerCache.DialogueNodes)
         {
-            var tempNode = _targetGraphView.CreateDialogueNode(nodeData.dialogueText, Vector2.zero);
+            var tempNode = _targetGraphView.CreateDialogueNode(nodeData.nodeName, nodeData.position, nodeData.speaker , nodeData.dialogueText);
+            tempNode.GUID = nodeData.GUID;
+            _targetGraphView.AddElement(tempNode);
+
+            //var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
+            //nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
+        }
+        foreach (var nodeData in _containerCache.ChoiceNodes)
+        {
+            var tempNode = _targetGraphView.CreateChoiceNode(nodeData.nodeName, nodeData.position);
+            tempNode.GUID = nodeData.GUID;
+            _targetGraphView.AddElement(tempNode);
+
+            var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
+            nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
+        }
+        foreach (var nodeData in _containerCache.IfNodes)
+        {
+            var tempNode = _targetGraphView.CreateIfNode(nodeData.nodeName, nodeData.position);
             tempNode.GUID = nodeData.GUID;
             _targetGraphView.AddElement(tempNode);
 
@@ -171,9 +208,14 @@ public class GraphSaveUtility
     private void ClearGraph()
     {
         _targetGraphView.ClearBlackboardAndExposedProperties();
-        foreach (var node in Nodes)
+        foreach (var node in _targetGraphView.nodes.ToList())
         {
-            if (node.entryPoint) continue;
+            switch (node)
+            {
+                case DialogueNode dialogueNode:
+                    if (dialogueNode.entryPoint) continue;
+                    break;
+            }
             
             //Removes the edges between nodes
             Edges.Where(edge => edge.input.node == node).ToList()

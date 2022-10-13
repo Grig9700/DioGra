@@ -36,6 +36,8 @@ public class DialogueGraph : EditorWindow
 
     private void OnEnable()
     {
+        _showBlackboard = true;
+        _showMiniMap = true;
         ConstructGraph();
         GenerateToolbar();
         GenerateMiniMap();
@@ -57,6 +59,7 @@ public class DialogueGraph : EditorWindow
         typeField.RegisterValueChangedCallback(evt => _type = (Type)evt.newValue);
         blackboard.Add(typeField);
         blackboard.Add(new BlackboardSection{ title = "Exposed Variables"});
+        //blackboard.title = "Exposed Variables";
         
         blackboard.addItemRequested = blackboard1 => { AddBlackboardProperty(_type);};
         blackboard.editTextRequested = (blackboard1, element, newValue) =>
