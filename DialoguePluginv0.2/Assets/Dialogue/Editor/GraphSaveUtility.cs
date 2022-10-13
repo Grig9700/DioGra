@@ -40,10 +40,6 @@ public class GraphSaveUtility
 
     private void SaveExposedProperties(DialogueContainer dialogueContainer)
     {
-        //dialogueContainer.ExposedPropertiesBool.AddRange(_targetGraphView.ExposedPropertiesBool);
-        //dialogueContainer.ExposedPropertiesFloat.AddRange(_targetGraphView.ExposedPropertiesFloat);
-        //dialogueContainer.ExposedPropertiesInt.AddRange(_targetGraphView.ExposedPropertiesInt);
-        //dialogueContainer.ExposedPropertiesString.AddRange(_targetGraphView.ExposedPropertiesString);
         dialogueContainer.ExposedPropertiesList.AddRange(_targetGraphView.ExposedPropertiesList);
     }
 
@@ -101,7 +97,7 @@ public class GraphSaveUtility
         return true;
     }
     
-    public void LoadData(string filename)
+    public void LoadData(string filename, DialogueGraph graph)
     {
         _containerCache = Resources.Load<DialogueContainer>(filename);
         if (_containerCache == null)
@@ -117,7 +113,7 @@ public class GraphSaveUtility
         ClearGraph();
         CreateNodes();
         ConnectNodes();
-        CreateExposedVariables();
+        CreateExposedVariables(graph);
     }
 
     public void Clear()
@@ -126,9 +122,10 @@ public class GraphSaveUtility
         ClearGraph();
     }
     
-    private void CreateExposedVariables()
+    private void CreateExposedVariables(DialogueGraph graph)
     {
         _targetGraphView.ClearBlackboardAndExposedProperties();
+        graph.CreateBlackBoardElements();
         foreach (var property in _containerCache.ExposedPropertiesList)
         {
             switch (property)
@@ -147,22 +144,6 @@ public class GraphSaveUtility
                     break;
             }
         }
-        // foreach (var property in _containerCache.ExposedPropertiesBool)
-        // {
-        //     _targetGraphView.AddPropertyToBlackboard(property);
-        // }
-        // foreach (var property in _containerCache.ExposedPropertiesString)
-        // {
-        //     _targetGraphView.AddPropertyToBlackboard(property);
-        // }
-        // foreach (var property in _containerCache.ExposedPropertiesFloat)
-        // {
-        //     _targetGraphView.AddPropertyToBlackboard(property);
-        // }
-        // foreach (var property in _containerCache.ExposedPropertiesInt)
-        // {
-        //     _targetGraphView.AddPropertyToBlackboard(property);
-        // }
     }
     private void ConnectNodes()
     {
@@ -222,33 +203,6 @@ public class GraphSaveUtility
                     break;
             }
         }
-        // foreach (var nodeData in _containerCache.DialogueNodes)
-        // {
-        //     var tempNode = _targetGraphView.CreateDialogueNode(nodeData.nodeName, nodeData.position, nodeData.speaker , nodeData.dialogueText);
-        //     tempNode.GUID = nodeData.GUID;
-        //     _targetGraphView.AddElement(tempNode);
-        //
-        //     //var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
-        //     //nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
-        // }
-        // foreach (var nodeData in _containerCache.ChoiceNodes)
-        // {
-        //     var tempNode = _targetGraphView.CreateChoiceNode(nodeData.nodeName, nodeData.position);
-        //     tempNode.GUID = nodeData.GUID;
-        //     _targetGraphView.AddElement(tempNode);
-        //
-        //     var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
-        //     nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
-        // }
-        // foreach (var nodeData in _containerCache.IfNodes)
-        // {
-        //     var tempNode = _targetGraphView.CreateIfNode(nodeData.nodeName, nodeData.position);
-        //     tempNode.GUID = nodeData.GUID;
-        //     _targetGraphView.AddElement(tempNode);
-        //
-        //     var nodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
-        //     nodePorts.ForEach(port => _targetGraphView.AddChoicePort(tempNode, port.portName));
-        // }
     }
 
     private void ClearGraph()

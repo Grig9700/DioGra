@@ -14,36 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphNodes:
   - nodeName: Dialogue Node
-    GUID: 8938d3c5-6151-4357-a7d0-76c9280763b0
-    position: {x: 234.4, y: 200}
-  - nodeName: Dialogue Node
-    GUID: a9c2c1ba-8f76-4808-b0ad-4e9a44962488
-    position: {x: 684, y: 80.8}
-  - nodeName: Dialogue Node
-    GUID: bc659152-c7ef-4489-ab93-37bb24dadd9d
-    position: {x: 684, y: 300.8}
-  - nodeName: Choice Node
-    GUID: f3b13d83-8152-4ac7-b93e-205f42d47698
-    position: {x: 434.40002, y: 200}
-  - nodeName: If Node
-    GUID: 64ad0eb0-3cb1-4f0d-a6e0-28ec27fc0a86
-    position: {x: 872, y: 200}
+    GUID: cab4d93c-a687-496b-adc6-ae22e05802fc
+    position: {x: 210.4, y: 200}
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next
-    targetNodeGUID: 8938d3c5-6151-4357-a7d0-76c9280763b0
-  - baseNodeGUID: 8938d3c5-6151-4357-a7d0-76c9280763b0
-    portName: Output
-    targetNodeGUID: f3b13d83-8152-4ac7-b93e-205f42d47698
-  - baseNodeGUID: f3b13d83-8152-4ac7-b93e-205f42d47698
-    portName: Output 0
-    targetNodeGUID: a9c2c1ba-8f76-4808-b0ad-4e9a44962488
-  - baseNodeGUID: f3b13d83-8152-4ac7-b93e-205f42d47698
-    portName: Output 1
-    targetNodeGUID: bc659152-c7ef-4489-ab93-37bb24dadd9d
-  - baseNodeGUID: a9c2c1ba-8f76-4808-b0ad-4e9a44962488
-    portName: Output
-    targetNodeGUID: 64ad0eb0-3cb1-4f0d-a6e0-28ec27fc0a86
-  - baseNodeGUID: bc659152-c7ef-4489-ab93-37bb24dadd9d
-    portName: Output
-    targetNodeGUID: 64ad0eb0-3cb1-4f0d-a6e0-28ec27fc0a86
+    targetNodeGUID: cab4d93c-a687-496b-adc6-ae22e05802fc

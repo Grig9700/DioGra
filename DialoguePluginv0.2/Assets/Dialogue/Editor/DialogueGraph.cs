@@ -52,7 +52,7 @@ public class DialogueGraph : EditorWindow
         ShowHideBlackboard();
     }
 
-    private void CreateBlackBoardElements()
+    public void CreateBlackBoardElements()
     {
         EnumField typeField = new EnumField(_exposedVariableType);
         typeField.RegisterValueChangedCallback(evt => _exposedVariableType = (ExposedVariableType)evt.newValue);
@@ -72,14 +72,14 @@ public class DialogueGraph : EditorWindow
         _blackboard.editTextRequested = (blackboard1, element, newValue) =>
         {
             var oldPropertyName = ((BlackboardField)element).text;
-            if (_graphView.CheckIfNameExists(newValue))
+            if (_graphView.ExposedPropertiesList.Any(x => x.name == newValue))
             {
                 Debug.LogError("Property name of that type is already present");
                 return;
             }
 
-            var propertyIndex = _graphView.ExposedPropertiesString.FindIndex(x => x.name == oldPropertyName);
-            _graphView.ExposedPropertiesString[propertyIndex].name = newValue;
+            var propertyIndex = _graphView.ExposedPropertiesList.FindIndex(x => x.name == oldPropertyName);
+            _graphView.ExposedPropertiesList[propertyIndex].name = newValue;
             ((BlackboardField)element).text = newValue;
             //blackboardField.RegisterCallback<ContextualMenuPopulateEvent>(MyMenuPopulateCB);
         };
@@ -192,10 +192,7 @@ public class DialogueGraph : EditorWindow
         if (save)
             saveUtility.SaveData(_filename);
         else
-        {
-            saveUtility.LoadData(_filename);
-            CreateBlackBoardElements();
-        }
+            saveUtility.LoadData(_filename, this);
     }
 
     private void ClearGraph()

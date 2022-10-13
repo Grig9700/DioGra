@@ -18,14 +18,8 @@ public class DialogueGraphView : GraphView
 {
     public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
     public Blackboard Blackboard;
-
-    public List<ExposedProperty<int>> ExposedPropertiesInt = new List<ExposedProperty<int>>();
-    public List<ExposedProperty<float>> ExposedPropertiesFloat = new List<ExposedProperty<float>>();
-    public List<ExposedProperty<string>> ExposedPropertiesString = new List<ExposedProperty<string>>();
-    public List<ExposedProperty<bool>> ExposedPropertiesBool = new List<ExposedProperty<bool>>();
-
+    
     public List<ExposedProperties> ExposedPropertiesList = new List<ExposedProperties>();
-    //public List<ExposedProperty> ExposedProperties = new List<ExposedProperty>();
 
     private NodeSearchWindow _nodeSearchWindow;
     
@@ -260,29 +254,25 @@ public class DialogueGraphView : GraphView
 
     public void ClearBlackboardAndExposedProperties()
     {
-        //ExposedProperties.Clear();
-        ExposedPropertiesBool.Clear();
-        ExposedPropertiesFloat.Clear();
-        ExposedPropertiesInt.Clear();
-        ExposedPropertiesString.Clear();
+        ExposedPropertiesList.Clear();
         Blackboard.Clear();
     }
     
     public void AddPropertyToBlackboard(ExposedProperty<int> propertyInt)
     {
-        MakeInt(propertyInt, ExposedPropertiesInt);
+        MakeInt(propertyInt);
     }
     public void AddPropertyToBlackboard(ExposedProperty<float> propertyFloat)
     {
-        MakeFloat(propertyFloat, ExposedPropertiesFloat);
+        MakeFloat(propertyFloat);
     }
     public void AddPropertyToBlackboard(ExposedProperty<string> propertyString)
     {
-        MakeString(propertyString, ExposedPropertiesString);
+        MakeString(propertyString);
     }
     public void AddPropertyToBlackboard(ExposedProperty<bool> propertyBool)
     {
-        MakeBool(propertyBool, ExposedPropertiesBool);
+        MakeBool(propertyBool);
     }
 
     public void RemovePropertyFromBlackboard()
@@ -290,17 +280,17 @@ public class DialogueGraphView : GraphView
         
     }
     
-    private void MakeBool(ExposedProperty<bool> exposedProperty, List<ExposedProperty<bool>> exposedProperties)
+    private void MakeBool(ExposedProperty<bool> exposedProperty)
     {
         var localPropertyName = exposedProperty.name;
         var localPropertyValue = exposedProperty.value;
-        while (CheckIfNameExists(localPropertyName))
+        while (ExposedPropertiesList.Any(x => x.name == localPropertyName))
             localPropertyName = $"{localPropertyName}(1)";
                 
         var property = new ExposedProperty<bool>();
         property.name = localPropertyName;
         property.value = localPropertyValue;
-        exposedProperties.Add(property);
+        ExposedPropertiesList.Add(property);
                 
         var container = new VisualElement();
         var blackboardField = new BlackboardField { text = property.name, typeText = "bool" };
@@ -315,25 +305,30 @@ public class DialogueGraphView : GraphView
         };
         propertyValueTextField.RegisterValueChangedCallback(evt =>
         {
-            var changingPropertyIndex = exposedProperties.FindIndex(x => x.name == property.name);
-            exposedProperties[changingPropertyIndex].value = evt.newValue;
+            var changingPropertyIndex = ExposedPropertiesList.FindIndex(x => x.name == property.name);
+            switch (ExposedPropertiesList[changingPropertyIndex])
+            {
+                case ExposedProperty<bool> boolProperty:
+                    boolProperty.value = evt.newValue;
+                    break;
+            }
         });
         var blackboardValueRow = new BlackboardRow(blackboardField, propertyValueTextField);
         container.Add(blackboardValueRow);
         
         Blackboard.Add(container);
     }
-    private void MakeFloat(ExposedProperty<float> exposedProperty, List<ExposedProperty<float>> exposedProperties)
+    private void MakeFloat(ExposedProperty<float> exposedProperty)
     {
         var localPropertyName = exposedProperty.name;
         var localPropertyValue = exposedProperty.value;
-        while (CheckIfNameExists(localPropertyName))
+        while (ExposedPropertiesList.Any(x => x.name == localPropertyName))
             localPropertyName = $"{localPropertyName}(1)";
                 
         var property = new ExposedProperty<float>();
         property.name = localPropertyName;
         property.value = localPropertyValue;
-        exposedProperties.Add(property);
+        ExposedPropertiesList.Add(property);
                 
         var container = new VisualElement();
         var blackboardField = new BlackboardField { text = property.name, typeText = "float" };
@@ -345,25 +340,30 @@ public class DialogueGraphView : GraphView
         };
         propertyValueTextField.RegisterValueChangedCallback(evt =>
         {
-            var changingPropertyIndex = exposedProperties.FindIndex(x => x.name == property.name);
-            exposedProperties[changingPropertyIndex].value = evt.newValue;
+            var changingPropertyIndex = ExposedPropertiesList.FindIndex(x => x.name == property.name);
+            switch (ExposedPropertiesList[changingPropertyIndex])
+            {
+                case ExposedProperty<float> boolProperty:
+                    boolProperty.value = evt.newValue;
+                    break;
+            }
         });
         var blackboardValueRow = new BlackboardRow(blackboardField, propertyValueTextField);
         container.Add(blackboardValueRow);
         
         Blackboard.Add(container);
     }
-    private void MakeInt(ExposedProperty<int> exposedProperty, List<ExposedProperty<int>> exposedProperties)
+    private void MakeInt(ExposedProperty<int> exposedProperty)
     {
         var localPropertyName = exposedProperty.name;
         var localPropertyValue = exposedProperty.value;
-        while (CheckIfNameExists(localPropertyName))
+        while (ExposedPropertiesList.Any(x => x.name == localPropertyName))
             localPropertyName = $"{localPropertyName}(1)";
                 
         var property = new ExposedProperty<int>();
         property.name = localPropertyName;
         property.value = localPropertyValue;
-        exposedProperties.Add(property);
+        ExposedPropertiesList.Add(property);
                 
         var container = new VisualElement();
         var blackboardField = new BlackboardField { text = property.name, typeText = "int" };
@@ -375,25 +375,30 @@ public class DialogueGraphView : GraphView
         };
         propertyValueTextField.RegisterValueChangedCallback(evt =>
         {
-            var changingPropertyIndex = exposedProperties.FindIndex(x => x.name == property.name);
-            exposedProperties[changingPropertyIndex].value = evt.newValue;
+            var changingPropertyIndex = ExposedPropertiesList.FindIndex(x => x.name == property.name);
+            switch (ExposedPropertiesList[changingPropertyIndex])
+            {
+                case ExposedProperty<int> boolProperty:
+                    boolProperty.value = evt.newValue;
+                    break;
+            }
         });
         var blackboardValueRow = new BlackboardRow(blackboardField, propertyValueTextField);
         container.Add(blackboardValueRow);
         
         Blackboard.Add(container);
     }
-    private void MakeString(ExposedProperty<string> exposedProperty, List<ExposedProperty<string>> exposedProperties)
+    private void MakeString(ExposedProperty<string> exposedProperty)
     {
         var localPropertyName = exposedProperty.name;
         var localPropertyValue = exposedProperty.value;
-        while (CheckIfNameExists(localPropertyName))
+        while (ExposedPropertiesList.Any(x => x.name == localPropertyName))
             localPropertyName = $"{localPropertyName}(1)";
                 
         var property = new ExposedProperty<string>();
         property.name = localPropertyName;
         property.value = localPropertyValue;
-        exposedProperties.Add(property);
+        ExposedPropertiesList.Add(property);
                 
         var container = new VisualElement();
         var blackboardField = new BlackboardField { text = property.name, typeText = "string" };
@@ -405,20 +410,17 @@ public class DialogueGraphView : GraphView
         };
         propertyValueTextField.RegisterValueChangedCallback(evt =>
         {
-            var changingPropertyIndex = exposedProperties.FindIndex(x => x.name == property.name);
-            exposedProperties[changingPropertyIndex].value = evt.newValue;
+            var changingPropertyIndex = ExposedPropertiesList.FindIndex(x => x.name == property.name);
+            switch (ExposedPropertiesList[changingPropertyIndex])
+            {
+                case ExposedProperty<string> boolProperty:
+                    boolProperty.value = evt.newValue;
+                    break;
+            }
         });
         var blackboardValueRow = new BlackboardRow(blackboardField, propertyValueTextField);
         container.Add(blackboardValueRow);
         
         Blackboard.Add(container);
-    }
-
-    public bool CheckIfNameExists(string newValue)
-    {
-        return ExposedPropertiesBool.Any(x => x.name == newValue) ||
-               ExposedPropertiesFloat.Any(x => x.name == newValue) ||
-               ExposedPropertiesInt.Any(x => x.name == newValue) ||
-               ExposedPropertiesString.Any(x => x.name == newValue);
     }
 }
