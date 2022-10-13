@@ -57,8 +57,9 @@ public class DialogueGraph : EditorWindow
         EnumField typeField = new EnumField(_exposedVariableType);
         typeField.RegisterValueChangedCallback(evt => _exposedVariableType = (ExposedVariableType)evt.newValue);
         _blackboard.Add(typeField);
-        _blackboard.Add(new BlackboardSection{ title = "Exposed Variables"});
+        //_blackboard.Add(new BlackboardSection{ title = "Exposed Variables"});
         _blackboard.title = "Exposed Variables";
+        _blackboard.scrollable = true;
     }
     
     private void GenerateBlackboard()
@@ -82,7 +83,11 @@ public class DialogueGraph : EditorWindow
             ((BlackboardField)element).text = newValue;
             //blackboardField.RegisterCallback<ContextualMenuPopulateEvent>(MyMenuPopulateCB);
         };
-
+        _blackboard.moveItemRequested = (blackboard, i, arg3) =>
+        {
+            
+        };
+        
         _blackboard.SetPosition(new Rect(10, 30, 200, 140));
         _graphView.Blackboard = _blackboard;
         _graphView.Add(_blackboard);
