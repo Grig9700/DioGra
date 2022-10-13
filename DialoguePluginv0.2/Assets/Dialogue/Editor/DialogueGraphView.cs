@@ -125,7 +125,7 @@ public class DialogueGraphView : GraphView
         ifNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
         
         //Generates input port
-        var inputPort = GeneratePort(ifNode, Direction.Input, Port.Capacity.Single);
+        var inputPort = GeneratePort(ifNode, Direction.Input, Port.Capacity.Multi);
         inputPort.portName = "Input";
         ifNode.inputContainer.Add(inputPort);
         
@@ -152,7 +152,7 @@ public class DialogueGraphView : GraphView
         choiceNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
         
         //Generates input port
-        var inputPort = GeneratePort(choiceNode, Direction.Input, Port.Capacity.Single);
+        var inputPort = GeneratePort(choiceNode, Direction.Input, Port.Capacity.Multi);
         inputPort.portName = "Input";
         choiceNode.inputContainer.Add(inputPort);
         
@@ -181,7 +181,7 @@ public class DialogueGraphView : GraphView
         dialogueNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
         
         //Generates input port
-        var inputPort = GeneratePort(dialogueNode, Direction.Input, Port.Capacity.Single);
+        var inputPort = GeneratePort(dialogueNode, Direction.Input, Port.Capacity.Multi);
         inputPort.portName = "Input";
         dialogueNode.inputContainer.Add(inputPort);
         //Generates output port
