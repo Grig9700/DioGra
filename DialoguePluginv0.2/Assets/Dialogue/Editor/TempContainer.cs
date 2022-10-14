@@ -1,12 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class GraphNode : Node
+[Serializable]
+public class TempContainer : ScriptableObject
 {
-    public string GUID;
-    public bool entryPoint = false;
+    public ExposedVariableType VariableType;
+    public ExposedProperties Property;
     
     public enum ExposedVariableType
     {

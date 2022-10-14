@@ -18,8 +18,11 @@ public class DialogueGraphView : GraphView
 {
     public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
     public Blackboard Blackboard;
+
+    private Editor editor;
     
     public List<ExposedProperties> ExposedPropertiesList = new List<ExposedProperties>();
+    private Dictionary<string, TempContainer> tempContainer = new Dictionary<string, TempContainer>();
 
     private NodeSearchWindow _nodeSearchWindow;
     
@@ -115,7 +118,7 @@ public class DialogueGraphView : GraphView
         var ifNode = new IfNode()
         {
             title = nodeName,
-            GUID = Guid.NewGuid().ToString()
+            GUID = Guid.NewGuid().ToString(),
         };
 
         ifNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
@@ -125,7 +128,49 @@ public class DialogueGraphView : GraphView
         inputPort.portName = "Input";
         ifNode.inputContainer.Add(inputPort);
         
+        //
+        // switch (ifNode.Property)
+        // {
+        //     case ExposedProperty<bool> boolProperty:
+        //         boolProperty.value = false;
+        //         break;
+        // }
         
+        // SerializeField ifNode.Property;
+        // typeSelector.
+        // typeSelector.RegisterValueChangedCallback(evt =>
+        // {
+        //     ifNode.VariableType = evt.newValue
+        // });
+        // ifNode.titleButtonContainer.Add(typeSelector);
+        // PopupField<ExposedProperty<bool>> elementSelector = new PopupField<ExposedProperty<bool>>();
+        // ifNode.outputContainer.Add(elementSelector);
+
+        TempContainer temp = ScriptableObject.CreateInstance<TempContainer>();
+        tempContainer.Add(ifNode.GUID, temp);
+        temp.Property = new ExposedProperty<bool>();
+        temp.VariableType = TempContainer.ExposedVariableType.Bool;
+
+        //ifNode.Property = ScriptableObject.CreateInstance<ExposedProperties>();
+        SerializedObject serializedObject = new UnityEditor.SerializedObject(temp);
+        SerializedProperty serializedProperty = serializedObject.FindProperty("Property");
+        
+        
+        //I weep, so much, I cry, endless tears, why world, will you not write out this variable
+        
+        
+        //ExtendedEditorWindow.DrawField("Property", false, serializedObject, serializedProperty);
+        EditorGUILayout.PropertyField(serializedProperty, new GUIContent("Exposed Property"), GUILayout.Height(20));
+        //ifNode.Insert();
+        
+        PropertyField property = new PropertyField(serializedProperty, "Exposed Property");
+        property.RegisterValueChangeCallback(evt =>
+        {
+            serializedObject.ApplyModifiedProperties();
+        });
+        ifNode.titleButtonContainer.Add(property);
+        ifNode.mainContainer.Add(property);
+        ifNode.mainContainer.Add(new PopupField<ExposedProperties>());
         
         var outputPortTrue = GeneratePort(ifNode, Direction.Output, Port.Capacity.Single);
         outputPortTrue.portName = "True";

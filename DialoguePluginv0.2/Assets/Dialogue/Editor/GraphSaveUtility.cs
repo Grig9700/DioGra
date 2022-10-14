@@ -30,11 +30,13 @@ public class GraphSaveUtility
         if (!SaveNode(dialogueContainer)) return;
         SaveExposedProperties(dialogueContainer);
 
-        //Creates a resources folder if not present
+        //Creates folders if not present
         if (!AssetDatabase.IsValidFolder("Assets/Resources"))
             AssetDatabase.CreateFolder("Assets", "Resources");
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/Dialogues"))
+            AssetDatabase.CreateFolder("Assets/Resources", "Dialogues");
         
-        AssetDatabase.CreateAsset(dialogueContainer, $"Assets/Resources/{filename}.asset");
+        AssetDatabase.CreateAsset(dialogueContainer, $"Assets/Resources/Dialogues/{filename}.asset");
         AssetDatabase.SaveAssets();
     }
 
@@ -147,16 +149,16 @@ public class GraphSaveUtility
     }
     private void ConnectNodes()
     {
-        for (int i = 0; i < GraphNodes.Count; i++)
+        foreach (GraphNode graphNode in GraphNodes)
         {
-            var connections = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == GraphNodes[i].GUID).ToList();
+            var connections = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == graphNode.GUID).ToList();
             
             for (int j = 0; j < connections.Count; j++)
             {
                 var targetNodeGUID = connections[j].targetNodeGUID;
                 var targetNode = GraphNodes.First(node => node.GUID == targetNodeGUID);
             
-                LinkNodes(GraphNodes[i].outputContainer[j].Q<Port>(), (Port) targetNode.inputContainer[0]);
+                LinkNodes(graphNode.outputContainer[j].Q<Port>(), (Port) targetNode.inputContainer[0]);
             }
         }
     }

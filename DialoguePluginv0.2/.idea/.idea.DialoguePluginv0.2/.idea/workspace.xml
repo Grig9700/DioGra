@@ -3,11 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="8217f0ec-785b-4582-843f-37a3bc148b4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/BackupBeforeLoad.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/BackupBeforeLoad.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/ban.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/ban.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/box.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/box.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/GraphNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/GraphNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/IfNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/IfNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperties.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphNodeData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphNodeData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/IfNodeData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/IfNodeData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/BackupBeforeLoad.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/BackupBeforeLoad.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/New Narrative.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/New Narrative.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/ban.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/ban.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/bot.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/bot.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/box.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/box.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/file.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/file.asset.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,16 +29,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1cdf5c2cc10149169242b9590b7ebb6bc4200/37/7e76bf2b/PackageEditorAtlasMonitor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1cdf5c2cc10149169242b9590b7ebb6bc4200/53/4493a61f/BaseField`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1cdf5c2cc10149169242b9590b7ebb6bc4200/b7/3e6357f6/EditorAtlasMonitorBridge.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1cdf5c2cc10149169242b9590b7ebb6bc4200/ba/f94c1deb/EventDispatcher.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1cdf5c2cc10149169242b9590b7ebb6bc4200/be/5b900571/TextField.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1cdf5c2cc10149169242b9590b7ebb6bc4200/e7/16d068ab/UIElementsUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1cdf5c2cc10149169242b9590b7ebb6bc4200/ee/930004f4/EventCallbackFunctor`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50f55621a2ca4f31a35283e2979a8bf5751a00/66/9f7f140d/HostView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50f55621a2ca4f31a35283e2979a8bf5751a00/ed/6498b3d9/EditorGUILayout.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/df727428c7014fc682875023da2c79823ca00/19/26fe830a/Edge.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/eae584ce26bc40229c1b1aa476bfa5893e2600/ee/9bd0b5c1/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/ExtendedEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/NodeSearchWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/TempContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperty.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphNodeData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/NodeLinkData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/SceneLayout.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -35,16 +59,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Discover.Launch.Via.Unity": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.24184261",
+    "rider.run.widget.enabled.cache": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2020.3.0f1\Editor\Unity.exe" />
@@ -64,10 +89,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="8532">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="14424">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="8532" />
+      <option name="pid" value="14424" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -89,7 +114,9 @@
       <workItem from="1663672424100" duration="7744000" />
       <workItem from="1665135276159" duration="14067000" />
       <workItem from="1665405574028" duration="14902000" />
-      <workItem from="1665660523676" duration="19703000" />
+      <workItem from="1665660523676" duration="22436000" />
+      <workItem from="1665736886463" duration="11791000" />
+      <workItem from="1665749696824" duration="15278000" />
     </task>
     <servers />
   </component>
