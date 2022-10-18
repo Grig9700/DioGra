@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
-  m_Name: bot
+  m_Name: harry
   m_EditorClassIdentifier: 
   GraphNodes:
   - nodeName: Dialogue Node
-    GUID: 1f20aff9-73b5-4590-ad9f-6e147131d4ae
-    position: {x: 263.2, y: 240.00002}
+    GUID: 41bf041a-dedd-4116-b9ef-0ebec69780dd
+    position: {x: 453.6, y: 181.6}
   - nodeName: Dialogue Node
-    GUID: 003a7bd9-00e6-4f01-a8b4-44e8ca38c8a0
-    position: {x: 484.80002, y: 279.19998}
+    GUID: ff0242a5-8bd1-460c-92fe-6451927387d3
+    position: {x: 259.2, y: 274.4}
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next
-    targetNodeGUID: 1f20aff9-73b5-4590-ad9f-6e147131d4ae
-  - baseNodeGUID: 1f20aff9-73b5-4590-ad9f-6e147131d4ae
+    targetNodeGUID: ff0242a5-8bd1-460c-92fe-6451927387d3
+  - baseNodeGUID: ff0242a5-8bd1-460c-92fe-6451927387d3
     portName: Output
-    targetNodeGUID: 003a7bd9-00e6-4f01-a8b4-44e8ca38c8a0
+    targetNodeGUID: 41bf041a-dedd-4116-b9ef-0ebec69780dd
   ExposedPropertiesList: []
   SceneLayoutPrefab: {fileID: 0}

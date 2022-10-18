@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework.Internal.Execution;
@@ -27,7 +28,7 @@ public class GraphSaveUtility
     public void SaveData(string filename)
     {
         var dialogueContainer = ScriptableObject.CreateInstance<DialogueContainer>();
-        if (!SaveNode(dialogueContainer)) return;
+        if (!SaveGraphData(dialogueContainer)) return;
         SaveExposedProperties(dialogueContainer);
 
         //Creates folders if not present
@@ -45,20 +46,20 @@ public class GraphSaveUtility
         dialogueContainer.ExposedPropertiesList.AddRange(_targetGraphView.ExposedPropertiesList);
     }
 
-    private bool SaveNode(DialogueContainer dialogueContainer)
+    private bool SaveGraphData(DialogueContainer dialogueContainer)
     {
         if (!Edges.Any()) return false; //No edges means no graph
 
         var connectedPorts = Edges.Where(x => x.input.node != null).ToArray();
-        for (int i = 0; i < connectedPorts.Length; i++)
+        foreach (Edge port in connectedPorts)
         {
-            var inputNode = connectedPorts[i].input.node as GraphNode;
-            var outputNode = connectedPorts[i].output.node as GraphNode;
+            var inputNode = port.input.node as GraphNode;
+            var outputNode = port.output.node as GraphNode;
             
             dialogueContainer.NodeLinks.Add(new NodeLinkData
             {
                 baseNodeGUID = outputNode.GUID,
-                portName = connectedPorts[i].output.portName,
+                portName = port.output.portName,
                 targetNodeGUID = inputNode.GUID
             });
         }
@@ -76,6 +77,20 @@ public class GraphSaveUtility
                         dialogueText = dialogueNode.dialogueText,
                         position = dialogueNode.GetPosition().position
                     });
+                    // Debug.Log("dialogue node");
+                    // var bop = dialogueContainer.GraphNodes[0];
+                    // switch (bop)
+                    // {
+                    //     case DialogueNodeData dat:
+                    //         Debug.Log("Confusion");
+                    //         Debug.Log($"{dat.speaker}");
+                    //         Debug.Log($"{dat.dialogueText}");
+                    //         Debug.Log($"{dat.position}");
+                    //         Debug.Log($"{dat.nodeName}");
+                    //         Debug.Log($"{dat.GUID}");
+                    //         Debug.Log($"{dat}");
+                    //         break;
+                    // }
                     break;
                 case ChoiceNode choiceNode:
                     dialogueContainer.GraphNodes.Add(new ChoiceNodeData
@@ -84,6 +99,7 @@ public class GraphSaveUtility
                         GUID = choiceNode.GUID,
                         position = choiceNode.GetPosition().position
                     });
+                    //Debug.Log("choice node");
                     break;
                 case IfNode ifNode:
                     dialogueContainer.GraphNodes.Add(new IfNodeData
@@ -92,6 +108,10 @@ public class GraphSaveUtility
                         GUID = ifNode.GUID,
                         position = ifNode.GetPosition().position
                     });
+                    //Debug.Log("if node");
+                    break;
+                default:
+                    Debug.LogError("Entered default");
                     break;
             }
             
@@ -101,7 +121,21 @@ public class GraphSaveUtility
     
     public void LoadData(string filename, DialogueGraph graph)
     {
-        _containerCache = Resources.Load<DialogueContainer>(filename);
+        string toResource = Application.dataPath + "/Resources/";
+        
+        var files = Directory.GetFiles(toResource + "Dialogues", $"{filename}.asset", SearchOption.AllDirectories);
+        
+        if (files.Length <= 0)
+        {
+            Debug.LogError($"No dialogue containers were found");
+            return;
+        }
+
+        string fullFilePath = files.First().Replace('\\', '/');
+        string filePathoid = fullFilePath.Remove(0, toResource.Length);
+        string[] filePath = filePathoid.Split('.');
+        
+        _containerCache = Resources.Load<DialogueContainer>($"{filePath.First()}");
         if (_containerCache == null)
         {
             Debug.LogError($"{filename} is not present. Please check that the filename is correct");
@@ -114,6 +148,7 @@ public class GraphSaveUtility
         
         ClearGraph();
         CreateNodes();
+        
         ConnectNodes();
         CreateExposedVariables(graph);
     }
@@ -186,6 +221,7 @@ public class GraphSaveUtility
                     var dNode = _targetGraphView.CreateDialogueNode(nodeData.nodeName, nodeData.position, nodeData.speaker , nodeData.dialogueText);
                     dNode.GUID = nodeData.GUID;
                     _targetGraphView.AddElement(dNode);
+                    //Debug.Log("dialogue node");
                     break;
                 case ChoiceNodeData nodeData:
                     var cNode = _targetGraphView.CreateChoiceNode(nodeData.nodeName, nodeData.position);
@@ -194,6 +230,7 @@ public class GraphSaveUtility
 
                     var cNodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
                     cNodePorts.ForEach(port => _targetGraphView.AddChoicePort(cNode, port.portName));
+                    //Debug.Log("choice node");
                     break;
                 case IfNodeData nodeData:
                     var iNode = _targetGraphView.CreateIfNode(nodeData.nodeName, nodeData.position);
@@ -202,6 +239,7 @@ public class GraphSaveUtility
 
                     var iNodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
                     iNodePorts.ForEach(port => _targetGraphView.AddChoicePort(iNode, port.portName));
+                    //Debug.Log("if node");
                     break;
             }
         }

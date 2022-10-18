@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
-  m_Name: bot
+  m_Name: BackupBeforeLoad
   m_EditorClassIdentifier: 
   GraphNodes:
   - nodeName: Dialogue Node
