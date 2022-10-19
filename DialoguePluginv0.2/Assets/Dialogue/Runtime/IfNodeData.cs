@@ -4,6 +4,6 @@ using UnityEngine;
 [Serializable]
 public class IfNodeData : GraphNodeData
 {
-    public ExposedVariableType VariableType;
-    public ExposedProperties Property;
+    //public ExposedVariableType VariableType;
+    //public ExposedProperties Property;
 }

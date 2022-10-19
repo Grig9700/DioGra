@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -73,22 +72,26 @@ public class DialogueManager : MonoBehaviour
 
         var node = container.GraphNodes.First(x => x.GUID == _currentNode);
         
-        switch (node)
+        switch (node.NodeType)
         {
-            case DialogueNodeData dialogueNode:
-                _scene.nameField.text = dialogueNode.speaker;
-                _scene.textField.text = dialogueNode.dialogueText;
-                Debug.Log($"{_scene.textField.text}");
-                Debug.Log($"{dialogueNode.dialogueText}");
+            case NodeType.DialogueNode:
+                _scene.nameField.text = node.speaker;
+                _scene.textField.text = node.dialogueText;
                 break;
-            case ChoiceNodeData choiceNode:
-                foreach (var link in container.NodeLinks.Where(x => x.baseNodeGUID == _currentNode))
+            case NodeType.ChoiceNode:
+                var buttonsToMake = container.NodeLinks.Where(x => x.baseNodeGUID == _currentNode).ToList();
+                var height = _scene.buttonPrefab.GetComponent<RectTransform>().rect.height;
+                for (int i = 0; i < buttonsToMake.Count(); i++)
                 {
+                    int con = i;
                     var obj = Instantiate(_scene.buttonPrefab, _scene.viewPort.transform);
-                    obj.GetComponent<Button>().onClick.AddListener(() => { Button(link.targetNodeGUID);});
+                    obj.GetComponent<RectTransform>().transform.localPosition = new Vector2(91.5f, -100f + i * -height);
+                    obj.GetComponent<Button>().onClick.AddListener(() => { Button(buttonsToMake[con].targetNodeGUID);});
+                    obj.GetComponentInChildren<Text>().text = buttonsToMake[i].portName;
+                    _buttons.Add(obj);
                 }
                 break;
-            case IfNodeData ifNode:
+            case NodeType.IfNode:
                 break;
             default:
                 Debug.LogError("Entered Default on Next", this);
@@ -142,21 +145,7 @@ public class DialogueManager : MonoBehaviour
     {
         EndDialogue(true);
 
-        string toResource = Application.dataPath + "/Resources/";
-        
-        var files = Directory.GetFiles(toResource + "Dialogues", $"{filename}.asset", SearchOption.AllDirectories);
-        
-        if (files.Length <= 0)
-        {
-            Debug.LogError($"No dialogue containers were found");
-            return;
-        }
-
-        string fullFilePath = files.First().Replace('\\', '/');
-        string filePathoid = fullFilePath.Remove(0, toResource.Length);
-        string[] filePath = filePathoid.Split('.');
-
-        DialogueContainer tempContainer = Resources.Load<DialogueContainer>($"{filePath.First()}");
+        DialogueContainer tempContainer = FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("Dialogues", $"{filename}.asset");
 
         if (tempContainer == null)
         {
@@ -167,8 +156,26 @@ public class DialogueManager : MonoBehaviour
 
         Debug.Log($"{tempContainer.name}");
         container = tempContainer;
+
+        bool sceneExists = false;
+        GameObject obj = null;
         
-        _scene = Instantiate(container.SceneLayoutPrefab, _canvas.transform).GetComponent<SceneLayout>();
+        if (container.SceneLayoutPrefab == null)
+        {
+            Debug.LogWarning($"No scene layout present in Dialogue, searching Resource/Scene Layouts");
+            obj = FindAndLoadResource.FindAndLoadFirstInResourceFolder<GameObject>("Scene Layouts", "?cene*"); //finds a Scene Layout
+            if (obj != null)
+                sceneExists = true;
+            else
+            {
+                Debug.LogError($"No Scene Layouts were found");
+                return;
+            }
+        }
+        
+        
+        _scene = sceneExists ? Instantiate(obj, _canvas.transform).GetComponent<SceneLayout>() : 
+            Instantiate(container.SceneLayoutPrefab, _canvas.transform).GetComponent<SceneLayout>();
         _currentNode = "StartPoint";
         
         Next();

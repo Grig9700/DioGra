@@ -69,13 +69,14 @@ public class GraphSaveUtility
             switch (graphNode)
             {
                 case DialogueNode dialogueNode:
-                    dialogueContainer.GraphNodes.Add(new DialogueNodeData
+                    dialogueContainer.GraphNodes.Add(new GraphNodeData()
                     {
                         nodeName = dialogueNode.title,
                         GUID = dialogueNode.GUID,
                         speaker = dialogueNode.speaker,
                         dialogueText = dialogueNode.dialogueText,
-                        position = dialogueNode.GetPosition().position
+                        position = dialogueNode.GetPosition().position,
+                        NodeType = NodeType.DialogueNode
                     });
                     // Debug.Log("dialogue node");
                     // var bop = dialogueContainer.GraphNodes[0];
@@ -93,11 +94,12 @@ public class GraphSaveUtility
                     // }
                     break;
                 case ChoiceNode choiceNode:
-                    dialogueContainer.GraphNodes.Add(new ChoiceNodeData
+                    dialogueContainer.GraphNodes.Add(new GraphNodeData()
                     {
                         nodeName = choiceNode.title,
                         GUID = choiceNode.GUID,
-                        position = choiceNode.GetPosition().position
+                        position = choiceNode.GetPosition().position,
+                        NodeType = NodeType.ChoiceNode
                     });
                     //Debug.Log("choice node");
                     break;
@@ -106,7 +108,8 @@ public class GraphSaveUtility
                     {
                         nodeName = ifNode.title,
                         GUID = ifNode.GUID,
-                        position = ifNode.GetPosition().position
+                        position = ifNode.GetPosition().position,
+                        NodeType = NodeType.IfNode
                     });
                     //Debug.Log("if node");
                     break;
@@ -215,29 +218,29 @@ public class GraphSaveUtility
     {
         foreach (var cachedNode in _containerCache.GraphNodes)
         {
-            switch (cachedNode)
+            switch (cachedNode.NodeType)
             {
-                case DialogueNodeData nodeData:
-                    var dNode = _targetGraphView.CreateDialogueNode(nodeData.nodeName, nodeData.position, nodeData.speaker , nodeData.dialogueText);
-                    dNode.GUID = nodeData.GUID;
+                case NodeType.DialogueNode:
+                    var dNode = _targetGraphView.CreateDialogueNode(cachedNode.nodeName, cachedNode.position, cachedNode.speaker , cachedNode.dialogueText);
+                    dNode.GUID = cachedNode.GUID;
                     _targetGraphView.AddElement(dNode);
                     //Debug.Log("dialogue node");
                     break;
-                case ChoiceNodeData nodeData:
-                    var cNode = _targetGraphView.CreateChoiceNode(nodeData.nodeName, nodeData.position);
-                    cNode.GUID = nodeData.GUID;
+                case NodeType.ChoiceNode:
+                    var cNode = _targetGraphView.CreateChoiceNode(cachedNode.nodeName, cachedNode.position);
+                    cNode.GUID = cachedNode.GUID;
                     _targetGraphView.AddElement(cNode);
 
-                    var cNodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
+                    var cNodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == cachedNode.GUID).ToList();
                     cNodePorts.ForEach(port => _targetGraphView.AddChoicePort(cNode, port.portName));
                     //Debug.Log("choice node");
                     break;
-                case IfNodeData nodeData:
-                    var iNode = _targetGraphView.CreateIfNode(nodeData.nodeName, nodeData.position);
-                    iNode.GUID = nodeData.GUID;
+                case NodeType.IfNode:
+                    var iNode = _targetGraphView.CreateIfNode(cachedNode.nodeName, cachedNode.position);
+                    iNode.GUID = cachedNode.GUID;
                     _targetGraphView.AddElement(iNode);
 
-                    var iNodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == nodeData.GUID).ToList();
+                    var iNodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == cachedNode.GUID).ToList();
                     iNodePorts.ForEach(port => _targetGraphView.AddChoicePort(iNode, port.portName));
                     //Debug.Log("if node");
                     break;

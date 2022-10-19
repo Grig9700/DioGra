@@ -14,29 +14,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphNodes:
   - nodeName: Dialogue Node
-    GUID: 4b70ab8c-e3fb-4371-9e53-305cec8dfeee
-    position: {x: 309, y: 243}
+    GUID: fa1d275c-1419-4f82-b985-3920bb48e907
+    position: {x: 224, y: 200}
+    speaker: me
+    dialogueText: you
+    Property:
+      name: New Property
+    NodeType: 0
   - nodeName: If Node
-    GUID: 708f3e8b-9991-476f-9f3f-f4f8bfd67784
-    position: {x: 765, y: 122}
-  - nodeName: Dialogue Node
-    GUID: bc45c411-7531-4a10-bcdb-c1b3db036ff7
-    position: {x: 819, y: 383}
+    GUID: 1ea7ea69-af8d-4935-aabc-58ea05d8fedc
+    position: {x: 676, y: 200}
+    speaker: 
+    dialogueText: 
+    Property:
+      name: New Property
+    NodeType: 2
   - nodeName: Choice Node
-    GUID: 36038a59-5d4d-4ff0-bbb0-6249548b28c3
-    position: {x: 523, y: 72}
+    GUID: b0d1dc6b-5508-4451-bb62-d162c3f76c0d
+    position: {x: 411, y: 200}
+    speaker: 
+    dialogueText: 
+    Property:
+      name: New Property
+    NodeType: 1
+  - nodeName: Dialogue Node
+    GUID: 0f9a184e-0e59-4115-81b4-e47be83c2989
+    position: {x: 676, y: 399}
+    speaker: you
+    dialogueText: die
+    Property:
+      name: New Property
+    NodeType: 0
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next
-    targetNodeGUID: 4b70ab8c-e3fb-4371-9e53-305cec8dfeee
-  - baseNodeGUID: 4b70ab8c-e3fb-4371-9e53-305cec8dfeee
+    targetNodeGUID: fa1d275c-1419-4f82-b985-3920bb48e907
+  - baseNodeGUID: fa1d275c-1419-4f82-b985-3920bb48e907
     portName: Output
-    targetNodeGUID: 36038a59-5d4d-4ff0-bbb0-6249548b28c3
-  - baseNodeGUID: 36038a59-5d4d-4ff0-bbb0-6249548b28c3
+    targetNodeGUID: b0d1dc6b-5508-4451-bb62-d162c3f76c0d
+  - baseNodeGUID: b0d1dc6b-5508-4451-bb62-d162c3f76c0d
     portName: Output 0
-    targetNodeGUID: 708f3e8b-9991-476f-9f3f-f4f8bfd67784
-  - baseNodeGUID: 36038a59-5d4d-4ff0-bbb0-6249548b28c3
+    targetNodeGUID: 1ea7ea69-af8d-4935-aabc-58ea05d8fedc
+  - baseNodeGUID: b0d1dc6b-5508-4451-bb62-d162c3f76c0d
     portName: Output 1
-    targetNodeGUID: bc45c411-7531-4a10-bcdb-c1b3db036ff7
+    targetNodeGUID: 0f9a184e-0e59-4115-81b4-e47be83c2989
   ExposedPropertiesList: []
   SceneLayoutPrefab: {fileID: 0}
