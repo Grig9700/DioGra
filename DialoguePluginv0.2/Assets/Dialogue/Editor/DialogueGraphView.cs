@@ -19,7 +19,7 @@ public class DialogueGraphView : GraphView
     public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
     public Blackboard Blackboard;
 
-    private Editor editor;
+    private Editor _editor;
     
     public List<ExposedProperties> ExposedPropertiesList = new List<ExposedProperties>();
     private Dictionary<string, TempContainer> tempContainer = new Dictionary<string, TempContainer>();

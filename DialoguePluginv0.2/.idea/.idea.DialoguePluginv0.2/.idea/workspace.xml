@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8217f0ec-785b-4582-843f-37a3bc148b4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/FindAndLoadResource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/FindAndLoadResource.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueContainer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Dialogues/BackupBeforeLoad.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/BackupBeforeLoad.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Dialogues/bot.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/bot.asset" afterDir="false" />
     </list>
@@ -15,6 +20,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/36f62d8e760b48f7af5d32916f997ce1811400/ba/82307d57/MaterialEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/69bcbb1dde7d49b2aed63b1879b25dc329200/25/f7b7e7aa/GUIUtility.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd953b8fb97946ec96d4a808bc44e727128c00/41/562da6cc/EventCallbackFunctor`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd953b8fb97946ec96d4a808bc44e727128c00/7f/495714da/EventDispatcher.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd953b8fb97946ec96d4a808bc44e727128c00/af/83c99176/UIEventRegistration.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd953b8fb97946ec96d4a808bc44e727128c00/f2/3128b78c/UIElementsUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f1212ad1dec44ce7b7147976b91869c3157800/45/d031f111/Debug.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f1212ad1dec44ce7b7147976b91869c3157800/8a/baf9f097/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -24,6 +35,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/TempContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperty.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedPropertyContainer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/ExposedProperties/ExposedPropertyData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphNodeData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/NodeLinkData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Runtime/SceneLayout.cs" root0="FORCE_HIGHLIGHTING" />
@@ -96,7 +109,7 @@
       <workItem from="1665736886463" duration="11791000" />
       <workItem from="1665749696824" duration="15278000" />
       <workItem from="1666089267592" duration="20751000" />
-      <workItem from="1666167138994" duration="8623000" />
+      <workItem from="1666167138994" duration="15201000" />
     </task>
     <servers />
   </component>
@@ -135,19 +148,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs</url>
-          <line>198</line>
-          <properties documentPath="C:\temp\DialoguePlugin\DialoguePluginv0.2\Assets\Dialogue\Editor\GraphSaveUtility.cs" initialLine="198" containingFunctionPresentation="method 'ConnectNodes'">
-            <startOffsets>
-              <option value="7524" />
-            </startOffsets>
-            <endOffsets>
-              <option value="7611" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

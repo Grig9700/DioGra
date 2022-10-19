@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphNodes:
   - nodeName: Dialogue Node
-    GUID: 41bf041a-dedd-4116-b9ef-0ebec69780dd
-    position: {x: 454, y: 182}
+    GUID: 790ea6dd-a797-485f-8d59-5d83a795b171
+    position: {x: 276, y: 236}
     speaker: 
     dialogueText: 
     VariableType: 0
@@ -23,20 +23,43 @@ MonoBehaviour:
       name: New Property
     NodeType: 0
   - nodeName: Dialogue Node
-    GUID: ff0242a5-8bd1-460c-92fe-6451927387d3
-    position: {x: 259, y: 274}
+    GUID: e78a064c-5b35-400f-8c95-6566d55276a3
+    position: {x: 755, y: 200}
     speaker: 
     dialogueText: 
     VariableType: 0
     Property:
       name: New Property
     NodeType: 0
+  - nodeName: Dialogue Node
+    GUID: 0afd8688-7b38-4cdb-9bc4-59b2260de3e4
+    position: {x: 755, y: 351}
+    speaker: 
+    dialogueText: 
+    VariableType: 0
+    Property:
+      name: New Property
+    NodeType: 0
+  - nodeName: Choice Node
+    GUID: 3df56951-1577-497e-9543-11ed468ed606
+    position: {x: 474, y: 99}
+    speaker: 
+    dialogueText: 
+    VariableType: 0
+    Property:
+      name: New Property
+    NodeType: 1
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next
-    targetNodeGUID: ff0242a5-8bd1-460c-92fe-6451927387d3
-  - baseNodeGUID: ff0242a5-8bd1-460c-92fe-6451927387d3
+    targetNodeGUID: 790ea6dd-a797-485f-8d59-5d83a795b171
+  - baseNodeGUID: 790ea6dd-a797-485f-8d59-5d83a795b171
     portName: Output
-    targetNodeGUID: 41bf041a-dedd-4116-b9ef-0ebec69780dd
-  ExposedPropertiesList: []
+    targetNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
+  - baseNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
+    portName: Output 1
+    targetNodeGUID: e78a064c-5b35-400f-8c95-6566d55276a3
+  - baseNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
+    portName: Output 0
+    targetNodeGUID: 0afd8688-7b38-4cdb-9bc4-59b2260de3e4
   SceneLayoutPrefab: {fileID: 0}

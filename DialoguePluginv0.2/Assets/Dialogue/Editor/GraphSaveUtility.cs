@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -14,6 +15,7 @@ public class GraphSaveUtility
 {
     private DialogueGraphView _targetGraphView;
     private DialogueContainer _containerCache;
+    private ExposedPropertyContainer _propertyCache;
     private List<Edge> Edges => _targetGraphView.edges.ToList();
     private List<GraphNode> GraphNodes => _targetGraphView.nodes.ToList().Cast<GraphNode>().ToList();
 
@@ -29,23 +31,64 @@ public class GraphSaveUtility
     {
         var dialogueContainer = ScriptableObject.CreateInstance<DialogueContainer>();
         if (!SaveGraphData(dialogueContainer)) return;
-        SaveExposedProperties(dialogueContainer);
 
         //Creates folders if not present
         if (!AssetDatabase.IsValidFolder("Assets/Resources"))
             AssetDatabase.CreateFolder("Assets", "Resources");
         if (!AssetDatabase.IsValidFolder("Assets/Resources/Dialogues"))
             AssetDatabase.CreateFolder("Assets/Resources", "Dialogues");
+
+        var exposedPropertiesContainer =
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer");
+        if (exposedPropertiesContainer == null)
+        {
+            exposedPropertiesContainer = ScriptableObject.CreateInstance<ExposedPropertyContainer>();
+            AssetDatabase.CreateAsset(exposedPropertiesContainer, $"Assets/Resources/ExposedPropertyContainer.asset");
+        }
+        SaveExposedProperties(exposedPropertiesContainer);
         
         AssetDatabase.CreateAsset(dialogueContainer, $"Assets/Resources/Dialogues/{filename}.asset");
         AssetDatabase.SaveAssets();
     }
 
-    private void SaveExposedProperties(DialogueContainer dialogueContainer)
+    private void SaveExposedProperties(ExposedPropertyContainer container)
     {
-        dialogueContainer.ExposedPropertiesList.AddRange(_targetGraphView.ExposedPropertiesList);
+        foreach (var property in _targetGraphView.ExposedPropertiesList)
+        {
+            var n = property.name;
+            var c = GetPropertyValueAsString(property);
+            var t = property.GetType().ToString();
+            
+            container.ExposedPropertyDatas.Add(new ExposedPropertyData()
+            {
+                Name = n,
+                ValueContainer = c,
+                ValueType = t
+            });
+        }
     }
 
+    private string GetPropertyValueAsString(ExposedProperties property)
+    {
+        switch (property)
+        {
+            case ExposedProperty<bool> prop:
+                string boolProp = prop.value.ToString();
+                return boolProp;
+            case ExposedProperty<float> prop:
+                string floatProp = prop.value.ToString(CultureInfo.CurrentCulture);
+                return floatProp;
+            case ExposedProperty<int> prop:
+                string intProp = prop.value.ToString();
+                return intProp;
+            case ExposedProperty<string> prop:
+                return prop.value ?? (prop.value = "");
+            default:
+                Debug.LogError($"Property of type {property.GetType()} could not be saved");
+                return null;
+        }
+    }
+    
     private bool SaveGraphData(DialogueContainer dialogueContainer)
     {
         if (!Edges.Any()) return false; //No edges means no graph
@@ -124,27 +167,9 @@ public class GraphSaveUtility
     
     public void LoadData(string filename, DialogueGraph graph)
     {
-        string toResource = Application.dataPath + "/Resources/";
+        _containerCache = FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"{filename}.asset", "/Dialogues");
+        _propertyCache = FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer");
         
-        var files = Directory.GetFiles(toResource + "Dialogues", $"{filename}.asset", SearchOption.AllDirectories);
-        
-        if (files.Length <= 0)
-        {
-            Debug.LogError($"No dialogue containers were found");
-            return;
-        }
-
-        string fullFilePath = files.First().Replace('\\', '/');
-        string filePathoid = fullFilePath.Remove(0, toResource.Length);
-        string[] filePath = filePathoid.Split('.');
-        
-        _containerCache = Resources.Load<DialogueContainer>($"{filePath.First()}");
-        if (_containerCache == null)
-        {
-            Debug.LogError($"{filename} is not present. Please check that the filename is correct");
-            return;
-        }
-
         //Creates a backup in case Load was pushed without having saved.
         //This file will be overridden each time load or clear is clicked
         CreateGraphBackup();
@@ -166,25 +191,33 @@ public class GraphSaveUtility
     {
         _targetGraphView.ClearBlackboardAndExposedProperties();
         graph.CreateBlackBoardElements();
-        foreach (var property in _containerCache.ExposedPropertiesList)
+        
+        if (_propertyCache == null)
+            return;
+        
+        foreach (var property in _propertyCache.ExposedPropertyDatas)
         {
-            switch (property)
-            {
-                case ExposedProperty<bool> boolProperty:
-                    _targetGraphView.AddPropertyToBlackboard(boolProperty);
-                    break;
-                case ExposedProperty<float> floatProperty:
-                    _targetGraphView.AddPropertyToBlackboard(floatProperty);
-                    break;
-                case ExposedProperty<int> intProperty:
-                    _targetGraphView.AddPropertyToBlackboard(intProperty);
-                    break;
-                case ExposedProperty<string> stringProperty:
-                    _targetGraphView.AddPropertyToBlackboard(stringProperty);
-                    break;
-            }
+            //Activator.CreateInstance(property.ValueType, )
+            
+            
+            // switch (property.ValueType)
+            // {
+            //     case :
+            //         _targetGraphView.AddPropertyToBlackboard(boolProperty);
+            //         break;
+            //     case ExposedProperty<float> floatProperty:
+            //         _targetGraphView.AddPropertyToBlackboard(floatProperty);
+            //         break;
+            //     case ExposedProperty<int> intProperty:
+            //         _targetGraphView.AddPropertyToBlackboard(intProperty);
+            //         break;
+            //     case ExposedProperty<string> stringProperty:
+            //         _targetGraphView.AddPropertyToBlackboard(stringProperty);
+            //         break;
+            // }
         }
     }
+    
     private void ConnectNodes()
     {
         foreach (GraphNode graphNode in GraphNodes)

@@ -62,5 +62,4 @@ MonoBehaviour:
   - baseNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
     portName: Output 0
     targetNodeGUID: 0afd8688-7b38-4cdb-9bc4-59b2260de3e4
-  ExposedPropertiesList: []
   SceneLayoutPrefab: {fileID: 0}

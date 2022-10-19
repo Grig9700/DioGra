@@ -145,7 +145,8 @@ public class DialogueManager : MonoBehaviour
     {
         EndDialogue(true);
 
-        DialogueContainer tempContainer = FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("Dialogues", $"{filename}.asset");
+        DialogueContainer tempContainer =
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"{filename}.asset", "/Dialogues");
 
         if (tempContainer == null)
         {
@@ -163,7 +164,7 @@ public class DialogueManager : MonoBehaviour
         if (container.SceneLayoutPrefab == null)
         {
             Debug.LogWarning($"No scene layout present in Dialogue, searching Resource/Scene Layouts");
-            obj = FindAndLoadResource.FindAndLoadFirstInResourceFolder<GameObject>("Scene Layouts", "?cene*"); //finds a Scene Layout
+            obj = FindAndLoadResource.FindAndLoadFirstInResourceFolder<GameObject>("?cene*", "/Scene Layouts"); //finds a Scene Layout
             if (obj != null)
                 sceneExists = true;
             else
