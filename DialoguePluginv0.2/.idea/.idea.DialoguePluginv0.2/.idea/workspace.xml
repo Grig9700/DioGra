@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8217f0ec-785b-4582-843f-37a3bc148b4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/FindAndLoadResource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/FindAndLoadResource.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dialogues/BackupBeforeLoad.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/BackupBeforeLoad.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dialogues/bot.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/bot.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,10 +75,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="5940">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="10784">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="5940" />
+      <option name="pid" value="10784" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -109,7 +104,7 @@
       <workItem from="1665736886463" duration="11791000" />
       <workItem from="1665749696824" duration="15278000" />
       <workItem from="1666089267592" duration="20751000" />
-      <workItem from="1666167138994" duration="15201000" />
+      <workItem from="1666167138994" duration="16947000" />
     </task>
     <servers />
   </component>
@@ -148,6 +143,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs</url>
+          <line>56</line>
+          <properties documentPath="C:\temp\DialoguePlugin\DialoguePluginv0.2\Assets\Dialogue\Editor\GraphSaveUtility.cs" initialLine="56" containingFunctionPresentation="method 'SaveExposedProperties'">
+            <startOffsets>
+              <option value="2190" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2191" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs</url>
+          <line>58</line>
+          <properties documentPath="C:\temp\DialoguePlugin\DialoguePluginv0.2\Assets\Dialogue\Editor\GraphSaveUtility.cs" initialLine="58" containingFunctionPresentation="method 'SaveExposedProperties'">
+            <startOffsets>
+              <option value="2289" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2290" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -55,15 +55,19 @@ public class GraphSaveUtility
     {
         foreach (var property in _targetGraphView.ExposedPropertiesList)
         {
-            var n = property.name;
-            var c = GetPropertyValueAsString(property);
-            var t = property.GetType().ToString();
+            if (container.ExposedPropertyDatas.Exists(x => x.Name == property.name))
+            {
+                var prop = container.ExposedPropertyDatas.First(x => x.Name == property.name);
+                prop.ValueContainer = GetPropertyValueAsString(property);
+                prop.ValueType = property.GetType().ToString();
+                continue;
+            }
             
             container.ExposedPropertyDatas.Add(new ExposedPropertyData()
             {
-                Name = n,
-                ValueContainer = c,
-                ValueType = t
+                Name = property.name,
+                ValueContainer = GetPropertyValueAsString(property),
+                ValueType = property.GetType().ToString()
             });
         }
     }

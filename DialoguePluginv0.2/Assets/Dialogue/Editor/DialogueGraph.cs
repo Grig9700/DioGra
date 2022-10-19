@@ -75,7 +75,7 @@ public class DialogueGraph : EditorWindow
             var oldPropertyName = ((BlackboardField)element).text;
             if (_graphView.ExposedPropertiesList.Any(x => x.name == newValue))
             {
-                Debug.LogError("Property name of that type is already present");
+                Debug.LogError("That property name already exists");
                 return;
             }
 
