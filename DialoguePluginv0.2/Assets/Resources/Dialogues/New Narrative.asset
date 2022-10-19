@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
-  m_Name: BackupBeforeLoad
+  m_Name: New Narrative
   m_EditorClassIdentifier: 
   GraphNodes:
   - nodeName: Dialogue Node
@@ -24,7 +24,7 @@ MonoBehaviour:
     position: {x: 819, y: 383}
   - nodeName: Choice Node
     GUID: 36038a59-5d4d-4ff0-bbb0-6249548b28c3
-    position: {x: 523, y: 72}
+    position: {x: 504, y: 277}
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next
