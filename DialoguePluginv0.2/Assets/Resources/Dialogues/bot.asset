@@ -14,49 +14,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphNodes:
   - nodeName: Dialogue Node
-    GUID: fa1d275c-1419-4f82-b985-3920bb48e907
-    position: {x: 224, y: 200}
-    speaker: me
-    dialogueText: you
+    GUID: 790ea6dd-a797-485f-8d59-5d83a795b171
+    position: {x: 276, y: 236}
+    speaker: 
+    dialogueText: 
+    VariableType: 0
     Property:
       name: New Property
     NodeType: 0
-  - nodeName: If Node
-    GUID: 1ea7ea69-af8d-4935-aabc-58ea05d8fedc
-    position: {x: 676, y: 200}
-    speaker: 
-    dialogueText: 
-    Property:
-      name: New Property
-    NodeType: 2
   - nodeName: Choice Node
-    GUID: b0d1dc6b-5508-4451-bb62-d162c3f76c0d
-    position: {x: 411, y: 200}
+    GUID: 3df56951-1577-497e-9543-11ed468ed606
+    position: {x: 474, y: 250}
     speaker: 
     dialogueText: 
+    VariableType: 0
     Property:
       name: New Property
     NodeType: 1
   - nodeName: Dialogue Node
-    GUID: 0f9a184e-0e59-4115-81b4-e47be83c2989
-    position: {x: 676, y: 399}
-    speaker: you
-    dialogueText: die
+    GUID: e78a064c-5b35-400f-8c95-6566d55276a3
+    position: {x: 755, y: 200}
+    speaker: 
+    dialogueText: 
+    VariableType: 0
+    Property:
+      name: New Property
+    NodeType: 0
+  - nodeName: Dialogue Node
+    GUID: 0afd8688-7b38-4cdb-9bc4-59b2260de3e4
+    position: {x: 755, y: 351}
+    speaker: 
+    dialogueText: 
+    VariableType: 0
     Property:
       name: New Property
     NodeType: 0
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next
-    targetNodeGUID: fa1d275c-1419-4f82-b985-3920bb48e907
-  - baseNodeGUID: fa1d275c-1419-4f82-b985-3920bb48e907
+    targetNodeGUID: 790ea6dd-a797-485f-8d59-5d83a795b171
+  - baseNodeGUID: 790ea6dd-a797-485f-8d59-5d83a795b171
     portName: Output
-    targetNodeGUID: b0d1dc6b-5508-4451-bb62-d162c3f76c0d
-  - baseNodeGUID: b0d1dc6b-5508-4451-bb62-d162c3f76c0d
-    portName: Output 0
-    targetNodeGUID: 1ea7ea69-af8d-4935-aabc-58ea05d8fedc
-  - baseNodeGUID: b0d1dc6b-5508-4451-bb62-d162c3f76c0d
+    targetNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
+  - baseNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
     portName: Output 1
-    targetNodeGUID: 0f9a184e-0e59-4115-81b4-e47be83c2989
+    targetNodeGUID: e78a064c-5b35-400f-8c95-6566d55276a3
+  - baseNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
+    portName: Output 0
+    targetNodeGUID: 0afd8688-7b38-4cdb-9bc4-59b2260de3e4
   ExposedPropertiesList: []
   SceneLayoutPrefab: {fileID: 0}
