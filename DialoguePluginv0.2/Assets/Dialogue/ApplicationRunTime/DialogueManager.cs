@@ -91,8 +91,8 @@ public class DialogueManager : MonoBehaviour
                     _buttons.Add(obj);
                 }
                 break;
-            case NodeType.IfNode:
-                break;
+            // case NodeType.IfNode:
+            //     break;
             default:
                 Debug.LogError("Entered Default on Next", this);
                 break;
@@ -173,7 +173,6 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
         }
-        
         
         _scene = sceneExists ? Instantiate(obj, _canvas.transform).GetComponent<SceneLayout>() : 
             Instantiate(container.SceneLayoutPrefab, _canvas.transform).GetComponent<SceneLayout>();
