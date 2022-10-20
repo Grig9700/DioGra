@@ -13,6 +13,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.UI;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using Debug = UnityEngine.Debug;
 
 public class DialogueGraphView : GraphView
 {
@@ -109,16 +110,36 @@ public class DialogueGraphView : GraphView
                 AddElement(CreateIfNode(nodeName, position));
                 return;
             default:
+                Debug.LogWarning($"{nodeName} is not a valid node type");
                 return;
         }
     }
 
-    public IfNode CreateIfNode(string nodeName, Vector2 position)
+    public void RestoreNode(GraphNodeData nodeData, List<NodeLinkData> linkedPorts = null)
+    {
+        switch (nodeData.nodeName)
+        {
+            case "Dialogue Node":
+                AddElement(CreateDialogueNode(nodeData.nodeName, nodeData.position, nodeData));
+                return;
+            case "Choice Node":
+                AddElement(CreateChoiceNode(nodeData.nodeName, nodeData.position, nodeData, linkedPorts));
+                return;
+            case "If Node":
+                AddElement(CreateIfNode(nodeData.nodeName, nodeData.position, nodeData));
+                return;
+            default:
+                Debug.LogWarning($"{nodeData.nodeName} is not a valid node type");
+                return;
+        }
+    }
+
+    private IfNode CreateIfNode(string nodeName, Vector2 position, GraphNodeData nodeData = null)
     {
         var ifNode = new IfNode()
         {
             title = nodeName,
-            GUID = Guid.NewGuid().ToString(),
+            GUID = nodeData == null ? Guid.NewGuid().ToString() : nodeData.GUID,
         };
 
         ifNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
@@ -186,13 +207,13 @@ public class DialogueGraphView : GraphView
 
         return ifNode;
     }
-    
-    public ChoiceNode CreateChoiceNode(string nodeName, Vector2 position)
+
+    private ChoiceNode CreateChoiceNode(string nodeName, Vector2 position, GraphNodeData nodeData = null, List<NodeLinkData> linkedPorts = null)
     {
         var choiceNode = new ChoiceNode()
         {
             title = nodeName,
-            GUID = Guid.NewGuid().ToString()
+            GUID = nodeData == null ? Guid.NewGuid().ToString() : nodeData.GUID
         };
 
         choiceNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
@@ -205,6 +226,14 @@ public class DialogueGraphView : GraphView
         var button = new Button(() => { AddChoicePort(choiceNode); });
         button.text = "New Output";
         choiceNode.titleContainer.Add(button);
+
+        if (linkedPorts != null)
+        {
+            foreach (var link in linkedPorts)
+            {
+                AddChoicePort(choiceNode, link.portName);
+            }
+        }
         
         choiceNode.RefreshExpandedState();
         choiceNode.RefreshPorts();
@@ -213,15 +242,15 @@ public class DialogueGraphView : GraphView
 
         return choiceNode;
     }
-    
-    public DialogueNode CreateDialogueNode(string nodeName, Vector2 position, string speaker = "", string dialogueText = "")
+
+    private DialogueNode CreateDialogueNode(string nodeName, Vector2 position, GraphNodeData nodeData = null)
     {
         var dialogueNode = new DialogueNode()
         {
             title = nodeName,
-            speaker = speaker,
-            dialogueText = dialogueText,
-            GUID = Guid.NewGuid().ToString()
+            speaker = nodeData == null ? "" : nodeData.speaker,
+            dialogueText = nodeData == null ? "" : nodeData.dialogueText,
+            GUID = nodeData == null ? Guid.NewGuid().ToString() : nodeData.GUID
         };
 
         dialogueNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
@@ -235,11 +264,11 @@ public class DialogueGraphView : GraphView
         outputPort.portName = "Output";
         dialogueNode.outputContainer.Add(outputPort);
 
-        var speakerField = new TextField("Speaker");
+        var speakerField = new TextField("Speaker") {value = dialogueNode.speaker};
         speakerField.RegisterValueChangedCallback(evt => dialogueNode.speaker = evt.newValue);
         dialogueNode.mainContainer.Add(speakerField);
         
-        var textField = new TextField(string.Empty);
+        var textField = new TextField(string.Empty) {value = dialogueNode.dialogueText};
         textField.RegisterValueChangedCallback(evt => dialogueNode.dialogueText = evt.newValue);
         dialogueNode.mainContainer.Add(textField);
             
@@ -252,7 +281,7 @@ public class DialogueGraphView : GraphView
         return dialogueNode;
     }
 
-    public void AddChoicePort(GraphNode dialogueNode, string overriddenPortName = "")
+    private void AddChoicePort(GraphNode dialogueNode, string overriddenPortName = "")
     {
         var generatedPort = GeneratePort(dialogueNode, Direction.Output);
 
@@ -344,6 +373,7 @@ public class DialogueGraphView : GraphView
                 
         var container = new VisualElement();
         var blackboardField = new BlackboardField { text = property.name, typeText = "bool" };
+        
         //blackboardField.IsDroppable();
         //blackboardField.RegisterCallback<DeleteSelectionDelegate>();
         //blackboardField.

@@ -16,8 +16,8 @@ MonoBehaviour:
   - nodeName: Dialogue Node
     GUID: 790ea6dd-a797-485f-8d59-5d83a795b171
     position: {x: 276, y: 236}
-    speaker: 
-    dialogueText: 
+    speaker: Me
+    dialogueText: Hello World!
     VariableType: 0
     Property:
       name: New Property
@@ -32,19 +32,19 @@ MonoBehaviour:
       name: New Property
     NodeType: 1
   - nodeName: Dialogue Node
-    GUID: e78a064c-5b35-400f-8c95-6566d55276a3
-    position: {x: 755, y: 200}
-    speaker: 
-    dialogueText: 
+    GUID: 0afd8688-7b38-4cdb-9bc4-59b2260de3e4
+    position: {x: 755, y: 351}
+    speaker: Me
+    dialogueText: awwww
     VariableType: 0
     Property:
       name: New Property
     NodeType: 0
   - nodeName: Dialogue Node
-    GUID: 0afd8688-7b38-4cdb-9bc4-59b2260de3e4
-    position: {x: 755, y: 351}
-    speaker: 
-    dialogueText: 
+    GUID: e78a064c-5b35-400f-8c95-6566d55276a3
+    position: {x: 755, y: 200}
+    speaker: Me
+    dialogueText: Dope
     VariableType: 0
     Property:
       name: New Property
@@ -57,9 +57,9 @@ MonoBehaviour:
     portName: Output
     targetNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
   - baseNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
-    portName: Output 1
+    portName: YEAH!
     targetNodeGUID: e78a064c-5b35-400f-8c95-6566d55276a3
   - baseNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
-    portName: Output 0
+    portName: No
     targetNodeGUID: 0afd8688-7b38-4cdb-9bc4-59b2260de3e4
   SceneLayoutPrefab: {fileID: 0}

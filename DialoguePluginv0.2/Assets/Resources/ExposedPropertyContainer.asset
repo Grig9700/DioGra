@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ea6d1c803a3e14bbf539413cce4418, type: 3}
   m_Name: ExposedPropertyContainer
   m_EditorClassIdentifier: 
-  ExposedPropertyDatas: []
+  ExposedPropertyDatas:
+  - Name: stringi
+    ValueContainer: 
+    ValueType: ExposedProperty`1[System.String]
+  - Name: inti
+    ValueContainer: 0
+    ValueType: ExposedProperty`1[System.Int32]
+  - Name: floati
+    ValueContainer: 0
+    ValueType: ExposedProperty`1[System.Single]
+  - Name: booli
+    ValueContainer: False
+    ValueType: ExposedProperty`1[System.Boolean]

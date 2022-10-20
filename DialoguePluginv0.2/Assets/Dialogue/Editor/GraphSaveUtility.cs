@@ -201,26 +201,43 @@ public class GraphSaveUtility
         
         foreach (var property in _propertyCache.ExposedPropertyDatas)
         {
-            //Activator.CreateInstance(property.ValueType, )
-            
-            
-            // switch (property.ValueType)
-            // {
-            //     case :
-            //         _targetGraphView.AddPropertyToBlackboard(boolProperty);
-            //         break;
-            //     case ExposedProperty<float> floatProperty:
-            //         _targetGraphView.AddPropertyToBlackboard(floatProperty);
-            //         break;
-            //     case ExposedProperty<int> intProperty:
-            //         _targetGraphView.AddPropertyToBlackboard(intProperty);
-            //         break;
-            //     case ExposedProperty<string> stringProperty:
-            //         _targetGraphView.AddPropertyToBlackboard(stringProperty);
-            //         break;
-            // }
+             switch (property.ValueType)
+             {
+                 case "ExposedProperty`1[System.Boolean]":
+                     _targetGraphView.AddPropertyToBlackboard(new ExposedProperty<bool>() {name = property.Name, value = bool.Parse(property.ValueContainer)});
+                     //_targetGraphView.AddPropertyToBlackboard(RestoreProperty<bool>(property.Name, property.ValueContainer));
+                     break;
+                 case "ExposedProperty`1[System.Single]":
+                     _targetGraphView.AddPropertyToBlackboard(new ExposedProperty<float>(){name = property.Name, value = float.Parse(property.ValueContainer)});
+                     //_targetGraphView.AddPropertyToBlackboard(RestoreProperty<float>(property.Name, property.ValueContainer));
+                     break;
+                 case "ExposedProperty`1[System.Int32]":
+                     _targetGraphView.AddPropertyToBlackboard(new ExposedProperty<int>(){name = property.Name, value = int.Parse(property.ValueContainer)});
+                     //_targetGraphView.AddPropertyToBlackboard(RestoreProperty<int>(property.Name, property.ValueContainer));
+                     break;
+                 case "ExposedProperty`1[System.String]":
+                     _targetGraphView.AddPropertyToBlackboard(new ExposedProperty<string>(){name = property.Name, value = property.ValueContainer});
+                     //_targetGraphView.AddPropertyToBlackboard(new ExposedProperty<string>(){name = property.Name, value = property.ValueContainer});
+                     break;
+             }
         }
     }
+
+    // private ExposedProperty<T> RestoreProperty<T>(string name, string value)// where T : Type
+    // {
+    //     var instance = Activator.CreateInstance(typeof(T));
+    //     var tryParseMethod = typeof(T).GetMethod("TryParse");
+    //     var parseMethod = typeof(T).GetMethod("Parse");
+    //
+    //     var tryResult = tryParseMethod.Invoke(instance, new[] { $"{name}" });
+    //
+    //     if (tryResult == null)
+    //     {
+    //         Debug.LogError($"Parameter by name of {name} has disallowed value : {value}");
+    //     }
+    //     
+    //     return new ExposedProperty<T>(){ name = name, value = (T)tryResult };
+    // }
     
     private void ConnectNodes()
     {
@@ -258,27 +275,15 @@ public class GraphSaveUtility
             switch (cachedNode.NodeType)
             {
                 case NodeType.DialogueNode:
-                    var dNode = _targetGraphView.CreateDialogueNode(cachedNode.nodeName, cachedNode.position, cachedNode.speaker , cachedNode.dialogueText);
-                    dNode.GUID = cachedNode.GUID;
-                    _targetGraphView.AddElement(dNode);
+                    _targetGraphView.RestoreNode(cachedNode);
                     //Debug.Log("dialogue node");
                     break;
                 case NodeType.ChoiceNode:
-                    var cNode = _targetGraphView.CreateChoiceNode(cachedNode.nodeName, cachedNode.position);
-                    cNode.GUID = cachedNode.GUID;
-                    _targetGraphView.AddElement(cNode);
-
-                    var cNodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == cachedNode.GUID).ToList();
-                    cNodePorts.ForEach(port => _targetGraphView.AddChoicePort(cNode, port.portName));
+                    _targetGraphView.RestoreNode(cachedNode, _containerCache.NodeLinks.Where(node => node.baseNodeGUID == cachedNode.GUID).ToList());
                     //Debug.Log("choice node");
                     break;
                 case NodeType.IfNode:
-                    var iNode = _targetGraphView.CreateIfNode(cachedNode.nodeName, cachedNode.position);
-                    iNode.GUID = cachedNode.GUID;
-                    _targetGraphView.AddElement(iNode);
-
-                    var iNodePorts = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == cachedNode.GUID).ToList();
-                    iNodePorts.ForEach(port => _targetGraphView.AddChoicePort(iNode, port.portName));
+                    _targetGraphView.RestoreNode(cachedNode);
                     //Debug.Log("if node");
                     break;
             }
