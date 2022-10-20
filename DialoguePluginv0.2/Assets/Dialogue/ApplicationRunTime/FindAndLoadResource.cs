@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TMPro.SpriteAssetUtilities;
 using UnityEngine;
 
 public class FindAndLoadResource
@@ -9,11 +10,6 @@ public class FindAndLoadResource
     public static T FindAndLoadFirstInResourceFolder<T>(string fileName, string folder = null) where T : Object
     {
         string toResource = Application.dataPath + "/Resources";
-        
-        //var files = Directory.GetFiles(toResource + folder, fileName, SearchOption.AllDirectories);
-
-        if (!fileName.Contains(".asset"))
-            fileName += ".asset";
 
         var files= folder == null ? Directory.GetFiles(toResource + folder, fileName, SearchOption.AllDirectories) : 
             Directory.GetFiles(toResource, fileName, SearchOption.AllDirectories);
@@ -26,7 +22,16 @@ public class FindAndLoadResource
             return null;
         }
 
-        string fullFilePath = files.First().Replace('\\', '/');
+        List<string> notMetaFiles = new List<string>();
+        foreach (var path in files)
+        {
+            string[] tempFilePath = path.Split('.');
+            
+            if (tempFilePath.Last() != "meta")
+                notMetaFiles.Add(path);
+        }
+        
+        string fullFilePath = notMetaFiles.First().Replace('\\', '/');
         string filePathoid = fullFilePath.Remove(0, toResource.Length + 1);
         string[] filePath = filePathoid.Split('.');
 

@@ -49,6 +49,15 @@ MonoBehaviour:
     Property:
       name: New Property
     NodeType: 0
+  - nodeName: Dialogue Node
+    GUID: 15fc8084-a2d1-491e-b308-b56b6c5500ca
+    position: {x: 344, y: 381}
+    speaker: 
+    dialogueText: 
+    VariableType: 0
+    Property:
+      name: New Property
+    NodeType: 0
   NodeLinks:
   - baseNodeGUID: StartPoint
     portName: Next

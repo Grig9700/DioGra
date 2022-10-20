@@ -164,7 +164,7 @@ public class DialogueManager : MonoBehaviour
         if (container.SceneLayoutPrefab == null)
         {
             Debug.LogWarning($"No scene layout present in Dialogue, searching Resource/Scene Layouts");
-            obj = FindAndLoadResource.FindAndLoadFirstInResourceFolder<GameObject>("?cene*", "/Scene Layouts"); //finds a Scene Layout
+            obj = FindAndLoadResource.FindAndLoadFirstInResourceFolder<GameObject>("?cene*", "/SceneLayouts"); //finds a Scene Layout
             if (obj != null)
                 sceneExists = true;
             else

@@ -39,7 +39,7 @@ public class GraphSaveUtility
             AssetDatabase.CreateFolder("Assets/Resources", "Dialogues");
 
         var exposedPropertiesContainer =
-            FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer");
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer*");
         if (exposedPropertiesContainer == null)
         {
             exposedPropertiesContainer = ScriptableObject.CreateInstance<ExposedPropertyContainer>();
@@ -172,7 +172,7 @@ public class GraphSaveUtility
     public void LoadData(string filename, DialogueGraph graph)
     {
         _containerCache = FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"{filename}.asset", "/Dialogues");
-        _propertyCache = FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer");
+        _propertyCache = FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer*");
         
         //Creates a backup in case Load was pushed without having saved.
         //This file will be overridden each time load or clear is clicked
