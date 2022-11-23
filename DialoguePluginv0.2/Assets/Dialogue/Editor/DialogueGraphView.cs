@@ -109,6 +109,9 @@ public class DialogueGraphView : GraphView
             case "If Node":
                 AddElement(CreateIfNode(nodeName, position));
                 return;
+            case "Script Node":
+                AddElement(CreateScriptNode(nodeName, position));
+                return;
             default:
                 Debug.LogWarning($"{nodeName} is not a valid node type");
                 return;
@@ -243,6 +246,41 @@ public class DialogueGraphView : GraphView
         return choiceNode;
     }
 
+    private ScriptNode CreateScriptNode(string nodeName, Vector2 position, GraphNodeData nodeData = null, List<NodeLinkData> linkedPorts = null)
+    {
+        var scriptNode = new ScriptNode()
+        {
+            title = nodeName,
+            GUID = nodeData == null ? Guid.NewGuid().ToString() : nodeData.GUID
+        };
+
+        scriptNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
+        
+        //Generates input port
+        var inputPort = GeneratePort(scriptNode, Direction.Input, Port.Capacity.Multi);
+        inputPort.portName = "Input";
+        scriptNode.inputContainer.Add(inputPort);
+
+        var button = new Button();//() => { AddChoicePort(scriptNode); });
+        button.text = "New Script Call";
+        scriptNode.titleContainer.Add(button);
+
+        if (linkedPorts != null)
+        {
+            foreach (var link in linkedPorts)
+            {
+                AddChoicePort(scriptNode, link.portName);
+            }
+        }
+        
+        scriptNode.RefreshExpandedState();
+        scriptNode.RefreshPorts();
+        
+        scriptNode.SetPosition(new Rect(position, defaultNodeSize));
+
+        return scriptNode;
+    }
+    
     private DialogueNode CreateDialogueNode(string nodeName, Vector2 position, GraphNodeData nodeData = null)
     {
         var dialogueNode = new DialogueNode()
@@ -303,7 +341,7 @@ public class DialogueGraphView : GraphView
         generatedPort.contentContainer.Add(textField);
 
         //permits removal of port
-        var deleteButton = new Button((() => RemovePort(dialogueNode, generatedPort))) { text = "X" };
+        var deleteButton = new Button(() => RemovePort(dialogueNode, generatedPort)) { text = "X" };
         generatedPort.contentContainer.Add(deleteButton);
         
         generatedPort.portName = choicePortName;

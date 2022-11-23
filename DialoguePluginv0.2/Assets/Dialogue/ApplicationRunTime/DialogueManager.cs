@@ -66,11 +66,6 @@ public class DialogueManager : MonoBehaviour
         Next(true);
     }
 
-    private void TestNext()
-    {
-        Next();
-    }
-    
     public void Next(bool alreadyPulled = false)
     {
         if (_buttons.Count > 0)
@@ -195,7 +190,7 @@ public class DialogueManager : MonoBehaviour
     {
         //Need to account for different scene comps
         _scene.backButton.GetComponent<Button>().onClick.AddListener(Back);
-        _scene.nextButton.GetComponent<Button>().onClick.AddListener(TestNext);
+        _scene.nextButton.GetComponent<Button>().onClick.AddListener(() => { Next(); });
         _scene.skipButton.GetComponent<Button>().onClick.AddListener(Skip);
     }
 }

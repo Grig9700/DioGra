@@ -5,10 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/SceneLayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/SceneLayout.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/NodeSearchWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/NodeSearchWindow.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Dialogues/bot.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/bot.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/SceneLayouts/SceneLayout.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SceneLayouts/SceneLayout.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/SceneLayouts/SceneLayout.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SceneLayouts/SceneLayout.prefab.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +111,7 @@
       <workItem from="1666267574204" duration="13905000" />
       <workItem from="1666364383168" duration="1063000" />
       <workItem from="1666787468895" duration="1866000" />
-      <workItem from="1669207715247" duration="5582000" />
+      <workItem from="1669207715247" duration="8468000" />
     </task>
     <servers />
   </component>

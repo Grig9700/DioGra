@@ -39,6 +39,10 @@ public class NodeSearchWindow : ScriptableObject, ISearchWindowProvider
             {
                 userData = new IfNode(), level = 2
             },
+            new SearchTreeEntry(new GUIContent("Script Node", _indentIcon))
+            {
+                userData = new ScriptNode(), level = 2
+            },
             //new SearchTreeEntry(new GUIContent("'Tis a bop"))
         };
         return tree;
@@ -60,6 +64,9 @@ public class NodeSearchWindow : ScriptableObject, ISearchWindowProvider
                 return true;
             case IfNode ifNode:
                 _graphView.CreateNode("If Node", localMousePosition);
+                return true;
+            case ScriptNode scriptNode:
+                _graphView.CreateNode("Script Node", localMousePosition);
                 return true;
             default:
                 return false;
