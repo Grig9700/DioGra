@@ -15,7 +15,7 @@ MonoBehaviour:
   GraphNodes:
   - nodeName: Dialogue Node
     GUID: 790ea6dd-a797-485f-8d59-5d83a795b171
-    position: {x: 276, y: 236}
+    position: {x: 459, y: 199}
     speaker: Me
     dialogueText: Hello World!
     VariableType: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
     NodeType: 0
   - nodeName: Choice Node
     GUID: 3df56951-1577-497e-9543-11ed468ed606
-    position: {x: 474, y: 250}
+    position: {x: 657, y: 213}
     speaker: 
     dialogueText: 
     VariableType: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     NodeType: 1
   - nodeName: Dialogue Node
     GUID: 0afd8688-7b38-4cdb-9bc4-59b2260de3e4
-    position: {x: 755, y: 351}
+    position: {x: 938, y: 314}
     speaker: Me
     dialogueText: awwww
     VariableType: 0
@@ -42,17 +42,23 @@ MonoBehaviour:
     NodeType: 0
   - nodeName: Dialogue Node
     GUID: e78a064c-5b35-400f-8c95-6566d55276a3
-    position: {x: 755, y: 200}
+    position: {x: 938, y: 163}
     speaker: Me
     dialogueText: Dope
     VariableType: 0
     Property:
       name: New Property
     NodeType: 0
+  - nodeName: Dialogue Node
+    GUID: 7373f4e5-99aa-48cc-b337-a25a7b7e3e03
+    position: {x: 255, y: 200}
+    speaker: Me
+    dialogueText: Welcome to...
+    VariableType: 0
+    Property:
+      name: New Property
+    NodeType: 0
   NodeLinks:
-  - baseNodeGUID: StartPoint
-    portName: Next
-    targetNodeGUID: 790ea6dd-a797-485f-8d59-5d83a795b171
   - baseNodeGUID: 790ea6dd-a797-485f-8d59-5d83a795b171
     portName: Output
     targetNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
@@ -62,4 +68,10 @@ MonoBehaviour:
   - baseNodeGUID: 3df56951-1577-497e-9543-11ed468ed606
     portName: No
     targetNodeGUID: 0afd8688-7b38-4cdb-9bc4-59b2260de3e4
+  - baseNodeGUID: StartPoint
+    portName: Next
+    targetNodeGUID: 7373f4e5-99aa-48cc-b337-a25a7b7e3e03
+  - baseNodeGUID: 7373f4e5-99aa-48cc-b337-a25a7b7e3e03
+    portName: Output
+    targetNodeGUID: 790ea6dd-a797-485f-8d59-5d83a795b171
   SceneLayoutPrefab: {fileID: 0}

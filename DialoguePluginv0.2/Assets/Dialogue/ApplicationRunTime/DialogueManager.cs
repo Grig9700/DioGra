@@ -58,8 +58,17 @@ public class DialogueManager : MonoBehaviour
     {
         if (_previousNodes.Count <= 1)
             return;
+        
+        Debug.Log($"[Dev] back button management options need implementing");
+        
+        ClearButtons();
         _currentNode = _previousNodes.Pop();
         Next(true);
+    }
+
+    private void TestNext()
+    {
+        Next();
     }
     
     public void Next(bool alreadyPulled = false)
@@ -118,7 +127,7 @@ public class DialogueManager : MonoBehaviour
     
     public void Skip()
     {
-        
+        Debug.LogError($"[Dev] Skip not implemented");
     }
     
     private void ClearButtons()
@@ -140,7 +149,7 @@ public class DialogueManager : MonoBehaviour
         if (!loadCall)
             Debug.Log($"Dialogue Ended");
     }
-    
+
     public void LoadNewDialogue(string filename)
     {
         EndDialogue(true);
@@ -176,9 +185,18 @@ public class DialogueManager : MonoBehaviour
         
         _scene = sceneExists ? Instantiate(obj, _canvas.transform).GetComponent<SceneLayout>() : 
             Instantiate(container.SceneLayoutPrefab, _canvas.transform).GetComponent<SceneLayout>();
+        PrepareScene();
         _currentNode = "StartPoint";
         
         Next();
+    }
+
+    private void PrepareScene()
+    {
+        //Need to account for different scene comps
+        _scene.backButton.GetComponent<Button>().onClick.AddListener(Back);
+        _scene.nextButton.GetComponent<Button>().onClick.AddListener(TestNext);
+        _scene.skipButton.GetComponent<Button>().onClick.AddListener(Skip);
     }
 }
 

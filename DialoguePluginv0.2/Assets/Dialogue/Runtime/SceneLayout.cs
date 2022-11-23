@@ -6,10 +6,15 @@ using UnityEngine.UI;
 //[CreateAssetMenu(fileName = "SceneLayout", menuName = "Dialogue Plugin/Scene Layout")]
 public class SceneLayout : MonoBehaviour //ScriptableObject
 {
+    public Image background;
+    public Image actor;
+    public Image textFieldBackground;
     public Text nameField;
     public Text textField;
-    public Image textFieldBackground;
     public GameObject viewPort;
     //public GameObject buttonRegion;
     public GameObject buttonPrefab;
+    public GameObject skipButton;
+    public GameObject nextButton;
+    public GameObject backButton;
 }

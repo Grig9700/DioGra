@@ -4,18 +4,11 @@
     <list default="true" id="8217f0ec-785b-4582-843f-37a3bc148b4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/FindAndLoadResource.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/FindAndLoadResource.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/ChoiceNodeData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/ChoiceNodeData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueNodeData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/DialogueNodeData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphNodeData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphNodeData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/IfNodeData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/IfNodeData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/NodeLinkData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/NodeLinkData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/SceneLayout.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/SceneLayout.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dialogues/bot.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/bot.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SceneLayouts/SceneLayout.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SceneLayouts/SceneLayout.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SceneLayouts/SceneLayout.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SceneLayouts/SceneLayout.prefab.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +28,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f1212ad1dec44ce7b7147976b91869c3157800/45/d031f111/Debug.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f1212ad1dec44ce7b7147976b91869c3157800/8a/baf9f097/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/ParameterControl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/ParameterSingleton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/ExtendedEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/NodeSearchWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/TempContainer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -84,10 +79,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="9560">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="9560" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -114,7 +109,10 @@
       <workItem from="1665749696824" duration="15278000" />
       <workItem from="1666089267592" duration="20751000" />
       <workItem from="1666167138994" duration="17274000" />
-      <workItem from="1666267574204" duration="13311000" />
+      <workItem from="1666267574204" duration="13905000" />
+      <workItem from="1666364383168" duration="1063000" />
+      <workItem from="1666787468895" duration="1866000" />
+      <workItem from="1669207715247" duration="5582000" />
     </task>
     <servers />
   </component>
