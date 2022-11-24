@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
+  m_Name: bot
+  m_EditorClassIdentifier: 
+  GraphNodes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  NodeLinks:
+  - baseNodeGUID: StartPoint
+    portName: Next
+    targetNodeGUID: a1e1e092-0856-4f77-9558-b8a7393cea2d
+  - baseNodeGUID: a1e1e092-0856-4f77-9558-b8a7393cea2d
+    portName: Output
+    targetNodeGUID: 3032a918-0f54-4b92-b2e2-89ab29554859
+  - baseNodeGUID: 3032a918-0f54-4b92-b2e2-89ab29554859
+    portName: Output
+    targetNodeGUID: b13315ad-ad73-4887-acec-3c9edba2297e
+  - baseNodeGUID: b13315ad-ad73-4887-acec-3c9edba2297e
+    portName: Output 0
+    targetNodeGUID: de770d7c-5559-4edd-ab90-92458ab541e0
+  - baseNodeGUID: b13315ad-ad73-4887-acec-3c9edba2297e
+    portName: Output 1
+    targetNodeGUID: caac1da3-b0f7-4216-ba50-e25b31112816
+  - baseNodeGUID: de770d7c-5559-4edd-ab90-92458ab541e0
+    portName: Output
+    targetNodeGUID: 42e91135-b025-4688-bc17-b872422d1172
+  SceneLayoutPrefab: {fileID: 0}

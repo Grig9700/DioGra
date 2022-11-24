@@ -1,0 +1,7 @@
+DialogueNode #title{
+    background-color: rgb(0, 128, 0);
+}
+
+.unity-text-field__label {
+    min-width: 50px;
+}
