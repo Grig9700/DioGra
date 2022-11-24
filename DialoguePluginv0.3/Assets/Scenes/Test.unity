@@ -254,10 +254,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runMode: 0
   container: {fileID: 0}
-  _buttons: []
-  _scene: {fileID: 0}
-  _currentNode: 
-  _canvas: {fileID: 0}
 --- !u!4 &160244666
 Transform:
   m_ObjectHideFlags: 0
