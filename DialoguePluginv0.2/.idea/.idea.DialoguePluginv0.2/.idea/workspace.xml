@@ -4,86 +4,7 @@
     <list default="true" id="8217f0ec-785b-4582-843f-37a3bc148b4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/GraphNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/GraphNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/ApplicationRunTime.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/ApplicationRunTime/ParameterControl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/ApplicationRunTime/ParameterControl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/ApplicationRunTime/ParameterSingleton.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/ApplicationRunTime/ParameterSingleton.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/DialogueGraph.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/DialogueGraph.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/DialogueGraphView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/DialogueGraphView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/ExtendedEditorWindow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/ExtendedEditorWindow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/GraphSaveUtility.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/GraphSaveUtility.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/NodeSearchWindow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/NodeSearchWindow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes/ChoiceNode.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes/ChoiceNode.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes/DialogueNode.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes/DialogueNode.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes/GraphNode.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes/GraphNode.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes/IfNode.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes/IfNode.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes/ScriptNode.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Nodes/ScriptNode.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Resources.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Resources/DialogueGraph.uss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Resources/DialogueGraph.uss.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Resources/Node.uss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/Resources/Node.uss.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/TempContainer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Editor/TempContainer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Notes.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Notes.txt.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/Character.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/Character.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/DialogueContainer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/DialogueContainer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/ExposedProperties.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperties.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperties.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperty.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/ExposedProperties/ExposedProperty.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/ExposedProperties/ExposedPropertyContainer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/ExposedProperties/ExposedPropertyContainer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/ExposedProperties/ExposedPropertyData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/ExposedProperties/ExposedPropertyData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GetListeners.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GetListeners.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/ChoiceNodeData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/ChoiceNodeData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/DialogueNodeData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/DialogueNodeData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/GraphNodeData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/GraphNodeData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/IfNodeData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/IfNodeData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/NodeLinkData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/NodeLinkData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/ScriptNodeData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/GraphData/ScriptNodeData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/SceneLayout.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Runtime/SceneLayout.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Utility.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Utility/FindAndLoadResource.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Dialogue/Utility/FindAndLoadResource.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Resources.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Resources.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Resources/Dialogues/bot.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Resources/Dialogues/bot.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Scenes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Scenes.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Scenes/SampleScene.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeCalls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeCalls.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,10 +81,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="18044">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="10168">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="18044" />
+      <option name="pid" value="10168" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -196,6 +117,7 @@
       <workItem from="1669207715247" duration="8468000" />
       <workItem from="1669295701253" duration="374000" />
       <workItem from="1669296958644" duration="15896000" />
+      <workItem from="1669374002670" duration="14389000" />
     </task>
     <servers />
   </component>

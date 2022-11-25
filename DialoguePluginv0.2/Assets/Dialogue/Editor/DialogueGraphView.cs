@@ -262,11 +262,26 @@ public class DialogueGraphView : GraphView
         var inputPort = GeneratePort(scriptNode, Direction.Input, Port.Capacity.Multi);
         inputPort.portName = "Input";
         scriptNode.inputContainer.Add(inputPort);
+        
+        var generatedPort = GeneratePort(scriptNode, Direction.Output);
+        generatedPort.portName = "Output";
+        scriptNode.outputContainer.Add(generatedPort);
 
-        var button = new Button(() => { AddFunctionCall(scriptNode); });
-        button.text = "New Script Call";
-        scriptNode.titleContainer.Add(button);
+        
+        
+        UnityEngine.Object.DestroyImmediate(scriptNode.Editor);
+        scriptNode.Editor = Editor.CreateEditor(scriptNode.call);
+        IMGUIContainer container = new IMGUIContainer(() => { scriptNode.Editor.OnInspectorGUI(); });
+        //scriptNode.Add(container);
+        //scriptNode.contentContainer.Add(container);
+        scriptNode.outputContainer.Add(container);
+        
+        // var button = new Button(() => { AddFunctionCall(scriptNode); });
+        // button.text = "New Script Call";
+        // scriptNode.titleContainer.Add(button);
 
+        
+        
         if (linkedPorts != null)
         {
             foreach (var link in linkedPorts)
