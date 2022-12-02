@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,6 +15,10 @@ public class ScriptNodeCalls : ScriptableObject
     
     [HideInInspector]
     public bool expandCalls = true;
+    [HideInInspector] 
+    public List<List<ValueType>> parameters = new List<List<ValueType>>();
+    [HideInInspector]
+    public string methodName;
 
     // public UnityAction actionScripts;
     //

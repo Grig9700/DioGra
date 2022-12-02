@@ -15,8 +15,8 @@ public class ScriptNodeEditor : Editor
     private ReorderableList _reorderableList;
     private ScriptNodeCalls _scriptNode;
 
-    private float _lineHeight;
-    private float _lineHeightSpace;
+    //private float _lineHeight;
+    //private float _lineHeightSpace;
 
     private void OnEnable()
     {
@@ -25,8 +25,8 @@ public class ScriptNodeEditor : Editor
         _reorderableList = new ReorderableList(serializedObject, serializedObject.FindProperty("calls"), 
             true, true, true, true);
 
-        _lineHeight = EditorGUIUtility.singleLineHeight;
-        _lineHeightSpace = _lineHeight + 10;
+        //_lineHeight = EditorGUIUtility.singleLineHeight;
+        //_lineHeightSpace = _lineHeight + 10;
     }
 
     public override void OnInspectorGUI()
@@ -76,12 +76,15 @@ public class ScriptNodeEditor : Editor
             rect.y += 2;
 
             EditorGUI.PropertyField(
-                new Rect(rect.x, rect.y, 60, _lineHeight),
+                new Rect(rect.x, rect.y, 160, EditorGUIUtility.singleLineHeight),
                 element, GUIContent.none);
             
 
             if (_scriptNode.selectedMethod.Count <= index + 1)
+            {
                 _scriptNode.selectedMethod.Add(0);
+                _scriptNode.parameters.Add(new List<ValueType>());
+            }
 
             MonoScript script = _scriptNode.calls[index];
             
@@ -99,7 +102,7 @@ public class ScriptNodeEditor : Editor
             MethodInfo[] scriptMethods =
                 type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
 
-            if (_scriptNode.calls is not { Count: > 0 })
+            if (scriptMethods is not { Length: > 0 })
             {
                 Debug.LogWarning($"Script does not contain any methods {script.name}");
                 return;
@@ -107,17 +110,77 @@ public class ScriptNodeEditor : Editor
             
             List<string> methodNames = scriptMethods.Select(method => method.Name).ToList();
             
-            _scriptNode.selectedMethod[index] = EditorGUI.Popup(new Rect(rect.x + 60, rect.y, 60, _lineHeight), _scriptNode.selectedMethod[index],methodNames.ToArray());
+            _scriptNode.selectedMethod[index] = EditorGUI.Popup(new Rect(rect.x, rect.y + EditorGUIUtility.singleLineHeight, 
+                160, EditorGUIUtility.singleLineHeight), _scriptNode.selectedMethod[index],methodNames.ToArray());
+
+            _scriptNode.methodName = methodNames[_scriptNode.selectedMethod[index]];
             
+            ParameterInfo[] pars = type.GetMethod(_scriptNode.methodName)?.GetParameters();
+            
+            if (pars is not { Length: > 0 })
+            {
+                //Debug.LogWarning($"Method does not contain any parameters {script.name}");
+                return;
+            }
+
+            if (pars.Any(parameter => !parameter.ParameterType.IsValueType))
+            {
+                Debug.LogError($"{_scriptNode.methodName} contains parameters that are currently not supported. " +
+                               $"\n    Supported Types include; Bool, Int, String, Float, Double." +
+                               $"\n    You can also use the dollar sign (\"$\") before the name of the Blackboard property to indicate " +
+                               $"that you wish to send the named property instead of another value into the script call");
+                return;
+            }
+            
+            EditorGUI.indentLevel++;
+
+            List<ValueType> values = new List<ValueType>();
+            foreach (var parameter in pars)
+            {
+                string _type = parameter.ParameterType.ToString().Split('.').Last();
+
+                switch (_type)
+                {
+                    case "string":
+                        break;
+                }
+                //values.Add(CreateValueType<_type>());
+            }
+            
+            for (int i = 0; i < pars.Length; i++)
+            {
+                
+                // EditorGUI.PropertyField(
+                //     new Rect(rect.x, rect.y + EditorGUIUtility.singleLineHeight * (i + 2), 160, EditorGUIUtility.singleLineHeight),
+                //     pars[i]., GUIContent.none);
+            }
+            
+            
+            EditorGUI.indentLevel--;
+            
+            //_scriptNode.parameters[index] = pars.ToList();
         };
 
-        // _reorderableList.elementHeightCallback = index =>
-        // {
-        //     float height = 1;
-        //     return height;
-        // };
+        _reorderableList.elementHeightCallback = index =>
+        {
+            float height = EditorGUIUtility.singleLineHeight * 2;
+
+            if (_scriptNode.parameters is not { Count: > 0 })
+                return height;
+
+            var temp = _scriptNode.parameters[index];
+
+            if (temp is { Count: > 0 }) 
+                height += EditorGUIUtility.singleLineHeight * _scriptNode.parameters[index].Count;
+            return height;
+        };
     }
-    
+
+    private T CreateValueType<T>()
+    {
+        T temp = default;
+        return temp;
+    }
     
     private void Show(SerializedProperty list, ScriptNodeOptions options = ScriptNodeOptions.Default)
     {

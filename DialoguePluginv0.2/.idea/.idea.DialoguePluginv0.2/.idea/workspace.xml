@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8217f0ec-785b-4582-843f-37a3bc148b4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeCalls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeCalls.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeEditor.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,7 @@
     <setting file="file:////StudentNAS1/StudentHome/2018/a18carza/Desktop/0.2 carry over/Dialogue/Runtime/GraphData/ChoiceNodeData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file:////StudentNAS1/StudentHome/2018/a18carza/Desktop/0.2 carry over/Dialogue/Runtime/GraphData/GraphNodeData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file:////StudentNAS1/StudentHome/2018/a18carza/Desktop/0.2 carry over/Dialogue/Runtime/GraphData/ScriptNodeData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/36f62d8e760b48f7af5d32916f997ce1811400/6d/ed6bdfe8/ReorderableList.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/36f62d8e760b48f7af5d32916f997ce1811400/ba/82307d57/MaterialEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/69bcbb1dde7d49b2aed63b1879b25dc329200/25/f7b7e7aa/GUIUtility.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd953b8fb97946ec96d4a808bc44e727128c00/41/562da6cc/EventCallbackFunctor`1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -81,10 +83,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="10168">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="2556">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="10168" />
+      <option name="pid" value="2556" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -117,7 +119,8 @@
       <workItem from="1669207715247" duration="8468000" />
       <workItem from="1669295701253" duration="374000" />
       <workItem from="1669296958644" duration="15896000" />
-      <workItem from="1669374002670" duration="14389000" />
+      <workItem from="1669374002670" duration="15025000" />
+      <workItem from="1669975945307" duration="10397000" />
     </task>
     <servers />
   </component>
