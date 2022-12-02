@@ -97,6 +97,8 @@ public class DialogueManager : MonoBehaviour
                 break;
             // case NodeType.IfNode:
             //     break;
+            // case NodeType.ScriptNode:
+            //     break;
             default:
                 Debug.LogError("Entered Default on Next", this);
                 break;

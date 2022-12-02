@@ -16,7 +16,7 @@ public class ScriptNodeCalls : ScriptableObject
     [HideInInspector]
     public bool expandCalls = true;
     [HideInInspector] 
-    public List<List<ValueType>> parameters = new List<List<ValueType>>();
+    public List<List<ScriptableObject>> parameters = new List<List<ScriptableObject>>();
     [HideInInspector]
     public string methodName;
 
@@ -28,5 +28,21 @@ public class ScriptNodeCalls : ScriptableObject
     // {
     //     eventScripts.Invoke();
     // }
+    
+// #if UNITY_EDITOR
+//     public static ScriptableObject CreateValue<T>(string valueName, ScriptableObject assetTarget)
+//     {
+//         var scriptableValue = CreateInstance<ScriptableValue<T>>();
+//         scriptableValue.name = valueName;
+//
+//         AssetDatabase.AddObjectToAsset(scriptableValue, assetTarget);
+//         AssetDatabase.SaveAssets();
+//         
+//         EditorUtility.SetDirty(scriptableValue);
+//         EditorUtility.SetDirty(assetTarget);
+//            
+//         return scriptableValue;
+//     }
+// #endif
 }
 

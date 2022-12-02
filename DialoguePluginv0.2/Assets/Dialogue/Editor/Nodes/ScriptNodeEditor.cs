@@ -83,7 +83,7 @@ public class ScriptNodeEditor : Editor
             if (_scriptNode.selectedMethod.Count <= index + 1)
             {
                 _scriptNode.selectedMethod.Add(0);
-                _scriptNode.parameters.Add(new List<ValueType>());
+                _scriptNode.parameters.Add(new List<ScriptableObject>());
             }
 
             MonoScript script = _scriptNode.calls[index];
@@ -129,36 +129,54 @@ public class ScriptNodeEditor : Editor
                                $"\n    Supported Types include; Bool, Int, String, Float, Double." +
                                $"\n    You can also use the dollar sign (\"$\") before the name of the Blackboard property to indicate " +
                                $"that you wish to send the named property instead of another value into the script call");
-                return;
+                //return;
             }
             
             EditorGUI.indentLevel++;
 
-            List<ValueType> values = new List<ValueType>();
+            List<ScriptableObject> values = new List<ScriptableObject>();
             foreach (var parameter in pars)
             {
-                string _type = parameter.ParameterType.ToString().Split('.').Last();
+                string paramType = parameter.ParameterType.ToString().Split('.').Last();
 
-                switch (_type)
+                switch (paramType)
                 {
-                    case "string":
+                    case "Boolean":
+                        values.Add(CreateValue<bool>(parameter.Name, _scriptNode));
+                        break;
+                    case "Single":
+                        values.Add(CreateValue<float>(parameter.Name, _scriptNode));
+                        break;
+                    case "Int*":
+                        values.Add(CreateValue<int>(parameter.Name, _scriptNode));
+                        break;
+                    case "Double":
+                        values.Add(CreateValue<double>(parameter.Name, _scriptNode));
+                        break;
+                    case "String":
+                        values.Add(CreateValue<string>(parameter.Name, _scriptNode));
                         break;
                 }
-                //values.Add(CreateValueType<_type>());
             }
             
-            for (int i = 0; i < pars.Length; i++)
+            
+            for (int i = 0; i < values.Count; i++)
             {
-                
+                //SerializedProperty methodProperty = values[i];
+
+                string methodProperty = EditorGUILayout.TextArea(values[i].name);
+
+                values[i].name = methodProperty;
+
                 // EditorGUI.PropertyField(
                 //     new Rect(rect.x, rect.y + EditorGUIUtility.singleLineHeight * (i + 2), 160, EditorGUIUtility.singleLineHeight),
-                //     pars[i]., GUIContent.none);
+                //     methodProperty, GUIContent.none);
             }
             
             
             EditorGUI.indentLevel--;
             
-            //_scriptNode.parameters[index] = pars.ToList();
+            _scriptNode.parameters[index] = values;
         };
 
         _reorderableList.elementHeightCallback = index =>
@@ -176,10 +194,24 @@ public class ScriptNodeEditor : Editor
         };
     }
 
-    private T CreateValueType<T>()
+    public static ScriptableObject CreateValue<T>(string valueName, ScriptableObject assetTarget)
     {
-        T temp = default;
-        return temp;
+        var scriptableValue = CreateInstance<ScriptableValue<T>>();
+        scriptableValue.name = valueName;
+
+        AssetDatabase.AddObjectToAsset(scriptableValue, assetTarget);
+        AssetDatabase.SaveAssets();
+        
+        EditorUtility.SetDirty(scriptableValue);
+        EditorUtility.SetDirty(assetTarget);
+           
+        return scriptableValue;
+    }
+    
+    public static void DestroyValue<T>(ScriptableValue<T> value)
+    {
+        AssetDatabase.RemoveObjectFromAsset(value);
+        AssetDatabase.SaveAssets();
     }
     
     private void Show(SerializedProperty list, ScriptNodeOptions options = ScriptNodeOptions.Default)

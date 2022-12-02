@@ -6,6 +6,9 @@
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeCalls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeCalls.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphData/GraphNodeData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphData/GraphNodeData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphData/ScriptableValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphData/ScriptableValue.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dialogues/BackupBeforeLoad.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/BackupBeforeLoad.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +123,7 @@
       <workItem from="1669295701253" duration="374000" />
       <workItem from="1669296958644" duration="15896000" />
       <workItem from="1669374002670" duration="15025000" />
-      <workItem from="1669975945307" duration="10397000" />
+      <workItem from="1669975945307" duration="16771000" />
     </task>
     <servers />
   </component>
