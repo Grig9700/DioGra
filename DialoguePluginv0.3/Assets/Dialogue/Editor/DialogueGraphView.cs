@@ -21,7 +21,7 @@ public class DialogueGraphView : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
         
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/DialogueGraphEditor.uss"); 
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Dialogue/Editor/DialogueGraphEditor.uss"); 
         styleSheets.Add(styleSheet);
         
         AddElement(GenerateEntryPointNode());
@@ -163,23 +163,24 @@ public class DialogueGraphView : GraphView
         inputPort.portName = "Input";
         ifNode.inputContainer.Add(inputPort);
         
-        //
-        // switch (ifNode.Property)
-        // {
-        //     case ExposedProperty<bool> boolProperty:
-        //         boolProperty.value = false;
-        //         break;
-        // }
         
-        // SerializeField ifNode.Property;
-        // typeSelector.
-        // typeSelector.RegisterValueChangedCallback(evt =>
-        // {
-        //     ifNode.VariableType = evt.newValue
-        // });
-        // ifNode.titleButtonContainer.Add(typeSelector);
-        // PopupField<ExposedProperty<bool>> elementSelector = new PopupField<ExposedProperty<bool>>();
-        // ifNode.outputContainer.Add(elementSelector);
+        /*
+        switch (ifNode.Property)
+        {
+            case ExposedProperty<bool> boolProperty:
+                boolProperty.value = false;
+                break;
+        }
+        
+        SerializeField ifNode.Property;
+        typeSelector.
+        typeSelector.RegisterValueChangedCallback(evt =>
+        {
+            ifNode.VariableType = evt.newValue
+        });
+        ifNode.titleButtonContainer.Add(typeSelector);
+        PopupField<ExposedProperty<bool>> elementSelector = new PopupField<ExposedProperty<bool>>();
+        ifNode.outputContainer.Add(elementSelector);*/
 
         TempContainer temp = ScriptableObject.CreateInstance<TempContainer>();
         tempContainer.Add(ifNode.GUID, temp);
@@ -262,7 +263,8 @@ public class DialogueGraphView : GraphView
         var scriptNode = new ScriptNode()
         {
             title = nodeName,
-            GUID = nodeData == null ? Guid.NewGuid().ToString() : nodeData.GUID
+            GUID = nodeData == null ? Guid.NewGuid().ToString() : nodeData.GUID,
+            call = ScriptableObject.CreateInstance<ScriptNodeCalls>()
         };
 
         scriptNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
@@ -272,9 +274,23 @@ public class DialogueGraphView : GraphView
         inputPort.portName = "Input";
         scriptNode.inputContainer.Add(inputPort);
 
-        var button = new Button();//() => { AddChoicePort(scriptNode); });
-        button.text = "New Script Call";
-        scriptNode.titleContainer.Add(button);
+        var generatedPort = GeneratePort(scriptNode, Direction.Output);
+        generatedPort.portName = "Output";
+        scriptNode.outputContainer.Add(generatedPort);
+
+        
+        
+        UnityEngine.Object.DestroyImmediate(scriptNode.Editor);
+        scriptNode.Editor = Editor.CreateEditor(scriptNode.call);
+        IMGUIContainer container = new IMGUIContainer(() => { scriptNode.Editor.OnInspectorGUI(); });
+        //scriptNode.Add(container);
+        //scriptNode.contentContainer.Add(container);
+        scriptNode.outputContainer.Add(container);
+        
+        // var button = new Button(() => { AddFunctionCall(scriptNode); });
+        // button.text = "New Script Call";
+        // scriptNode.titleContainer.Add(button);
+
 
         if (linkedPorts != null)
         {
@@ -363,7 +379,7 @@ public class DialogueGraphView : GraphView
         dialogueNode.RefreshPorts();
     }
 
-    private void RemovePort(GraphNode dialogueNode, Port generatedPort)
+    private void RemovePort(GraphNode graphNode, Port generatedPort)
     {
         var targetEdge = edges.ToList().Where(
             edge => edge.output.portName == generatedPort.portName && edge.output.node == generatedPort.node);
@@ -375,9 +391,17 @@ public class DialogueGraphView : GraphView
             RemoveElement(targetEdge.First());
         }
         
-        dialogueNode.outputContainer.Remove(generatedPort);
-        dialogueNode.RefreshExpandedState();
-        dialogueNode.RefreshPorts();
+        graphNode.outputContainer.Remove(generatedPort);
+        graphNode.RefreshExpandedState();
+        graphNode.RefreshPorts();
+    }
+
+    private void AddFunctionCall(GraphNode graphNode)
+    {
+        UnityEngine.Object.DestroyImmediate(graphNode.Editor);
+        graphNode.Editor = Editor.CreateEditor(graphNode.call);
+        IMGUIContainer container = new IMGUIContainer(() => { graphNode.Editor.OnInspectorGUI(); });
+        graphNode.Add(container);
     }
 
     public void ClearBlackboardAndExposedProperties()

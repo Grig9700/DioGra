@@ -76,13 +76,13 @@ public class DialogueManager : MonoBehaviour
 
         var node = container.GraphNodes.First(x => x.GUID == _currentNode);
         
-        switch (node.NodeType)
+        switch (node.dialogueGraphNodeType)
         {
-            case NodeType.DialogueNode:
+            case DialogueGraphNodeType.DialogueNode:
                 _scene.nameField.text = node.speaker;
                 _scene.textField.text = node.dialogueText;
                 break;
-            case NodeType.ChoiceNode:
+            case DialogueGraphNodeType.ChoiceNode:
                 var buttonsToMake = container.NodeLinks.Where(x => x.baseNodeGUID == _currentNode).ToList();
                 var height = _scene.buttonPrefab.GetComponent<RectTransform>().rect.height;
                 for (int i = 0; i < buttonsToMake.Count(); i++)
@@ -96,6 +96,8 @@ public class DialogueManager : MonoBehaviour
                 }
                 break;
             // case NodeType.IfNode:
+            //     break;
+            // case NodeType.ScriptNode:
             //     break;
             default:
                 Debug.LogError("Entered Default on Next", this);
@@ -193,6 +195,20 @@ public class DialogueManager : MonoBehaviour
         _scene.nextButton.GetComponent<Button>().onClick.AddListener(() => { Next(); });
         _scene.skipButton.GetComponent<Button>().onClick.AddListener(Skip);
     }
+
+
+
+
+
+
+
+
+    public void temp(bool b, int i, float f, double d, string s, Vector2 v2, Vector3 v3, Vector4 v4, Vector2Int v2i, Vector3Int v3i, ScriptableObject so, GameObject ob)
+    {
+        
+    }
+
+
 }
 
 public enum RunMode

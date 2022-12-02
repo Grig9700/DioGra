@@ -76,13 +76,13 @@ public class DialogueManager : MonoBehaviour
 
         var node = container.GraphNodes.First(x => x.GUID == _currentNode);
         
-        switch (node.NodeType)
+        switch (node.dialogueGraphNodeType)
         {
-            case NodeType.DialogueNode:
+            case DialogueGraphNodeType.DialogueNode:
                 _scene.nameField.text = node.speaker;
                 _scene.textField.text = node.dialogueText;
                 break;
-            case NodeType.ChoiceNode:
+            case DialogueGraphNodeType.ChoiceNode:
                 var buttonsToMake = container.NodeLinks.Where(x => x.baseNodeGUID == _currentNode).ToList();
                 var height = _scene.buttonPrefab.GetComponent<RectTransform>().rect.height;
                 for (int i = 0; i < buttonsToMake.Count(); i++)

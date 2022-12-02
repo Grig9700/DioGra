@@ -4,11 +4,87 @@
     <list default="true" id="8217f0ec-785b-4582-843f-37a3bc148b4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DialoguePluginv0.2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeCalls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeCalls.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraph.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/DialogueGraphView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/GraphSaveUtility.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeEditor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphData/GraphNodeData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphData/GraphNodeData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphData/ScriptableValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Dialogue/Runtime/GraphData/ScriptableValue.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dialogues/BackupBeforeLoad.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/BackupBeforeLoad.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/ApplicationRunTime.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/ApplicationRunTime/DialogueManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/ApplicationRunTime/DialogueManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/DialogueGraph.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/DialogueGraph.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/DialogueGraphEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/DialogueGraphEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/DialogueGraphEditor.uss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/DialogueGraphEditor.uss.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/DialogueGraphEditor.uxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/DialogueGraphEditor.uxml.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/DialogueGraphView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/DialogueGraphView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/ExtendedEditorWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/ExtendedEditorWindow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/GraphSaveUtility.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/GraphSaveUtility.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/InspectorView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/InspectorView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/NodeSearchWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/NodeSearchWindow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes/ChoiceNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes/ChoiceNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes/DialogueNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes/DialogueNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes/GraphNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes/GraphNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes/IfNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes/IfNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes/ScriptNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Nodes/ScriptNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Resources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Resources/DialogueGraph.uss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Resources/DialogueGraph.uss.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Resources/Node.uss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/Resources/Node.uss.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/SplitView.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/SplitView.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/TempContainer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Editor/TempContainer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/Character.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/Character.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/DialogueContainer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/DialogueContainer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/ExposedProperties.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/ExposedProperties/ExposedProperties.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/ExposedProperties/ExposedProperties.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/ExposedProperties/ExposedProperty.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/ExposedProperties/ExposedProperty.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/ExposedProperties/ExposedPropertyContainer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/ExposedProperties/ExposedPropertyContainer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/ExposedProperties/ExposedPropertyData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/ExposedProperties/ExposedPropertyData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GetListeners.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GetListeners.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/ChoiceNodeData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/ChoiceNodeData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/DialogueNodeData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/DialogueNodeData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/GraphNodeData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/GraphNodeData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/IfNodeData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/IfNodeData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/NodeLinkData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/NodeLinkData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/ScriptNodeData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/GraphData/ScriptNodeData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/SceneLayout.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Runtime/SceneLayout.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Utility.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Utility/FindAndLoadResource.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DialoguePluginv0.3/Assets/Utility/FindAndLoadResource.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +113,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f1212ad1dec44ce7b7147976b91869c3157800/8a/baf9f097/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/ApplicationRunTime/DialogueManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/ExtendedEditorWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/GraphUtility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/NodeSearchWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/Nodes/ScriptNodeCalls.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Dialogue/Editor/TempContainer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -123,7 +200,7 @@
       <workItem from="1669295701253" duration="374000" />
       <workItem from="1669296958644" duration="15896000" />
       <workItem from="1669374002670" duration="15025000" />
-      <workItem from="1669975945307" duration="16771000" />
+      <workItem from="1669975945307" duration="21175000" />
     </task>
     <servers />
   </component>

@@ -3,7 +3,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [Serializable]
-public class GraphNodeData
+public class GraphNodeData : ScriptableObject
 {
     public string nodeName;
     public string GUID;
@@ -16,7 +16,7 @@ public class GraphNodeData
     public ExposedVariableType VariableType;
     public ExposedProperties Property;
 
-    public NodeType NodeType;
+    public DialogueGraphNodeType dialogueGraphNodeType;
 
     public enum ExposedVariableType
     {
@@ -28,7 +28,7 @@ public class GraphNodeData
 }
 
 
-public enum NodeType
+public enum DialogueGraphNodeType
 {
     DialogueNode,
     ChoiceNode,

@@ -94,16 +94,6 @@ public class DialogueGraph : EditorWindow
         _graphView.Add(_blackboard);
     }
 
-    private void MyMenuPopulateCB(ContextualMenuPopulateEvent evt)
-    {
-        //evt.menu.AppendAction("Delete", MyAction(), DropdownMenuAction.AlwaysEnabled);
-    }
-
-    void MyAction()
-    {
-        
-    }
-
     private void AddBlackboardProperty(ExposedVariableType current)
     {
         switch (current)
@@ -136,6 +126,14 @@ public class DialogueGraph : EditorWindow
     {
         //_graphView.StretchToParentSize();
         //rootVisualElement.Add(_graphView);
+        
+        // _graphView = new DialogueGraphView(this)
+        // {
+        //     name = "Dialogue Graph"
+        // };
+        //
+        // _graphView.StretchToParentSize();
+        // rootVisualElement.Add(_graphView);
     }
 
     private void GenerateToolbar()

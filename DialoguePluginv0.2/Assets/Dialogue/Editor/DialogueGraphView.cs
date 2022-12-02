@@ -281,7 +281,6 @@ public class DialogueGraphView : GraphView
         // scriptNode.titleContainer.Add(button);
 
         
-        
         if (linkedPorts != null)
         {
             foreach (var link in linkedPorts)

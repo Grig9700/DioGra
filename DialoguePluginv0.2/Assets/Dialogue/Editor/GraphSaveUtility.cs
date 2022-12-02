@@ -123,7 +123,7 @@ public class GraphSaveUtility
                         speaker = dialogueNode.speaker,
                         dialogueText = dialogueNode.dialogueText,
                         position = dialogueNode.GetPosition().position,
-                        NodeType = NodeType.DialogueNode
+                        dialogueGraphNodeType = DialogueGraphNodeType.DialogueNode
                     });
                     // Debug.Log("dialogue node");
                     // var bop = dialogueContainer.GraphNodes[0];
@@ -146,7 +146,7 @@ public class GraphSaveUtility
                         nodeName = choiceNode.title,
                         GUID = choiceNode.GUID,
                         position = choiceNode.GetPosition().position,
-                        NodeType = NodeType.ChoiceNode
+                        dialogueGraphNodeType = DialogueGraphNodeType.ChoiceNode
                     });
                     //Debug.Log("choice node");
                     break;
@@ -156,7 +156,7 @@ public class GraphSaveUtility
                         nodeName = ifNode.title,
                         GUID = ifNode.GUID,
                         position = ifNode.GetPosition().position,
-                        NodeType = NodeType.IfNode
+                        dialogueGraphNodeType = DialogueGraphNodeType.IfNode
                     });
                     //Debug.Log("if node");
                     break;
@@ -272,17 +272,17 @@ public class GraphSaveUtility
     {
         foreach (var cachedNode in _containerCache.GraphNodes)
         {
-            switch (cachedNode.NodeType)
+            switch (cachedNode.dialogueGraphNodeType)
             {
-                case NodeType.DialogueNode:
+                case DialogueGraphNodeType.DialogueNode:
                     _targetGraphView.RestoreNode(cachedNode);
                     //Debug.Log("dialogue node");
                     break;
-                case NodeType.ChoiceNode:
+                case DialogueGraphNodeType.ChoiceNode:
                     _targetGraphView.RestoreNode(cachedNode, _containerCache.NodeLinks.Where(node => node.baseNodeGUID == cachedNode.GUID).ToList());
                     //Debug.Log("choice node");
                     break;
-                case NodeType.IfNode:
+                case DialogueGraphNodeType.IfNode:
                     _targetGraphView.RestoreNode(cachedNode);
                     //Debug.Log("if node");
                     break;
