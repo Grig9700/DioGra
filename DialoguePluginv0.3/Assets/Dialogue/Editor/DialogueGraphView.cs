@@ -25,7 +25,6 @@ public class DialogueGraphView : GraphView
         styleSheets.Add(styleSheet);
         
         AddElement(GenerateEntryPointNode());
-        //AddSearchWindow();
     }
     
     public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
@@ -37,6 +36,10 @@ public class DialogueGraphView : GraphView
     private Dictionary<string, TempContainer> tempContainer = new Dictionary<string, TempContainer>();
 
     private NodeSearchWindow _nodeSearchWindow;
+    
+    private DialogueGraphEditor _dialogueEditor;
+    
+    public DialogueContainer Container;
     
     /*public DialogueGraphView(EditorWindow editorWindow)
     {
@@ -56,10 +59,16 @@ public class DialogueGraphView : GraphView
         AddSearchWindow(editorWindow);
     }*/
 
-    private void AddSearchWindow(EditorWindow editorWindow)
+    public void Initialize(DialogueGraphEditor window)
+    {
+        _dialogueEditor = window;
+        AddSearchWindow();
+    }
+    
+    private void AddSearchWindow()
     {
         _nodeSearchWindow = ScriptableObject.CreateInstance<NodeSearchWindow>();
-        _nodeSearchWindow.Init(editorWindow, this);
+        _nodeSearchWindow.Initialize(_dialogueEditor, this);
         nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _nodeSearchWindow);
     }
 

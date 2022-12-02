@@ -169,7 +169,7 @@ public class GraphSaveUtility
         return true;
     }
     
-    public void LoadData(string filename, DialogueGraph graph)
+    public void LoadData(string filename, DialogueGraphEditor graph)
     {
         _containerCache = FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"{filename}.asset", "/Dialogues");
         _propertyCache = FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer*");
@@ -191,10 +191,10 @@ public class GraphSaveUtility
         ClearGraph();
     }
     
-    private void CreateExposedVariables(DialogueGraph graph)
+    private void CreateExposedVariables(DialogueGraphEditor graph)
     {
         _targetGraphView.ClearBlackboardAndExposedProperties();
-        graph.CreateBlackBoardElements();
+        //graph.CreateBlackBoardElements();
         
         if (_propertyCache == null)
             return;

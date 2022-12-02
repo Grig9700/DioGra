@@ -28,6 +28,11 @@ public class DialogueGraph : EditorWindow
         Int,
         String
     }
+
+    public DialogueGraph(DialogueGraphView graphView)
+    {
+        _graphView = graphView;
+    }
     
     /*[MenuItem("Window/Dialogue Graph")]
     public static void OpenDialogueGraphWindow()
@@ -187,8 +192,8 @@ public class DialogueGraph : EditorWindow
         var saveUtility = GraphSaveUtility.GetInstance(_graphView);
         if (save)
             saveUtility.SaveData(_filename);
-        else
-            saveUtility.LoadData(_filename, this);
+        //else
+        //    saveUtility.LoadData(_filename, this);
     }
 
     private void ClearGraph()
@@ -201,17 +206,5 @@ public class DialogueGraph : EditorWindow
     private void OnDisable()
     {
         rootVisualElement.Remove(_graphView);
-    }
-
-    private void OnSelectionChange()
-    {
-        DialogueContainer container = Selection.activeObject as DialogueContainer;
-        if (container)
-        {
-            var saveUtility = GraphSaveUtility.GetInstance(_graphView);
-            saveUtility.LoadData(container.name, this);
-            _filename = container.name;
-            _toolbar.MarkDirtyRepaint();
-        }
     }
 }

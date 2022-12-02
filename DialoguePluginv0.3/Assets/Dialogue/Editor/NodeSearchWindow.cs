@@ -11,7 +11,7 @@ public class NodeSearchWindow : ScriptableObject, ISearchWindowProvider
     private EditorWindow _window;
     private Texture2D _indentIcon;
 
-    public void Init(EditorWindow window, DialogueGraphView graphView)
+    public void Initialize(EditorWindow window, DialogueGraphView graphView)
     {
         _window = window;
         _graphView = graphView;
@@ -48,13 +48,13 @@ public class NodeSearchWindow : ScriptableObject, ISearchWindowProvider
         return tree;
     }
 
-    public bool OnSelectEntry(SearchTreeEntry SearchTreeEntry, SearchWindowContext context)
+    public bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
     {
         var worldMousePosition = _window.rootVisualElement.ChangeCoordinatesTo(_window.rootVisualElement.parent,
-            context.screenMousePosition - _window.position.position);
+             context.screenMousePosition - _window.position.position);
         var localMousePosition = _graphView.contentViewContainer.WorldToLocal(worldMousePosition);
         
-        switch (SearchTreeEntry.userData)
+        switch (searchTreeEntry.userData)
         {
             case DialogueNode dialogueNode:
                 _graphView.CreateNode("Dialogue Node", localMousePosition);
