@@ -8,12 +8,12 @@ using UnityEngine;
 using UnityEditorInternal;
 
 
-[CustomEditor(typeof(ScriptNodeCalls))]
+[CustomEditor(typeof(ScriptNode))]
 public class ScriptNodeEditor : Editor
 {
     private SerializedProperty _calls;
     private ReorderableList _reorderableList;
-    private ScriptNodeCalls _scriptNode;
+    private ScriptNode _scriptNode;
 
     //private float _lineHeight;
     //private float _lineHeightSpace;
@@ -21,7 +21,7 @@ public class ScriptNodeEditor : Editor
     private void OnEnable()
     {
         _calls = serializedObject.FindProperty("calls");
-        _scriptNode = (ScriptNodeCalls)target;
+        _scriptNode = (ScriptNode)target;
         _reorderableList = new ReorderableList(serializedObject, serializedObject.FindProperty("calls"), 
             true, true, true, true);
 
@@ -194,7 +194,7 @@ public class ScriptNodeEditor : Editor
         };
     }
     
-    private void Show(SerializedProperty list, ScriptNodeOptions options = ScriptNodeOptions.Default)
+    /*private void Show(SerializedProperty list, ScriptNodeOptions options = ScriptNodeOptions.Default)
     {
         bool
             showListLabel = (options & ScriptNodeOptions.ListLabel) != 0,
@@ -212,17 +212,17 @@ public class ScriptNodeEditor : Editor
         }
         if (showListLabel)
             EditorGUI.indentLevel--;
-    }
+    }*/
 
-    private readonly GUIContent
+    /*private readonly GUIContent
         _moveButtonContentUp = new GUIContent("\u2191", "move up"),
         _moveButtonContentDown = new GUIContent("\u2193", "move down"),
         _duplicateButtonContent = new GUIContent("+", "duplicate"),
         _deleteButtonContent = new GUIContent("-", "delete");
 
-    private readonly GUILayoutOption _miniButtonWidth = GUILayout.Width(20f);
+    private readonly GUILayoutOption _miniButtonWidth = GUILayout.Width(20f);*/
 
-    private void ShowElements(SerializedProperty list, ScriptNodeOptions options)
+    /*private void ShowElements(SerializedProperty list, ScriptNodeOptions options)
     {
         bool 
             showElementLabels = (options & ScriptNodeOptions.ElementLabels) != 0,
@@ -285,9 +285,9 @@ public class ScriptNodeEditor : Editor
         
         if (showButtons)
             ShowButtons(list, i);
-    }
+    }*/
 
-    private void ShowButtons(SerializedProperty list, int index)
+    /*private void ShowButtons(SerializedProperty list, int index)
     {
         EditorGUILayout.BeginHorizontal();
         GUILayout.Space(200);
@@ -300,7 +300,7 @@ public class ScriptNodeEditor : Editor
             list.DeleteArrayElementAtIndex(index);
         }
         EditorGUILayout.EndHorizontal();
-    }
+    }*/
 }
 
 [Flags]

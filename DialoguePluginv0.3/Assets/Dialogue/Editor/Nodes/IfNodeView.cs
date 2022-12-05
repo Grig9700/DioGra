@@ -6,6 +6,10 @@ using UnityEngine;
 [Serializable]
 public class IfNodeView : GraphNodeView
 {
+    public ExposedVariableType VariableType;
+    public ExposedProperties Property;
+    
+    
     public IfNodeView(GraphNode node)
     {
         Node = node;
@@ -14,6 +18,8 @@ public class IfNodeView : GraphNodeView
 
         style.left = node.position.x;
         style.top = node.position.y;
+        
+        GenerateInputPort();
     }
 
     public override void SetPosition(Rect newPos)
@@ -23,6 +29,4 @@ public class IfNodeView : GraphNodeView
         Node.position.y = newPos.yMin;
     }
     
-    public ExposedVariableType VariableType;
-    public ExposedProperties Property;
 }

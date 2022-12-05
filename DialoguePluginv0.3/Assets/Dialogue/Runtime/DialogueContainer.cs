@@ -7,6 +7,7 @@ using UnityEditor;
 #endif
 
 [Serializable]
+//[CreateAssetMenu(fileName = "New Dialogue", menuName = "New Dialogue")]
 public class DialogueContainer : ScriptableObject
 {
     public List<GraphNode> GraphNodes = new List<GraphNode>();
@@ -44,6 +45,21 @@ public class DialogueContainer : ScriptableObject
         GraphNodes.Remove(node);
         AssetDatabase.RemoveObjectFromAsset(node);
         AssetDatabase.SaveAssets();
+    }
+
+    public void AddChild(GraphNode parent, GraphNode child)
+    {
+        parent.children.Add(child);
+    }
+
+    public void RemoveChild(GraphNode parent, GraphNode child)
+    {
+        parent.children.Remove(child);
+    }
+
+    public List<GraphNode> GetChildren(GraphNode parent)
+    {
+        return parent.children;
     }
 #endif
 }

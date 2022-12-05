@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
@@ -40,6 +41,8 @@ public class DialogueGraphView : GraphView
     private DialogueGraphEditor _dialogueEditor;
     
     public DialogueContainer Container;
+
+    private float _timer;
     
     /*public DialogueGraphView(EditorWindow editorWindow)
     {
@@ -75,13 +78,9 @@ public class DialogueGraphView : GraphView
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
         //Done to allow ports of different types to connect as we don't need dataflow between them atm
-        var compatiblePorts = new List<Port>();
-        ports.ForEach(port =>
-        {
-            if (startPort != port && startPort.node != port.node)
-                compatiblePorts.Add(port);
-        });
-        return compatiblePorts;
+        return ports.ToList().Where(endPort =>
+            endPort.direction != startPort.direction &&
+            endPort.node != startPort.node).ToList();
     }
 
     private Port GeneratePort(GraphNodeView nodeView, Direction portOrientation, Port.Capacity capacity = Port.Capacity.Single)
@@ -157,6 +156,13 @@ public class DialogueGraphView : GraphView
         }
     }*/
 
+    private GraphNodeView FindNodeView(GraphNode node)
+    {
+        return GetNodeByGuid(node.GUID) as GraphNodeView;
+    }
+    
+    
+    
     public void PopulateView(DialogueContainer container)
     {
         Container = container;
@@ -165,17 +171,62 @@ public class DialogueGraphView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChanged;
 
+        //create nodes
         container.GraphNodes.ForEach(CreateNodeViewElement);
         CreateEntryPoint();
+        
+        //create edges
+        container.GraphNodes.ForEach(CreateEdgeViewElement);
+    }
+
+    private void CreateEdgeViewElement(GraphNode graphNode)
+    {
+        GraphNodeView parentView = FindNodeView(graphNode);
+        for (int i = 0; i < graphNode.children.Count; i++)
+        {
+            GraphNodeView childView = FindNodeView(graphNode.children[i]);
+            Edge edge = parentView.OutputPorts[i].ConnectTo(childView.InputPort);
+            AddElement(edge);
+        }
     }
 
     private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
     {
         graphViewChange.elementsToRemove?.ForEach(elem =>
         {
-            if (elem is GraphNodeView graphNode)
-                Container.DeleteGraphNode(graphNode.Node);
+            switch (elem)
+            {
+                case GraphNodeView graphNode:
+                    Container.DeleteGraphNode(graphNode.Node);
+                    break;
+                /*case Port port:
+                    if (port.direction != Direction.Output)
+                        break;
+                    var edges = port.connections;
+                    port.DisconnectAll();
+                    foreach (var edge in edges)
+                    {
+                        RemoveElement(edge);
+                    }
+                    break;*/
+                case Edge edge:
+                    GraphNodeView parentView = edge.output.node as GraphNodeView;
+                    GraphNodeView childView = edge.input.node as GraphNodeView;
+            
+                    Container.RemoveChild(parentView!.Node, childView!.Node);
+                    break;
+                    
+            }
         });
+        
+        graphViewChange.edgesToCreate?.ForEach(edge =>
+        {
+            GraphNodeView parentView = edge.output.node as GraphNodeView;
+            GraphNodeView childView = edge.input.node as GraphNodeView;
+            
+            Container.AddChild(parentView!.Node, childView!.Node);
+        });
+        
         return graphViewChange;
     }
 
@@ -193,6 +244,15 @@ public class DialogueGraphView : GraphView
     {
         if (Container.GraphNodes.Any(node => node.entryNode))
             return;
+
+        AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
+        //DelayEntryNode();
+    }
+
+    private async void DelayEntryNode()
+    {
+        await Task.Delay(50);
+        Selection.activeGameObject = null;
         AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
     }
     
@@ -215,7 +275,7 @@ public class DialogueGraphView : GraphView
                 graphNodeView = new DialogueNodeView(node);
                 break;
             case ChoiceNode: 
-                graphNodeView = new ChoiceNodeView(node);
+                graphNodeView = new ChoiceNodeView(node, this);
                 break;
             case IfNode:
                 graphNodeView = new IfNodeView(node);
@@ -478,13 +538,13 @@ public class DialogueGraphView : GraphView
         graphNodeView.RefreshPorts();
     }
 
-    private void AddFunctionCall(GraphNodeView graphNodeView)
+    /*private void AddFunctionCall(GraphNodeView graphNodeView)
     {
         UnityEngine.Object.DestroyImmediate(graphNodeView.Editor);
         graphNodeView.Editor = Editor.CreateEditor(graphNodeView.call);
         IMGUIContainer container = new IMGUIContainer(() => { graphNodeView.Editor.OnInspectorGUI(); });
         graphNodeView.Add(container);
-    }
+    }*/
 
     public void ClearBlackboardAndExposedProperties()
     {

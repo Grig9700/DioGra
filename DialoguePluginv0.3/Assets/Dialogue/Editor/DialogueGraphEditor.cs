@@ -8,7 +8,8 @@ public class DialogueGraphEditor : EditorWindow
 {
     private DialogueGraphView _graphView;
     private InspectorView _inspectorView;
-    
+    private bool _foldersExist;
+    private bool _exposedPropertiesExist;
     
     [MenuItem("Dialogue Graph Editor/Editor...")]
     public static void ShowExample()
@@ -17,6 +18,72 @@ public class DialogueGraphEditor : EditorWindow
         window.titleContent = new GUIContent("DialogueGraphEditor");
     }
 
+    /*[MenuItem("Dialogue Graph Editor/New Dialogue")]
+    public static void MakeNewDialogueMenuItem()
+    {
+        var dialogueContainer =
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*");
+
+        int i = 0;
+        if (dialogueContainer != null)
+        {
+            while (dialogueContainer != null)
+            {
+                i++;
+                dialogueContainer =
+                    FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"New Dialogue {i}*");
+            }
+        }
+
+        CreateFolders();
+        
+        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DialogueContainer>(),
+            $"Assets/Resources/Dialogues/New Dialogue {i}.asset");
+    }*/
+    
+    private DialogueContainer MakeNewDialogue()
+    {
+        if (!_foldersExist)
+            _foldersExist = CreateFolders();
+        
+        if (!_exposedPropertiesExist)
+            _exposedPropertiesExist = CreateExposedProperties();
+        
+        var dialogueContainer =
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*", null, true);
+        
+        if (dialogueContainer != null) return dialogueContainer;
+        
+        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DialogueContainer>(),
+            $"Assets/Resources/Dialogues/New Dialogue.asset");
+            
+        dialogueContainer =
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*", null, true);
+
+        return dialogueContainer;
+    }
+
+    private static bool CreateFolders()
+    {
+        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+            AssetDatabase.CreateFolder("Assets", "Resources");
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/Dialogues"))
+            AssetDatabase.CreateFolder("Assets/Resources", "Dialogues");
+        
+        return true;
+    }
+
+    private static bool CreateExposedProperties()
+    {
+        var exposedPropertiesContainer =
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer*", null, true);
+        if (exposedPropertiesContainer != null) 
+            return true;
+        exposedPropertiesContainer = ScriptableObject.CreateInstance<ExposedPropertyContainer>();
+        AssetDatabase.CreateAsset(exposedPropertiesContainer, $"Assets/Resources/ExposedPropertyContainer.asset");
+        return true;
+    }
+    
     public void CreateGUI()
     {
         // Each editor window contains a root VisualElement object
@@ -34,34 +101,10 @@ public class DialogueGraphEditor : EditorWindow
         _graphView = root.Q<DialogueGraphView>();
         _graphView.Initialize(this);
         _inspectorView = root.Q<InspectorView>();
+
+        _graphView.Container = MakeNewDialogue();
         
-        OnSelectionChange();
-        
-        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
-            AssetDatabase.CreateFolder("Assets", "Resources");
-        if (!AssetDatabase.IsValidFolder("Assets/Resources/Dialogues"))
-            AssetDatabase.CreateFolder("Assets/Resources", "Dialogues");
-        
-        var exposedPropertiesContainer =
-            FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer*");
-        if (exposedPropertiesContainer == null)
-        {
-            exposedPropertiesContainer = ScriptableObject.CreateInstance<ExposedPropertyContainer>();
-            AssetDatabase.CreateAsset(exposedPropertiesContainer, $"Assets/Resources/ExposedPropertyContainer.asset");
-        }
-        //SaveExposedProperties(exposedPropertiesContainer);
-        
-        var dialogueContainer =
-            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*");
-        if (dialogueContainer == null)
-        {
-            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DialogueContainer>(),
-                $"Assets/Resources/Dialogues/New Dialogue.asset");
-            
-            dialogueContainer =
-                FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*");
-        }
-        _graphView.PopulateView(dialogueContainer);
+        _graphView.PopulateView(_graphView.Container);
         
         AssetDatabase.SaveAssets();
     }
@@ -71,10 +114,7 @@ public class DialogueGraphEditor : EditorWindow
         DialogueContainer container = Selection.activeObject as DialogueContainer;
         if (container)
         {
-            //var saveUtility = GraphSaveUtility.GetInstance(_graphView);
-            //saveUtility.LoadData(container.name, this);
             _graphView.PopulateView(container);
-            //_graphView.Container = container;
         }
     }
 }

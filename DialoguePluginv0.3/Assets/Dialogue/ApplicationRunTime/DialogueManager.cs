@@ -208,7 +208,30 @@ public class DialogueManager : MonoBehaviour
         
     }
 
+    public void boolTest(bool b)
+    {
+        
+    }
 
+    public void intTest(int i)
+    {
+        
+    }
+
+    public void floatTest(float f)
+    {
+        
+    }
+
+    public void doubleTest(double d)
+    {
+        
+    }
+
+    public void stringTest(string s)
+    {
+        
+    }
 }
 
 public enum RunMode

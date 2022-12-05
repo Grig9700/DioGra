@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class FindAndLoadResource
 {
-    public static T FindAndLoadFirstInResourceFolder<T>(string fileName, string folder = null) where T : Object
+    public static T FindAndLoadFirstInResourceFolder<T>(string fileName, string folder = null, bool suppressErrorMessages = false) where T : Object
     {
         string toResource = Application.dataPath + "/Resources";
 
@@ -18,6 +18,8 @@ public class FindAndLoadResource
         
         if (files.Length <= 0)
         {
+            if (suppressErrorMessages)
+                return null;
             Debug.LogError($"No {typeof(T).Name} were found");
             return null;
         }
@@ -38,6 +40,8 @@ public class FindAndLoadResource
         T tempScene = Resources.Load<T>($"{filePath.First()}");
         if (tempScene != null) return tempScene;
         
+        if (suppressErrorMessages)
+            return null;
         Debug.LogError($"No {typeof(T).Name} were found");
         return null;
 

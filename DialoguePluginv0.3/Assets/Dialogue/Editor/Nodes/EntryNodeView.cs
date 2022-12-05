@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class EntryNodeView : GraphNodeView
 {
+    
+    
     public EntryNodeView(GraphNode node)
     {
         Node = node;
@@ -12,6 +15,11 @@ public class EntryNodeView : GraphNodeView
 
         style.left = node.position.x;
         style.top = node.position.y;
+        
+        capabilities &= ~Capabilities.Movable;
+        capabilities &= ~Capabilities.Deletable;
+        
+        GenerateOutputPort();
     }
 
     public override void SetPosition(Rect newPos)

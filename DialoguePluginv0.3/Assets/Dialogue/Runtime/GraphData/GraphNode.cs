@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -6,10 +7,12 @@ using UnityEngine;
 public class GraphNode : ScriptableObject
 {
     public bool entryNode;
-    public string nodeName;
+    //public string nodeName;
     public string GUID;
     public Vector2 position;
-
+    
+    //public List<GraphNodeLink> Links = new List<GraphNodeLink>();
+    public List<GraphNode> children = new List<GraphNode>();
 
     //public string speaker;
     //public string dialogueText;
@@ -28,6 +31,11 @@ public class GraphNode : ScriptableObject
     }
 }
 
+/*public struct GraphNodeLink
+{
+    public string parent;
+    public string child;
+}*/
 
 public enum DialogueGraphNodeType
 {

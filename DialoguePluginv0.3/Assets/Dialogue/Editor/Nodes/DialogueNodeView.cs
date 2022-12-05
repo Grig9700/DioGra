@@ -5,6 +5,10 @@ using UnityEditor.Experimental.GraphView;
 
 public class DialogueNodeView : GraphNodeView
 {
+    public string speaker;
+    public string dialogueText;
+    
+    
     public DialogueNodeView(GraphNode node)
     {
         Node = node;
@@ -13,6 +17,9 @@ public class DialogueNodeView : GraphNodeView
 
         style.left = node.position.x;
         style.top = node.position.y;
+        
+        GenerateInputPort();
+        GenerateOutputPort();
     }
 
     public override void SetPosition(Rect newPos)
@@ -22,6 +29,4 @@ public class DialogueNodeView : GraphNodeView
         Node.position.y = newPos.yMin;
     }
     
-    public string speaker;
-    public string dialogueText;
 }

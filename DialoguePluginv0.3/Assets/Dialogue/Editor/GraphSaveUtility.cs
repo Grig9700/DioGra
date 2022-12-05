@@ -118,7 +118,7 @@ public class GraphSaveUtility
                 case DialogueNodeView dialogueNode:
                     dialogueContainer.GraphNodes.Add(new GraphNode()
                     {
-                        nodeName = dialogueNode.title,
+                        //nodeName = dialogueNode.title,
                         GUID = dialogueNode.GUID,
                         //speaker = dialogueNode.speaker,
                         //dialogueText = dialogueNode.dialogueText,
@@ -143,7 +143,7 @@ public class GraphSaveUtility
                 case ChoiceNodeView choiceNode:
                     dialogueContainer.GraphNodes.Add(new GraphNode()
                     {
-                        nodeName = choiceNode.title,
+                        //nodeName = choiceNode.title,
                         GUID = choiceNode.GUID,
                         position = choiceNode.GetPosition().position,
                         dialogueGraphNodeType = DialogueGraphNodeType.ChoiceNode
@@ -153,7 +153,7 @@ public class GraphSaveUtility
                 case IfNodeView ifNode:
                     dialogueContainer.GraphNodes.Add(new IfNode
                     {
-                        nodeName = ifNode.title,
+                        //nodeName = ifNode.title,
                         GUID = ifNode.GUID,
                         position = ifNode.GetPosition().position,
                         dialogueGraphNodeType = DialogueGraphNodeType.IfNode

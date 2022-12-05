@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7856330117840471916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0436a84f0c6204fb6e899c92878fa1, type: 3}
+  m_Name: IfNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  nodeName: 
+  GUID: 3d17012bccce23e41ae2f55e428b677e
+  position: {x: 418, y: 0}
+  children: []
+  VariableType: 0
+  Property:
+    name: New Property
+  dialogueGraphNodeType: 0
+--- !u!114 &-2033323912491180630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  nodeName: 
+  GUID: 8eb4a819b86edc648b46008682e901a6
+  position: {x: 140, y: 0}
+  children:
+  - {fileID: 5423458535452999390}
+  - {fileID: -7856330117840471916}
+  VariableType: 0
+  Property:
+    name: New Property
+  dialogueGraphNodeType: 0
+  outputOptions:
+  - Output 0
+  - Output 1
+  - Output 2
+--- !u!114 &-209462249348064697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b19689c83373d48b23e8306122e90c, type: 3}
+  m_Name: ScriptNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  nodeName: 
+  GUID: f826cf3618b158143a0b7eec463c8b10
+  position: {x: 0, y: 0}
+  children: []
+  VariableType: 0
+  Property:
+    name: New Property
+  dialogueGraphNodeType: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
+  m_Name: bot
+  m_EditorClassIdentifier: 
+  GraphNodes:
+  - {fileID: 2613651615576205748}
+  - {fileID: -2033323912491180630}
+  - {fileID: 5423458535452999390}
+  - {fileID: -7856330117840471916}
+  - {fileID: -209462249348064697}
+  NodeLinks: []
+  SceneLayoutPrefab: {fileID: 0}
+--- !u!114 &2613651615576205748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d06d2165062d84fa2515bbdb375ff0, type: 3}
+  m_Name: Start Point
+  m_EditorClassIdentifier: 
+  entryNode: 1
+  nodeName: 
+  GUID: StartPoint
+  position: {x: 0, y: 0}
+  children:
+  - {fileID: -2033323912491180630}
+  VariableType: 0
+  Property:
+    name: New Property
+  dialogueGraphNodeType: 0
+--- !u!114 &5423458535452999390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  nodeName: 
+  GUID: 1ab0ca1e626fd364d82c853493a69beb
+  position: {x: 367, y: -77}
+  children: []
+  VariableType: 0
+  Property:
+    name: New Property
+  dialogueGraphNodeType: 0
+  speaker: 
+  dialogueText: 
