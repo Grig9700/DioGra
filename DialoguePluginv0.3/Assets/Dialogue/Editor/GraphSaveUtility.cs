@@ -275,15 +275,15 @@ public class GraphSaveUtility
             switch (cachedNode.dialogueGraphNodeType)
             {
                 case DialogueGraphNodeType.DialogueNode:
-                    _targetGraphView.RestoreNode(cachedNode);
+                    //_targetGraphView.RestoreNode(cachedNode);
                     //Debug.Log("dialogue node");
                     break;
                 case DialogueGraphNodeType.ChoiceNode:
-                    _targetGraphView.RestoreNode(cachedNode, _containerCache.NodeLinks.Where(node => node.baseNodeGUID == cachedNode.GUID).ToList());
+                    //_targetGraphView.RestoreNode(cachedNode, _containerCache.NodeLinks.Where(node => node.baseNodeGUID == cachedNode.GUID).ToList());
                     //Debug.Log("choice node");
                     break;
                 case DialogueGraphNodeType.IfNode:
-                    _targetGraphView.RestoreNode(cachedNode);
+                    //_targetGraphView.RestoreNode(cachedNode);
                     //Debug.Log("if node");
                     break;
             }

@@ -6,11 +6,14 @@ using UnityEngine;
 
 public class GraphNode : Node
 {
+    public GraphNodeData NodeData;
+    
     public string GUID;
     public bool entryPoint = false;
 
     public Editor Editor;
     public ScriptNodeCalls call;
+    
     
     public enum ExposedVariableType
     {

@@ -34,6 +34,25 @@ public class DialogueGraphEditor : EditorWindow
         _graphView = root.Q<DialogueGraphView>();
         _graphView.Initialize(this);
         _inspectorView = root.Q<InspectorView>();
+        
+        OnSelectionChange();
+        
+        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
+            AssetDatabase.CreateFolder("Assets", "Resources");
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/Dialogues"))
+            AssetDatabase.CreateFolder("Assets/Resources", "Dialogues");
+        
+        var exposedPropertiesContainer =
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer*");
+        if (exposedPropertiesContainer == null)
+        {
+            exposedPropertiesContainer = ScriptableObject.CreateInstance<ExposedPropertyContainer>();
+            AssetDatabase.CreateAsset(exposedPropertiesContainer, $"Assets/Resources/ExposedPropertyContainer.asset");
+        }
+        //SaveExposedProperties(exposedPropertiesContainer);
+        
+        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DialogueContainer>(), $"Assets/Resources/Dialogues/New Dialogue.asset");
+        AssetDatabase.SaveAssets();
     }
     
     private void OnSelectionChange()
@@ -41,11 +60,10 @@ public class DialogueGraphEditor : EditorWindow
         DialogueContainer container = Selection.activeObject as DialogueContainer;
         if (container)
         {
-            var saveUtility = GraphSaveUtility.GetInstance(_graphView);
-            saveUtility.LoadData(container.name, this);
-            _graphView.Container = container;
-            //_filename = container.name;
-            //_toolbar.MarkDirtyRepaint();
+            //var saveUtility = GraphSaveUtility.GetInstance(_graphView);
+            //saveUtility.LoadData(container.name, this);
+            _graphView.PopulateView(container);
+            //_graphView.Container = container;
         }
     }
 }

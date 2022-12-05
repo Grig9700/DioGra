@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class GraphNodeData : ScriptableObject
 {
+    public bool entryNode;
     public string nodeName;
     public string GUID;
     public Vector2 position;

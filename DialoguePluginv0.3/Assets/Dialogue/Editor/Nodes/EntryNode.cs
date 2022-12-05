@@ -1,12 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class IfNode : GraphNode
+public class EntryNode : GraphNode
 {
-    public IfNode(GraphNodeData nodeData)
+    public EntryNode(GraphNodeData nodeData)
     {
         NodeData = nodeData;
         title = nodeData.name;
@@ -22,7 +20,4 @@ public class IfNode : GraphNode
         NodeData.position.x = newPos.xMin;
         NodeData.position.y = newPos.yMin;
     }
-    
-    public ExposedVariableType VariableType;
-    public ExposedProperties Property;
 }

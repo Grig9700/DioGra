@@ -24,7 +24,7 @@ public class DialogueGraphView : GraphView
         var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Dialogue/Editor/DialogueGraphEditor.uss"); 
         styleSheets.Add(styleSheet);
         
-        AddElement(GenerateEntryPointNode());
+        //AddElement(GenerateEntryPointNode());
     }
     
     public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
@@ -62,15 +62,15 @@ public class DialogueGraphView : GraphView
     public void Initialize(DialogueGraphEditor window)
     {
         _dialogueEditor = window;
-        AddSearchWindow();
+        //AddSearchWindow();
     }
     
-    private void AddSearchWindow()
+    /*private void AddSearchWindow()
     {
         _nodeSearchWindow = ScriptableObject.CreateInstance<NodeSearchWindow>();
         _nodeSearchWindow.Initialize(_dialogueEditor, this);
         nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _nodeSearchWindow);
-    }
+    }*/
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
@@ -89,7 +89,7 @@ public class DialogueGraphView : GraphView
         return node.InstantiatePort(Orientation.Horizontal, portOrientation, capacity, typeof(float));
     }
     
-    private DialogueNode GenerateEntryPointNode()
+    /*private DialogueNode GenerateEntryPointNode()
     {
         var node = new DialogueNode()
         {
@@ -114,9 +114,9 @@ public class DialogueGraphView : GraphView
         
         node.SetPosition(new Rect(100, 200, 100, 150));
         return node;
-    }
+    }*/
 
-    public void CreateNode(string nodeName, Vector2 position)
+    /*public void CreateNode(string nodeName, Vector2 position)
     {
         switch (nodeName)
         {
@@ -136,9 +136,9 @@ public class DialogueGraphView : GraphView
                 Debug.LogWarning($"{nodeName} is not a valid node type");
                 return;
         }
-    }
+    }*/
 
-    public void RestoreNode(GraphNodeData nodeData, List<NodeLinkData> linkedPorts = null)
+    /*public void RestoreNode(GraphNodeData nodeData, List<NodeLinkData> linkedPorts = null)
     {
         switch (nodeData.nodeName)
         {
@@ -155,9 +155,82 @@ public class DialogueGraphView : GraphView
                 Debug.LogWarning($"{nodeData.nodeName} is not a valid node type");
                 return;
         }
+    }*/
+
+    public void PopulateView(DialogueContainer container)
+    {
+        Container = container;
+
+        graphViewChanged -= OnGraphViewChanged;
+        DeleteElements(graphElements);
+        graphViewChanged += OnGraphViewChanged;
+
+        container.GraphNodes.ForEach(CreateNodeViewElement);
+        CreateEntryPoint();
     }
 
-    private IfNode CreateIfNode(string nodeName, Vector2 position, GraphNodeData nodeData = null)
+    private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
+    {
+        graphViewChange.elementsToRemove?.ForEach(elem =>
+        {
+            if (elem is GraphNode graphNode)
+                Container.DeleteGraphNode(graphNode.NodeData);
+        });
+        return graphViewChange;
+    }
+
+    public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
+    {
+        //base.BuildContextualMenu(evt);
+        var types = TypeCache.GetTypesDerivedFrom<GraphNodeData>();
+        foreach (Type type in types.Where(type => type.Name != "EntryNodeData" && type.Name != "EntryNode"))
+        {
+            evt.menu.AppendAction($"{type.Name}", (n) => CreateGraphNode(type));
+        }
+    }
+
+    private void CreateEntryPoint()
+    {
+        if (Container.GraphNodes.Any(node => node.entryNode))
+            return;
+        AddElement(new EntryNode(Container.CreateEntryGraphNode()));
+    }
+    
+    private void CreateGraphNode(Type type)
+    {
+        GraphNodeData nodeData = Container.CreateGraphNode(type);
+        
+        CreateNodeViewElement(nodeData);
+    }
+    
+    private void CreateNodeViewElement(GraphNodeData node)
+    {
+        GraphNode graphNode;
+        switch (node)
+        {
+            case EntryNodeData:
+                graphNode = new EntryNode(node);
+                break;
+            case DialogueNodeData:
+                graphNode = new DialogueNode(node);
+                break;
+            case ChoiceNodeData: 
+                graphNode = new ChoiceNode(node);
+                break;
+            case IfNodeData:
+                graphNode = new IfNode(node);
+                break;
+            case ScriptNodeData:
+                graphNode = new ScriptNode(node);
+                break;
+            default:
+                Debug.LogWarning($"{node.name} is not a valid node type");
+                return;
+        }
+        AddElement(graphNode);
+    }
+    
+    /*private IfNode CreateIfNode(string nodeName, Vector2 position, GraphNodeData nodeData = null)
     {
         var ifNode = new IfNode()
         {
@@ -189,7 +262,7 @@ public class DialogueGraphView : GraphView
         });
         ifNode.titleButtonContainer.Add(typeSelector);
         PopupField<ExposedProperty<bool>> elementSelector = new PopupField<ExposedProperty<bool>>();
-        ifNode.outputContainer.Add(elementSelector);*/
+        ifNode.outputContainer.Add(elementSelector);#1#
 
         TempContainer temp = ScriptableObject.CreateInstance<TempContainer>();
         tempContainer.Add(ifNode.GUID, temp);
@@ -230,9 +303,9 @@ public class DialogueGraphView : GraphView
         ifNode.SetPosition(new Rect(position, defaultNodeSize));
 
         return ifNode;
-    }
+    }*/
 
-    private ChoiceNode CreateChoiceNode(string nodeName, Vector2 position, GraphNodeData nodeData = null, List<NodeLinkData> linkedPorts = null)
+    /*private ChoiceNode CreateChoiceNode(string nodeName, Vector2 position, GraphNodeData nodeData = null, List<NodeLinkData> linkedPorts = null)
     {
         var choiceNode = new ChoiceNode()
         {
@@ -265,9 +338,9 @@ public class DialogueGraphView : GraphView
         choiceNode.SetPosition(new Rect(position, defaultNodeSize));
 
         return choiceNode;
-    }
+    }*/
 
-    private ScriptNode CreateScriptNode(string nodeName, Vector2 position, GraphNodeData nodeData = null, List<NodeLinkData> linkedPorts = null)
+    /*private ScriptNode CreateScriptNode(string nodeName, Vector2 position, GraphNodeData nodeData = null, List<NodeLinkData> linkedPorts = null)
     {
         var scriptNode = new ScriptNode()
         {
@@ -315,9 +388,9 @@ public class DialogueGraphView : GraphView
         scriptNode.SetPosition(new Rect(position, defaultNodeSize));
 
         return scriptNode;
-    }
+    }*/
     
-    private DialogueNode CreateDialogueNode(string nodeName, Vector2 position, GraphNodeData nodeData = null)
+    /*private DialogueNode CreateDialogueNode(string nodeName, Vector2 position, GraphNodeData nodeData = null)
     {
         var dialogueNode = new DialogueNode()
         {
@@ -353,7 +426,7 @@ public class DialogueGraphView : GraphView
         dialogueNode.SetPosition(new Rect(position, defaultNodeSize));
 
         return dialogueNode;
-    }
+    }*/
 
     private void AddChoicePort(GraphNode dialogueNode, string overriddenPortName = "")
     {
