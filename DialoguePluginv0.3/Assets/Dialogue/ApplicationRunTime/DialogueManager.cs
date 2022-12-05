@@ -79,8 +79,8 @@ public class DialogueManager : MonoBehaviour
         switch (node.dialogueGraphNodeType)
         {
             case DialogueGraphNodeType.DialogueNode:
-                _scene.nameField.text = node.speaker;
-                _scene.textField.text = node.dialogueText;
+                //_scene.nameField.text = node.speaker;
+                //_scene.textField.text = node.dialogueText;
                 break;
             case DialogueGraphNodeType.ChoiceNode:
                 var buttonsToMake = container.NodeLinks.Where(x => x.baseNodeGUID == _currentNode).ToList();

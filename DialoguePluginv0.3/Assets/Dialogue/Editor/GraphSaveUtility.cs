@@ -17,7 +17,7 @@ public class GraphSaveUtility
     private DialogueContainer _containerCache;
     private ExposedPropertyContainer _propertyCache;
     private List<Edge> Edges => _targetGraphView.edges.ToList();
-    private List<GraphNode> GraphNodes => _targetGraphView.nodes.ToList().Cast<GraphNode>().ToList();
+    private List<GraphNodeView> GraphNodes => _targetGraphView.nodes.ToList().Cast<GraphNodeView>().ToList();
 
     public static GraphSaveUtility GetInstance(DialogueGraphView targetGraphView)
     {
@@ -100,8 +100,8 @@ public class GraphSaveUtility
         var connectedPorts = Edges.Where(x => x.input.node != null).ToArray();
         foreach (Edge port in connectedPorts)
         {
-            var inputNode = port.input.node as GraphNode;
-            var outputNode = port.output.node as GraphNode;
+            var inputNode = port.input.node as GraphNodeView;
+            var outputNode = port.output.node as GraphNodeView;
             
             dialogueContainer.NodeLinks.Add(new NodeLinkData
             {
@@ -115,13 +115,13 @@ public class GraphSaveUtility
         {
             switch (graphNode)
             {
-                case DialogueNode dialogueNode:
-                    dialogueContainer.GraphNodes.Add(new GraphNodeData()
+                case DialogueNodeView dialogueNode:
+                    dialogueContainer.GraphNodes.Add(new GraphNode()
                     {
                         nodeName = dialogueNode.title,
                         GUID = dialogueNode.GUID,
-                        speaker = dialogueNode.speaker,
-                        dialogueText = dialogueNode.dialogueText,
+                        //speaker = dialogueNode.speaker,
+                        //dialogueText = dialogueNode.dialogueText,
                         position = dialogueNode.GetPosition().position,
                         dialogueGraphNodeType = DialogueGraphNodeType.DialogueNode
                     });
@@ -140,8 +140,8 @@ public class GraphSaveUtility
                     //         break;
                     // }
                     break;
-                case ChoiceNode choiceNode:
-                    dialogueContainer.GraphNodes.Add(new GraphNodeData()
+                case ChoiceNodeView choiceNode:
+                    dialogueContainer.GraphNodes.Add(new GraphNode()
                     {
                         nodeName = choiceNode.title,
                         GUID = choiceNode.GUID,
@@ -150,8 +150,8 @@ public class GraphSaveUtility
                     });
                     //Debug.Log("choice node");
                     break;
-                case IfNode ifNode:
-                    dialogueContainer.GraphNodes.Add(new IfNodeData
+                case IfNodeView ifNode:
+                    dialogueContainer.GraphNodes.Add(new IfNode
                     {
                         nodeName = ifNode.title,
                         GUID = ifNode.GUID,
@@ -241,7 +241,7 @@ public class GraphSaveUtility
     
     private void ConnectNodes()
     {
-        foreach (GraphNode graphNode in GraphNodes)
+        foreach (GraphNodeView graphNode in GraphNodes)
         {
             var connections = _containerCache.NodeLinks.Where(node => node.baseNodeGUID == graphNode.GUID).ToList();
             
@@ -297,7 +297,7 @@ public class GraphSaveUtility
         {
             switch (node)
             {
-                case DialogueNode dialogueNode:
+                case DialogueNodeView dialogueNode:
                     if (dialogueNode.entryPoint) continue;
                     break;
             }

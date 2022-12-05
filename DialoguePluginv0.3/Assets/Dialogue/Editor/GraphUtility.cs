@@ -40,9 +40,9 @@ public class GraphUtility
         AssetDatabase.SaveAssets();
     }
     
-    public static GraphNodeData CreateGraphNode(Type node, ScriptableObject assetTarget, string guid = null)
+    public static GraphNode CreateGraphNode(Type node, ScriptableObject assetTarget, string guid = null)
     {
-        GraphNodeData graphNode = ScriptableObject.CreateInstance(node) as GraphNodeData;
+        GraphNode graphNode = ScriptableObject.CreateInstance(node) as GraphNode;
         if (graphNode == null) return graphNode;
         
         graphNode.name = node.Name;
@@ -57,7 +57,7 @@ public class GraphUtility
         return graphNode;
     }
     
-    public static void DestroyGraphNode(GraphNodeData node)
+    public static void DestroyGraphNode(GraphNode node)
     {
         AssetDatabase.RemoveObjectFromAsset(node);
         AssetDatabase.SaveAssets();

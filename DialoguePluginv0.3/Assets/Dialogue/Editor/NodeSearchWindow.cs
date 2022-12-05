@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class NodeSearchWindow //: ScriptableObject, ISearchWindowProvider
+public class NodeSearchWindow : ScriptableObject//, ISearchWindowProvider
 {
     /*private DialogueGraphView _graphView;
     private EditorWindow _window;

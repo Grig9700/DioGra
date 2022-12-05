@@ -3,7 +3,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [Serializable]
-public class GraphNodeData : ScriptableObject
+public class GraphNode : ScriptableObject
 {
     public bool entryNode;
     public string nodeName;
@@ -11,8 +11,8 @@ public class GraphNodeData : ScriptableObject
     public Vector2 position;
 
 
-    public string speaker;
-    public string dialogueText;
+    //public string speaker;
+    //public string dialogueText;
 
     public ExposedVariableType VariableType;
     public ExposedProperties Property;

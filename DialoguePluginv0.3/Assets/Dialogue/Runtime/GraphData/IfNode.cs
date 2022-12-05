@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class IfNodeData : GraphNodeData
+public class IfNode : GraphNode
 {
     //public ExposedVariableType VariableType;
     //public ExposedProperties Property;

@@ -9,14 +9,14 @@ using UnityEditor;
 [Serializable]
 public class DialogueContainer : ScriptableObject
 {
-    public List<GraphNodeData> GraphNodes = new List<GraphNodeData>();
+    public List<GraphNode> GraphNodes = new List<GraphNode>();
     public List<NodeLinkData> NodeLinks = new List<NodeLinkData>();
     public GameObject SceneLayoutPrefab;
 
 #if UNITY_EDITOR
-    public GraphNodeData CreateEntryGraphNode()
+    public GraphNode CreateEntryGraphNode()
     {
-        GraphNodeData node = ScriptableObject.CreateInstance<EntryNodeData>();
+        GraphNode node = ScriptableObject.CreateInstance<EntryNode>();
         node.name = "Start Point";
         node.GUID = "StartPoint";
         node.entryNode = true;
@@ -27,9 +27,9 @@ public class DialogueContainer : ScriptableObject
         return node;
     }
     
-    public GraphNodeData CreateGraphNode(Type type)
+    public GraphNode CreateGraphNode(Type type)
     {
-        GraphNodeData node = ScriptableObject.CreateInstance(type) as GraphNodeData;
+        GraphNode node = ScriptableObject.CreateInstance(type) as GraphNode;
         node.name = type.Name;
         node.GUID = GUID.Generate().ToString();
         GraphNodes.Add(node);
@@ -39,7 +39,7 @@ public class DialogueContainer : ScriptableObject
         return node;
     }
 
-    public void DeleteGraphNode(GraphNodeData node)
+    public void DeleteGraphNode(GraphNode node)
     {
         GraphNodes.Remove(node);
         AssetDatabase.RemoveObjectFromAsset(node);

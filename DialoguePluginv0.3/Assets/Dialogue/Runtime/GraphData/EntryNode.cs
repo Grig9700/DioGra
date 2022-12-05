@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class ScriptNodeData : GraphNodeData
+public class EntryNode : GraphNode
 {
-
+    
 }

@@ -4,9 +4,9 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class GraphNode : Node
+public class GraphNodeView : Node
 {
-    public GraphNodeData NodeData;
+    public GraphNode Node;
     
     public string GUID;
     public bool entryPoint = false;

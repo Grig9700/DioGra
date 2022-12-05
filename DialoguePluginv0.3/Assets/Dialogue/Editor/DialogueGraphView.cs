@@ -84,9 +84,9 @@ public class DialogueGraphView : GraphView
         return compatiblePorts;
     }
 
-    private Port GeneratePort(GraphNode node, Direction portOrientation, Port.Capacity capacity = Port.Capacity.Single)
+    private Port GeneratePort(GraphNodeView nodeView, Direction portOrientation, Port.Capacity capacity = Port.Capacity.Single)
     {
-        return node.InstantiatePort(Orientation.Horizontal, portOrientation, capacity, typeof(float));
+        return nodeView.InstantiatePort(Orientation.Horizontal, portOrientation, capacity, typeof(float));
     }
     
     /*private DialogueNode GenerateEntryPointNode()
@@ -173,8 +173,8 @@ public class DialogueGraphView : GraphView
     {
         graphViewChange.elementsToRemove?.ForEach(elem =>
         {
-            if (elem is GraphNode graphNode)
-                Container.DeleteGraphNode(graphNode.NodeData);
+            if (elem is GraphNodeView graphNode)
+                Container.DeleteGraphNode(graphNode.Node);
         });
         return graphViewChange;
     }
@@ -182,7 +182,7 @@ public class DialogueGraphView : GraphView
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
         //base.BuildContextualMenu(evt);
-        var types = TypeCache.GetTypesDerivedFrom<GraphNodeData>();
+        var types = TypeCache.GetTypesDerivedFrom<GraphNode>();
         foreach (Type type in types.Where(type => type.Name != "EntryNodeData" && type.Name != "EntryNode"))
         {
             evt.menu.AppendAction($"{type.Name}", (n) => CreateGraphNode(type));
@@ -193,41 +193,41 @@ public class DialogueGraphView : GraphView
     {
         if (Container.GraphNodes.Any(node => node.entryNode))
             return;
-        AddElement(new EntryNode(Container.CreateEntryGraphNode()));
+        AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
     }
     
     private void CreateGraphNode(Type type)
     {
-        GraphNodeData nodeData = Container.CreateGraphNode(type);
+        GraphNode node = Container.CreateGraphNode(type);
         
-        CreateNodeViewElement(nodeData);
+        CreateNodeViewElement(node);
     }
     
-    private void CreateNodeViewElement(GraphNodeData node)
+    private void CreateNodeViewElement(GraphNode node)
     {
-        GraphNode graphNode;
+        GraphNodeView graphNodeView;
         switch (node)
         {
-            case EntryNodeData:
-                graphNode = new EntryNode(node);
+            case EntryNode:
+                graphNodeView = new EntryNodeView(node);
                 break;
-            case DialogueNodeData:
-                graphNode = new DialogueNode(node);
+            case DialogueNode:
+                graphNodeView = new DialogueNodeView(node);
                 break;
-            case ChoiceNodeData: 
-                graphNode = new ChoiceNode(node);
+            case ChoiceNode: 
+                graphNodeView = new ChoiceNodeView(node);
                 break;
-            case IfNodeData:
-                graphNode = new IfNode(node);
+            case IfNode:
+                graphNodeView = new IfNodeView(node);
                 break;
-            case ScriptNodeData:
-                graphNode = new ScriptNode(node);
+            case ScriptNode:
+                graphNodeView = new ScriptNodeView(node);
                 break;
             default:
                 Debug.LogWarning($"{node.name} is not a valid node type");
                 return;
         }
-        AddElement(graphNode);
+        AddElement(graphNodeView);
     }
     
     /*private IfNode CreateIfNode(string nodeName, Vector2 position, GraphNodeData nodeData = null)
@@ -428,15 +428,15 @@ public class DialogueGraphView : GraphView
         return dialogueNode;
     }*/
 
-    private void AddChoicePort(GraphNode dialogueNode, string overriddenPortName = "")
+    private void AddChoicePort(GraphNodeView dialogueNodeView, string overriddenPortName = "")
     {
-        var generatedPort = GeneratePort(dialogueNode, Direction.Output);
+        var generatedPort = GeneratePort(dialogueNodeView, Direction.Output);
 
         //removes duplicate label
         var oldLabel = generatedPort.contentContainer.Q<Label>("type");
         generatedPort.contentContainer.Remove(oldLabel);
         
-        var outputPortCount = dialogueNode.outputContainer.Query("connector").ToList().Count;
+        var outputPortCount = dialogueNodeView.outputContainer.Query("connector").ToList().Count;
         
         //creates name of port
         var choicePortName = string.IsNullOrEmpty(overriddenPortName)? $"Output {outputPortCount}" : overriddenPortName;
@@ -450,18 +450,18 @@ public class DialogueGraphView : GraphView
         generatedPort.contentContainer.Add(textField);
 
         //permits removal of port
-        var deleteButton = new Button(() => RemovePort(dialogueNode, generatedPort)) { text = "X" };
+        var deleteButton = new Button(() => RemovePort(dialogueNodeView, generatedPort)) { text = "X" };
         generatedPort.contentContainer.Add(deleteButton);
         
         generatedPort.portName = choicePortName;
-        dialogueNode.outputContainer.Add(generatedPort);
+        dialogueNodeView.outputContainer.Add(generatedPort);
         
         //prevents visual glitch
-        dialogueNode.RefreshExpandedState();
-        dialogueNode.RefreshPorts();
+        dialogueNodeView.RefreshExpandedState();
+        dialogueNodeView.RefreshPorts();
     }
 
-    private void RemovePort(GraphNode graphNode, Port generatedPort)
+    private void RemovePort(GraphNodeView graphNodeView, Port generatedPort)
     {
         var targetEdge = edges.ToList().Where(
             edge => edge.output.portName == generatedPort.portName && edge.output.node == generatedPort.node);
@@ -473,17 +473,17 @@ public class DialogueGraphView : GraphView
             RemoveElement(targetEdge.First());
         }
         
-        graphNode.outputContainer.Remove(generatedPort);
-        graphNode.RefreshExpandedState();
-        graphNode.RefreshPorts();
+        graphNodeView.outputContainer.Remove(generatedPort);
+        graphNodeView.RefreshExpandedState();
+        graphNodeView.RefreshPorts();
     }
 
-    private void AddFunctionCall(GraphNode graphNode)
+    private void AddFunctionCall(GraphNodeView graphNodeView)
     {
-        UnityEngine.Object.DestroyImmediate(graphNode.Editor);
-        graphNode.Editor = Editor.CreateEditor(graphNode.call);
-        IMGUIContainer container = new IMGUIContainer(() => { graphNode.Editor.OnInspectorGUI(); });
-        graphNode.Add(container);
+        UnityEngine.Object.DestroyImmediate(graphNodeView.Editor);
+        graphNodeView.Editor = Editor.CreateEditor(graphNodeView.call);
+        IMGUIContainer container = new IMGUIContainer(() => { graphNodeView.Editor.OnInspectorGUI(); });
+        graphNodeView.Add(container);
     }
 
     public void ClearBlackboardAndExposedProperties()
