@@ -1,29 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-548252038205735919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32b19689c83373d48b23e8306122e90c, type: 3}
-  m_Name: ScriptNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: bd55ddbcb350aa5489ec6cf3c769143a
-  position: {x: 0, y: 0}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  calls: []
-  selectedMethod: 
-  expandCalls: 1
-  methodName: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphNodes:
   - {fileID: 1924058211792453565}
-  - {fileID: -548252038205735919}
   NodeLinks: []
   SceneLayoutPrefab: {fileID: 0}
 --- !u!114 &1924058211792453565

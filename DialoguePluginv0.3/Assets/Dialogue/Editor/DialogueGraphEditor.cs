@@ -115,6 +115,7 @@ public class DialogueGraphEditor : EditorWindow
         if (container)
         {
             _graphView.PopulateView(container);
+            _inspectorView.UpdateSelection(container);
         }
     }
 }
