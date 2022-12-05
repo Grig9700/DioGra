@@ -51,7 +51,18 @@ public class DialogueGraphEditor : EditorWindow
         }
         //SaveExposedProperties(exposedPropertiesContainer);
         
-        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DialogueContainer>(), $"Assets/Resources/Dialogues/New Dialogue.asset");
+        var dialogueContainer =
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*");
+        if (dialogueContainer == null)
+        {
+            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DialogueContainer>(),
+                $"Assets/Resources/Dialogues/New Dialogue.asset");
+            
+            dialogueContainer =
+                FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*");
+        }
+        _graphView.PopulateView(dialogueContainer);
+        
         AssetDatabase.SaveAssets();
     }
     
