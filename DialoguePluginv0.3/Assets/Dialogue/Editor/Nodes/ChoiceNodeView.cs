@@ -16,26 +16,15 @@ public class ChoiceNodeView : GraphNodeView
         title = node.name;
         viewDataKey = node.GUID;
 
-        style.left = node.position.x;
-        style.top = node.position.y;
+        SetPosition(new Rect(node.position, defaultNodeSize));
         
         GenerateInputPort();
         GenerateMultiOutputButton(_graphView);
-        switch (Node)
+        
+        ChoiceNode choiceNode = Node as ChoiceNode;
+        foreach (var choicePortName in choiceNode.outputOptions)
         {
-            case ChoiceNode choiceNode:
-                foreach (var choicePortName in choiceNode.outputOptions)
-                {
-                    AddChoicePort(graphView, choicePortName);
-                }
-                break;
+            AddChoicePort(graphView, choicePortName);
         }
-    }
-
-    public override void SetPosition(Rect newPos)
-    {
-        base.SetPosition(newPos);
-        Node.position.x = newPos.xMin;
-        Node.position.y = newPos.yMin;
     }
 }

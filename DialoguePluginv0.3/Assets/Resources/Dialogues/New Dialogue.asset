@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7038823660084048004
+--- !u!114 &-6056196696756310560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,153 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
+  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
+  m_Name: ChoiceNode
   m_EditorClassIdentifier: 
   entryNode: 0
-  GUID: 6fb0445652be66a49b6bddb672e6c562
-  position: {x: 0, y: 0}
+  GUID: 65b135eedf12a0f4fa74f7013201f991
+  position: {x: 380, y: 162}
   children: []
   VariableType: 0
   Property:
     name: New Property
   dialogueGraphNodeType: 0
-  speaker: 
-  dialogueText: 
---- !u!114 &-6628772719904380288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: b1d519514a997464e972d66b6df62991
-  position: {x: 0, y: 0}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  speaker: 
-  dialogueText: 
---- !u!114 &-5597946991315763309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: a4ee3eb232cc7064ea1442b7a65fed3d
-  position: {x: 0, y: 0}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  speaker: 
-  dialogueText: 
---- !u!114 &-4404039777045874168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: 56cd1300c0afe004586bdad4f9bdddba
-  position: {x: 0, y: 0}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  speaker: 
-  dialogueText: 
---- !u!114 &-4034861504351728064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: 135d4675a1ac63b40bdee2c5dd255243
-  position: {x: 0, y: 0}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  speaker: 
-  dialogueText: 
---- !u!114 &-518696283956035579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32b19689c83373d48b23e8306122e90c, type: 3}
-  m_Name: ScriptNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: 0d417b667d6417e4fbcc650f395d8dff
-  position: {x: 520, y: 369}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  calls: []
-  selectedMethod: 
-  expandCalls: 1
-  methodName: 
---- !u!114 &-324074820280760781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: a1af02224a91854448b53647fa1b4e87
-  position: {x: 480, y: 33.679993}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  speaker: 
-  dialogueText: 
+  outputOptions: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,64 +35,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphNodes:
   - {fileID: 1924058211792453565}
-  - {fileID: 7932584228552834873}
-  - {fileID: -324074820280760781}
-  - {fileID: -4034861504351728064}
-  - {fileID: -4404039777045874168}
-  - {fileID: -5597946991315763309}
-  - {fileID: -7038823660084048004}
-  - {fileID: -6628772719904380288}
-  - {fileID: 2798880898355207673}
-  - {fileID: 80094627480223132}
-  - {fileID: 2926853407371574105}
-  - {fileID: 4972675102915025198}
-  - {fileID: 8871385878865044401}
-  - {fileID: -518696283956035579}
-  - {fileID: 118912359493908739}
+  - {fileID: -6056196696756310560}
   NodeLinks: []
   SceneLayoutPrefab: {fileID: 0}
---- !u!114 &80094627480223132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: 4b9f071a6b54d894faf71e886efc3bcc
-  position: {x: 622, y: 270}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  speaker: 
-  dialogueText: 
---- !u!114 &118912359493908739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f0436a84f0c6204fb6e899c92878fa1, type: 3}
-  m_Name: IfNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: 57b7e329385f50d48aaf468f9fd89325
-  position: {x: 360, y: 66}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
 --- !u!114 &1924058211792453565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,113 +58,3 @@ MonoBehaviour:
   Property:
     name: New Property
   dialogueGraphNodeType: 0
---- !u!114 &2798880898355207673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: f0cbfcf72d061fa48a4f5b76b5757665
-  position: {x: 156, y: 301}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  speaker: 
-  dialogueText: 
---- !u!114 &2926853407371574105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
-  m_Name: ChoiceNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: a9eade69a8532134dbbc150aedd502df
-  position: {x: 508, y: 232}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  outputOptions: []
---- !u!114 &4972675102915025198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32b19689c83373d48b23e8306122e90c, type: 3}
-  m_Name: ScriptNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: c78a6302939b73448b6e63bcbc9576b7
-  position: {x: 175, y: 255}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  calls: []
-  selectedMethod: 
-  expandCalls: 1
-  methodName: 
---- !u!114 &7932584228552834873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
-  m_Name: ChoiceNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: 259e5f9b7203227409ae53f421971e97
-  position: {x: 277.96002, y: 139.6}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  outputOptions: []
---- !u!114 &8871385878865044401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: cd91fb693e5e09343b82a265af818a04
-  position: {x: 79, y: 217}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  speaker: 
-  dialogueText: 

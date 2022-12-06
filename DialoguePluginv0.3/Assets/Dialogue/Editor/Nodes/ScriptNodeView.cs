@@ -18,8 +18,7 @@ public class ScriptNodeView : GraphNodeView
         title = node.name;
         viewDataKey = node.GUID;
 
-        style.left = node.position.x;
-        style.top = node.position.y;
+        SetPosition(new Rect(node.position, defaultNodeSize));
         
         GenerateInputPort();
         GenerateOutputPort();
@@ -29,13 +28,6 @@ public class ScriptNodeView : GraphNodeView
         editor = Editor.CreateEditor(scriptNode);
         IMGUIContainer container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
         outputContainer.Add(container);
-    }
-
-    public override void SetPosition(Rect newPos)
-    {
-        base.SetPosition(newPos);
-        Node.position.x = newPos.xMin;
-        Node.position.y = newPos.yMin;
     }
     
     // private void InvokeScripts()
