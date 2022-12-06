@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 
 [CustomEditor(typeof(IfNode))]
 public class IfNodeEditor : Editor
 {
+    
+#if UNITY_EDITOR
+    
     private IfNode _ifNode;
     
-    private void OnEnable()
+    private void Initialize()
     {
         _ifNode = (IfNode)target;
     }
@@ -17,8 +24,13 @@ public class IfNodeEditor : Editor
     {
         serializedObject.Update();
         
+        Initialize();
+        
         //Write Code
         
         serializedObject.ApplyModifiedProperties();
     }
+    
+#endif
+
 }

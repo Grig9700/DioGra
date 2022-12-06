@@ -3,14 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
 using UnityEditorInternal;
+#endif
 
 
 [CustomEditor(typeof(ScriptNode))]
 public class ScriptNodeEditor : Editor
 {
+    
+#if UNITY_EDITOR
+    
     private SerializedProperty _calls;
     private ReorderableList _reorderableList;
     private ScriptNode _scriptNode;
@@ -18,7 +24,7 @@ public class ScriptNodeEditor : Editor
     //private float _lineHeight;
     //private float _lineHeightSpace;
 
-    private void OnEnable()
+    private void Initialize()
     {
         _calls = serializedObject.FindProperty("calls");
         _scriptNode = (ScriptNode)target;
@@ -32,6 +38,8 @@ public class ScriptNodeEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
+        
+        Initialize();
         
         //DrawDefaultInspector();
         
@@ -301,6 +309,9 @@ public class ScriptNodeEditor : Editor
         }
         EditorGUILayout.EndHorizontal();
     }*/
+    
+    #endif
+    
 }
 
 [Flags]
