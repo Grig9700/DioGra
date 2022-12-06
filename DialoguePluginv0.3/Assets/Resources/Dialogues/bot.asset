@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: c277530efa2f68d4b9db348224e25173
-  position: {x: 777, y: 0}
+  position: {x: 1053.3429, y: -36.72914}
   children:
   - {fileID: -497011790750698133}
   - {fileID: -6057771789195366417}
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
   outputOptions:
   - peace
   - war
@@ -39,12 +38,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 554ded62ff175944099c61b45c2d93cc
-  position: {x: 1007.99994, y: 67.5}
+  position: {x: 1284.3429, y: 31.270863}
   children: []
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
   speaker: me
   dialogueText: nope
 --- !u!114 &-5154251066145449459
@@ -61,13 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 893fafe683ef70e4abb7424966e0376c
-  position: {x: 468.49997, y: 0.000091552734}
+  position: {x: 745.34296, y: -36.72914}
   children:
   - {fileID: -8646002385285833071}
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
   speaker: you
   dialogueText: love
 --- !u!114 &-497011790750698133
@@ -84,12 +81,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: e06005bb065ef804b8725f40556709cb
-  position: {x: 1007.8792, y: -67.49997}
+  position: {x: 1284.3429, y: -103.729126}
   children: []
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
   speaker: me
   dialogueText: yup
 --- !u!114 &11400000
@@ -111,8 +107,50 @@ MonoBehaviour:
   - {fileID: -8646002385285833071}
   - {fileID: -497011790750698133}
   - {fileID: -6057771789195366417}
+  - {fileID: 994663633816784745}
   NodeLinks: []
   SceneLayoutPrefab: {fileID: 1662424870414749273, guid: e66484b7ae177e84883fec5506429e5f, type: 3}
+--- !u!114 &994663633816784745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b19689c83373d48b23e8306122e90c, type: 3}
+  m_Name: ScriptNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: db03d3527f4149a46b70dd6a4b950781
+  position: {x: 444, y: 0}
+  children: []
+  VariableType: 0
+  Property:
+    name: New Property
+  functionCalls:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5561659340234747394, guid: 5dcbbfb841460d64393a6b8f9b89b9b1, type: 3}
+        m_TargetAssemblyTypeName: TestFunctions, Assembly-CSharp
+        m_MethodName: helloWorld
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  calls:
+  - {fileID: 11500000, guid: 5a163ddf07db47847a7969bf0a488f15, type: 3}
+  selectedMethod: 100000000000000000000000
+  methodNames:
+  - helloWorld
+  - 
+  expandCalls: 1
 --- !u!114 &1924058211792453565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +171,6 @@ MonoBehaviour:
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
 --- !u!114 &4967786164496125243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,12 +185,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: ffea58361282f4c4989368ccb3e02ffb
-  position: {x: 165.20001, y: 0.000015258789}
+  position: {x: 136.24997, y: -0.0000009536743}
   children:
-  - {fileID: -5154251066145449459}
+  - {fileID: 994663633816784745}
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
   speaker: me
   dialogueText: yo

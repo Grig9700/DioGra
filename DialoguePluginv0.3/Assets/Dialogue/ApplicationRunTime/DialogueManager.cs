@@ -105,6 +105,9 @@ public class DialogueManager : MonoBehaviour
             case IfNode ifNode:
                 break;
             case ScriptNode scriptNode:
+                //scriptNode.CreateActions(this);
+                //scriptNode.CallActions();
+                scriptNode.InvokeFunctionCalls();
                 break;
             default:
                 Debug.LogError("Entered Default on Next", this);

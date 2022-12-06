@@ -8,6 +8,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditorInternal;
+using UnityEngine.Events;
 #endif
 
 
@@ -17,20 +18,23 @@ public class ScriptNodeEditor : Editor
     
 #if UNITY_EDITOR
     
-    private SerializedProperty _calls;
-    private ReorderableList _reorderableList;
-    private ScriptNode _scriptNode;
+    //private SerializedProperty _calls;
+    //private ReorderableList _reorderableList;
+    //private ScriptNode _scriptNode;
     private bool _firstCall = true;
+    private SerializedProperty _functionCalls;
 
     //private float _lineHeight;
     //private float _lineHeightSpace;
 
     private void Initialize()
     {
-        _calls = serializedObject.FindProperty("calls");
+        /*_calls = serializedObject.FindProperty("calls");
         _scriptNode = (ScriptNode)target;
         _reorderableList = new ReorderableList(serializedObject, _calls, //serializedObject.FindProperty("calls"), 
-            true, true, true, true);
+            true, true, true, true);*/
+        
+        _functionCalls = serializedObject.FindProperty("functionCalls");
 
         _firstCall = false;
         //_lineHeight = EditorGUIUtility.singleLineHeight;
@@ -51,7 +55,9 @@ public class ScriptNodeEditor : Editor
         // {
         //     return;
         // }
-        EditorGUILayout.BeginHorizontal();
+        
+        
+        /*EditorGUILayout.BeginHorizontal();
         GUILayout.Space(200);
         //EditorGUILayout.PropertyField(_calls.FindPropertyRelative("Array.size"));
         EditorGUILayout.EndHorizontal();
@@ -70,13 +76,16 @@ public class ScriptNodeEditor : Editor
             ReorderShow(_calls,ScriptNodeOptions.NoElementLabels | ScriptNodeOptions.Buttons);
         }
         //EditorGUI.indentLevel--;
-        EditorGUI.EndFoldoutHeaderGroup();
+        EditorGUI.EndFoldoutHeaderGroup();*/
+        
+        
+        EditorGUILayout.PropertyField(_functionCalls);
         
         
         serializedObject.ApplyModifiedProperties();
     }
 
-    private void ReorderShow(SerializedProperty list, ScriptNodeOptions options = ScriptNodeOptions.Default)
+    /*private void ReorderShow(SerializedProperty list, ScriptNodeOptions options = ScriptNodeOptions.Default)
     {
         _reorderableList.DoLayoutList();
 
@@ -97,6 +106,11 @@ public class ScriptNodeEditor : Editor
                 _scriptNode.parameters.Add(new List<ScriptableObject>());
             }
 
+            if (_scriptNode.methodNames.Count <= index + 1)
+            {
+                _scriptNode.methodNames.Add(null);
+            }
+
             MonoScript script = _scriptNode.calls[index];
             
             if (script == null)
@@ -111,7 +125,7 @@ public class ScriptNodeEditor : Editor
             }
 
             MethodInfo[] scriptMethods =
-                type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Static);
 
             if (scriptMethods is not { Length: > 0 })
             {
@@ -120,13 +134,28 @@ public class ScriptNodeEditor : Editor
             }
             
             List<string> methodNames = scriptMethods.Select(method => method.Name).ToList();
+            methodNames.Insert(0, "");
             
             _scriptNode.selectedMethod[index] = EditorGUI.Popup(new Rect(rect.x, rect.y + EditorGUIUtility.singleLineHeight, 
                 160, EditorGUIUtility.singleLineHeight), _scriptNode.selectedMethod[index],methodNames.ToArray());
 
-            _scriptNode.methodName = methodNames[_scriptNode.selectedMethod[index]];
+            if (_scriptNode.selectedMethod[index] == 0)
+                _scriptNode.methodNames[index] = null;
+            else
+                //_scriptNode.methodNames[index] = scriptMethods[_scriptNode.selectedMethod[index] - 1];
+                _scriptNode.methodNames[index] = methodNames[_scriptNode.selectedMethod[index]];
             
-            ParameterInfo[] pars = type.GetMethod(_scriptNode.methodName)?.GetParameters();
+            Debug.Log($"{_scriptNode.methodNames[index]}");
+            
+            
+            if (_scriptNode.selectedMethod[index] == 0)
+                return;
+            //_scriptNode.CreateAction(script, scriptMethods[_scriptNode.selectedMethod[index] - 1]);
+            
+            
+            
+            
+            /*ParameterInfo[] pars = type.GetMethod(_scriptNode.methodName)?.GetParameters();
             
             if (pars is not { Length: > 0 })
             {
@@ -161,9 +190,6 @@ public class ScriptNodeEditor : Editor
                     case "Int*":
                         values.Add(GraphUtility.CreateValue<int>(parameter.Name, _scriptNode));
                         break;
-                    case "Double":
-                        values.Add(GraphUtility.CreateValue<double>(parameter.Name, _scriptNode));
-                        break;
                     case "String":
                         values.Add(GraphUtility.CreateValue<string>(parameter.Name, _scriptNode));
                         break;
@@ -187,7 +213,7 @@ public class ScriptNodeEditor : Editor
             
             EditorGUI.indentLevel--;
             
-            _scriptNode.parameters[index] = values;
+            _scriptNode.parameters[index] = values;#1#
         };
 
         _reorderableList.elementHeightCallback = index =>
@@ -197,13 +223,13 @@ public class ScriptNodeEditor : Editor
             if (_scriptNode.parameters is not { Count: > 0 })
                 return height;
 
-            var temp = _scriptNode.parameters[index];
-
-            if (temp is { Count: > 0 }) 
-                height += EditorGUIUtility.singleLineHeight * _scriptNode.parameters[index].Count;
+            // var temp = _scriptNode.parameters[index];
+            //
+            // if (temp is { Count: > 0 }) 
+            //     height += EditorGUIUtility.singleLineHeight * _scriptNode.parameters[index].Count;
             return height;
         };
-    }
+    }*/
     
     /*private void Show(SerializedProperty list, ScriptNodeOptions options = ScriptNodeOptions.Default)
     {

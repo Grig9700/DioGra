@@ -73,4 +73,14 @@ public class TestFunctions : MonoBehaviour
     {
         //Not part of UnityEvent
     }
+
+    public static void staticHelloWorld()
+    {
+        Debug.Log($"Hello World");
+    }
+
+    public void helloWorld()
+    {
+        Debug.Log($"Hello World");
+    }
 }

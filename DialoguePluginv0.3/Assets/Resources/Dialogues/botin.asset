@@ -37,7 +37,6 @@ MonoBehaviour:
   children:
   - {fileID: 5423458535452999390}
   - {fileID: -7856330117840471916}
-  - {fileID: -209462249348064697}
   VariableType: 0
   Property:
     name: New Property
@@ -45,59 +44,6 @@ MonoBehaviour:
   - Output 0
   - Output 1
   - Output 2
---- !u!114 &-209462249348064697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32b19689c83373d48b23e8306122e90c, type: 3}
-  m_Name: ScriptNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: f826cf3618b158143a0b7eec463c8b10
-  position: {x: 367, y: 125}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  scripts:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 5a163ddf07db47847a7969bf0a488f15, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11500000, guid: 5a163ddf07db47847a7969bf0a488f15, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  calls:
-  - {fileID: 11500000, guid: 4cf63c90ec7a4a44db1287ce0cd8ddab, type: 3}
-  - {fileID: 11500000, guid: 4cf63c90ec7a4a44db1287ce0cd8ddab, type: 3}
-  - {fileID: 11500000, guid: 4cf63c90ec7a4a44db1287ce0cd8ddab, type: 3}
-  selectedMethod: 0000000000000000
-  expandCalls: 1
-  methodName: Back
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +61,6 @@ MonoBehaviour:
   - {fileID: -2033323912491180630}
   - {fileID: 5423458535452999390}
   - {fileID: -7856330117840471916}
-  - {fileID: -209462249348064697}
   NodeLinks: []
   SceneLayoutPrefab: {fileID: 1662424870414749273, guid: e66484b7ae177e84883fec5506429e5f, type: 3}
 --- !u!114 &2613651615576205748
