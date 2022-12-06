@@ -1,27 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6496738736514125092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: ea4926a6a9a2afd488bf147fbb3a4097
-  position: {x: 581, y: 262}
-  children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
-  speaker: 
-  dialogueText: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphNodes:
   - {fileID: 2594130154616650393}
-  - {fileID: 3410076050608107133}
-  - {fileID: -6496738736514125092}
   NodeLinks: []
   SceneLayoutPrefab: {fileID: 0}
 --- !u!114 &2594130154616650393
@@ -55,30 +31,8 @@ MonoBehaviour:
   entryNode: 1
   GUID: StartPoint
   position: {x: 0, y: 0}
-  children:
-  - {fileID: 3410076050608107133}
-  VariableType: 0
-  Property:
-    name: New Property
-  dialogueGraphNodeType: 0
---- !u!114 &3410076050608107133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
-  m_Name: ChoiceNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: cde739e1587267647bf897c44179e777
-  position: {x: 300.68503, y: 0.000030517578}
   children: []
   VariableType: 0
   Property:
     name: New Property
   dialogueGraphNodeType: 0
-  outputOptions: []
