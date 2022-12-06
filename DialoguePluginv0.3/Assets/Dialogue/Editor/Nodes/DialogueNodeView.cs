@@ -17,7 +17,10 @@ public class DialogueNodeView : GraphNodeView
         title = node.name;
         viewDataKey = node.GUID;
         
-        SetPosition(new Rect(node.position, defaultNodeSize));
+        style.left = node.position.x;
+        style.top = node.position.y;
+
+        //SetPosition(new Rect(node.position, defaultNodeSize));
         
         GenerateInputPort();
         GenerateOutputPort();
@@ -28,5 +31,12 @@ public class DialogueNodeView : GraphNodeView
         editor = Editor.CreateEditor(dialogueNode);
         IMGUIContainer container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
         outputContainer.Add(container);
+    }
+    
+    public override void SetPosition(Rect newPos)
+    {
+        base.SetPosition(newPos);
+        Node.position.x = newPos.xMin;
+        Node.position.y = newPos.yMin;
     }
 }
