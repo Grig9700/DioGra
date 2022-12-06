@@ -12,7 +12,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class GraphSaveUtility
-{
+{/*
     private DialogueGraphView _targetGraphView;
     private DialogueContainer _containerCache;
     private ExposedPropertyContainer _propertyCache;
@@ -319,5 +319,5 @@ public class GraphSaveUtility
             AssetDatabase.DeleteAsset("Assets/Resources/BackupBeforeLoad.asset");
         }
         SaveData("BackupBeforeLoad");
-    }
+    }*/
 }

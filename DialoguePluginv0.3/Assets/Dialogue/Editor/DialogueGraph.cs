@@ -189,17 +189,17 @@ public class DialogueGraph : EditorWindow
             return;
         }
 
-        var saveUtility = GraphSaveUtility.GetInstance(_graphView);
-        if (save)
-            saveUtility.SaveData(_filename);
+        //var saveUtility = GraphSaveUtility.GetInstance(_graphView);
+        //if (save)
+        //    saveUtility.SaveData(_filename);
         //else
         //    saveUtility.LoadData(_filename, this);
     }
 
     private void ClearGraph()
     {
-        var saveUtility = GraphSaveUtility.GetInstance(_graphView);
-        saveUtility.Clear();
+        //var saveUtility = GraphSaveUtility.GetInstance(_graphView);
+        //saveUtility.Clear();
         CreateBlackBoardElements();
     }
     

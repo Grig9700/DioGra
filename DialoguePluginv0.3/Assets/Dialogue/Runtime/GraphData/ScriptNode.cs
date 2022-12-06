@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEditor;
+using UnityEngine.Events;
 
 [Serializable]
 public class ScriptNode : GraphNode
 {
+    [HideInInspector]
+    public UnityEvent scripts;
+    
+    [HideInInspector]
     public List<MonoScript> calls = new List<MonoScript>();
     
     [HideInInspector] 

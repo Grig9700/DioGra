@@ -14,17 +14,21 @@ public class IfNodeEditor : Editor
 #if UNITY_EDITOR
     
     private IfNode _ifNode;
+    private bool _firstCall = true;
     
     private void Initialize()
     {
         _ifNode = (IfNode)target;
+        
+        _firstCall = false;
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
         
-        Initialize();
+        if(_firstCall)
+            Initialize();
         
         //Write Code
         

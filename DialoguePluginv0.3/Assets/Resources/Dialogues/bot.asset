@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: c277530efa2f68d4b9db348224e25173
-  position: {x: 813, y: 272}
+  position: {x: 777, y: 0}
   children:
   - {fileID: -497011790750698133}
   - {fileID: -6057771789195366417}
@@ -39,7 +39,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 554ded62ff175944099c61b45c2d93cc
-  position: {x: 605, y: 336}
+  position: {x: 1007.99994, y: 67.5}
   children: []
   VariableType: 0
   Property:
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 893fafe683ef70e4abb7424966e0376c
-  position: {x: 644, y: 242}
+  position: {x: 468.49997, y: 0.000091552734}
   children:
   - {fileID: -8646002385285833071}
   VariableType: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: e06005bb065ef804b8725f40556709cb
-  position: {x: 590, y: 188}
+  position: {x: 1007.8792, y: -67.49997}
   children: []
   VariableType: 0
   Property:
@@ -112,7 +112,7 @@ MonoBehaviour:
   - {fileID: -497011790750698133}
   - {fileID: -6057771789195366417}
   NodeLinks: []
-  SceneLayoutPrefab: {fileID: 0}
+  SceneLayoutPrefab: {fileID: 1662424870414749273, guid: e66484b7ae177e84883fec5506429e5f, type: 3}
 --- !u!114 &1924058211792453565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: ffea58361282f4c4989368ccb3e02ffb
-  position: {x: 271, y: 229}
+  position: {x: 165.20001, y: 0.000015258789}
   children:
   - {fileID: -5154251066145449459}
   VariableType: 0

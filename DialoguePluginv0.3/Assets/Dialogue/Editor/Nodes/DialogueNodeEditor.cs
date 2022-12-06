@@ -16,19 +16,23 @@ public class DialogueNodeEditor : Editor
     private DialogueNode _dialogueNode;
     private SerializedProperty _speaker;
     private SerializedProperty _dialogueText;
+    private bool _firstCall = true;
     
     private void Initialize()
     {
         _dialogueNode = (DialogueNode)target;
         _speaker = serializedObject.FindProperty("speaker");
         _dialogueText = serializedObject.FindProperty("dialogueText");
+        
+        _firstCall = false;
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
         
-        Initialize();
+        if(_firstCall)
+            Initialize();
 
         //Change in the future to popupfield with created actors
         EditorGUILayout.LabelField("Speaker");

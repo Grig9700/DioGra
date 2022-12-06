@@ -20,6 +20,7 @@ public class ScriptNodeEditor : Editor
     private SerializedProperty _calls;
     private ReorderableList _reorderableList;
     private ScriptNode _scriptNode;
+    private bool _firstCall = true;
 
     //private float _lineHeight;
     //private float _lineHeightSpace;
@@ -28,9 +29,10 @@ public class ScriptNodeEditor : Editor
     {
         _calls = serializedObject.FindProperty("calls");
         _scriptNode = (ScriptNode)target;
-        _reorderableList = new ReorderableList(serializedObject, serializedObject.FindProperty("calls"), 
+        _reorderableList = new ReorderableList(serializedObject, _calls, //serializedObject.FindProperty("calls"), 
             true, true, true, true);
 
+        _firstCall = false;
         //_lineHeight = EditorGUIUtility.singleLineHeight;
         //_lineHeightSpace = _lineHeight + 10;
     }
@@ -39,7 +41,8 @@ public class ScriptNodeEditor : Editor
     {
         serializedObject.Update();
         
-        Initialize();
+        if(_firstCall)
+            Initialize();
         
         //DrawDefaultInspector();
         

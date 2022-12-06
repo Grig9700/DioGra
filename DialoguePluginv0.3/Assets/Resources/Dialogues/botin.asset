@@ -19,7 +19,6 @@ MonoBehaviour:
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
 --- !u!114 &-2033323912491180630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,7 +41,6 @@ MonoBehaviour:
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
   outputOptions:
   - Output 0
   - Output 1
@@ -66,8 +64,36 @@ MonoBehaviour:
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
+  scripts:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 5a163ddf07db47847a7969bf0a488f15, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11500000, guid: 5a163ddf07db47847a7969bf0a488f15, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   calls:
+  - {fileID: 11500000, guid: 4cf63c90ec7a4a44db1287ce0cd8ddab, type: 3}
+  - {fileID: 11500000, guid: 4cf63c90ec7a4a44db1287ce0cd8ddab, type: 3}
   - {fileID: 11500000, guid: 4cf63c90ec7a4a44db1287ce0cd8ddab, type: 3}
   selectedMethod: 0000000000000000
   expandCalls: 1
@@ -112,7 +138,6 @@ MonoBehaviour:
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
 --- !u!114 &5423458535452999390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +157,5 @@ MonoBehaviour:
   VariableType: 0
   Property:
     name: New Property
-  dialogueGraphNodeType: 0
   speaker: 
   dialogueText: 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -8,19 +9,22 @@ public class GraphNode : ScriptableObject
 {
     public bool entryNode;
     //public string nodeName;
+    [HideInInspector]
     public string GUID;
+    [HideInInspector]
     public Vector2 position;
     
     //public List<GraphNodeLink> Links = new List<GraphNodeLink>();
+    [HideInInspector]
     public List<GraphNode> children = new List<GraphNode>();
 
-    //public string speaker;
-    //public string dialogueText;
-
+    [HideInInspector]
     public ExposedVariableType VariableType;
+    [HideInInspector]
     public ExposedProperties Property;
 
-    public DialogueGraphNodeType dialogueGraphNodeType;
+    //[HideInInspector]
+    //public DialogueGraphNodeType dialogueGraphNodeType;
 
     public enum ExposedVariableType
     {
@@ -37,9 +41,9 @@ public class GraphNode : ScriptableObject
     public string child;
 }*/
 
-public enum DialogueGraphNodeType
+/*public enum DialogueGraphNodeType
 {
     DialogueNode,
     ChoiceNode,
     IfNode
-}
+}*/
