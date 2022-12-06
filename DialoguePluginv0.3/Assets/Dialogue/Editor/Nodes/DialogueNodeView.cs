@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
 
 public class DialogueNodeView : GraphNodeView
 {
@@ -20,6 +22,13 @@ public class DialogueNodeView : GraphNodeView
         
         GenerateInputPort();
         GenerateOutputPort();
+        
+        
+        DialogueNode dialogueNode = Node as DialogueNode;
+        UnityEngine.Object.DestroyImmediate(editor);
+        editor = Editor.CreateEditor(dialogueNode);
+        IMGUIContainer container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
+        outputContainer.Add(container);
     }
 
     public override void SetPosition(Rect newPos)

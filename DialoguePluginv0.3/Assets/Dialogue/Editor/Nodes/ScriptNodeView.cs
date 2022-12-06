@@ -9,10 +9,8 @@ using UnityEngine.UIElements;
 [Serializable]
 public class ScriptNodeView : GraphNodeView
 {
-    public UnityEvent scripts;
+    //public UnityEvent scripts;
     
-    
-    public Editor editor;
     
     public ScriptNodeView(GraphNode node)
     {
@@ -26,15 +24,11 @@ public class ScriptNodeView : GraphNodeView
         GenerateInputPort();
         GenerateOutputPort();
         
-        switch (Node)
-        {
-            case ScriptNode scriptNode:
-                UnityEngine.Object.DestroyImmediate(editor);
-                editor = Editor.CreateEditor(scriptNode);
-                IMGUIContainer container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
-                outputContainer.Add(container);
-                break;
-        }
+        ScriptNode scriptNode = Node as ScriptNode;
+        UnityEngine.Object.DestroyImmediate(editor);
+        editor = Editor.CreateEditor(scriptNode);
+        IMGUIContainer container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
+        outputContainer.Add(container);
     }
 
     public override void SetPosition(Rect newPos)
@@ -44,8 +38,8 @@ public class ScriptNodeView : GraphNodeView
         Node.position.y = newPos.yMin;
     }
     
-    private void InvokeScripts()
-    {
-        scripts.Invoke();
-    }
+    // private void InvokeScripts()
+    // {
+    //     scripts.Invoke();
+    // }
 }

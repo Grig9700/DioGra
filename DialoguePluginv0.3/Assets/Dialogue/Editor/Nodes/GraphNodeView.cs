@@ -16,6 +16,8 @@ public class GraphNodeView : Node
     public List<Port> OutputPorts = new List<Port>();
 
     
+    public Editor editor;
+    
     
     public enum ExposedVariableType
     {

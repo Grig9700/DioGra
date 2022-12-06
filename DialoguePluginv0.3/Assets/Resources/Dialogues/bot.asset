@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: IfNode
   m_EditorClassIdentifier: 
   entryNode: 0
-  nodeName: 
   GUID: 3d17012bccce23e41ae2f55e428b677e
   position: {x: 418, y: 0}
   children: []
@@ -34,12 +33,12 @@ MonoBehaviour:
   m_Name: ChoiceNode
   m_EditorClassIdentifier: 
   entryNode: 0
-  nodeName: 
   GUID: 8eb4a819b86edc648b46008682e901a6
   position: {x: 140, y: 0}
   children:
   - {fileID: 5423458535452999390}
   - {fileID: -7856330117840471916}
+  - {fileID: -209462249348064697}
   VariableType: 0
   Property:
     name: New Property
@@ -61,14 +60,18 @@ MonoBehaviour:
   m_Name: ScriptNode
   m_EditorClassIdentifier: 
   entryNode: 0
-  nodeName: 
   GUID: f826cf3618b158143a0b7eec463c8b10
-  position: {x: 0, y: 0}
+  position: {x: 367, y: 125}
   children: []
   VariableType: 0
   Property:
     name: New Property
   dialogueGraphNodeType: 0
+  calls:
+  - {fileID: 11500000, guid: 4cf63c90ec7a4a44db1287ce0cd8ddab, type: 3}
+  selectedMethod: 0000000000000000
+  expandCalls: 1
+  methodName: Back
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +91,7 @@ MonoBehaviour:
   - {fileID: -7856330117840471916}
   - {fileID: -209462249348064697}
   NodeLinks: []
-  SceneLayoutPrefab: {fileID: 0}
+  SceneLayoutPrefab: {fileID: 1662424870414749273, guid: e66484b7ae177e84883fec5506429e5f, type: 3}
 --- !u!114 &2613651615576205748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +105,6 @@ MonoBehaviour:
   m_Name: Start Point
   m_EditorClassIdentifier: 
   entryNode: 1
-  nodeName: 
   GUID: StartPoint
   position: {x: 0, y: 0}
   children:
@@ -124,9 +126,8 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   entryNode: 0
-  nodeName: 
   GUID: 1ab0ca1e626fd364d82c853493a69beb
-  position: {x: 367, y: -77}
+  position: {x: 367.00003, y: -174}
   children: []
   VariableType: 0
   Property:
