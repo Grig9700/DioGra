@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 3d17012bccce23e41ae2f55e428b677e
-  position: {x: 418, y: 0}
+  position: {x: 367.00003, y: 0.00000834465}
   children: []
   VariableType: 0
   Property:

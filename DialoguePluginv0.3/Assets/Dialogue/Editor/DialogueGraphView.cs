@@ -43,6 +43,7 @@ public class DialogueGraphView : GraphView
     public DialogueContainer Container;
 
     private float _timer;
+    private Vector2 _contextualLocalMousePosition;
     
     /*public DialogueGraphView(EditorWindow editorWindow)
     {
@@ -87,7 +88,7 @@ public class DialogueGraphView : GraphView
     {
         return nodeView.InstantiatePort(Orientation.Horizontal, portOrientation, capacity, typeof(float));
     }
-    
+
     /*private DialogueNode GenerateEntryPointNode()
     {
         var node = new DialogueNode()
@@ -232,11 +233,12 @@ public class DialogueGraphView : GraphView
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
+        _contextualLocalMousePosition = evt.localMousePosition;
         //base.BuildContextualMenu(evt);
         var types = TypeCache.GetTypesDerivedFrom<GraphNode>();
         foreach (Type type in types.Where(type => type.Name != "EntryNodeData" && type.Name != "EntryNode"))
         {
-            evt.menu.AppendAction($"{type.Name}", (n) => CreateGraphNode(type));
+            evt.menu.AppendAction($"{type.Name}", (n) => CreateGraphNode(type, _contextualLocalMousePosition));
         }
     }
 
@@ -256,9 +258,9 @@ public class DialogueGraphView : GraphView
         AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
     }
     
-    private void CreateGraphNode(Type type)
+    private void CreateGraphNode(Type type, Vector2 pos)
     {
-        GraphNode node = Container.CreateGraphNode(type);
+        GraphNode node = Container.CreateGraphNode(type, pos);
         
         CreateNodeViewElement(node);
     }

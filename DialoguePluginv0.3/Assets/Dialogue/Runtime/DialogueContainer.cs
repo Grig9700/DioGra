@@ -28,11 +28,12 @@ public class DialogueContainer : ScriptableObject
         return node;
     }
     
-    public GraphNode CreateGraphNode(Type type)
+    public GraphNode CreateGraphNode(Type type, Vector2 pos)
     {
         GraphNode node = ScriptableObject.CreateInstance(type) as GraphNode;
         node.name = type.Name;
         node.GUID = GUID.Generate().ToString();
+        node.position = pos;
         GraphNodes.Add(node);
         
         AssetDatabase.AddObjectToAsset(node, this);

@@ -15,6 +15,7 @@ public class GraphNodeView : Node
     public Port InputPort;
     public List<Port> OutputPorts = new List<Port>();
 
+    public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
     
     public Editor editor;
     
