@@ -137,7 +137,7 @@ public class ScriptNodeEditor : Editor
             if (pars.Any(parameter => !parameter.ParameterType.IsValueType))
             {
                 Debug.LogError($"{_scriptNode.methodName} contains parameters that are currently not supported. " +
-                               $"\n    Supported Types include; Bool, Int, String, Float, Double." +
+                               $"\n    Supported Types include; Bool, Int, String, Float. ScriptableObjects will be added at a later date." +
                                $"\n    You can also use the dollar sign (\"$\") before the name of the Blackboard property to indicate " +
                                $"that you wish to send the named property instead of another value into the script call");
                 //return;
