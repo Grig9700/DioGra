@@ -11,7 +11,7 @@ public class DialogueManager : MonoBehaviour
     private List<GameObject> _buttons;
     private SceneLayout _scene;
     private string _getNodeByGUID;
-    private Stack<string> _previousNodes;
+    private Stack<GraphNode> _previousNodes;
 
     private GraphNode _currentNode;
 
@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
     private void OnEnable()
     {
         _buttons = new List<GameObject>();
-        _previousNodes = new Stack<string>();
+        _previousNodes = new Stack<GraphNode>();
         _canvas = GameObject.Find("Canvas");
         bool eventSystemExists = GameObject.Find("EventSystem");
         
@@ -61,11 +61,12 @@ public class DialogueManager : MonoBehaviour
         if (_previousNodes.Count <= 1)
             return;
         
-        Debug.Log($"[Dev] back button management options need implementing");
+        //Debug.Log($"[Dev] back button management options need implementing");
         
         ClearButtons();
-        _getNodeByGUID = _previousNodes.Pop();
-        Next();
+        _currentNode = _previousNodes.Pop();
+        
+        Next(true);
     }
 
     public void Next(bool alreadyPulled = false)
@@ -109,46 +110,7 @@ public class DialogueManager : MonoBehaviour
                 Debug.LogError("Entered Default on Next", this);
                 break;
         }
-        
-        /*var node = container.GraphNodes.First(x => x.GUID == _getNodeByGUID);
-        
-        switch (node.dialogueGraphNodeType)
-        {
-            case DialogueGraphNodeType.DialogueNode:
-                //_scene.nameField.text = node.speaker;
-                //_scene.textField.text = node.dialogueText;
-                break;
-            case DialogueGraphNodeType.ChoiceNode:
-                var buttonsToMake = container.NodeLinks.Where(x => x.baseNodeGUID == _getNodeByGUID).ToList();
-                var height = _scene.buttonPrefab.GetComponent<RectTransform>().rect.height;
-                for (int i = 0; i < buttonsToMake.Count(); i++)
-                {
-                    int con = i;
-                    var obj = Instantiate(_scene.buttonPrefab, _scene.viewPort.transform);
-                    obj.GetComponent<RectTransform>().transform.localPosition = new Vector2(91.5f, -100f + i * -height);
-                    obj.GetComponent<Button>().onClick.AddListener(() => { Button(buttonsToMake[con].targetNodeGUID);});
-                    obj.GetComponentInChildren<Text>().text = buttonsToMake[i].portName;
-                    _buttons.Add(obj);
-                }
-                break;
-            // case NodeType.IfNode:
-            //     break;
-            // case NodeType.ScriptNode:
-            //     break;
-            default:
-                Debug.LogError("Entered Default on Next", this);
-                break;
-        }*/
     }
-
-    /*private void GetNext()
-    {
-        var temp = container.NodeLinks.Where(x => x.baseNodeGUID == _getNodeByGUID).ToList();
-        if (temp.Count <= 0)
-            EndDialogue();
-        _previousNodes.Push(_getNodeByGUID);
-        _getNodeByGUID = temp.First().targetNodeGUID;
-    }*/
 
     private void GetNodeByGuid(bool getStartNode = false)
     {
@@ -160,12 +122,14 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning($"No node by GUID {_getNodeByGUID} was found");
             return;
         }
+        if (!getStartNode)
+            _previousNodes.Push(_currentNode);
         _currentNode = tempNode;
     }
     
     public void Button(string childGUID)
     {
-        _previousNodes.Push(_getNodeByGUID);
+        _previousNodes.Push(_currentNode);
         _getNodeByGUID = childGUID;
         ClearButtons();
         Next();
