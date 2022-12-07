@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,8 +22,6 @@ public class IfNodeView : GraphNodeView
         style.left = node.position.x;
         style.top = node.position.y;
 
-        //SetPosition(new Rect(node.position, defaultNodeSize));
-        
         GenerateInputPort();
         
         
@@ -31,6 +30,9 @@ public class IfNodeView : GraphNodeView
         editor = Editor.CreateEditor(ifNode);
         IMGUIContainer container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
         outputContainer.Add(container);
+        
+        GenerateOutputPort("True");
+        GenerateOutputPort("False");
     }
     
     public override void SetPosition(Rect newPos)

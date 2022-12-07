@@ -1,5 +1,79 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8374339929111522027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: c9e051f0e8606f14689a3c7146ad92d1
+  position: {x: 409.99994, y: 0}
+  children: []
+  speaker: 
+  dialogueText: 
+--- !u!114 &-7043864173781078372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: d6ba23089d20bb1418cdebe271d25643
+  position: {x: 142, y: 0}
+  children:
+  - {fileID: -8374339929111522027}
+  - {fileID: -2516319730006247580}
+  outputOptions:
+  - Output 0
+  - Output 1
+--- !u!114 &-2516319730006247580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0436a84f0c6204fb6e899c92878fa1, type: 3}
+  m_Name: IfNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 084124622d00ae8449e5e253898913c6
+  position: {x: 410, y: 137}
+  children:
+  - {fileID: 3191066723044419342}
+  - {fileID: 1309300381981229376}
+  numComparison: 0
+  numComparisonType: 0
+  binaryComparisonType: 0
+  comparisonTarget: {fileID: 11400000, guid: 112448fa5c9602e4e9c898c81fb66b31, type: 2}
+  comparisonValue: 
+  binaryTracker: 0
+  binaryComp:
+  - =
+  - '!='
+  numTracker: 0
+  numComp:
+  - '>'
+  - '>='
+  - =
+  - <=
+  - <
+  - '!='
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,8 +88,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphNodes:
   - {fileID: 2594130154616650393}
-  NodeLinks: []
+  - {fileID: -2516319730006247580}
+  - {fileID: -7043864173781078372}
+  - {fileID: -8374339929111522027}
+  - {fileID: 3191066723044419342}
+  - {fileID: 1309300381981229376}
   SceneLayoutPrefab: {fileID: 0}
+--- !u!114 &1309300381981229376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 89caaec80ed34fa4cba89eb651390055
+  position: {x: 780.0001, y: 309.00006}
+  children: []
+  speaker: 
+  dialogueText: 
 --- !u!114 &2594130154616650393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31,7 +127,24 @@ MonoBehaviour:
   entryNode: 1
   GUID: StartPoint
   position: {x: 0, y: 0}
+  children:
+  - {fileID: -7043864173781078372}
+--- !u!114 &3191066723044419342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b19689c83373d48b23e8306122e90c, type: 3}
+  m_Name: ScriptNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 55a6e06e436ce4544833dbdf75bcd50e
+  position: {x: 779.85004, y: 137.00002}
   children: []
-  VariableType: 0
-  Property:
-    name: New Property
+  functionCalls:
+    m_PersistentCalls:
+      m_Calls: []

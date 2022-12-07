@@ -35,8 +35,12 @@ public class DialogueNodeEditor : Editor
             Initialize();
 
         //Change in the future to popupfield with created actors
-        EditorGUILayout.LabelField("Speaker");
+        EditorGUILayout.BeginHorizontal();
+        EditorGUI.LabelField(new Rect(5, 0, 50, 20),"Speaker");
+        EditorGUILayout.Space(20);
+        //EditorGUILayout.PropertyField(_speaker, GUIContent.none);
         _dialogueNode.speaker = EditorGUI.TextField(new Rect(60, 0, 145, 20), _dialogueNode.speaker);
+        EditorGUILayout.EndHorizontal();
         //EditorGUILayout.PropertyField(_speaker);
         
         EditorGUILayout.LabelField("Dialogue Text");

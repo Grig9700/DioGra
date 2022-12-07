@@ -19,8 +19,6 @@ public class DialogueNodeView : GraphNodeView
         
         style.left = node.position.x;
         style.top = node.position.y;
-
-        //SetPosition(new Rect(node.position, defaultNodeSize));
         
         GenerateInputPort();
         GenerateOutputPort();

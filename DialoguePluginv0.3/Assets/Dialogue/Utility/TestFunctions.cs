@@ -69,10 +69,10 @@ public class TestFunctions : MonoBehaviour
         
     }
     
-    public void enumTest(GraphNode.ExposedVariableType e)
+    /*public void enumTest(GraphNode.ExposedVariableType e)
     {
         //Not part of UnityEvent
-    }
+    }*/
 
     public static void staticHelloWorld()
     {

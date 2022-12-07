@@ -18,8 +18,6 @@ public class ChoiceNodeView : GraphNodeView
         
         style.left = node.position.x;
         style.top = node.position.y;
-
-        //SetPosition(new Rect(node.position, defaultNodeSize));
         
         GenerateInputPort();
         GenerateMultiOutputButton(_graphView);

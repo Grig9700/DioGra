@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ public class GraphNodeView : Node
     public Port InputPort;
     public List<Port> OutputPorts = new List<Port>();
 
-    public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
+    public readonly Vector2 defaultNodeSize = new Vector2(400, 400);
     
     public Editor editor;
     
@@ -125,10 +126,10 @@ public class GraphNodeView : Node
         InputPort = inputPort;
     }
 
-    protected void GenerateOutputPort()
+    protected void GenerateOutputPort(string overrideName = "")
     {
         var outputPort = GeneratePort(Direction.Output);
-        outputPort.portName = "Output";
+        outputPort.portName = String.IsNullOrEmpty(overrideName) ? "Output" : overrideName;
         outputContainer.Add(outputPort);
         OutputPorts.Add(outputPort);
     }

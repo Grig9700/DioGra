@@ -13,8 +13,6 @@ public class EntryNodeView : GraphNodeView
         
         style.left = node.position.x;
         style.top = node.position.y;
-
-        //SetPosition(new Rect(node.position, defaultNodeSize));
         
         capabilities &= ~Capabilities.Movable;
         capabilities &= ~Capabilities.Deletable;

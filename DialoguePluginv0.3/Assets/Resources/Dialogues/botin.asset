@@ -16,9 +16,11 @@ MonoBehaviour:
   GUID: 3d17012bccce23e41ae2f55e428b677e
   position: {x: 367.00003, y: 0.00000834465}
   children: []
-  VariableType: 0
-  Property:
-    name: New Property
+  numComparison: 0
+  numComparisonType: 0
+  binaryComparisonType: 0
+  comparisonTarget: {fileID: 11400000, guid: 112448fa5c9602e4e9c898c81fb66b31, type: 2}
+  comparisonValue: 
 --- !u!114 &-2033323912491180630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,9 +39,7 @@ MonoBehaviour:
   children:
   - {fileID: 5423458535452999390}
   - {fileID: -7856330117840471916}
-  VariableType: 0
-  Property:
-    name: New Property
+  - {fileID: -352161231814888034}
   outputOptions:
   - Output 0
   - Output 1
@@ -58,14 +58,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 9bd4f574aff34c645874352cba0a4f13
-  position: {x: 471.50003, y: 157.55002}
+  position: {x: 367.0001, y: 125.000015}
   children: []
-  VariableType: 0
-  Property:
-    name: New Property
   functionCalls:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -5561659340234747394, guid: 5dcbbfb841460d64393a6b8f9b89b9b1, type: 3}
+        m_TargetAssemblyTypeName: TestFunctions, Assembly-CSharp
+        m_MethodName: helloWorld
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +93,6 @@ MonoBehaviour:
   - {fileID: 5423458535452999390}
   - {fileID: -7856330117840471916}
   - {fileID: -352161231814888034}
-  NodeLinks: []
   SceneLayoutPrefab: {fileID: 1662424870414749273, guid: e66484b7ae177e84883fec5506429e5f, type: 3}
 --- !u!114 &2613651615576205748
 MonoBehaviour:
@@ -103,9 +111,6 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   children:
   - {fileID: -2033323912491180630}
-  VariableType: 0
-  Property:
-    name: New Property
 --- !u!114 &5423458535452999390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,8 +127,5 @@ MonoBehaviour:
   GUID: 1ab0ca1e626fd364d82c853493a69beb
   position: {x: 367.00003, y: -174}
   children: []
-  VariableType: 0
-  Property:
-    name: New Property
-  speaker: 
-  dialogueText: 
+  speaker: Hey
+  dialogueText: sdfghjkl

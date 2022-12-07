@@ -18,21 +18,21 @@ public class GraphNode : ScriptableObject
     [HideInInspector]
     public List<GraphNode> children = new List<GraphNode>();
 
-    [HideInInspector]
-    public ExposedVariableType VariableType;
-    [HideInInspector]
-    public ExposedProperties Property;
+    //[HideInInspector]
+    //public ExposedVariableType VariableType;
+    //[HideInInspector]
+    //public ExposedProperties Property;
 
     //[HideInInspector]
     //public DialogueGraphNodeType dialogueGraphNodeType;
 
-    public enum ExposedVariableType
+    /*public enum ExposedVariableType
     {
         Bool,
         Float,
         Int,
         String
-    }
+    }*/
 }
 
 /*public struct GraphNodeLink

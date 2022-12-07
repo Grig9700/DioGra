@@ -11,7 +11,7 @@ using UnityEditor;
 public class DialogueContainer : ScriptableObject
 {
     public List<GraphNode> GraphNodes = new List<GraphNode>();
-    public List<NodeLinkData> NodeLinks = new List<NodeLinkData>();
+    //public List<NodeLinkData> NodeLinks = new List<NodeLinkData>();
     public GameObject SceneLayoutPrefab;
 
 #if UNITY_EDITOR
