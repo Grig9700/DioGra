@@ -44,6 +44,28 @@ MonoBehaviour:
   - Output 0
   - Output 1
   - Output 2
+--- !u!114 &-352161231814888034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b19689c83373d48b23e8306122e90c, type: 3}
+  m_Name: ScriptNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 9bd4f574aff34c645874352cba0a4f13
+  position: {x: 471.50003, y: 157.55002}
+  children: []
+  VariableType: 0
+  Property:
+    name: New Property
+  functionCalls:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +83,7 @@ MonoBehaviour:
   - {fileID: -2033323912491180630}
   - {fileID: 5423458535452999390}
   - {fileID: -7856330117840471916}
+  - {fileID: -352161231814888034}
   NodeLinks: []
   SceneLayoutPrefab: {fileID: 1662424870414749273, guid: e66484b7ae177e84883fec5506429e5f, type: 3}
 --- !u!114 &2613651615576205748

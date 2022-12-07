@@ -13,7 +13,7 @@ public class DialogueGraphView : GraphView
 {
     public new class UxmlFactory : UxmlFactory<DialogueGraphView, GraphView.UxmlTraits> {}
 
-    public DialogueGraphView()//EditorWindow editorWindow)
+    public DialogueGraphView()
     {
         Insert(0, new GridBackground());
         
@@ -24,11 +24,8 @@ public class DialogueGraphView : GraphView
         
         var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Dialogue/Editor/DialogueGraphEditor.uss"); 
         styleSheets.Add(styleSheet);
-        
-        //AddElement(GenerateEntryPointNode());
     }
     
-    public readonly Vector2 defaultNodeSize = new Vector2(150, 200);
     public Blackboard Blackboard;
 
     private Editor _editor;
@@ -44,24 +41,6 @@ public class DialogueGraphView : GraphView
 
     private float _timer;
     private Vector2 _localMousePosition;
-    
-    /*public DialogueGraphView(EditorWindow editorWindow)
-    {
-        styleSheets.Add(Resources.Load<StyleSheet>("DialogueGraph"));
-        SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
-        
-        this.AddManipulator(new ContentDragger());
-        this.AddManipulator(new SelectionDragger());
-        this.AddManipulator(new RectangleSelector());
-
-        //sets up grid backgrounds
-        var grid = new GridBackground();
-        Insert(0, grid);
-        grid.StretchToParentSize();
-
-        AddElement(GenerateEntryPointNode());
-        AddSearchWindow(editorWindow);
-    }*/
 
     public void Initialize(DialogueGraphEditor window)
     {
@@ -89,80 +68,10 @@ public class DialogueGraphView : GraphView
         return nodeView.InstantiatePort(Orientation.Horizontal, portOrientation, capacity, typeof(float));
     }
 
-    /*private DialogueNode GenerateEntryPointNode()
-    {
-        var node = new DialogueNode()
-        {
-            title = "START",
-            GUID = "StartPoint",
-            dialogueText = "ENTRY POINT",
-            entryPoint = true
-        };
-
-        //Generates start output
-        var generatedPort = GeneratePort(node, Direction.Output);
-        generatedPort.portName = "Next";
-        node.outputContainer.Add(generatedPort);
-        
-        //Prevents moving or deleting start node
-        node.capabilities &= ~Capabilities.Movable;
-        node.capabilities &= ~Capabilities.Deletable;
-        
-        //prevents visual glitch
-        node.RefreshExpandedState();
-        node.RefreshPorts();
-        
-        node.SetPosition(new Rect(100, 200, 100, 150));
-        return node;
-    }*/
-
-    /*public void CreateNode(string nodeName, Vector2 position)
-    {
-        switch (nodeName)
-        {
-            case "Dialogue Node":
-                AddElement(CreateDialogueNode(nodeName, position));
-                return;
-            case "Choice Node":
-                AddElement(CreateChoiceNode(nodeName, position));
-                return;
-            case "If Node":
-                AddElement(CreateIfNode(nodeName, position));
-                return;
-            case "Script Node":
-                AddElement(CreateScriptNode(nodeName, position));
-                return;
-            default:
-                Debug.LogWarning($"{nodeName} is not a valid node type");
-                return;
-        }
-    }*/
-
-    /*public void RestoreNode(GraphNodeData nodeData, List<NodeLinkData> linkedPorts = null)
-    {
-        switch (nodeData.nodeName)
-        {
-            case "Dialogue Node":
-                AddElement(CreateDialogueNode(nodeData.nodeName, nodeData.position, nodeData));
-                return;
-            case "Choice Node":
-                AddElement(CreateChoiceNode(nodeData.nodeName, nodeData.position, nodeData, linkedPorts));
-                return;
-            case "If Node":
-                AddElement(CreateIfNode(nodeData.nodeName, nodeData.position, nodeData));
-                return;
-            default:
-                Debug.LogWarning($"{nodeData.nodeName} is not a valid node type");
-                return;
-        }
-    }*/
-
     private GraphNodeView FindNodeView(GraphNode node)
     {
         return GetNodeByGuid(node.GUID) as GraphNodeView;
     }
-    
-    
     
     public void PopulateView(DialogueContainer container)
     {
@@ -292,262 +201,6 @@ public class DialogueGraphView : GraphView
         AddElement(graphNodeView);
     }
     
-    /*private IfNode CreateIfNode(string nodeName, Vector2 position, GraphNodeData nodeData = null)
-    {
-        var ifNode = new IfNode()
-        {
-            title = nodeName,
-            GUID = nodeData == null ? Guid.NewGuid().ToString() : nodeData.GUID,
-        };
-
-        ifNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
-        
-        //Generates input port
-        var inputPort = GeneratePort(ifNode, Direction.Input, Port.Capacity.Multi);
-        inputPort.portName = "Input";
-        ifNode.inputContainer.Add(inputPort);
-        
-        
-        /*
-        switch (ifNode.Property)
-        {
-            case ExposedProperty<bool> boolProperty:
-                boolProperty.value = false;
-                break;
-        }
-        
-        SerializeField ifNode.Property;
-        typeSelector.
-        typeSelector.RegisterValueChangedCallback(evt =>
-        {
-            ifNode.VariableType = evt.newValue
-        });
-        ifNode.titleButtonContainer.Add(typeSelector);
-        PopupField<ExposedProperty<bool>> elementSelector = new PopupField<ExposedProperty<bool>>();
-        ifNode.outputContainer.Add(elementSelector);#1#
-
-        TempContainer temp = ScriptableObject.CreateInstance<TempContainer>();
-        tempContainer.Add(ifNode.GUID, temp);
-        temp.Property = new ExposedProperty<bool>();
-        temp.VariableType = TempContainer.ExposedVariableType.Bool;
-
-        //ifNode.Property = ScriptableObject.CreateInstance<ExposedProperties>();
-        SerializedObject serializedObject = new UnityEditor.SerializedObject(temp);
-        SerializedProperty serializedProperty = serializedObject.FindProperty("Property");
-        
-        
-        //I weep, so much, I cry, endless tears, why world, will you not write out this variable
-        
-        
-        //ExtendedEditorWindow.DrawField("Property", false, serializedObject, serializedProperty);
-        EditorGUILayout.PropertyField(serializedProperty, new GUIContent("Exposed Property"), GUILayout.Height(20));
-        //ifNode.Insert();
-        
-        PropertyField property = new PropertyField(serializedProperty, "Exposed Property");
-        property.RegisterValueChangeCallback(evt =>
-        {
-            serializedObject.ApplyModifiedProperties();
-        });
-        ifNode.titleButtonContainer.Add(property);
-        ifNode.mainContainer.Add(property);
-        ifNode.mainContainer.Add(new PopupField<ExposedProperties>());
-        
-        var outputPortTrue = GeneratePort(ifNode, Direction.Output, Port.Capacity.Single);
-        outputPortTrue.portName = "True";
-        ifNode.outputContainer.Add(outputPortTrue);
-        var outputPortFalse = GeneratePort(ifNode, Direction.Output, Port.Capacity.Single);
-        outputPortFalse.portName = "False";
-        ifNode.outputContainer.Add(outputPortFalse);
-        
-        ifNode.RefreshExpandedState();
-        ifNode.RefreshPorts();
-        
-        ifNode.SetPosition(new Rect(position, defaultNodeSize));
-
-        return ifNode;
-    }*/
-
-    /*private ChoiceNode CreateChoiceNode(string nodeName, Vector2 position, GraphNodeData nodeData = null, List<NodeLinkData> linkedPorts = null)
-    {
-        var choiceNode = new ChoiceNode()
-        {
-            title = nodeName,
-            GUID = nodeData == null ? Guid.NewGuid().ToString() : nodeData.GUID
-        };
-
-        choiceNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
-        
-        //Generates input port
-        var inputPort = GeneratePort(choiceNode, Direction.Input, Port.Capacity.Multi);
-        inputPort.portName = "Input";
-        choiceNode.inputContainer.Add(inputPort);
-        
-        var button = new Button(() => { AddChoicePort(choiceNode); });
-        button.text = "New Output";
-        choiceNode.titleContainer.Add(button);
-
-        if (linkedPorts != null)
-        {
-            foreach (var link in linkedPorts)
-            {
-                AddChoicePort(choiceNode, link.portName);
-            }
-        }
-        
-        choiceNode.RefreshExpandedState();
-        choiceNode.RefreshPorts();
-        
-        choiceNode.SetPosition(new Rect(position, defaultNodeSize));
-
-        return choiceNode;
-    }*/
-
-    /*private ScriptNode CreateScriptNode(string nodeName, Vector2 position, GraphNodeData nodeData = null, List<NodeLinkData> linkedPorts = null)
-    {
-        var scriptNode = new ScriptNode()
-        {
-            title = nodeName,
-            GUID = nodeData == null ? Guid.NewGuid().ToString() : nodeData.GUID,
-            call = ScriptableObject.CreateInstance<ScriptNodeCalls>()
-        };
-
-        scriptNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
-        
-        //Generates input port
-        var inputPort = GeneratePort(scriptNode, Direction.Input, Port.Capacity.Multi);
-        inputPort.portName = "Input";
-        scriptNode.inputContainer.Add(inputPort);
-
-        var generatedPort = GeneratePort(scriptNode, Direction.Output);
-        generatedPort.portName = "Output";
-        scriptNode.outputContainer.Add(generatedPort);
-
-        
-        
-        UnityEngine.Object.DestroyImmediate(scriptNode.Editor);
-        scriptNode.Editor = Editor.CreateEditor(scriptNode.call);
-        IMGUIContainer container = new IMGUIContainer(() => { scriptNode.Editor.OnInspectorGUI(); });
-        //scriptNode.Add(container);
-        //scriptNode.contentContainer.Add(container);
-        scriptNode.outputContainer.Add(container);
-        
-        // var button = new Button(() => { AddFunctionCall(scriptNode); });
-        // button.text = "New Script Call";
-        // scriptNode.titleContainer.Add(button);
-
-
-        if (linkedPorts != null)
-        {
-            foreach (var link in linkedPorts)
-            {
-                AddChoicePort(scriptNode, link.portName);
-            }
-        }
-        
-        scriptNode.RefreshExpandedState();
-        scriptNode.RefreshPorts();
-        
-        scriptNode.SetPosition(new Rect(position, defaultNodeSize));
-
-        return scriptNode;
-    }*/
-    
-    /*private DialogueNode CreateDialogueNode(string nodeName, Vector2 position, GraphNodeData nodeData = null)
-    {
-        var dialogueNode = new DialogueNode()
-        {
-            title = nodeName,
-            speaker = nodeData == null ? "" : nodeData.speaker,
-            dialogueText = nodeData == null ? "" : nodeData.dialogueText,
-            GUID = nodeData == null ? Guid.NewGuid().ToString() : nodeData.GUID
-        };
-
-        dialogueNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
-        
-        //Generates input port
-        var inputPort = GeneratePort(dialogueNode, Direction.Input, Port.Capacity.Multi);
-        inputPort.portName = "Input";
-        dialogueNode.inputContainer.Add(inputPort);
-        //Generates output port
-        var outputPort = GeneratePort(dialogueNode, Direction.Output, Port.Capacity.Single);
-        outputPort.portName = "Output";
-        dialogueNode.outputContainer.Add(outputPort);
-
-        var speakerField = new TextField("Speaker") {value = dialogueNode.speaker};
-        speakerField.RegisterValueChangedCallback(evt => dialogueNode.speaker = evt.newValue);
-        dialogueNode.mainContainer.Add(speakerField);
-        
-        var textField = new TextField(string.Empty) {value = dialogueNode.dialogueText};
-        textField.RegisterValueChangedCallback(evt => dialogueNode.dialogueText = evt.newValue);
-        dialogueNode.mainContainer.Add(textField);
-            
-        //prevents visual glitch
-        dialogueNode.RefreshExpandedState();
-        dialogueNode.RefreshPorts();
-        
-        dialogueNode.SetPosition(new Rect(position, defaultNodeSize));
-
-        return dialogueNode;
-    }*/
-
-    private void AddChoicePort(GraphNodeView dialogueNodeView, string overriddenPortName = "")
-    {
-        var generatedPort = GeneratePort(dialogueNodeView, Direction.Output);
-
-        //removes duplicate label
-        var oldLabel = generatedPort.contentContainer.Q<Label>("type");
-        generatedPort.contentContainer.Remove(oldLabel);
-        
-        var outputPortCount = dialogueNodeView.outputContainer.Query("connector").ToList().Count;
-        
-        //creates name of port
-        var choicePortName = string.IsNullOrEmpty(overriddenPortName)? $"Output {outputPortCount}" : overriddenPortName;
-        var textField = new TextField
-        {
-            name = string.Empty,
-            value = choicePortName
-        };
-        textField.RegisterValueChangedCallback(evt => generatedPort.portName = evt.newValue);
-        generatedPort.contentContainer.Add(new Label("    "));
-        generatedPort.contentContainer.Add(textField);
-
-        //permits removal of port
-        var deleteButton = new Button(() => RemovePort(dialogueNodeView, generatedPort)) { text = "X" };
-        generatedPort.contentContainer.Add(deleteButton);
-        
-        generatedPort.portName = choicePortName;
-        dialogueNodeView.outputContainer.Add(generatedPort);
-        
-        //prevents visual glitch
-        dialogueNodeView.RefreshExpandedState();
-        dialogueNodeView.RefreshPorts();
-    }
-
-    private void RemovePort(GraphNodeView graphNodeView, Port generatedPort)
-    {
-        var targetEdge = edges.ToList().Where(
-            edge => edge.output.portName == generatedPort.portName && edge.output.node == generatedPort.node);
-
-        if (targetEdge.Any())
-        {
-            var edge = targetEdge.First();
-            edge.input.Disconnect(edge);
-            RemoveElement(targetEdge.First());
-        }
-        
-        graphNodeView.outputContainer.Remove(generatedPort);
-        graphNodeView.RefreshExpandedState();
-        graphNodeView.RefreshPorts();
-    }
-
-    /*private void AddFunctionCall(GraphNodeView graphNodeView)
-    {
-        UnityEngine.Object.DestroyImmediate(graphNodeView.Editor);
-        graphNodeView.Editor = Editor.CreateEditor(graphNodeView.call);
-        IMGUIContainer container = new IMGUIContainer(() => { graphNodeView.Editor.OnInspectorGUI(); });
-        graphNodeView.Add(container);
-    }*/
-
     public void ClearBlackboardAndExposedProperties()
     {
         ExposedPropertiesList.Clear();
