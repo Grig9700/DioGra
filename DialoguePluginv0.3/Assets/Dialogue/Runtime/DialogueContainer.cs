@@ -48,13 +48,21 @@ public class DialogueContainer : ScriptableObject
         AssetDatabase.SaveAssets();
     }
 
-    public void AddChild(GraphNode parent, GraphNode child)
+    public void AddChild(GraphNode parent, GraphNode child, string portName)
     {
         parent.children.Add(child);
+        parent.childPortName.Add(portName);
     }
 
     public void RemoveChild(GraphNode parent, GraphNode child)
     {
+        for (int i = 0; i < parent.children.Count; i++)
+        {
+            if (parent.children[i] != child) 
+                continue;
+            parent.childPortName.Remove(parent.childPortName[i]);
+            break;
+        }
         parent.children.Remove(child);
     }
 

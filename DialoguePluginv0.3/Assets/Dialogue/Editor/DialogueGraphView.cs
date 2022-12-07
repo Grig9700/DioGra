@@ -95,7 +95,7 @@ public class DialogueGraphView : GraphView
         for (int i = 0; i < graphNode.children.Count; i++)
         {
             GraphNodeView childView = FindNodeView(graphNode.children[i]);
-            Edge edge = parentView.OutputPorts[i].ConnectTo(childView.InputPort);
+            Edge edge = parentView.OutputPorts.First(port => port.portName == graphNode.childPortName[i]).ConnectTo(childView.InputPort);
             AddElement(edge);
         }
     }
@@ -134,7 +134,7 @@ public class DialogueGraphView : GraphView
             GraphNodeView parentView = edge.output.node as GraphNodeView;
             GraphNodeView childView = edge.input.node as GraphNodeView;
             
-            Container.AddChild(parentView!.Node, childView!.Node);
+            Container.AddChild(parentView!.Node, childView!.Node, edge.output.portName);
         });
         
         return graphViewChange;

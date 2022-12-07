@@ -84,31 +84,51 @@ public class DialogueManager : MonoBehaviour
                 _getNodeByGUID = entryNode.children.First().GUID;
                 Next();
                 break;
+            
             case DialogueNode dialogueNode:
                 _scene.nameField.text = dialogueNode.speaker;
                 _scene.textField.text = dialogueNode.dialogueText;
                 _getNodeByGUID = dialogueNode.children.First().GUID;
                 break;
+            
             case ChoiceNode choiceNode:
                 var buttonsToMake = choiceNode.children;//container.NodeLinks.Where(x => x.baseNodeGUID == _getNodeByGUID).ToList();
                 var height = _scene.buttonPrefab.GetComponent<RectTransform>().rect.height;
                 for (int i = 0; i < buttonsToMake.Count(); i++)
                 {
-                    int con = i;
+                    int index = i;
                     var obj = Instantiate(_scene.buttonPrefab, _scene.viewPort.transform);
                     obj.GetComponent<RectTransform>().transform.localPosition = new Vector2(91.5f, -100f + i * -height);
-                    obj.GetComponent<Button>().onClick.AddListener(() => { Button(buttonsToMake[con].GUID);});
-                    obj.GetComponentInChildren<Text>().text = choiceNode.outputOptions[i];
+                    obj.GetComponent<Button>().onClick.AddListener(() => { Button(buttonsToMake[index].GUID);});
+                    obj.GetComponentInChildren<Text>().text = choiceNode.childPortName[index];
                     _buttons.Add(obj);
                 }
                 break;
+            
             case IfNode ifNode:
+                if (ifNode.comparisonTarget == null)
+                {
+                    Debug.LogError($"If node did not contain a comparison target");
+                }
+
+                if (ifNode.RunComparison())
+                {
+                    _currentNode = ifNode.childPortName[0] == "True" ? ifNode.children[0] : ifNode.children[1];
+                }
+                else
+                {
+                    _currentNode = ifNode.childPortName[0] == "False" ? ifNode.children[0] : ifNode.children[1];
+                }
+                Next(true);
                 break;
+            
             case ScriptNode scriptNode:
                 //scriptNode.CreateActions(this);
                 //scriptNode.CallActions();
                 scriptNode.InvokeFunctionCalls();
+                Next();
                 break;
+            
             default:
                 Debug.LogError("Entered Default on Next", this);
                 break;

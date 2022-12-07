@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8853282534077900222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: af76d0a139e55994d87b16327173ecb1
+  position: {x: 682, y: -196.99998}
+  children: []
+  speaker: me
+  dialogueText: 1
 --- !u!114 &-8646002385285833071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,13 +32,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: c277530efa2f68d4b9db348224e25173
-  position: {x: 1053.3429, y: -36.72914}
+  position: {x: 385.0686, y: 502.5264}
   children:
   - {fileID: -497011790750698133}
   - {fileID: -6057771789195366417}
-  VariableType: 0
-  Property:
-    name: New Property
   outputOptions:
   - peace
   - war
@@ -38,13 +53,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 554ded62ff175944099c61b45c2d93cc
-  position: {x: 1284.3429, y: 31.270863}
+  position: {x: 616.0686, y: 570.52637}
   children: []
-  VariableType: 0
-  Property:
-    name: New Property
   speaker: me
   dialogueText: nope
+--- !u!114 &-5567703093081198421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 01f8f8842291c734e8b0f48ad54d916a
+  position: {x: 682, y: -59.999966}
+  children: []
+  speaker: me
+  dialogueText: 2
+--- !u!114 &-5534608784282678983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 50694232f52443941b9fd30db6d2c1b2
+  position: {x: 245.50006, y: -207.99997}
+  children: []
+  speaker: me
+  dialogueText: false
 --- !u!114 &-5154251066145449459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,14 +107,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 893fafe683ef70e4abb7424966e0376c
-  position: {x: 745.34296, y: -36.72914}
+  position: {x: 77.06854, y: 502.5264}
   children:
   - {fileID: -8646002385285833071}
-  VariableType: 0
-  Property:
-    name: New Property
   speaker: you
   dialogueText: love
+--- !u!114 &-4392287994222478470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 4063f91e5bfd90340916a491d9faf5b0
+  position: {x: 434.29028, y: 0.0000038146973}
+  children:
+  - {fileID: 7800735795322664622}
+  - {fileID: 3504381493103760582}
+  - {fileID: -5567703093081198421}
+  - {fileID: -8853282534077900222}
+  outputOptions:
+  - Output 0
+  - Output 1
+  - Output 2
+  - Output 3
+--- !u!114 &-3916063337692818578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 91d3ae5d203486f439ae263e37759aa4
+  position: {x: 245.50006, y: -344.99997}
+  children: []
+  speaker: me
+  dialogueText: true
 --- !u!114 &-497011790750698133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,11 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: e06005bb065ef804b8725f40556709cb
-  position: {x: 1284.3429, y: -103.729126}
+  position: {x: 616.0686, y: 435.5264}
   children: []
-  VariableType: 0
-  Property:
-    name: New Property
   speaker: me
   dialogueText: yup
 --- !u!114 &11400000
@@ -108,8 +193,49 @@ MonoBehaviour:
   - {fileID: -497011790750698133}
   - {fileID: -6057771789195366417}
   - {fileID: 994663633816784745}
-  NodeLinks: []
+  - {fileID: 302521320295657954}
+  - {fileID: -3916063337692818578}
+  - {fileID: -5534608784282678983}
+  - {fileID: -4392287994222478470}
+  - {fileID: -8853282534077900222}
+  - {fileID: -5567703093081198421}
+  - {fileID: 3504381493103760582}
+  - {fileID: 7800735795322664622}
   SceneLayoutPrefab: {fileID: 1662424870414749273, guid: e66484b7ae177e84883fec5506429e5f, type: 3}
+--- !u!114 &302521320295657954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0436a84f0c6204fb6e899c92878fa1, type: 3}
+  m_Name: IfNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 388b7292f8650de47b280482456b9ce6
+  position: {x: 43.500122, y: -289.99994}
+  children:
+  - {fileID: -5534608784282678983}
+  - {fileID: -3916063337692818578}
+  comparisonTarget: {fileID: 11400000, guid: 112448fa5c9602e4e9c898c81fb66b31, type: 2}
+  comparisonValue: 9
+  binaryTracker: 0
+  binaryComp:
+  - =
+  - '!='
+  numTracker: 5
+  numComp:
+  - '>'
+  - '>='
+  - =
+  - <=
+  - <
+  - '!='
+  trueChild: {fileID: 0}
+  falseChild: {fileID: 0}
 --- !u!114 &994663633816784745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,11 +250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: db03d3527f4149a46b70dd6a4b950781
-  position: {x: 444, y: 0}
+  position: {x: 112.06854, y: 261.5264}
   children: []
-  VariableType: 0
-  Property:
-    name: New Property
   functionCalls:
     m_PersistentCalls:
       m_Calls:
@@ -144,13 +267,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  calls:
-  - {fileID: 11500000, guid: 5a163ddf07db47847a7969bf0a488f15, type: 3}
-  selectedMethod: 100000000000000000000000
-  methodNames:
-  - helloWorld
-  - 
-  expandCalls: 1
 --- !u!114 &1924058211792453565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,9 +284,24 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   children:
   - {fileID: 4967786164496125243}
-  VariableType: 0
-  Property:
-    name: New Property
+--- !u!114 &3504381493103760582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 67265435b59735e40b237503b4068509
+  position: {x: 682, y: 80.5}
+  children: []
+  speaker: me
+  dialogueText: 3
 --- !u!114 &4967786164496125243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,9 +318,24 @@ MonoBehaviour:
   GUID: ffea58361282f4c4989368ccb3e02ffb
   position: {x: 136.24997, y: -0.0000009536743}
   children:
-  - {fileID: 994663633816784745}
-  VariableType: 0
-  Property:
-    name: New Property
+  - {fileID: -4392287994222478470}
   speaker: me
   dialogueText: yo
+--- !u!114 &7800735795322664622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: f4497bc9bf99d6e4baff1d8032c874ff
+  position: {x: 681.99994, y: 217.99998}
+  children: []
+  speaker: me
+  dialogueText: 4

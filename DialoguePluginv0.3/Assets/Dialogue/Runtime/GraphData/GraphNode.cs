@@ -17,6 +17,8 @@ public class GraphNode : ScriptableObject
     //public List<GraphNodeLink> Links = new List<GraphNodeLink>();
     [HideInInspector]
     public List<GraphNode> children = new List<GraphNode>();
+    [HideInInspector]
+    public List<string> childPortName = new List<string>();
 
     //[HideInInspector]
     //public ExposedVariableType VariableType;
