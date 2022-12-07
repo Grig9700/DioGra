@@ -43,7 +43,7 @@ public class DialogueGraphView : GraphView
     public DialogueContainer Container;
 
     private float _timer;
-    private Vector2 _contextualLocalMousePosition;
+    private Vector2 _localMousePosition;
     
     /*public DialogueGraphView(EditorWindow editorWindow)
     {
@@ -233,12 +233,12 @@ public class DialogueGraphView : GraphView
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
-        _contextualLocalMousePosition = evt.localMousePosition;
+        _localMousePosition = contentViewContainer.WorldToLocal(evt.mousePosition);
         //base.BuildContextualMenu(evt);
         var types = TypeCache.GetTypesDerivedFrom<GraphNode>();
         foreach (Type type in types.Where(type => type.Name != "EntryNodeData" && type.Name != "EntryNode"))
         {
-            evt.menu.AppendAction($"{type.Name}", (n) => CreateGraphNode(type, _contextualLocalMousePosition));
+            evt.menu.AppendAction($"{type.Name}", (n) => CreateGraphNode(type, _localMousePosition));
         }
     }
 
