@@ -47,16 +47,12 @@ public class IfNodeEditor : Editor
             switch (_ifNode.comparisonTarget)
             {
                 case BoolVariable boolVariable:
+                case StringVariable stringVariable:
                     _ifNode.binaryTracker = EditorGUI.Popup(new Rect(60, 0, 40, 20), _ifNode.binaryTracker, _ifNode.binaryComp);
                     break;
                 case FloatVariable floatVariable:
-                    _ifNode.numTracker = EditorGUI.Popup(new Rect(60, 0, 40, 20), _ifNode.numTracker, _ifNode.numComp);
-                    break;
                 case IntVariable intVariable:
                     _ifNode.numTracker = EditorGUI.Popup(new Rect(60, 0, 40, 20), _ifNode.numTracker, _ifNode.numComp);
-                    break;
-                case StringVariable stringVariable:
-                    _ifNode.binaryTracker = EditorGUI.Popup(new Rect(60, 0, 40, 20), _ifNode.binaryTracker, _ifNode.binaryComp);
                     break;
                 default:
                     Debug.LogError($"Invalid comparison target");

@@ -101,11 +101,6 @@ public class DialogueManager : MonoBehaviour
                 break;
             
             case IfNode ifNode:
-                if (ifNode.comparisonTarget == null)
-                {
-                    Debug.LogError($"If node did not contain a comparison target");
-                }
-
                 if (ifNode.RunComparison())
                 {
                     GetAndStartNext(ifNode.childPortName[0] == "True" ? ifNode.children[0] : ifNode.children[1]);
