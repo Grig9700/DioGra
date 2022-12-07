@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
 
     private List<GameObject> _buttons;
     private SceneLayout _scene;
-    private string _getNodeByGUID;
+    //private string _getNodeByGUID;
     private Stack<GraphNode> _previousNodes;
 
     private GraphNode _currentNode;
@@ -66,29 +66,24 @@ public class DialogueManager : MonoBehaviour
         ClearButtons();
         _currentNode = _previousNodes.Pop();
         
-        Next(true);
+        Next();
     }
 
-    public void Next(bool alreadyPulled = false)
+    public void Next()
     {
         if (_buttons.Count > 0)
             return;
-        
-        if (!alreadyPulled)
-            //GetNext();
-            GetNodeByGuid();
 
         switch (_currentNode)
         {
             case EntryNode entryNode:
-                _getNodeByGUID = entryNode.children.First().GUID;
-                Next();
+                GetAndStartNext();
                 break;
             
             case DialogueNode dialogueNode:
                 _scene.nameField.text = dialogueNode.speaker;
                 _scene.textField.text = dialogueNode.dialogueText;
-                _getNodeByGUID = dialogueNode.children.First().GUID;
+                GetNext();
                 break;
             
             case ChoiceNode choiceNode:
@@ -99,7 +94,7 @@ public class DialogueManager : MonoBehaviour
                     int index = i;
                     var obj = Instantiate(_scene.buttonPrefab, _scene.viewPort.transform);
                     obj.GetComponent<RectTransform>().transform.localPosition = new Vector2(91.5f, -100f + i * -height);
-                    obj.GetComponent<Button>().onClick.AddListener(() => { Button(buttonsToMake[index].GUID);});
+                    obj.GetComponent<Button>().onClick.AddListener(() => { Button(buttonsToMake[index]);});
                     obj.GetComponentInChildren<Text>().text = choiceNode.childPortName[index];
                     _buttons.Add(obj);
                 }
@@ -113,20 +108,19 @@ public class DialogueManager : MonoBehaviour
 
                 if (ifNode.RunComparison())
                 {
-                    _currentNode = ifNode.childPortName[0] == "True" ? ifNode.children[0] : ifNode.children[1];
+                    GetAndStartNext(ifNode.childPortName[0] == "True" ? ifNode.children[0] : ifNode.children[1]);
                 }
                 else
                 {
-                    _currentNode = ifNode.childPortName[0] == "False" ? ifNode.children[0] : ifNode.children[1];
+                    GetAndStartNext(ifNode.childPortName[0] == "False" ? ifNode.children[0] : ifNode.children[1]);
                 }
-                Next(true);
                 break;
             
             case ScriptNode scriptNode:
                 //scriptNode.CreateActions(this);
                 //scriptNode.CallActions();
                 scriptNode.InvokeFunctionCalls();
-                Next();
+                GetAndStartNext();
                 break;
             
             default:
@@ -135,14 +129,26 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void GetNodeByGuid(bool getStartNode = false)
+    private void GetNext(GraphNode childNode = null)
     {
-        GraphNode tempNode = getStartNode ? container.GraphNodes.First(node => node.GUID == _getNodeByGUID) 
-            : _currentNode.children.First(node => node.GUID == _getNodeByGUID);
+        _previousNodes.Push(_currentNode);
+        _currentNode = childNode == null ? _currentNode.children.First() : childNode;
+    }
+    private void GetAndStartNext(GraphNode childNode = null)
+    {
+        _previousNodes.Push(_currentNode);
+        _currentNode = childNode == null ? _currentNode.children.First() : childNode;
+        Next();
+    }
+    
+    private void GetNodeByGuid(string getNodeByGUID, bool getStartNode = false)
+    {
+        GraphNode tempNode = getStartNode ? container.GraphNodes.First(node => node.GUID == getNodeByGUID) 
+            : _currentNode.children.First(node => node.GUID == getNodeByGUID);
         
         if (tempNode == null)
         {
-            Debug.LogWarning($"No node by GUID {_getNodeByGUID} was found");
+            Debug.LogWarning($"No node by GUID {getNodeByGUID} was found");
             return;
         }
         if (!getStartNode)
@@ -150,12 +156,10 @@ public class DialogueManager : MonoBehaviour
         _currentNode = tempNode;
     }
     
-    public void Button(string childGUID)
+    public void Button(GraphNode child)
     {
-        _previousNodes.Push(_currentNode);
-        _getNodeByGUID = childGUID;
         ClearButtons();
-        Next();
+        GetAndStartNext(child);
     }
     
     public void Skip()
@@ -219,11 +223,10 @@ public class DialogueManager : MonoBehaviour
         _scene = sceneExists ? Instantiate(obj, _canvas.transform).GetComponent<SceneLayout>() : 
             Instantiate(container.SceneLayoutPrefab, _canvas.transform).GetComponent<SceneLayout>();
         PrepareScene();
-        _getNodeByGUID = "StartPoint";
         
-        GetNodeByGuid(true);
+        GetNodeByGuid("StartPoint",true);
         
-        Next(true);
+        Next();
     }
 
     private void PrepareScene()
