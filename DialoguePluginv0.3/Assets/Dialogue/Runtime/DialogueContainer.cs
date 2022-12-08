@@ -52,6 +52,7 @@ public class DialogueContainer : ScriptableObject
     {
         parent.children.Add(child);
         parent.childPortName.Add(portName);
+        EditorUtility.SetDirty(parent);
     }
 
     public void RemoveChild(GraphNode parent, GraphNode child)
@@ -64,6 +65,7 @@ public class DialogueContainer : ScriptableObject
             break;
         }
         parent.children.Remove(child);
+        EditorUtility.SetDirty(parent);
     }
 
     public List<GraphNode> GetChildren(GraphNode parent)
