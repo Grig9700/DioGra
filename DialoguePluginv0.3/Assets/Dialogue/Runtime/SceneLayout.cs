@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class SceneLayout : MonoBehaviour //ScriptableObject
 {
     public Image background;
-    public Image actor;
+    public Image dialogueCharacter;
     public Image textFieldBackground;
     public Text nameField;
     public Text textField;
-    public GameObject viewPort;
-    //public GameObject buttonRegion;
+    public GameObject viewPortContent;
+    public float buttonSpacing;
     public GameObject buttonPrefab;
     public GameObject skipButton;
     public GameObject nextButton;

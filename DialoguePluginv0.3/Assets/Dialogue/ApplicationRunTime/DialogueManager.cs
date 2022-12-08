@@ -88,12 +88,12 @@ public class DialogueManager : MonoBehaviour
             
             case ChoiceNode choiceNode:
                 var buttonsToMake = choiceNode.children;//container.NodeLinks.Where(x => x.baseNodeGUID == _getNodeByGUID).ToList();
-                var height = _scene.buttonPrefab.GetComponent<RectTransform>().rect.height;
+                var height = _scene.buttonPrefab.GetComponent<RectTransform>().rect.height + _scene.buttonSpacing;
                 for (int i = 0; i < buttonsToMake.Count(); i++)
                 {
                     int index = i;
-                    var obj = Instantiate(_scene.buttonPrefab, _scene.viewPort.transform);
-                    obj.GetComponent<RectTransform>().transform.localPosition = new Vector2(91.5f, -100f + i * -height);
+                    var obj = Instantiate(_scene.buttonPrefab, _scene.viewPortContent.transform);
+                    obj.GetComponent<RectTransform>().transform.localPosition = new Vector2(0, -100 + i * -height);
                     obj.GetComponent<Button>().onClick.AddListener(() => { Button(buttonsToMake[index]);});
                     obj.GetComponentInChildren<Text>().text = choiceNode.childPortName[index];
                     _buttons.Add(obj);

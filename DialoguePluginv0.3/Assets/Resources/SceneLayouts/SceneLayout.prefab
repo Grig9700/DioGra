@@ -186,11 +186,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 2602887350769331844}
-  actor: {fileID: 1409279799967051913}
+  dialogueCharacter: {fileID: 1409279799967051913}
   textFieldBackground: {fileID: 2731520487172971085}
   nameField: {fileID: 2731520487053134548}
   textField: {fileID: 2731520486418385562}
-  viewPort: {fileID: 9086551084192845159}
+  viewPortContent: {fileID: 6219719742814489231}
+  buttonSpacing: 0
+  viewSize: {x: 200, y: 200}
   buttonPrefab: {fileID: 3270177501629989179, guid: a452ff3da78bf3b4bb73ad994e9fe952, type: 3}
   skipButton: {fileID: 6566481293808908140}
   nextButton: {fileID: 6012179246467804199}
@@ -1478,7 +1480,7 @@ GameObject:
   - component: {fileID: 6037092266611472316}
   - component: {fileID: 1409279799967051913}
   m_Layer: 5
-  m_Name: ActorImage
+  m_Name: DialogueCharacterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

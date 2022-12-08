@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-963257824745285088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: d241249b26fc3024a818436816d0c38b
+  position: {x: 189, y: 167}
+  children: []
+  childPortName: []
+  outputOptions: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
+  m_Name: bot
+  m_EditorClassIdentifier: 
+  GraphNodes:
+  - {fileID: 8145690520777134270}
+  - {fileID: 3388921343322628556}
+  - {fileID: 5645724049589597650}
+  - {fileID: -963257824745285088}
+  SceneLayoutPrefab: {fileID: 0}
+--- !u!114 &3388921343322628556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 0f911fed51670a747ab700ef8d4e7456
+  position: {x: 137, y: 254.04}
+  children: []
+  childPortName: []
+  outputOptions:
+  - Hi
+  - Mate
+  - Bane!
+--- !u!114 &5645724049589597650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 2fff2e1acf181c84693c62fde3ada8d0
+  position: {x: 418, y: -0.5}
+  children: []
+  childPortName: []
+  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
+  expressionSelector: 0
+  dialogueText: Not again...
+--- !u!114 &8145690520777134270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d06d2165062d84fa2515bbdb375ff0, type: 3}
+  m_Name: Start Point
+  m_EditorClassIdentifier: 
+  entryNode: 1
+  GUID: StartPoint
+  position: {x: 0, y: 0}
+  children: []
+  childPortName: []
