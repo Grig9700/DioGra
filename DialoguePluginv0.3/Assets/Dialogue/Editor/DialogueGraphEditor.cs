@@ -9,7 +9,6 @@ public class DialogueGraphEditor : EditorWindow
     private DialogueGraphView _graphView;
     private InspectorView _inspectorView;
     private bool _foldersExist;
-    private bool _exposedPropertiesExist;
     
     [MenuItem("Dialogue Graph Editor/Editor...")]
     public static void ShowExample()
@@ -21,6 +20,8 @@ public class DialogueGraphEditor : EditorWindow
     /*[MenuItem("Dialogue Graph Editor/New Dialogue")]
     public static void MakeNewDialogueMenuItem()
     {
+        CreateFolders();
+        
         var dialogueContainer =
             FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*");
 
@@ -34,8 +35,6 @@ public class DialogueGraphEditor : EditorWindow
                     FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"New Dialogue {i}*");
             }
         }
-
-        CreateFolders();
         
         AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DialogueContainer>(),
             $"Assets/Resources/Dialogues/New Dialogue {i}.asset");
@@ -45,9 +44,6 @@ public class DialogueGraphEditor : EditorWindow
     {
         if (!_foldersExist)
             _foldersExist = CreateFolders();
-        
-        if (!_exposedPropertiesExist)
-            _exposedPropertiesExist = CreateExposedProperties();
         
         var dialogueContainer =
             FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*", null, true);
@@ -70,17 +66,6 @@ public class DialogueGraphEditor : EditorWindow
         if (!AssetDatabase.IsValidFolder("Assets/Resources/Dialogues"))
             AssetDatabase.CreateFolder("Assets/Resources", "Dialogues");
         
-        return true;
-    }
-
-    private static bool CreateExposedProperties()
-    {
-        var exposedPropertiesContainer =
-            FindAndLoadResource.FindAndLoadFirstInResourceFolder<ExposedPropertyContainer>("ExposedPropertyContainer*", null, true);
-        if (exposedPropertiesContainer != null) 
-            return true;
-        exposedPropertiesContainer = ScriptableObject.CreateInstance<ExposedPropertyContainer>();
-        AssetDatabase.CreateAsset(exposedPropertiesContainer, $"Assets/Resources/ExposedPropertyContainer.asset");
         return true;
     }
     

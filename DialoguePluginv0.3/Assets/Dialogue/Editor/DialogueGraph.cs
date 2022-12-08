@@ -17,17 +17,6 @@ public class DialogueGraph : EditorWindow
     private bool _showBlackboard = true;
     private Blackboard _blackboard;
     private Toolbar _toolbar;
-    
-    private ExposedVariableType _exposedVariableType;
-    //private ButtonWithMenu typeButton;
-    
-    private enum ExposedVariableType
-    {
-        Bool,
-        Float,
-        Int,
-        String
-    }
 
     public DialogueGraph(DialogueGraphView graphView)
     {
@@ -45,10 +34,8 @@ public class DialogueGraph : EditorWindow
     {
         _showBlackboard = true;
         _showMiniMap = true;
-        ConstructGraph();
         GenerateToolbar();
         GenerateMiniMap();
-        GenerateBlackboard();
         FixFunkyButtons();
     }
 
@@ -56,66 +43,6 @@ public class DialogueGraph : EditorWindow
     {
         ShowHideMiniMap();
         ShowHideBlackboard();
-    }
-
-    public void CreateBlackBoardElements()
-    {
-        EnumField typeField = new EnumField(_exposedVariableType);
-        typeField.RegisterValueChangedCallback(evt => _exposedVariableType = (ExposedVariableType)evt.newValue);
-        _blackboard.Add(typeField);
-        //_blackboard.Add(new BlackboardSection{ title = "Exposed Variables"});
-        _blackboard.title = "Exposed Variables";
-        _blackboard.scrollable = true;
-    }
-    
-    private void GenerateBlackboard()
-    {
-        _blackboard = new Blackboard(_graphView);
-        
-        CreateBlackBoardElements();
-        
-        _blackboard.addItemRequested = blackboard1 => { AddBlackboardProperty(_exposedVariableType);};
-        _blackboard.editTextRequested = (blackboard1, element, newValue) =>
-        {
-            var oldPropertyName = ((BlackboardField)element).text;
-            if (_graphView.ExposedPropertiesList.Any(x => x.name == newValue))
-            {
-                Debug.LogError("That property name already exists");
-                return;
-            }
-
-            var propertyIndex = _graphView.ExposedPropertiesList.FindIndex(x => x.name == oldPropertyName);
-            _graphView.ExposedPropertiesList[propertyIndex].name = newValue;
-            ((BlackboardField)element).text = newValue;
-            //blackboardField.RegisterCallback<ContextualMenuPopulateEvent>(MyMenuPopulateCB);
-        };
-        _blackboard.moveItemRequested = (blackboard, i, arg3) =>
-        {
-            
-        };
-        
-        _blackboard.SetPosition(new Rect(10, 30, 200, 140));
-        _graphView.Blackboard = _blackboard;
-        _graphView.Add(_blackboard);
-    }
-
-    private void AddBlackboardProperty(ExposedVariableType current)
-    {
-        switch (current)
-        {
-            case ExposedVariableType.Bool:
-                _graphView.AddPropertyToBlackboard(new ExposedProperty<bool>()); 
-                break;
-            case ExposedVariableType.Float:
-                _graphView.AddPropertyToBlackboard(new ExposedProperty<float>()); 
-                break;
-            case ExposedVariableType.Int:
-                _graphView.AddPropertyToBlackboard(new ExposedProperty<int>()); 
-                break;
-            case ExposedVariableType.String:
-                _graphView.AddPropertyToBlackboard(new ExposedProperty<string>()); 
-                break;
-        }
     }
     
     private void GenerateMiniMap()
@@ -125,20 +52,6 @@ public class DialogueGraph : EditorWindow
             new Vector2(position.width - _miniMap.maxWidth - 10, 30));
         _miniMap.SetPosition(new Rect(coords.x, coords.y, 200, 140));
         _graphView.Add(_miniMap);
-    }
-
-    private void ConstructGraph()
-    {
-        //_graphView.StretchToParentSize();
-        //rootVisualElement.Add(_graphView);
-        
-        // _graphView = new DialogueGraphView(this)
-        // {
-        //     name = "Dialogue Graph"
-        // };
-        //
-        // _graphView.StretchToParentSize();
-        // rootVisualElement.Add(_graphView);
     }
 
     private void GenerateToolbar()
@@ -156,7 +69,6 @@ public class DialogueGraph : EditorWindow
         
         _toolbar.Add(new Button( () => RequestDataOperation(true)) {text = "Save"});
         _toolbar.Add(new Button( () => RequestDataOperation(false)) {text = "Load"});
-        _toolbar.Add(new Button( ClearGraph) {text = "Clear"});
         
         //_toolbar.Add(new Button( GetListeners.GetListenerNumber()) {text = "Test Parameters"});
         
@@ -194,13 +106,6 @@ public class DialogueGraph : EditorWindow
         //    saveUtility.SaveData(_filename);
         //else
         //    saveUtility.LoadData(_filename, this);
-    }
-
-    private void ClearGraph()
-    {
-        //var saveUtility = GraphSaveUtility.GetInstance(_graphView);
-        //saveUtility.Clear();
-        CreateBlackBoardElements();
     }
     
     private void OnDisable()

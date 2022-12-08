@@ -19,15 +19,6 @@ public class GraphNodeView : Node
     public readonly Vector2 defaultNodeSize = new Vector2(400, 400);
     
     public Editor editor;
-    
-    
-    public enum ExposedVariableType
-    {
-        Bool,
-        Float,
-        Int,
-        String
-    }
 
     protected void GenerateCustomInspector()
     {

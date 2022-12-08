@@ -9,9 +9,6 @@ using UnityEngine.UIElements;
 [Serializable]
 public class IfNodeView : GraphNodeView
 {
-    public ExposedVariableType VariableType;
-    public ExposedProperties Property;
-    
     private IMGUIContainer _container;
     
     public IfNodeView(GraphNode node)

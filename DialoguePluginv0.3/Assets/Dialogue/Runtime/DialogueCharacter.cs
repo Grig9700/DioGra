@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu]
-public class Character : ScriptableObject
+public class DialogueCharacter : ScriptableObject
 {
     public List<CharacterExpressions> expressions = new List<CharacterExpressions>();
 }
