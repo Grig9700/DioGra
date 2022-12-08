@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class DialogueNodeView : GraphNodeView
 {
-    public string speaker;
+    public Character speaker;
     public string dialogueText;
 
     private IMGUIContainer _container;

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
 #if UNITY_EDITOR
+using System;
 using UnityEditor;
 #endif
 
@@ -35,12 +37,22 @@ public class DialogueNodeEditor : Editor
             Initialize();
 
         //Change in the future to popupfield with created actors
-        EditorGUILayout.BeginHorizontal();
-        EditorGUI.LabelField(new Rect(5, 0, 50, 20),"Speaker");
-        EditorGUILayout.Space(20);
-        //EditorGUILayout.PropertyField(_speaker, GUIContent.none);
-        _dialogueNode.speaker = EditorGUI.TextField(new Rect(60, 0, 145, 20), _dialogueNode.speaker);
-        EditorGUILayout.EndHorizontal();
+        //EditorGUILayout.BeginHorizontal();
+        //EditorGUI.LabelField(new Rect(5, 0, 50, 20),"Speaker");
+        //EditorGUILayout.Space(20);
+        EditorGUILayout.PropertyField(_speaker, GUIContent.none);
+
+        if (_dialogueNode.speaker != null)
+        {
+            string[] expressions = _dialogueNode.speaker.expressions
+                .Where(expression => !String.IsNullOrEmpty(expression.emotion))
+                .Select(expression => expression.emotion).ToArray();
+
+            _dialogueNode.expressionSelector = EditorGUILayout.Popup(_dialogueNode.expressionSelector, expressions);
+        }
+        
+        //_dialogueNode.speaker = EditorGUI.TextField(new Rect(60, 0, 145, 20), _dialogueNode.speaker);
+        //EditorGUILayout.EndHorizontal();
         //EditorGUILayout.PropertyField(_speaker);
         
         EditorGUILayout.LabelField("Dialogue Text");

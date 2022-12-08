@@ -81,7 +81,7 @@ public class DialogueManager : MonoBehaviour
                 break;
             
             case DialogueNode dialogueNode:
-                _scene.nameField.text = dialogueNode.speaker;
+                _scene.nameField.text = dialogueNode.speaker.name;
                 _scene.textField.text = dialogueNode.dialogueText;
                 GetNext();
                 break;

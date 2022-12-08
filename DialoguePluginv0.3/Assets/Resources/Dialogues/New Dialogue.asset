@@ -19,7 +19,8 @@ MonoBehaviour:
   - {fileID: -3705116024015200021}
   childPortName:
   - Output
-  speaker: me
+  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
+  expressionSelector: 0
   dialogueText: Yo
 --- !u!114 &-3705116024015200021
 MonoBehaviour:

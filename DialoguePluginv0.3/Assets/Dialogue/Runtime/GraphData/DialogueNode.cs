@@ -4,6 +4,7 @@ using UnityEngine;
 [Serializable]
 public class DialogueNode : GraphNode
 {
-    public string speaker;
+    public Character speaker;
+    public int expressionSelector;
     public string dialogueText;
 }
