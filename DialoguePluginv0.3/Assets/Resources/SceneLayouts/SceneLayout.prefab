@@ -192,7 +192,6 @@ MonoBehaviour:
   textField: {fileID: 2731520486418385562}
   viewPortContent: {fileID: 6219719742814489231}
   buttonSpacing: 0
-  viewSize: {x: 200, y: 200}
   buttonPrefab: {fileID: 3270177501629989179, guid: a452ff3da78bf3b4bb73ad994e9fe952, type: 3}
   skipButton: {fileID: 6566481293808908140}
   nextButton: {fileID: 6012179246467804199}
@@ -323,7 +322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5337385061361345357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1485,7 +1484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3675888350843660944
 RectTransform:
   m_ObjectHideFlags: 0

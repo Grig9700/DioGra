@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public RunMode runMode;
     public DialogueContainer container;
 
     private List<GameObject> _buttons;
     private SceneLayout _scene;
-    //private string _getNodeByGUID;
     private Stack<GraphNode> _previousNodes;
 
     private GraphNode _currentNode;
@@ -21,12 +19,11 @@ public class DialogueManager : MonoBehaviour
         _buttons = new List<GameObject>();
         _previousNodes = new Stack<GraphNode>();
         _canvas = GameObject.Find("Canvas");
-        bool eventSystemExists = GameObject.Find("EventSystem");
         
         if (_canvas == null)
             Debug.LogError("Missing Canvas");
         
-        if (!eventSystemExists)
+        if (!GameObject.Find("EventSystem"))
             Debug.LogError("Missing Event System");
     }
 
@@ -55,8 +52,8 @@ public class DialogueManager : MonoBehaviour
             LoadNewDialogue("bot"); //write name of fixed dialogue to test system
         }
     }
-    
-    public void Back()
+
+    private void Back()
     {
         if (_previousNodes.Count <= 1)
             return;
@@ -69,7 +66,7 @@ public class DialogueManager : MonoBehaviour
         Next();
     }
 
-    public void Next()
+    private void Next()
     {
         if (_buttons.Count > 0)
             return;
@@ -81,6 +78,14 @@ public class DialogueManager : MonoBehaviour
                 break;
             
             case DialogueNode dialogueNode:
+                if (dialogueNode.speaker.expressions == null || dialogueNode.speaker.expressions?[dialogueNode.expressionSelector].image == null)
+                    _scene.dialogueCharacter.gameObject.SetActive(false);
+                else
+                {
+                    _scene.dialogueCharacter.gameObject.SetActive(true);
+                    _scene.dialogueCharacter = dialogueNode.speaker.expressions[dialogueNode.expressionSelector].image;
+                }
+                
                 _scene.nameField.text = dialogueNode.speaker.name;
                 _scene.textField.text = dialogueNode.dialogueText;
                 GetNext();
@@ -150,14 +155,14 @@ public class DialogueManager : MonoBehaviour
             _previousNodes.Push(_currentNode);
         _currentNode = tempNode;
     }
-    
-    public void Button(GraphNode child)
+
+    private void Button(GraphNode child)
     {
         ClearButtons();
         GetAndStartNext(child);
     }
-    
-    public void Skip()
+
+    private void Skip()
     {
         Debug.LogError($"[Dev] Skip not implemented");
     }
@@ -171,7 +176,7 @@ public class DialogueManager : MonoBehaviour
         _buttons.Clear();
     }
     
-    private void EndDialogue(bool loadCall = false)
+    public void EndDialogue(bool loadCall = false)
     {
         if (_scene != null)
             DestroyImmediate(_scene.gameObject);
@@ -228,8 +233,15 @@ public class DialogueManager : MonoBehaviour
     {
         //Need to account for different scene comps
         _scene.backButton.GetComponent<Button>().onClick.AddListener(Back);
-        _scene.nextButton.GetComponent<Button>().onClick.AddListener(() => { Next(); });
+        _scene.nextButton.GetComponent<Button>().onClick.AddListener(Next);
         _scene.skipButton.GetComponent<Button>().onClick.AddListener(Skip);
+
+        if (container.defaultBackground != null)
+            _scene.background = container.defaultBackground;
+        else
+            _scene.background.gameObject.SetActive(false);
+        
+        _scene.dialogueCharacter.gameObject.SetActive(false);
     }
 }
 

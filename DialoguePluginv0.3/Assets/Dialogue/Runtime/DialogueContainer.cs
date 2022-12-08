@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -13,6 +14,7 @@ public class DialogueContainer : ScriptableObject
     public List<GraphNode> GraphNodes = new List<GraphNode>();
     //public List<NodeLinkData> NodeLinks = new List<NodeLinkData>();
     public GameObject SceneLayoutPrefab;
+    public Image defaultBackground;
 
 #if UNITY_EDITOR
     public GraphNode CreateEntryGraphNode()
