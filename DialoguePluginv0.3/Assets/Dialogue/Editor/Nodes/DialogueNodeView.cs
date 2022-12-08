@@ -9,7 +9,8 @@ public class DialogueNodeView : GraphNodeView
 {
     public string speaker;
     public string dialogueText;
-    
+
+    private IMGUIContainer _container;
     
     public DialogueNodeView(GraphNode node)
     {
@@ -27,8 +28,8 @@ public class DialogueNodeView : GraphNodeView
         DialogueNode dialogueNode = Node as DialogueNode;
         UnityEngine.Object.DestroyImmediate(editor);
         editor = Editor.CreateEditor(dialogueNode);
-        IMGUIContainer container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
-        outputContainer.Add(container);
+        _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
+        outputContainer.Add(_container);
     }
     
     public override void SetPosition(Rect newPos)
@@ -36,5 +37,15 @@ public class DialogueNodeView : GraphNodeView
         base.SetPosition(newPos);
         Node.position.x = newPos.xMin;
         Node.position.y = newPos.yMin;
+    }
+
+    protected override void ToggleCollapse()
+    {
+        base.ToggleCollapse();
+        if(!expanded)
+            outputContainer.Remove(_container);
+        else
+            outputContainer.Add(_container);
+        MarkDirtyRepaint();
     }
 }

@@ -12,6 +12,7 @@ public class IfNodeView : GraphNodeView
     public ExposedVariableType VariableType;
     public ExposedProperties Property;
     
+    private IMGUIContainer _container;
     
     public IfNodeView(GraphNode node)
     {
@@ -28,8 +29,8 @@ public class IfNodeView : GraphNodeView
         IfNode ifNode = Node as IfNode;
         UnityEngine.Object.DestroyImmediate(editor);
         editor = Editor.CreateEditor(ifNode);
-        IMGUIContainer container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
-        outputContainer.Add(container);
+        _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
+        outputContainer.Add(_container);
         
         GenerateOutputPort("True");
         GenerateOutputPort("False");
@@ -40,5 +41,15 @@ public class IfNodeView : GraphNodeView
         base.SetPosition(newPos);
         Node.position.x = newPos.xMin;
         Node.position.y = newPos.yMin;
+    }
+
+    protected override void ToggleCollapse()
+    {
+        base.ToggleCollapse();
+        if(!expanded)
+            outputContainer.Remove(_container);
+        else
+            outputContainer.Add(_container);
+        MarkDirtyRepaint();
     }
 }

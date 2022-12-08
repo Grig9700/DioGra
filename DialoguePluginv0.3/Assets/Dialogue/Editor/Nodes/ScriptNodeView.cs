@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 public class ScriptNodeView : GraphNodeView
 {
     //public UnityEvent scripts;
-    
+    private IMGUIContainer _container;
     
     public ScriptNodeView(GraphNode node)
     {
@@ -27,8 +27,8 @@ public class ScriptNodeView : GraphNodeView
         ScriptNode scriptNode = Node as ScriptNode;
         UnityEngine.Object.DestroyImmediate(editor);
         editor = Editor.CreateEditor(scriptNode);
-        IMGUIContainer container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
-        outputContainer.Add(container);
+        _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
+        outputContainer.Add(_container);
     }
     
     public override void SetPosition(Rect newPos)
@@ -36,6 +36,16 @@ public class ScriptNodeView : GraphNodeView
         base.SetPosition(newPos);
         Node.position.x = newPos.xMin;
         Node.position.y = newPos.yMin;
+    }
+
+    protected override void ToggleCollapse()
+    {
+        base.ToggleCollapse();
+        if(!expanded)
+            outputContainer.Remove(_container);
+        else
+            outputContainer.Add(_container);
+        MarkDirtyRepaint();
     }
     
     // private void InvokeScripts()

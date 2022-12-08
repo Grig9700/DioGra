@@ -14,11 +14,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: f6615075605896749a8d4b348624b31d
-  position: {x: 133.75, y: -0.000030517578}
-  children: []
-  childPortName: []
+  position: {x: 133.77255, y: 0.0000064373016}
+  children:
+  - {fileID: -3705116024015200021}
+  childPortName:
+  - Output
   speaker: me
   dialogueText: Yo
+--- !u!114 &-3705116024015200021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b19689c83373d48b23e8306122e90c, type: 3}
+  m_Name: ScriptNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 4f487b3a9c812e84fa83407b748f848f
+  position: {x: 450.03003, y: 0.0000064373016}
+  children:
+  - {fileID: -2017764254269018251}
+  childPortName:
+  - Output
+  functionCalls:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-2017764254269018251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 196bfae7029eb8945bbdaf0aa2313fd4
+  position: {x: 777.9001, y: 0.0000064373016}
+  children:
+  - {fileID: 3846478872905043676}
+  childPortName:
+  - Output 0
+  outputOptions:
+  - Output 0
+  - Output 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,6 +80,10 @@ MonoBehaviour:
   GraphNodes:
   - {fileID: 946216663623110506}
   - {fileID: -5155598959680687211}
+  - {fileID: -3705116024015200021}
+  - {fileID: -2017764254269018251}
+  - {fileID: 3846478872905043676}
+  - {fileID: 8393143789122075890}
   SceneLayoutPrefab: {fileID: 0}
 --- !u!114 &946216663623110506
 MonoBehaviour:
@@ -54,3 +104,59 @@ MonoBehaviour:
   - {fileID: -5155598959680687211}
   childPortName:
   - Output
+--- !u!114 &3846478872905043676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 56c1ff619d86f6e4cb834e3d71341e5f
+  position: {x: 1015.7076, y: 0.0000064373016}
+  children: []
+  childPortName: []
+  outputOptions:
+  - Output 0
+  - Output 1
+  - Output 2
+--- !u!114 &8393143789122075890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0436a84f0c6204fb6e899c92878fa1, type: 3}
+  m_Name: IfNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 5d32793eadb7dca428804435ed65e821
+  position: {x: 172, y: 231}
+  children:
+  - {fileID: -3705116024015200021}
+  - {fileID: -2017764254269018251}
+  childPortName:
+  - True
+  - False
+  comparisonTarget: {fileID: 11400000, guid: 112448fa5c9602e4e9c898c81fb66b31, type: 2}
+  comparisonValue: 1
+  binaryTracker: 0
+  binaryComp:
+  - =
+  - '!='
+  numTracker: 0
+  numComp:
+  - '>'
+  - '>='
+  - =
+  - <=
+  - <
+  - '!='
