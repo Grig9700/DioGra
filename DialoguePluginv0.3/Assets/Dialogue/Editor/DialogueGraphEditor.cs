@@ -17,13 +17,13 @@ public class DialogueGraphEditor : EditorWindow
         window.titleContent = new GUIContent("DialogueGraphEditor");
     }
 
-    /*[MenuItem("Dialogue Graph Editor/New Dialogue")]
+    [MenuItem("Dialogue Graph Editor/New Dialogue")]
     public static void MakeNewDialogueMenuItem()
     {
         CreateFolders();
         
         var dialogueContainer =
-            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*");
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*", "/Dialogues", true);
 
         int i = 0;
         if (dialogueContainer != null)
@@ -32,13 +32,13 @@ public class DialogueGraphEditor : EditorWindow
             {
                 i++;
                 dialogueContainer =
-                    FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"New Dialogue {i}*");
+                    FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"New Dialogue {i}*","/Dialogues", true);
             }
         }
         
         AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DialogueContainer>(),
             $"Assets/Resources/Dialogues/New Dialogue {i}.asset");
-    }*/
+    }
     
     private DialogueContainer MakeNewDialogue()
     {
