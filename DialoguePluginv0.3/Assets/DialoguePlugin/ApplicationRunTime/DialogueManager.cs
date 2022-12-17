@@ -71,6 +71,9 @@ public class DialogueManager : MonoBehaviour
         if (_buttons.Count > 0)
             return;
 
+        if (_currentNode == null)
+            EndDialogue();
+        
         switch (_currentNode)
         {
             case EntryNode entryNode:
@@ -92,6 +95,12 @@ public class DialogueManager : MonoBehaviour
                 break;
             
             case ChoiceNode choiceNode:
+                if (CheckNullOrEmpty(choiceNode))
+                {
+                    EndDialogue();
+                    break;
+                }
+                
                 var buttonsToMake = choiceNode.children;//container.NodeLinks.Where(x => x.baseNodeGUID == _getNodeByGUID).ToList();
                 var height = _scene.buttonPrefab.GetComponent<RectTransform>().rect.height + _scene.buttonSpacing;
                 for (int i = 0; i < buttonsToMake.Count(); i++)
@@ -106,6 +115,12 @@ public class DialogueManager : MonoBehaviour
                 break;
             
             case IfNode ifNode:
+                if (CheckNullOrEmpty(ifNode))
+                {
+                    EndDialogue();
+                    break;
+                }
+                
                 if (ifNode.RunComparison())
                 {
                     GetAndStartNext(ifNode.childPortName[0] == "True" ? ifNode.children[0] : ifNode.children[1]);
@@ -129,15 +144,20 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private bool CheckNullOrEmpty(GraphNode node)
+    {
+        return !(node.children?.Count <= 0) && node.children != null;
+    }
+    
     private void GetNext(GraphNode childNode = null)
     {
         _previousNodes.Push(_currentNode);
-        _currentNode = childNode == null ? _currentNode.children.First() : childNode;
+        _currentNode = childNode == null ? _currentNode.children?.First() : childNode;
     }
     private void GetAndStartNext(GraphNode childNode = null)
     {
         _previousNodes.Push(_currentNode);
-        _currentNode = childNode == null ? _currentNode.children.First() : childNode;
+        _currentNode = childNode == null ? _currentNode.children?.First() : childNode;
         Next();
     }
     
@@ -149,6 +169,7 @@ public class DialogueManager : MonoBehaviour
         if (tempNode == null)
         {
             Debug.LogWarning($"No node by GUID {getNodeByGUID} was found");
+            EndDialogue();
             return;
         }
         if (!getStartNode)
@@ -243,10 +264,4 @@ public class DialogueManager : MonoBehaviour
         
         _scene.dialogueCharacter.gameObject.SetActive(false);
     }
-}
-
-public enum RunMode
-{
-    FedName,
-    ContainerDialogue
 }
