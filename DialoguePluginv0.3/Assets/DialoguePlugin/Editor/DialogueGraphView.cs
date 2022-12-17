@@ -22,7 +22,7 @@ public class DialogueGraphView : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
         
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Dialogue/Editor/DialogueGraphEditor.uss"); 
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/DialoguePlugin/Editor/DialogueGraphEditor.uss"); 
         styleSheets.Add(styleSheet);
     }
     
@@ -30,7 +30,7 @@ public class DialogueGraphView : GraphView
 
     private Editor _editor;
 
-    private NodeSearchWindow _nodeSearchWindow;
+    //private NodeSearchWindow _nodeSearchWindow;
     
     private DialogueGraphEditor _dialogueEditor;
     
@@ -60,10 +60,10 @@ public class DialogueGraphView : GraphView
             endPort.node != startPort.node).ToList();
     }
 
-    private Port GeneratePort(GraphNodeView nodeView, Direction portOrientation, Port.Capacity capacity = Port.Capacity.Single)
+    /*private Port GeneratePort(GraphNodeView nodeView, Direction portOrientation, Port.Capacity capacity = Port.Capacity.Single)
     {
         return nodeView.InstantiatePort(Orientation.Horizontal, portOrientation, capacity, typeof(float));
-    }
+    }*/
 
     private GraphNodeView FindNodeView(GraphNode node)
     {

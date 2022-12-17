@@ -12,18 +12,13 @@ public class GraphNodeView : Node
     public GraphNode Node;
     
     public string GUID;
-    public bool entryPoint = false;
+    public bool EntryPoint = false;
     public Port InputPort;
     public List<Port> OutputPorts = new List<Port>();
 
-    public readonly Vector2 defaultNodeSize = new Vector2(400, 400);
+    public readonly Vector2 DefaultNodeSize = new Vector2(400, 400);
     
     public Editor editor;
-
-    protected void GenerateCustomInspector()
-    {
-        
-    }
     
     protected void GenerateMultiOutputButton(DialogueGraphView graphView)
     {

@@ -5,11 +5,6 @@ using UnityEngine;
 [Serializable]
 public class IfNode : GraphNode
 {
-    //public ExposedVariableType VariableType;
-    //public ExposedProperties Property;
-    //public bool numComparison;
-    //public NumComparison numComparisonType;
-    //public BinaryComparison binaryComparisonType;
     public VariableObject comparisonTarget;
     public string comparisonValue;
 
@@ -207,38 +202,4 @@ public class IfNode : GraphNode
                 return false;
         }
     }
-
-    /*private VariableObject GetVariableFromObject(VariableObject variableObject)
-    {
-        switch (comparisonTarget)
-        {
-            case BoolVariable boolVariable:
-                return boolVariable;
-            case FloatVariable floatVariable:
-                return floatVariable;
-            case IntVariable intVariable:
-                return intVariable;
-            case StringVariable stringVariable:
-                return stringVariable;
-            default:
-                Debug.LogError($"{variableObject} is not part of this update and could not be read");
-                return null;
-        }
-    }*/
-}
-
-public enum NumComparison
-{
-    GreaterThan,
-    GreaterThanOrEqualTo,
-    EqualTo,
-    LessThanOrEqualTo,
-    LessThan,
-    NotEqualTo
-}
-
-public enum BinaryComparison
-{
-    EqualTo,
-    NotEqualTo
 }

@@ -9,7 +9,6 @@ using UnityEngine.UIElements;
 [Serializable]
 public class ScriptNodeView : GraphNodeView
 {
-    //public UnityEvent scripts;
     private IMGUIContainer _container;
     
     public ScriptNodeView(GraphNode node)
@@ -47,9 +46,4 @@ public class ScriptNodeView : GraphNodeView
             outputContainer.Add(_container);
         MarkDirtyRepaint();
     }
-    
-    // private void InvokeScripts()
-    // {
-    //     scripts.Invoke();
-    // }
 }

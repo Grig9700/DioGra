@@ -36,10 +36,6 @@ public class DialogueNodeEditor : Editor
         if(_firstCall)
             Initialize();
 
-        //Change in the future to popupfield with created actors
-        //EditorGUILayout.BeginHorizontal();
-        //EditorGUI.LabelField(new Rect(5, 0, 50, 20),"Speaker");
-        //EditorGUILayout.Space(20);
         EditorGUILayout.PropertyField(_speaker, GUIContent.none);
 
         if (_dialogueNode.speaker != null)
@@ -50,10 +46,6 @@ public class DialogueNodeEditor : Editor
 
             _dialogueNode.expressionSelector = EditorGUILayout.Popup(_dialogueNode.expressionSelector, expressions);
         }
-        
-        //_dialogueNode.speaker = EditorGUI.TextField(new Rect(60, 0, 145, 20), _dialogueNode.speaker);
-        //EditorGUILayout.EndHorizontal();
-        //EditorGUILayout.PropertyField(_speaker);
         
         EditorGUILayout.LabelField("Dialogue Text");
         EditorGUILayout.PropertyField(_dialogueText, GUIContent.none);

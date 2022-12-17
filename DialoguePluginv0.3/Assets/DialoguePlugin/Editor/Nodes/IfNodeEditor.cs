@@ -15,7 +15,6 @@ public class IfNodeEditor : Editor
     
     private IfNode _ifNode;
     private SerializedProperty _variableTarget;
-    private SerializedProperty _comparisonType;
     private SerializedProperty _comparisonValue;
     private bool _firstCall = true;
     
@@ -23,7 +22,6 @@ public class IfNodeEditor : Editor
     {
         _ifNode = (IfNode)target;
         _variableTarget = serializedObject.FindProperty("comparisonTarget");
-        _comparisonType = serializedObject.FindProperty("comparisonType");
         _comparisonValue = serializedObject.FindProperty("comparisonValue");
         
         _firstCall = false;
@@ -35,10 +33,6 @@ public class IfNodeEditor : Editor
         
         if(_firstCall)
             Initialize();
-
-        //EditorGUILayout.BeginHorizontal();
-        
-        //EditorGUILayout.EndHorizontal();
 
         EditorGUI.PropertyField(new Rect(0, 0, 60, 20), _variableTarget, GUIContent.none);
 
@@ -67,8 +61,6 @@ public class IfNodeEditor : Editor
         
         if (_ifNode.comparisonTarget != null)
             EditorGUI.PropertyField(new Rect(0, 20, 100, 20), _comparisonValue, GUIContent.none);
-        
-        //EditorGUILayout.
         
         serializedObject.ApplyModifiedProperties();
     }
