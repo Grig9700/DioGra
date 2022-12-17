@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.SceneTemplate;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Create Variable/String Variable")]
 public class StringVariable : VariableObject
 {
     public string Value;
