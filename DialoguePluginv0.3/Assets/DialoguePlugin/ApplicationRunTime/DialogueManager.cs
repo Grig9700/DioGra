@@ -95,19 +95,20 @@ public class DialogueManager : MonoBehaviour
                 break;
             
             case ChoiceNode choiceNode:
-                if (CheckNullOrEmpty(choiceNode))
+                if (IsNullOrEmpty(choiceNode))
                 {
                     EndDialogue();
                     break;
                 }
                 
                 var buttonsToMake = choiceNode.children;//container.NodeLinks.Where(x => x.baseNodeGUID == _getNodeByGUID).ToList();
-                var height = _scene.buttonPrefab.GetComponent<RectTransform>().rect.height + _scene.buttonSpacing;
+                var rectT = _scene.buttonPrefab.GetComponent<RectTransform>().rect;
+                var height = rectT.height + _scene.buttonSpacing;
                 for (int i = 0; i < buttonsToMake.Count(); i++)
                 {
                     int index = i;
                     var obj = Instantiate(_scene.buttonPrefab, _scene.viewPortContent.transform);
-                    obj.GetComponent<RectTransform>().transform.localPosition = new Vector2(0, -100 + i * -height);
+                    obj.GetComponent<RectTransform>().transform.localPosition = new Vector2(rectT.width * 0.5f, -100 + i * -height);
                     obj.GetComponent<Button>().onClick.AddListener(() => { Button(buttonsToMake[index]);});
                     obj.GetComponentInChildren<Text>().text = choiceNode.childPortName[index];
                     _buttons.Add(obj);
@@ -115,7 +116,7 @@ public class DialogueManager : MonoBehaviour
                 break;
             
             case IfNode ifNode:
-                if (CheckNullOrEmpty(ifNode))
+                if (IsNullOrEmpty(ifNode))
                 {
                     EndDialogue();
                     break;
@@ -144,9 +145,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private bool CheckNullOrEmpty(GraphNode node)
+    private static bool IsNullOrEmpty(GraphNode node)
     {
-        return !(node.children?.Count <= 0) && node.children != null;
+        return node.children?.Count <= 0 || node.children == null;
     }
     
     private void GetNext(GraphNode childNode = null)

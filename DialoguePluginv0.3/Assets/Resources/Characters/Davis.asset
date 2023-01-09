@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07141a3e91ba2845b72ac3b68cf738a, type: 3}
   m_Name: Davis
   m_EditorClassIdentifier: 
-  images:
-  - emotion: 
-    image: {fileID: 0}
-  - emotion: 
+  expressions:
+  - emotion: Tired
     image: {fileID: 0}

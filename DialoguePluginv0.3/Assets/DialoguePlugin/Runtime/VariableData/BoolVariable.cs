@@ -1,9 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Create Variable/Bool Variable")]
+#if UNITY_EDITOR
+
+using UnityEditor;
+
+#endif
+
 public class BoolVariable : VariableObject
 {
-    public bool Value;
+    [SerializeField] private bool baseValue;
+
+#if UNITY_EDITOR
+    
+    [MenuItem("Assets/Create Variable/Bool Variable")]
+    private static void MakeVariable()
+    {
+        CreateFolders();
+
+        CreateVariable<BoolVariable>("Bool");
+    }
+    
+#endif
+    
+    public bool Value { get; private set; }
+
+    private void OnValidate()
+    {
+        ResetToDefault();
+    }
+
+    public void ResetToDefault()
+    {
+        Value = baseValue;
+    }
+    
+    public void SetValue(bool value)
+    {
+        Value = value;
+        valueChanged.Invoke();
+    }
 }

@@ -87,6 +87,12 @@ public class DialogueGraphEditor : EditorWindow
         _graphView.Initialize(this);
         _inspectorView = root.Q<InspectorView>();
 
+        var runTestButton = root.Q<Button>("TestVariables");
+        if (runTestButton is not null)
+        {
+            runTestButton.clickable.clicked += GetListeners.TestVariableObjectConnections;
+        }
+
         _graphView.Container = MakeNewDialogue();
         
         _graphView.PopulateView(_graphView.Container);

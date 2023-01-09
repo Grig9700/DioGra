@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class TestFunctions : MonoBehaviour
 {
@@ -82,5 +84,36 @@ public class TestFunctions : MonoBehaviour
     public void helloWorld()
     {
         Debug.Log($"Hello World");
+    }
+
+    public DialogueEventListener listener;
+
+    private UnityAction bop;
+
+    public void AddTemporaryListeners()
+    {
+        listener.Response.AddListener(bop);
+    }
+    
+    public void GetListenersFromEvent()
+    {
+        Debug.Log(listener.Response.GetListenerNumber());
+    }
+
+    public BoolVariable value;
+    
+    public void RunBoolValueTest()
+    {
+        Debug.Log(value.Value);
+        value.SetValue(!value.Value);
+        Debug.Log(value.Value);
+        value.ResetToDefault();
+    }
+
+    public VariableObject variableObject;
+    
+    public void RunParamTest()
+    {
+        GetListeners.TestVariableObjectConnections();
     }
 }
