@@ -31,5 +31,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GraphNodes:
   - {fileID: -3764054759837753666}
+  - {fileID: 499284597089063123}
   SceneLayoutPrefab: {fileID: 0}
   defaultBackground: {fileID: 0}
+--- !u!114 &499284597089063123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0436a84f0c6204fb6e899c92878fa1, type: 3}
+  m_Name: IfNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: f3b20e970d2abf24db15642303482997
+  position: {x: 285, y: 217}
+  children: []
+  childPortName: []
+  comparisonTarget: {fileID: 0}
+  comparisonValue: 
+  binaryTracker: 0
+  binaryComp:
+  - =
+  - '!='
+  numTracker: 0
+  numComp:
+  - '>'
+  - '>='
+  - =
+  - <=
+  - <
+  - '!='

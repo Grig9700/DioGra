@@ -13,6 +13,7 @@ using UnityEditor;
 public abstract class VariableObject : ScriptableObject
 {
     public UnityEvent valueChanged;
+    public static string ID;
 
 #if UNITY_EDITOR
     
@@ -28,6 +29,8 @@ public abstract class VariableObject : ScriptableObject
 
     protected static void CreateVariable<T>(string variableType) where T : ScriptableObject
     {
+        ID = GUID.Generate().ToString();
+        
         var variable =
             FindAndLoadResource.FindAndLoadFirstInResourceFolder<T>($"New {variableType} Variable*", "/Variables", true);
 
