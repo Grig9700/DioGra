@@ -44,6 +44,5 @@ public class FindAndLoadResource
             return null;
         Debug.LogError($"No {typeof(T).Name} were found");
         return null;
-
     }
 }

@@ -9,6 +9,6 @@ public class DialogueGameData
     
     public DialogueGameData()
     {
-        
+        dialogueValues = new SerializableDictionary<string, VariableObject>();
     }
 }

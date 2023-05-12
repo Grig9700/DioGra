@@ -83,6 +83,14 @@ public class PersistentDialogueDataManager : MonoBehaviour
     public void NewGame()
     {
         _dialogueGameData = new DialogueGameData();
+
+        var variables = FindAssets.GetAllInstances<VariableObject>();
+
+        foreach (var variable in variables)
+        {
+            _dialogueGameData.dialogueValues.Add(variable.name, variable);
+        }
+        
         SaveGame("DialogueData");
     }
 
