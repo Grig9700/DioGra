@@ -61,7 +61,7 @@ MonoBehaviour:
   - {fileID: 2684057494421395593}
   - {fileID: -1508288925008132780}
   - {fileID: 8008909407141560569}
-  SceneLayoutPrefab: {fileID: 0}
+  SceneLayoutPrefab: {fileID: 1662424870414749273, guid: b248e4324ecb82348a423ce472289797, type: 3}
   defaultBackground: {fileID: 0}
 --- !u!114 &2684057494421395593
 MonoBehaviour:

@@ -9,9 +9,23 @@ public class IfNode : GraphNode
     public string comparisonValue;
 
     public int binaryTracker;
-    public string[] binaryComp = new []{"=", "!="};
+    public string[] binaryComp = {"=", "!="};
     public int numTracker;
-    public string[] numComp = new []{">", ">=", "=", "<=", "<", "!="};
+    public string[] numComp = {">", ">=", "=", "<=", "<", "!="};
+
+    public override NodeReturn Run(SceneLayout scene, DialogueManager manager)
+    {
+        if (IsNullOrEmpty())
+            return NodeReturn.End;
+        
+        manager.SetTargetNode(RunComparison() ? 
+            childPortName[0] == "True" ? children[0] : children[1] : 
+            childPortName[0] == "False" ? children[0] : children[1]);
+
+        return NodeReturn.Next;
+    }
+
+    public override void Clear(){}
 
     public bool RunComparison()
     {

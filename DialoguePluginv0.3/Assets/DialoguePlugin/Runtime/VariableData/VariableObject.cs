@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -28,7 +29,7 @@ public abstract class VariableObject : ScriptableObject
 
     protected static void CreateVariable<T>(string variableType) where T : ScriptableObject
     {
-        var variable =
+        var variable = //FindAssets.GetInstanceByName<T>($"New {variableType} Variable*");//.First();
             FindAndLoadResource.FindAndLoadFirstInResourceFolder<T>($"New {variableType} Variable*", "/Variables", true);
 
         int i = 0;
@@ -39,15 +40,18 @@ public abstract class VariableObject : ScriptableObject
             return;
         }
         
-        while (variable != null)
+        while (variable != null && i != 100)
         {
             i++;
-            variable =
-                FindAndLoadResource.FindAndLoadFirstInResourceFolder<T>($"New {variableType} Variable {i}*","/Variables", true);
+            
+            if (i == 100)
+                Debug.LogError($"New variable creation eject point reached. \n Change existing variable names.");
+
+            variable = //FindAssets.GetInstanceByName<T>($"New {variableType} Variable {i}*"); //.First();
+            FindAndLoadResource.FindAndLoadFirstInResourceFolder<T>($"New {variableType} Variable {i}*","/Variables", true);
         }
         
-        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<T>(),
-            $"Assets/Resources/Variables/New {variableType} Variable {i}.asset");
+        AssetDatabase.CreateAsset(CreateInstance<T>(), $"Assets/Resources/Variables/New {variableType} Variable {i}.asset");
     }
     
 #endif

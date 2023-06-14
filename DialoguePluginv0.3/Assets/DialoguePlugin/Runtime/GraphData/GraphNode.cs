@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [Serializable]
-public class GraphNode : ScriptableObject
+public abstract class GraphNode : ScriptableObject
 {
     public bool entryNode;
     //public string nodeName;
@@ -20,6 +20,14 @@ public class GraphNode : ScriptableObject
     [HideInInspector]
     public List<string> childPortName = new List<string>();
 
+    public abstract NodeReturn Run(SceneLayout scene, DialogueManager manager);
+    public abstract void Clear();
+    
+    protected bool IsNullOrEmpty()
+    {
+        return children?.Count <= 0 || children == null;
+    }
+    
     //[HideInInspector]
     //public ExposedVariableType VariableType;
     //[HideInInspector]
@@ -35,6 +43,14 @@ public class GraphNode : ScriptableObject
         Int,
         String
     }*/
+}
+
+public enum NodeReturn
+{
+    Wait,
+    Next,
+    PrepNext,
+    End
 }
 
 /*public struct GraphNodeLink

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -22,22 +23,25 @@ public class DialogueGraphEditor : EditorWindow
     {
         CreateFolders();
         
-        var dialogueContainer =
+        var dialogueContainer = //FindAssets.GetInstanceByName<DialogueContainer>("New Dialogue*").First();
             FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*", "/Dialogues", true);
 
-        int i = 0;
+        var i = 0;
         if (dialogueContainer != null)
         {
-            while (dialogueContainer != null)
+            while (dialogueContainer != null && i != 100)
             {
                 i++;
-                dialogueContainer =
+                
+                if (i == 100)
+                    Debug.LogError($"New dialog creation eject point reached. \n Change existing dialogue names.");
+                
+                dialogueContainer = //FindAssets.GetInstanceByName<DialogueContainer>($"New Dialogue {i}*").First();
                     FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"New Dialogue {i}*","/Dialogues", true);
             }
         }
         
-        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DialogueContainer>(),
-            $"Assets/Resources/Dialogues/New Dialogue {i}.asset");
+        AssetDatabase.CreateAsset(CreateInstance<DialogueContainer>(), $"Assets/Resources/Dialogues/New Dialogue {i}.asset");
     }
     
     private DialogueContainer MakeNewDialogue()
@@ -45,15 +49,14 @@ public class DialogueGraphEditor : EditorWindow
         if (!_foldersExist)
             _foldersExist = CreateFolders();
         
-        var dialogueContainer =
+        var dialogueContainer = //FindAssets.GetInstanceByName<DialogueContainer>("New Dialogue*").First();
             FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*", null, true);
         
         if (dialogueContainer != null) return dialogueContainer;
         
-        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DialogueContainer>(),
-            $"Assets/Resources/Dialogues/New Dialogue.asset");
+        AssetDatabase.CreateAsset(CreateInstance<DialogueContainer>(), $"Assets/Resources/Dialogues/New Dialogue.asset");
             
-        dialogueContainer =
+        dialogueContainer = //FindAssets.GetInstanceByName<DialogueContainer>("New Dialogue*").First();
             FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*", null, true);
 
         return dialogueContainer;
@@ -71,15 +74,11 @@ public class DialogueGraphEditor : EditorWindow
     
     public void CreateGUI()
     {
-        // Each editor window contains a root VisualElement object
-        VisualElement root = rootVisualElement;
+        var root = rootVisualElement;
         
-        // Import UXML
         var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialoguePlugin/Editor/DialogueGraphEditor.uxml");
         visualTree.CloneTree(root);
-
-        // A stylesheet can be added to a VisualElement.
-        // The style will be applied to the VisualElement and all of its children.
+        
         var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/DialoguePlugin/Editor/DialogueGraphEditor.uss");
         root.styleSheets.Add(styleSheet);
 
@@ -102,11 +101,11 @@ public class DialogueGraphEditor : EditorWindow
     
     private void OnSelectionChange()
     {
-        DialogueContainer container = Selection.activeObject as DialogueContainer;
-        if (container)
-        {
-            _graphView.PopulateView(container);
-            _inspectorView.UpdateSelection(container);
-        }
+        var container = Selection.activeObject as DialogueContainer;
+        if (!container) 
+            return;
+        
+        _graphView.PopulateView(container);
+        _inspectorView.UpdateSelection(container);
     }
 }

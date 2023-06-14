@@ -11,12 +11,27 @@ using UnityEngine.Events;
 [Serializable]
 public class ScriptNode : GraphNode
 {
+    public UnityEvent functionCalls;
+    
+    public override NodeReturn Run(SceneLayout scene, DialogueManager manager)
+    {
+        functionCalls.Invoke();
+        
+        manager.SetTargetNode(children.First());
+        
+        return NodeReturn.Wait;
+    }
+
+    public override void Clear()
+    {
+        
+    }
+
     //public List<Action> Actions = new List<Action>();
 
     //private Action _scriptAction = () => { };
 
     //[HideInInspector]
-    public UnityEvent functionCalls;
     
     /*[HideInInspector]
     public List<MonoScript> calls = new List<MonoScript>();
@@ -90,9 +105,4 @@ public class ScriptNode : GraphNode
             action();
         }#1#
     }*/
-
-    public void InvokeFunctionCalls()
-    {
-        functionCalls.Invoke();
-    }
 }
