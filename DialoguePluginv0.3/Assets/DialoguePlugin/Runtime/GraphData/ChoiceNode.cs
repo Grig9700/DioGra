@@ -24,9 +24,9 @@ public class ChoiceNode : GraphNode
         var buttonsToMake = children;//container.NodeLinks.Where(x => x.baseNodeGUID == _getNodeByGUID).ToList();
         var rectT = scene.buttonPrefab.GetComponent<RectTransform>().rect;
         var height = rectT.height + scene.buttonSpacing;
-        for (int i = 0; i < buttonsToMake.Count; i++)
+        for (var i = 0; i < buttonsToMake.Count; i++)
         {
-            int index = i;
+            var index = i;
             var obj = Instantiate(scene.buttonPrefab, scene.viewPortContent.transform);
             obj.GetComponent<RectTransform>().transform.localPosition = new Vector2(rectT.width * 0.5f, -100 + i * -height);
             obj.GetComponent<Button>().onClick.AddListener(() => { Button(buttonsToMake[index]);});

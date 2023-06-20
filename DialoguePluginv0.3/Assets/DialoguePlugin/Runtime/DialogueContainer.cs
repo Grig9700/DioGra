@@ -11,19 +11,19 @@ using UnityEditor;
 //[CreateAssetMenu(fileName = "New Dialogue", menuName = "New Dialogue")]
 public class DialogueContainer : ScriptableObject
 {
-    public List<GraphNode> GraphNodes = new List<GraphNode>();
+    public List<GraphNode> graphNodes = new List<GraphNode>();
     //public List<NodeLinkData> NodeLinks = new List<NodeLinkData>();
-    public GameObject SceneLayoutPrefab;
+    public GameObject sceneLayoutPrefab;
     public Image defaultBackground;
 
 #if UNITY_EDITOR
     public GraphNode CreateEntryGraphNode()
     {
-        GraphNode node = ScriptableObject.CreateInstance<EntryNode>();
+        GraphNode node = CreateInstance<EntryNode>();
         node.name = "Start Point";
         node.GUID = "StartPoint";
         node.entryNode = true;
-        GraphNodes.Add(node);
+        graphNodes.Add(node);
         
         AssetDatabase.AddObjectToAsset(node, this);
         AssetDatabase.SaveAssets();
@@ -32,11 +32,11 @@ public class DialogueContainer : ScriptableObject
     
     public GraphNode CreateGraphNode(Type type, Vector2 pos)
     {
-        GraphNode node = ScriptableObject.CreateInstance(type) as GraphNode;
+        var node = CreateInstance(type) as GraphNode;
         node.name = type.Name;
         node.GUID = GUID.Generate().ToString();
         node.position = pos;
-        GraphNodes.Add(node);
+        graphNodes.Add(node);
         
         AssetDatabase.AddObjectToAsset(node, this);
         AssetDatabase.SaveAssets();
@@ -45,7 +45,7 @@ public class DialogueContainer : ScriptableObject
 
     public void DeleteGraphNode(GraphNode node)
     {
-        GraphNodes.Remove(node);
+        graphNodes.Remove(node);
         AssetDatabase.RemoveObjectFromAsset(node);
         AssetDatabase.SaveAssets();
     }
@@ -59,7 +59,7 @@ public class DialogueContainer : ScriptableObject
 
     public void RemoveChild(GraphNode parent, GraphNode child)
     {
-        for (int i = 0; i < parent.children.Count; i++)
+        for (var i = 0; i < parent.children.Count; i++)
         {
             if (parent.children[i] != child) 
                 continue;

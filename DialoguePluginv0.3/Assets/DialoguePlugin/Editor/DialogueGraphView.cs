@@ -78,21 +78,19 @@ public class DialogueGraphView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChanged;
 
-        //create nodes
-        container.GraphNodes.ForEach(CreateNodeViewElement);
+        container.graphNodes.ForEach(CreateNodeViewElement);
         CreateEntryPoint();
         
-        //create edges
-        container.GraphNodes.ForEach(CreateEdgeViewElement);
+        container.graphNodes.ForEach(CreateEdgeViewElement);
     }
 
     private void CreateEdgeViewElement(GraphNode graphNode)
     {
-        GraphNodeView parentView = FindNodeView(graphNode);
-        for (int i = 0; i < graphNode.children.Count; i++)
+        var parentView = FindNodeView(graphNode);
+        for (var i = 0; i < graphNode.children.Count; i++)
         {
-            GraphNodeView childView = FindNodeView(graphNode.children[i]);
-            Edge edge = parentView.OutputPorts.First(port => port.portName == graphNode.childPortName[i]).ConnectTo(childView.InputPort);
+            var childView = FindNodeView(graphNode.children[i]);
+            var edge = parentView.OutputPorts.First(port => port.portName == graphNode.childPortName[i]).ConnectTo(childView.InputPort);
             AddElement(edge);
         }
     }
@@ -117,8 +115,8 @@ public class DialogueGraphView : GraphView
                     }
                     break;*/
                 case Edge edge:
-                    GraphNodeView parentView = edge.output.node as GraphNodeView;
-                    GraphNodeView childView = edge.input.node as GraphNodeView;
+                    var parentView = edge.output.node as GraphNodeView;
+                    var childView = edge.input.node as GraphNodeView;
             
                     Container.RemoveChild(parentView!.Node, childView!.Node);
                     break;
@@ -128,8 +126,8 @@ public class DialogueGraphView : GraphView
         
         graphViewChange.edgesToCreate?.ForEach(edge =>
         {
-            GraphNodeView parentView = edge.output.node as GraphNodeView;
-            GraphNodeView childView = edge.input.node as GraphNodeView;
+            var parentView = edge.output.node as GraphNodeView;
+            var childView = edge.input.node as GraphNodeView;
             
             Container.AddChild(parentView!.Node, childView!.Node, edge.output.portName);
         });
@@ -142,7 +140,7 @@ public class DialogueGraphView : GraphView
         _localMousePosition = contentViewContainer.WorldToLocal(evt.mousePosition);
         //base.BuildContextualMenu(evt);
         var types = TypeCache.GetTypesDerivedFrom<GraphNode>();
-        foreach (Type type in types.Where(type => type.Name != "EntryNodeData" && type.Name != "EntryNode"))
+        foreach (var type in types.Where(type => type.Name != "EntryNodeData" && type.Name != "EntryNode"))
         {
             evt.menu.AppendAction($"{type.Name}", (n) => CreateGraphNode(type, _localMousePosition));
         }
@@ -150,23 +148,23 @@ public class DialogueGraphView : GraphView
 
     private void CreateEntryPoint()
     {
-        if (Container.GraphNodes.Any(node => node.entryNode))
+        if (Container.graphNodes.Any(node => node.entryNode))
             return;
 
         AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
         //DelayEntryNode();
     }
 
-    private async void DelayEntryNode()
-    {
-        await Task.Delay(50);
-        Selection.activeGameObject = null;
-        AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
-    }
+    // private async void DelayEntryNode()
+    // {
+    //     await Task.Delay(50);
+    //     Selection.activeGameObject = null;
+    //     AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
+    // }
     
     private void CreateGraphNode(Type type, Vector2 pos)
     {
-        GraphNode node = Container.CreateGraphNode(type, pos);
+        var node = Container.CreateGraphNode(type, pos);
         
         CreateNodeViewElement(node);
     }

@@ -1,4 +1,4 @@
-Node #title{
+DialogueNode #title{
     background-color: rgb(0, 128, 0);
 }
 

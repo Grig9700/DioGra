@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,22 @@ public static class FindAssets
             .ToList();
     }
     
-    public static List<T> GetInstanceByName<T>(string name) where T : ScriptableObject
+    public static List<T> GetResourcesByName<T>(string name) where T : ScriptableObject
     {
-        return AssetDatabase.FindAssets($"t: {typeof(T).Name}").ToList()
-            .Select(AssetDatabase.GUIDToAssetPath)
-            .Select(AssetDatabase.LoadAssetAtPath<T>)
-            .Where(a => a.name == name)
-            .ToList();
+        var temp = GetAllInstances<T>();
+
+        return temp.Where(t => t.name == name).ToList();
+    }
+    
+    public static T GetResourceByName<T>(string name, bool suppressNoFileFound = false) where T : ScriptableObject
+    {
+        var temps = GetResourcesByName<T>(name);
+
+        if (temps.Any())
+            return temps.First();
+        
+        if (!suppressNoFileFound)
+            Debug.LogError($"No files by name : {name} of type {typeof(T).Name} were found");
+        return null;
     }
 }

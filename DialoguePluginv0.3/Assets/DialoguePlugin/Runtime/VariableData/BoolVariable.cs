@@ -18,9 +18,7 @@ public class BoolVariable : VariableObject
     [MenuItem("Assets/Create Variable/Bool Variable")]
     private static void MakeVariable()
     {
-        CreateFolders();
-
-        CreateVariable<BoolVariable>("Bool");
+        CreateAssets.CreateScriptableObjectAsset<FloatVariable>("New Bool Variable", "Variables");
     }
     
 #endif

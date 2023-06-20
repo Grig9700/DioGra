@@ -22,7 +22,7 @@ public class ChoiceNodeView : GraphNodeView
         GenerateInputPort();
         GenerateMultiOutputButton(_graphView);
         
-        ChoiceNode choiceNode = Node as ChoiceNode;
+        var choiceNode = Node as ChoiceNode;
         foreach (var choicePortName in choiceNode.outputOptions)
         {
             AddChoicePort(graphView, choicePortName);

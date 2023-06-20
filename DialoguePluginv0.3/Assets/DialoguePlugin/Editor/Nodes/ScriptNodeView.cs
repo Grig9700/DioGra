@@ -23,7 +23,7 @@ public class ScriptNodeView : GraphNodeView
         GenerateInputPort();
         GenerateOutputPort();
         
-        ScriptNode scriptNode = Node as ScriptNode;
+        var scriptNode = Node as ScriptNode;
         UnityEngine.Object.DestroyImmediate(editor);
         editor = Editor.CreateEditor(scriptNode);
         _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });

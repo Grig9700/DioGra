@@ -23,7 +23,7 @@ public class IfNodeView : GraphNodeView
         GenerateInputPort();
         
         
-        IfNode ifNode = Node as IfNode;
+        var ifNode = Node as IfNode;
         UnityEngine.Object.DestroyImmediate(editor);
         editor = Editor.CreateEditor(ifNode);
         _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });

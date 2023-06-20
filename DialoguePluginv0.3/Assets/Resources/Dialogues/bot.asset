@@ -1,47 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8304092170755411236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: ba56b986e39609f489ba453ec2d97c2a
-  position: {x: 141, y: 0}
-  children:
-  - {fileID: 4465284407939689145}
-  childPortName:
-  - Output
-  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
-  expressionSelector: 0
-  dialogueText: This is so stupid
---- !u!114 &-1508288925008132780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: 8b408d8d1f17913479f1b395865b4694
-  position: {x: 1073, y: -81}
-  children: []
-  childPortName: []
-  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
-  expressionSelector: 0
-  dialogueText: Why Should I
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,40 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2d217ba2cc616418e3995b2552b6a4, type: 3}
   m_Name: bot
   m_EditorClassIdentifier: 
-  GraphNodes:
-  - {fileID: 8138463803622955760}
-  - {fileID: -8304092170755411236}
-  - {fileID: 4465284407939689145}
-  - {fileID: 2684057494421395593}
-  - {fileID: -1508288925008132780}
-  - {fileID: 8008909407141560569}
-  SceneLayoutPrefab: {fileID: 1662424870414749273, guid: b248e4324ecb82348a423ce472289797, type: 3}
+  graphNodes:
+  - {fileID: 926924624109626658}
+  - {fileID: 5570958916011834462}
+  - {fileID: 8595038062140843120}
+  - {fileID: 5749000160877740734}
+  - {fileID: 212790364508771973}
+  - {fileID: 293800543654558757}
+  - {fileID: 5778221676734275620}
+  sceneLayoutPrefab: {fileID: 1662424870414749273, guid: b248e4324ecb82348a423ce472289797, type: 3}
   defaultBackground: {fileID: 0}
---- !u!114 &2684057494421395593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
-  m_Name: ChoiceNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: 38a7102c2207e8d41965f6ad6187eb7d
-  position: {x: 785, y: 0}
-  children:
-  - {fileID: -1508288925008132780}
-  - {fileID: 8008909407141560569}
-  childPortName:
-  - Cheer up Brian
-  - Oh shut it
-  outputOptions:
-  - Cheer up Brian
-  - Oh shut it
---- !u!114 &4465284407939689145
+--- !u!114 &212790364508771973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,16 +35,14 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   entryNode: 0
-  GUID: 36ea667bb2ba07346ac7ca7cd4e301b7
-  position: {x: 468, y: 0}
-  children:
-  - {fileID: 2684057494421395593}
-  childPortName:
-  - Output
+  GUID: e10851f0c068047428c4ea0c7b20d75c
+  position: {x: 1036.1934, y: -70.99999}
+  children: []
+  childPortName: []
   speaker: {fileID: 11400000, guid: 062a7fc2d86bff6418de830f87db7205, type: 2}
   expressionSelector: 0
   dialogueText: What is it now
---- !u!114 &8008909407141560569
+--- !u!114 &293800543654558757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,14 +55,16 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   entryNode: 0
-  GUID: fce90148a0438a24f8098be06e58967b
-  position: {x: 1073, y: 101}
-  children: []
-  childPortName: []
+  GUID: 0c690053878f1d24fb91fa13862226e0
+  position: {x: 710.19336, y: 100.99996}
+  children:
+  - {fileID: 8595038062140843120}
+  childPortName:
+  - Output
   speaker: {fileID: 11400000, guid: d8b566a9c875a6243a4e37aefd5344bb, type: 2}
   expressionSelector: 0
   dialogueText: Hey now, no need to be rude OP
---- !u!114 &8138463803622955760
+--- !u!114 &926924624109626658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,6 +80,94 @@ MonoBehaviour:
   GUID: StartPoint
   position: {x: 0, y: 0}
   children:
-  - {fileID: -8304092170755411236}
+  - {fileID: 5778221676734275620}
   childPortName:
   - Output
+--- !u!114 &5570958916011834462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbbc38784722f644bcaba96515a9f93, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 27fae7d6a5cf89545bbe6b5f4ad08c6c
+  position: {x: 441.19336, y: -0.0000038146973}
+  children:
+  - {fileID: 5749000160877740734}
+  - {fileID: 293800543654558757}
+  childPortName:
+  - Cheer up Brian
+  - Oh shut it
+  outputOptions:
+  - Cheer up Brian
+  - Oh shut it
+--- !u!114 &5749000160877740734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 7d4eb33ac3bd541439507d75037bc15a
+  position: {x: 710.19336, y: -70.99999}
+  children:
+  - {fileID: 212790364508771973}
+  childPortName:
+  - Output
+  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
+  expressionSelector: 0
+  dialogueText: Why Should I
+--- !u!114 &5778221676734275620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: d67605cb6ace0634e803c433e1457e8e
+  position: {x: 132.1465, y: -0.50001526}
+  children:
+  - {fileID: 5570958916011834462}
+  childPortName:
+  - Output
+  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
+  expressionSelector: 2
+  dialogueText: Ugh
+--- !u!114 &8595038062140843120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 773c78bf4d3456e4aafcf84fb7517be7
+  position: {x: 1036.1934, y: 100.99996}
+  children: []
+  childPortName: []
+  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
+  expressionSelector: 0
+  dialogueText: This is so stupid

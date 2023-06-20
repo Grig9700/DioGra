@@ -9,7 +9,7 @@ public class FindAndLoadResource
 {
     public static T FindAndLoadFirstInResourceFolder<T>(string fileName, string folder = null, bool suppressErrorMessages = false) where T : Object
     {
-        string toResource = Application.dataPath + "/Resources";
+        var toResource = Application.dataPath + "/Resources";
 
         var files= folder == null ? Directory.GetFiles(toResource + folder, fileName, SearchOption.AllDirectories) : 
             Directory.GetFiles(toResource, fileName, SearchOption.AllDirectories);
@@ -24,20 +24,13 @@ public class FindAndLoadResource
             return null;
         }
 
-        List<string> notMetaFiles = new List<string>();
-        foreach (var path in files)
-        {
-            string[] tempFilePath = path.Split('.');
-            
-            if (tempFilePath.Last() != "meta")
-                notMetaFiles.Add(path);
-        }
+        var notMetaFiles = (from path in files let tempFilePath = path.Split('.') where tempFilePath.Last() != "meta" select path).ToList();
         
-        string fullFilePath = notMetaFiles.First().Replace('\\', '/');
-        string filePathoid = fullFilePath.Remove(0, toResource.Length + 1);
-        string[] filePath = filePathoid.Split('.');
+        var fullFilePath = notMetaFiles.First().Replace('\\', '/');
+        var filePathoid = fullFilePath.Remove(0, toResource.Length + 1);
+        var filePath = filePathoid.Split('.');
 
-        T tempScene = Resources.Load<T>($"{filePath.First()}");
+        var tempScene = Resources.Load<T>($"{filePath.First()}");
         if (tempScene != null) return tempScene;
         
         if (suppressErrorMessages)

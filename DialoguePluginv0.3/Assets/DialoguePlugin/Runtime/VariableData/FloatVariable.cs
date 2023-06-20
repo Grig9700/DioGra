@@ -17,9 +17,7 @@ public class FloatVariable : VariableObject
     [MenuItem("Assets/Create Variable/Float Variable")]
     private static void MakeVariable()
     {
-        CreateFolders();
-        
-        CreateVariable<FloatVariable>("Float");
+        CreateAssets.CreateScriptableObjectAsset<FloatVariable>("New Float Variable", "Variables");
     }
     
 #endif

@@ -20,9 +20,9 @@ public class InspectorView : VisualElement
     {
         Clear();
         
-        UnityEngine.Object.DestroyImmediate(_editor);
+        Object.DestroyImmediate(_editor);
         _editor = Editor.CreateEditor(dialogueContainer);
-        IMGUIContainer container = new IMGUIContainer(() => { _editor.OnInspectorGUI(); });
+        var container = new IMGUIContainer(() => { _editor.OnInspectorGUI(); });
         Add(container);
     }
 }

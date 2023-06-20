@@ -115,7 +115,7 @@ public class DialogueManager : MonoBehaviour
 
     private void GetNodeByGuid(string getNodeByGUID, bool getStartNode = false)
     {
-        GraphNode tempNode = getStartNode ? container.GraphNodes.First(node => node.GUID == getNodeByGUID) 
+        var tempNode = getStartNode ? container.graphNodes.First(node => node.GUID == getNodeByGUID) 
             : _currentNode.children.First(node => node.GUID == getNodeByGUID);
         
         if (tempNode == null)
@@ -147,8 +147,7 @@ public class DialogueManager : MonoBehaviour
     {
         EndDialogue(true);
 
-        DialogueContainer tempContainer = //FindAssets.GetInstanceByName<DialogueContainer>(filename).First();
-            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"{filename}.asset", "/Dialogues");
+        DialogueContainer tempContainer = FindAssets.GetResourceByName<DialogueContainer>(filename);
 
         if (tempContainer == null)
         {
@@ -163,10 +162,10 @@ public class DialogueManager : MonoBehaviour
         //bool sceneExists = false;
         //GameObject obj = null;
         
-        if (container.SceneLayoutPrefab == null)
+        if (container.sceneLayoutPrefab == null)
         {
             Debug.LogError($"No scene layout present in Dialogue");
-            //obj = FindAssets.GetInstanceByName<GameObject>("SceneLayout").First();
+            //obj = Resources.Load<GameObject>("SceneLayout");
             //FindAndLoadResource.FindAndLoadFirstInResourceFolder<GameObject>("?cene*", "/SceneLayouts"); //finds a Scene Layout
             // if (obj != null)
             //     sceneExists = true;
@@ -177,11 +176,13 @@ public class DialogueManager : MonoBehaviour
             // }
         }
         
-        _scene = //sceneExists ? Instantiate(obj, _canvas.transform).GetComponent<SceneLayout>() : 
-            Instantiate(container.SceneLayoutPrefab, _canvas.transform).GetComponent<SceneLayout>();
+        _scene = //obj != null ? Instantiate(obj, _canvas.transform).GetComponent<SceneLayout>() : 
+            Instantiate(container.sceneLayoutPrefab, _canvas.transform).GetComponent<SceneLayout>();
         PrepareScene();
         
-        GetNodeByGuid("StartPoint",true);
+        //GetNodeByGuid("StartPoint",true);
+
+        _currentNode = container.graphNodes.First(n => n.entryNode);
         
         Next();
     }

@@ -18,9 +18,7 @@ public class StringVariable : VariableObject
     [MenuItem("Assets/Create Variable/String Variable")]
     private static void MakeVariable()
     {
-        CreateFolders();
-        
-        CreateVariable<StringVariable>("String");
+        CreateAssets.CreateScriptableObjectAsset<FloatVariable>("New String Variable", "Variables");
     }
     
 #endif

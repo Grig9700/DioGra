@@ -7,23 +7,25 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class GraphNodeView : Node
+public abstract class GraphNodeView : Node
 {
     public GraphNode Node;
     
     public string GUID;
     public bool EntryPoint = false;
     public Port InputPort;
-    public List<Port> OutputPorts = new List<Port>();
+    public readonly List<Port> OutputPorts = new List<Port>();
 
     public readonly Vector2 DefaultNodeSize = new Vector2(400, 400);
-    
-    public Editor editor;
-    
+
+    protected Editor editor;
+
     protected void GenerateMultiOutputButton(DialogueGraphView graphView)
     {
-        var button = new Button(() => { AddChoicePort(graphView); });
-        button.text = "New Output";
+        var button = new Button(() => { AddChoicePort(graphView); })
+        {
+            text = "New Output"
+        };
         titleContainer.Add(button);
     }
     
@@ -37,9 +39,7 @@ public class GraphNodeView : Node
         generatedPort.contentContainer.Remove(oldLabel);
         
         var outputPortCount = outputContainer.Query("connector").ToList().Count;
-        
-        //creates name of port
-        var choicePortName = string.IsNullOrEmpty(overriddenPortName)? $"Output {outputPortCount}" : overriddenPortName;
+        var choicePortName = string.IsNullOrEmpty(overriddenPortName) ? $"Output {outputPortCount}" : overriddenPortName;
 
         if (string.IsNullOrEmpty(overriddenPortName))
         {
@@ -61,7 +61,7 @@ public class GraphNodeView : Node
             switch (Node)
             {
                 case ChoiceNode choiceNode:
-                    for (int i = 0; i < choiceNode.outputOptions.Count; i++)
+                    for (var i = 0; i < choiceNode.outputOptions.Count; i++)
                     {
                         if (choiceNode.outputOptions[i] != generatedPort.portName) continue;
                         choiceNode.outputOptions[i] = evt.newValue;

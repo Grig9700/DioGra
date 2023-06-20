@@ -9,67 +9,34 @@ public class DialogueGraphEditor : EditorWindow
 {
     private DialogueGraphView _graphView;
     private InspectorView _inspectorView;
-    private bool _foldersExist;
     
-    [MenuItem("Dialogue Graph Editor/Editor...")]
-    public static void ShowExample()
+    [MenuItem("Dialogue Graph Editor/Editor Window")]
+    public static void CreateEditorWindow()
     {
-        DialogueGraphEditor window = GetWindow<DialogueGraphEditor>();
+        var window = GetWindow<DialogueGraphEditor>();
         window.titleContent = new GUIContent("DialogueGraphEditor");
     }
 
     [MenuItem("Dialogue Graph Editor/New Dialogue")]
     public static void MakeNewDialogueMenuItem()
     {
-        CreateFolders();
-        
-        var dialogueContainer = //FindAssets.GetInstanceByName<DialogueContainer>("New Dialogue*").First();
-            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*", "/Dialogues", true);
-
-        var i = 0;
-        if (dialogueContainer != null)
-        {
-            while (dialogueContainer != null && i != 100)
-            {
-                i++;
-                
-                if (i == 100)
-                    Debug.LogError($"New dialog creation eject point reached. \n Change existing dialogue names.");
-                
-                dialogueContainer = //FindAssets.GetInstanceByName<DialogueContainer>($"New Dialogue {i}*").First();
-                    FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>($"New Dialogue {i}*","/Dialogues", true);
-            }
-        }
-        
-        AssetDatabase.CreateAsset(CreateInstance<DialogueContainer>(), $"Assets/Resources/Dialogues/New Dialogue {i}.asset");
+        CreateAssets.CreateScriptableObjectAsset<DialogueContainer>("New Dialogue", "Dialogues");
     }
     
-    private DialogueContainer MakeNewDialogue()
+    private static DialogueContainer GetFirstOrNewDialogue()
     {
-        if (!_foldersExist)
-            _foldersExist = CreateFolders();
-        
-        var dialogueContainer = //FindAssets.GetInstanceByName<DialogueContainer>("New Dialogue*").First();
-            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*", null, true);
-        
-        if (dialogueContainer != null) return dialogueContainer;
-        
+        CreateAssets.CreateFolders();
+
+        var dialogueContainers = FindAssets.GetAllInstances<DialogueContainer>();
+        if (dialogueContainers.Any())
+            return dialogueContainers.First();
+
         AssetDatabase.CreateAsset(CreateInstance<DialogueContainer>(), $"Assets/Resources/Dialogues/New Dialogue.asset");
-            
-        dialogueContainer = //FindAssets.GetInstanceByName<DialogueContainer>("New Dialogue*").First();
-            FindAndLoadResource.FindAndLoadFirstInResourceFolder<DialogueContainer>("New Dialogue*", null, true);
+        AssetDatabase.SaveAssets();
 
-        return dialogueContainer;
-    }
-
-    private static bool CreateFolders()
-    {
-        if (!AssetDatabase.IsValidFolder("Assets/Resources"))
-            AssetDatabase.CreateFolder("Assets", "Resources");
-        if (!AssetDatabase.IsValidFolder("Assets/Resources/Dialogues"))
-            AssetDatabase.CreateFolder("Assets/Resources", "Dialogues");
+        dialogueContainers = FindAssets.GetAllInstances<DialogueContainer>();
         
-        return true;
+        return dialogueContainers.First();
     }
     
     public void CreateGUI()
@@ -91,21 +58,32 @@ public class DialogueGraphEditor : EditorWindow
         {
             runTestButton.clickable.clicked += GetListeners.TestVariableObjectConnections;
         }
-
-        _graphView.Container = MakeNewDialogue();
         
-        _graphView.PopulateView(_graphView.Container);
+        var container = SelectionAsContainer();
+        _graphView.Container = container ? container : GetFirstOrNewDialogue();
+        
+        UpdateContainer(_graphView.Container);
         
         AssetDatabase.SaveAssets();
     }
     
     private void OnSelectionChange()
     {
-        var container = Selection.activeObject as DialogueContainer;
+        var container = SelectionAsContainer();
         if (!container) 
             return;
         
+        UpdateContainer(container);
+    }
+
+    private void UpdateContainer(DialogueContainer container)
+    {
         _graphView.PopulateView(container);
         _inspectorView.UpdateSelection(container);
+    }
+
+    private static DialogueContainer SelectionAsContainer()
+    {
+        return Selection.activeObject as DialogueContainer;
     }
 }

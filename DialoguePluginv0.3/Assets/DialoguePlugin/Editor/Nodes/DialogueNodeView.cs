@@ -24,9 +24,12 @@ public class DialogueNodeView : GraphNodeView
         GenerateInputPort();
         GenerateOutputPort();
         
+        Object.DestroyImmediate(editor);
         
-        DialogueNode dialogueNode = Node as DialogueNode;
-        UnityEngine.Object.DestroyImmediate(editor);
+        //var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/DialoguePlugin/Editor/Node.uss"); 
+        //styleSheets.Add(styleSheet);
+        
+        var dialogueNode = Node as DialogueNode;
         editor = Editor.CreateEditor(dialogueNode);
         _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
         outputContainer.Add(_container);
