@@ -16,13 +16,13 @@ public class IfNodeView : GraphNodeView
         Node = node;
         title = node.name;
         viewDataKey = node.GUID;
+        AddToClassList("if");
         
         style.left = node.position.x;
         style.top = node.position.y;
 
         GenerateInputPort();
-        
-        
+
         var ifNode = Node as IfNode;
         UnityEngine.Object.DestroyImmediate(editor);
         editor = Editor.CreateEditor(ifNode);

@@ -17,6 +17,7 @@ public class DialogueNodeView : GraphNodeView
         Node = node;
         title = node.name;
         viewDataKey = node.GUID;
+        AddToClassList("dialogue");
         
         style.left = node.position.x;
         style.top = node.position.y;

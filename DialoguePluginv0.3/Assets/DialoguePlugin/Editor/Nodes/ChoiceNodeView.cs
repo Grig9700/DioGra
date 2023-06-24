@@ -15,6 +15,7 @@ public class ChoiceNodeView : GraphNodeView
         Node = node;
         title = node.name;
         viewDataKey = node.GUID;
+        AddToClassList("choice");
         
         style.left = node.position.x;
         style.top = node.position.y;

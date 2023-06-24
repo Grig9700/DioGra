@@ -30,7 +30,7 @@ public abstract class GraphNodeView : Node
         {
             text = "New Output"
         };
-        titleContainer.Add(button);
+        inputContainer.Add(button);
     }
     
     protected void AddChoicePort(DialogueGraphView graphView, string overriddenPortName = "")

@@ -16,6 +16,7 @@ public class ScriptNodeView : GraphNodeView
         Node = node;
         title = node.name;
         viewDataKey = node.GUID;
+        AddToClassList("script");
         
         style.left = node.position.x;
         style.top = node.position.y;

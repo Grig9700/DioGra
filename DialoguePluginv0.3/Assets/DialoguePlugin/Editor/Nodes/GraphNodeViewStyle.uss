@@ -13,3 +13,85 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+
+#input {
+}
+
+#output {
+}
+
+#selection-border {
+    border-left-color: rgba(0, 147, 255, 255);
+    border-right-color: rgba(0, 147, 255, 255);
+    border-top-color: rgba(0, 147, 255, 255);
+    border-bottom-color: rgba(0, 147, 255, 255);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+:selected > #selection-border {
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+:hover > #selection-border {
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+:hover:selected > #selection-border {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+.node {
+    min-width: 150px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.entry #title {
+    background-color: rgba(193, 41, 46, 255);
+}
+
+.dialogue #title {
+    background-color: rgba(104, 206, 0, 255);
+}
+
+.dialogue #top {
+    flex-direction: row;
+    justify-content: center;
+}
+
+.choice #title {
+    background-color: rgba(46, 196, 182, 255);
+}
+
+.choice #input {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.if #title {
+    background-color: rgba(32, 164, 243, 255);
+}
+
+.script #title {
+    background-color: rgba(111, 45, 189, 255);
+}
+
+.script #top {
+    flex-direction: row;
+    justify-content: center;
+}

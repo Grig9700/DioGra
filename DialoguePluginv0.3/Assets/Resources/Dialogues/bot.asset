@@ -36,7 +36,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: e10851f0c068047428c4ea0c7b20d75c
-  position: {x: 1036.1934, y: -70.99999}
+  position: {x: 983.95996, y: -101}
   children: []
   childPortName: []
   speaker: {fileID: 11400000, guid: 062a7fc2d86bff6418de830f87db7205, type: 2}
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 0c690053878f1d24fb91fa13862226e0
-  position: {x: 710.19336, y: 100.99996}
+  position: {x: 699, y: 101.000015}
   children:
   - {fileID: 8595038062140843120}
   childPortName:
@@ -97,13 +97,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 27fae7d6a5cf89545bbe6b5f4ad08c6c
-  position: {x: 441.19336, y: -0.0000038146973}
+  position: {x: 459, y: 0}
   children:
-  - {fileID: 5749000160877740734}
   - {fileID: 293800543654558757}
+  - {fileID: 5749000160877740734}
   childPortName:
-  - Cheer up Brian
   - Oh shut it
+  - Cheer up Brian
   outputOptions:
   - Cheer up Brian
   - Oh shut it
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 7d4eb33ac3bd541439507d75037bc15a
-  position: {x: 710.19336, y: -70.99999}
+  position: {x: 699, y: -100.72}
   children:
   - {fileID: 212790364508771973}
   childPortName:
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: d67605cb6ace0634e803c433e1457e8e
-  position: {x: 132.1465, y: -0.50001526}
+  position: {x: 167, y: 0}
   children:
   - {fileID: 5570958916011834462}
   childPortName:
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 773c78bf4d3456e4aafcf84fb7517be7
-  position: {x: 1036.1934, y: 100.99996}
+  position: {x: 984, y: 101}
   children: []
   childPortName: []
   speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
