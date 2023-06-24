@@ -20,6 +20,10 @@ public abstract class GraphNodeView : Node
 
     protected Editor editor;
 
+    protected GraphNodeView() : base("Assets/DialoguePlugin/Editor/Nodes/GraphNodeView.uxml")
+    {
+    }
+    
     protected void GenerateMultiOutputButton(DialogueGraphView graphView)
     {
         var button = new Button(() => { AddChoicePort(graphView); })
