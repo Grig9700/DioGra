@@ -85,8 +85,8 @@ public abstract class GraphNodeView : Node
         RefreshExpandedState();
         RefreshPorts();
     }
-    
-    protected void RemovePort(DialogueGraphView graphView, Port generatedPort)
+
+    private void RemovePort(GraphView graphView, Port generatedPort)
     {
         var edges = generatedPort.connections.ToList();
 
@@ -119,8 +119,8 @@ public abstract class GraphNodeView : Node
         outputContainer.Add(outputPort);
         OutputPorts.Add(outputPort);
     }
-    
-    protected Port GeneratePort(Direction portOrientation, Port.Capacity capacity = Port.Capacity.Single)
+
+    private Port GeneratePort(Direction portOrientation, Port.Capacity capacity = Port.Capacity.Single)
     {
         return InstantiatePort(Orientation.Horizontal, portOrientation, capacity, typeof(float));
     }

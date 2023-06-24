@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-
+using UnityEditor.Callbacks;
 
 public class DialogueGraphEditor : EditorWindow
 {
@@ -17,6 +17,16 @@ public class DialogueGraphEditor : EditorWindow
         window.titleContent = new GUIContent("DialogueGraphEditor");
     }
 
+    [OnOpenAsset]
+    public static bool OnOpenAsset(int instanceID, int line)
+    {
+        if (Selection.activeObject is not DialogueContainer) 
+            return false;
+        
+        CreateEditorWindow();
+        return true;
+    }
+    
     [MenuItem("Dialogue Graph Editor/New Dialogue")]
     public static void MakeNewDialogueMenuItem()
     {
@@ -59,7 +69,7 @@ public class DialogueGraphEditor : EditorWindow
             runTestButton.clickable.clicked += GetListeners.TestVariableObjectConnections;
         }
         
-        var container = SelectionAsContainer();
+        var container = Selection.activeObject as DialogueContainer;
         _graphView.Container = container ? container : GetFirstOrNewDialogue();
         
         UpdateContainer(_graphView.Container);
@@ -69,7 +79,7 @@ public class DialogueGraphEditor : EditorWindow
     
     private void OnSelectionChange()
     {
-        var container = SelectionAsContainer();
+        var container = Selection.activeObject as DialogueContainer;
         if (!container) 
             return;
         
@@ -80,10 +90,5 @@ public class DialogueGraphEditor : EditorWindow
     {
         _graphView.PopulateView(container);
         _inspectorView.UpdateSelection(container);
-    }
-
-    private static DialogueContainer SelectionAsContainer()
-    {
-        return Selection.activeObject as DialogueContainer;
     }
 }
