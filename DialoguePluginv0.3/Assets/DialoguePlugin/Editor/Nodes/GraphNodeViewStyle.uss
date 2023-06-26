@@ -118,22 +118,22 @@
     right: 0;
 }
 
-.script #title {
+.event #title {
     background-color: rgb(111, 45, 189);
 }
 
-.script #top {
+.event #top {
     flex-direction: row;
     justify-content: center;
     min-height: 25px;
 }
 
-.script #input {
+.event #input {
     position: absolute;
     left: 0;
 }
 
-.script #output {
+.event #output {
     position: absolute;
     right: 0;
 }

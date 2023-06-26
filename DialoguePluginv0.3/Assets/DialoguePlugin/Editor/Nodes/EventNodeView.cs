@@ -7,16 +7,16 @@ using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 [Serializable]
-public sealed class ScriptNodeView : GraphNodeView
+public sealed class EventNodeView : GraphNodeView
 {
     private IMGUIContainer _container;
     
-    public ScriptNodeView(GraphNode node)
+    public EventNodeView(GraphNode node)
     {
         Node = node;
         title = node.name;
         viewDataKey = node.GUID;
-        AddToClassList("script");
+        AddToClassList("event");
         
         style.left = node.position.x;
         style.top = node.position.y;
@@ -24,9 +24,9 @@ public sealed class ScriptNodeView : GraphNodeView
         GenerateInputPort();
         GenerateOutputPort();
         
-        var scriptNode = Node as ScriptNode;
+        var eventNode = Node as EventNode;
         UnityEngine.Object.DestroyImmediate(editor);
-        editor = Editor.CreateEditor(scriptNode);
+        editor = Editor.CreateEditor(eventNode);
         _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
         inspector.Add(_container);
     }

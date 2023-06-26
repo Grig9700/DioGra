@@ -12,8 +12,8 @@ using UnityEngine.Events;
 #endif
 
 
-[CustomEditor(typeof(ScriptNode))]
-public class ScriptNodeEditor : Editor
+[CustomEditor(typeof(EventNode))]
+public class EventNodeEditor : Editor
 {
     
 #if UNITY_EDITOR
@@ -22,7 +22,7 @@ public class ScriptNodeEditor : Editor
     //private ReorderableList _reorderableList;
     //private ScriptNode _scriptNode;
     private bool _firstCall = true;
-    private SerializedProperty _functionCalls;
+    private SerializedProperty _invokedEvents;
 
     //private float _lineHeight;
     //private float _lineHeightSpace;
@@ -34,7 +34,7 @@ public class ScriptNodeEditor : Editor
         _reorderableList = new ReorderableList(serializedObject, _calls, //serializedObject.FindProperty("calls"), 
             true, true, true, true);*/
         
-        _functionCalls = serializedObject.FindProperty("functionCalls");
+        _invokedEvents = serializedObject.FindProperty("invokedEvents");
 
         _firstCall = false;
         //_lineHeight = EditorGUIUtility.singleLineHeight;
@@ -79,7 +79,7 @@ public class ScriptNodeEditor : Editor
         EditorGUI.EndFoldoutHeaderGroup();*/
         
         
-        EditorGUILayout.PropertyField(_functionCalls);
+        EditorGUILayout.PropertyField(_invokedEvents);
         
         
         serializedObject.ApplyModifiedProperties();
@@ -343,15 +343,15 @@ public class ScriptNodeEditor : Editor
     
 }
 
-[Flags]
-public enum ScriptNodeOptions
-{
-    None = 0,
-    ListSize = 1,
-    ListLabel = 2,
-    ElementLabels = 4,
-    Buttons = 8,
-    Default = ListSize | ListLabel | ElementLabels,
-    NoElementLabels = ListSize | ListLabel,
-    All = Default | Buttons
-}
+// [Flags]
+// public enum EventNodeOptions
+// {
+//     None = 0,
+//     ListSize = 1,
+//     ListLabel = 2,
+//     ElementLabels = 4,
+//     Buttons = 8,
+//     Default = ListSize | ListLabel | ElementLabels,
+//     NoElementLabels = ListSize | ListLabel,
+//     All = Default | Buttons
+// }

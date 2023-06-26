@@ -9,13 +9,19 @@ using UnityEditor;
 using UnityEngine.Events;
 
 [Serializable]
-public class ScriptNode : GraphNode
+public class EventNode : GraphNode
 {
-    public UnityEvent functionCalls;
+    //public UnityEvent functionCalls;
+
+    public List<DialogueEvent> invokedEvents;
     
     public override NodeReturn Run(SceneLayout scene, DialogueManager manager)
     {
-        functionCalls.Invoke();
+        //functionCalls.Invoke();
+        foreach (var dialogueEvent in invokedEvents)
+        {
+            dialogueEvent.Raise();
+        }
         
         manager.SetTargetNode(children.First());
         

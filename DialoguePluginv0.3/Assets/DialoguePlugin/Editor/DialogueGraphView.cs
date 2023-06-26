@@ -186,8 +186,8 @@ public class DialogueGraphView : GraphView
             case IfNode:
                 graphNodeView = new IfNodeView(node);
                 break;
-            case ScriptNode:
-                graphNodeView = new ScriptNodeView(node);
+            case EventNode:
+                graphNodeView = new EventNodeView(node);
                 break;
             default:
                 Debug.LogWarning($"{node.name} is not a valid node type");
