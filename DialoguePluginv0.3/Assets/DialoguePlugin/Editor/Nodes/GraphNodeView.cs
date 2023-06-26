@@ -42,6 +42,12 @@ public abstract class GraphNodeView : Node
         var oldLabel = generatedPort.contentContainer.Q<Label>("type");
         generatedPort.contentContainer.Remove(oldLabel);
         
+        var children = generatedPort.contentContainer.Children();
+        foreach (var visualElement in children.Where(c => c.ClassListContains("connectorBox")))
+        {
+            visualElement.pickingMode = PickingMode.Position;
+        }
+        
         var outputPortCount = outputContainer.Query("connector").ToList().Count;
         var choicePortName = string.IsNullOrEmpty(overriddenPortName) ? $"Output {outputPortCount}" : overriddenPortName;
 
@@ -75,7 +81,6 @@ public abstract class GraphNodeView : Node
             }
             generatedPort.portName = evt.newValue;
         });
-        generatedPort.contentContainer.Add(new Label("    "));
         generatedPort.contentContainer.Add(textField);
 
         //permits removal of port
@@ -119,7 +124,7 @@ public abstract class GraphNodeView : Node
     protected void GenerateOutputPort(string overrideName = "")
     {
         var outputPort = GeneratePort(Direction.Output);
-        outputPort.portName = String.IsNullOrEmpty(overrideName) ? "Output" : overrideName;
+        outputPort.portName = string.IsNullOrEmpty(overrideName) ? "Output" : overrideName;
         outputContainer.Add(outputPort);
         OutputPorts.Add(outputPort);
     }
