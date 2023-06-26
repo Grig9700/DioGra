@@ -4,7 +4,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ChoiceNodeView : GraphNodeView
+public sealed class ChoiceNodeView : GraphNodeView
 {
     private DialogueGraphView _graphView;
     

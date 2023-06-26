@@ -12,7 +12,6 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="contents">
-            <ui:VisualElement name="divider" class="horizontal" />
             <ui:VisualElement name="top">
                 <ui:VisualElement name="divider" class="vertical" />
                 <ui:VisualElement name="input" />
@@ -20,7 +19,9 @@
                     <ui:IMGUIContainer class="unity-imgui-container" />
                 </ui:VisualElement>
             </ui:VisualElement>
+            <ui:VisualElement name="divider" class="horizontal" />
+            <ui:VisualElement name="inspector" />
         </ui:VisualElement>
+        <ui:VisualElement name="selection-border" picking-mode="Ignore" />
     </ui:VisualElement>
-    <ui:VisualElement name="selection-border" picking-mode="Ignore" />
 </ui:UXML>

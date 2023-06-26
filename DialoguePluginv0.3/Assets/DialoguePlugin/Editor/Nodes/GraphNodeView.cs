@@ -19,9 +19,11 @@ public abstract class GraphNodeView : Node
     public readonly Vector2 DefaultNodeSize = new Vector2(400, 400);
 
     protected Editor editor;
+    protected VisualElement inspector;
 
     protected GraphNodeView() : base("Assets/DialoguePlugin/Editor/Nodes/GraphNodeView.uxml")
     {
+        inspector = mainContainer.Q<VisualElement>("inspector");
     }
     
     protected void GenerateMultiOutputButton(DialogueGraphView graphView)

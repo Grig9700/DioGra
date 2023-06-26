@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [Serializable]
-public class IfNodeView : GraphNodeView
+public sealed class IfNodeView : GraphNodeView
 {
     private IMGUIContainer _container;
     
@@ -27,7 +27,7 @@ public class IfNodeView : GraphNodeView
         UnityEngine.Object.DestroyImmediate(editor);
         editor = Editor.CreateEditor(ifNode);
         _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
-        outputContainer.Add(_container);
+        inspector.Add(_container);
         
         GenerateOutputPort("True");
         GenerateOutputPort("False");
@@ -44,9 +44,9 @@ public class IfNodeView : GraphNodeView
     {
         base.ToggleCollapse();
         if(!expanded)
-            outputContainer.Remove(_container);
+            inspector.Remove(_container);
         else
-            outputContainer.Add(_container);
+            inspector.Add(_container);
         MarkDirtyRepaint();
     }
 }

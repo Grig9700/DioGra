@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
-public class DialogueNodeView : GraphNodeView
+public sealed class DialogueNodeView : GraphNodeView
 {
     public DialogueCharacter speaker;
     public string dialogueText;
@@ -27,13 +27,10 @@ public class DialogueNodeView : GraphNodeView
         
         Object.DestroyImmediate(editor);
         
-        //var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/DialoguePlugin/Editor/Node.uss"); 
-        //styleSheets.Add(styleSheet);
-        
         var dialogueNode = Node as DialogueNode;
         editor = Editor.CreateEditor(dialogueNode);
         _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
-        outputContainer.Add(_container);
+        inspector.Add(_container);
     }
     
     public override void SetPosition(Rect newPos)
@@ -47,9 +44,9 @@ public class DialogueNodeView : GraphNodeView
     {
         base.ToggleCollapse();
         if(!expanded)
-            outputContainer.Remove(_container);
+            inspector.Remove(_container);
         else
-            outputContainer.Add(_container);
+            inspector.Add(_container);
         MarkDirtyRepaint();
     }
 }
