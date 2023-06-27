@@ -1,7 +1,15 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="Base" style="flex-grow: 1;">
-        <ui:VisualElement name="Background" style="flex-grow: 1; justify-content: flex-end;">
-            <ui:VisualElement name="DialogueBackdrop" style="height: 140px; background-image: url(&apos;project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/d_iconbranch@2x.png?fileID=2800000&amp;guid=874d8401331ede14087e8d8d486ddda6&amp;type=3#d_iconbranch@2x&apos;);" />
+    <ui:VisualElement name="base" style="flex-grow: 1;">
+        <ui:VisualElement name="background" style="flex-grow: 1; justify-content: flex-end;">
+            <ui:VisualElement name="dialogueBackdrop" style="height: 140px; background-image: url(&apos;project://database/Assets/DialoguePlugin/Art/box.png?fileID=2800000&amp;guid=6e5d7aea4b01d304a9ff5ed49c11bd64&amp;type=3#box&apos;);">
+                <ui:VisualElement name="nameBackdrop">
+                    <ui:Label text="Label" display-tooltip-when-elided="true" name="name" />
+                </ui:VisualElement>
+                <ui:Label text="Label" display-tooltip-when-elided="true" name="text" />
+            </ui:VisualElement>
+            <ui:VisualElement name="characterBackdrop">
+                <ui:VisualElement name="character" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

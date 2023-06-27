@@ -7,9 +7,9 @@ using UnityEngine;
 [Serializable]
 public class EntryNode : GraphNode
 {
-    public override NodeReturn Run(SceneLayout scene, DialogueManager manager)
+    public override NodeReturn Run(SceneLayout scene, DialogueManagerLegacy managerLegacy)
     {
-        manager.SetTargetNode(children.First());
+        managerLegacy.SetTargetNode(children.First());
         return NodeReturn.Next;
     }
 

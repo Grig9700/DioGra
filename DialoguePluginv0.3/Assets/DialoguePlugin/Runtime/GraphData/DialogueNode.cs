@@ -9,7 +9,7 @@ public class DialogueNode : GraphNode
     public int expressionSelector;
     public string dialogueText;
 
-    public override NodeReturn Run(SceneLayout scene, DialogueManager manager)
+    public override NodeReturn Run(SceneLayout scene, DialogueManagerLegacy managerLegacy)
     {
         if (speaker.expressions == null || speaker.expressions?[expressionSelector].image == null)
             scene.dialogueCharacter.gameObject.SetActive(false);
@@ -22,7 +22,7 @@ public class DialogueNode : GraphNode
         scene.nameField.text = speaker.name;
         scene.textField.text = dialogueText;
         
-        manager.SetTargetNode(IsNullOrEmpty() ? null : children?.First());
+        managerLegacy.SetTargetNode(IsNullOrEmpty() ? null : children?.First());
         
         return NodeReturn.PrepNext;
     }

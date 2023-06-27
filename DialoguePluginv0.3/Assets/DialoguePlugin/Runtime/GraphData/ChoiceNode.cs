@@ -10,14 +10,14 @@ public class ChoiceNode : GraphNode
 
     private List<GameObject> _buttons = new List<GameObject>();
 
-    private DialogueManager _manager;
+    private DialogueManagerLegacy _managerLegacy;
 
-    public override NodeReturn Run(SceneLayout scene, DialogueManager manager)
+    public override NodeReturn Run(SceneLayout scene, DialogueManagerLegacy managerLegacy)
     {
         if (IsNullOrEmpty())
             return NodeReturn.End;
 
-        _manager = manager;
+        _managerLegacy = managerLegacy;
         
         ClearButtons();
                 
@@ -39,7 +39,7 @@ public class ChoiceNode : GraphNode
 
     public override void Clear()
     {
-        _manager = null;
+        _managerLegacy = null;
         ClearButtons();
     }
 
@@ -47,7 +47,7 @@ public class ChoiceNode : GraphNode
     {
         ClearButtons();
         
-        _manager.SetTargetNode(child, true);
+        _managerLegacy.SetTargetNode(child, true);
     }
     
     private void ClearButtons()

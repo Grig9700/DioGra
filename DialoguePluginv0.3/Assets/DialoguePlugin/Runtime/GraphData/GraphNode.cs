@@ -20,7 +20,7 @@ public abstract class GraphNode : ScriptableObject
     [HideInInspector]
     public List<string> childPortName = new List<string>();
 
-    public abstract NodeReturn Run(SceneLayout scene, DialogueManager manager);
+    public abstract NodeReturn Run(SceneLayout scene, DialogueManagerLegacy managerLegacy);
     public abstract void Clear();
     
     protected bool IsNullOrEmpty()

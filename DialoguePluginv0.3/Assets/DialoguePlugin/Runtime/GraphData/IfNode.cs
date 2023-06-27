@@ -13,12 +13,12 @@ public class IfNode : GraphNode
     public int numTracker;
     public string[] numComp = {">", ">=", "=", "<=", "<", "!="};
 
-    public override NodeReturn Run(SceneLayout scene, DialogueManager manager)
+    public override NodeReturn Run(SceneLayout scene, DialogueManagerLegacy managerLegacy)
     {
         if (IsNullOrEmpty())
             return NodeReturn.End;
         
-        manager.SetTargetNode(RunComparison() ? 
+        managerLegacy.SetTargetNode(RunComparison() ? 
             childPortName[0] == "True" ? children[0] : children[1] : 
             childPortName[0] == "False" ? children[0] : children[1]);
 

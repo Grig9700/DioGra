@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManagerLegacy : MonoBehaviour
 {
     public DialogueContainer container;
     
@@ -147,7 +147,7 @@ public class DialogueManager : MonoBehaviour
     {
         EndDialogue(true);
 
-        DialogueContainer tempContainer = FindAssets.GetResourceByName<DialogueContainer>(filename);
+        var tempContainer = FindAssets.GetResourceByName<DialogueContainer>(filename);
 
         if (tempContainer == null)
         {

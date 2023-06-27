@@ -15,7 +15,7 @@ public class EventNode : GraphNode
 
     public List<DialogueEvent> invokedEvents;
     
-    public override NodeReturn Run(SceneLayout scene, DialogueManager manager)
+    public override NodeReturn Run(SceneLayout scene, DialogueManagerLegacy managerLegacy)
     {
         //functionCalls.Invoke();
         foreach (var dialogueEvent in invokedEvents)
@@ -23,7 +23,7 @@ public class EventNode : GraphNode
             dialogueEvent.Raise();
         }
         
-        manager.SetTargetNode(children.First());
+        managerLegacy.SetTargetNode(children.First());
         
         return NodeReturn.Wait;
     }
