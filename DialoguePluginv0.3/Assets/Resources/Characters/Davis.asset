@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expressions:
   - emotion: Tired
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: ccad7115453b9934da765ddfb4da3745, type: 3}

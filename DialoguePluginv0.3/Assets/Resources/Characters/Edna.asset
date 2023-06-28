@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expressions:
   - emotion: Happy
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 35cd85747aa77ff45843708144572178, type: 3}
