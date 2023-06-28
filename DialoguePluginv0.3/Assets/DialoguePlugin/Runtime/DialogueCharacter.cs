@@ -14,5 +14,5 @@ public class DialogueCharacter : ScriptableObject
 public struct CharacterExpressions
 {
     public string emotion;
-    public Image image;
+    public Sprite image;
 }

@@ -74,23 +74,23 @@ public class DialogueManagerLegacy : MonoBehaviour
             return;
         }
 
-        switch (_currentNode.Run(_scene, this))
-        {
-            case NodeReturn.End:
-                EndDialogue();
-                break;
-            case NodeReturn.Next:
-                GetAndStartNext();
-                break;
-            case NodeReturn.PrepNext:
-                GetNext();
-                break;
-            case NodeReturn.Wait:
-                break;
-            default:
-                Debug.LogError("Entered Default on Next", this);
-                break;
-        }
+        // switch (_currentNode.Run(_scene, this))
+        // {
+        //     case NodeReturn.End:
+        //         EndDialogue();
+        //         break;
+        //     case NodeReturn.Next:
+        //         GetAndStartNext();
+        //         break;
+        //     case NodeReturn.PrepNext:
+        //         GetNext();
+        //         break;
+        //     case NodeReturn.Wait:
+        //         break;
+        //     default:
+        //         Debug.LogError("Entered Default on Next", this);
+        //         break;
+        // }
     }
     
     private void GetNext()

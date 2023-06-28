@@ -7,11 +7,10 @@ using UnityEngine;
 [Serializable]
 public class EntryNode : GraphNode
 {
-    public override NodeReturn Run(SceneLayout scene, DialogueManagerLegacy managerLegacy)
+    public override NodeReturn Run(DialogueManager manager)
     {
-        managerLegacy.SetTargetNode(children.First());
+        manager.SetTargetNode(children.First());
         return NodeReturn.Next;
     }
-
     public override void Clear(){}
 }

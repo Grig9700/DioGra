@@ -14,16 +14,14 @@ public class EventNode : GraphNode
     //public UnityEvent functionCalls;
 
     public List<DialogueEvent> invokedEvents;
-    
-    public override NodeReturn Run(SceneLayout scene, DialogueManagerLegacy managerLegacy)
+
+    public override NodeReturn Run(DialogueManager manager)
     {
         //functionCalls.Invoke();
         foreach (var dialogueEvent in invokedEvents)
-        {
             dialogueEvent.Raise();
-        }
         
-        managerLegacy.SetTargetNode(children.First());
+        manager.SetTargetNode(children.First());
         
         return NodeReturn.Wait;
     }
