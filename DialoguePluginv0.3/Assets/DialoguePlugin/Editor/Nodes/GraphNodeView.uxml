@@ -22,6 +22,6 @@
             <ui:VisualElement name="divider" class="horizontal" />
             <ui:VisualElement name="inspector" />
         </ui:VisualElement>
-        <ui:VisualElement name="selection-border" picking-mode="Ignore" />
     </ui:VisualElement>
+    <ui:VisualElement name="selection-border" picking-mode="Ignore" />
 </ui:UXML>
