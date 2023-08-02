@@ -10,7 +10,7 @@ public class DialogueGraphEditor : EditorWindow
     private DialogueGraphView _graphView;
     private InspectorView _inspectorView;
     
-    [MenuItem("Dialogue Graph Editor/Editor Window")]
+    [MenuItem("Dialogue Editor/Editor Window")]
     public static void CreateEditorWindow()
     {
         var window = GetWindow<DialogueGraphEditor>();
@@ -27,13 +27,13 @@ public class DialogueGraphEditor : EditorWindow
         return true;
     }
     
-    [MenuItem("Dialogue Graph Editor/New Dialogue")]
+    [MenuItem("Dialogue Editor/New Dialogue")]
     public static void MakeNewDialogueMenuItem()
     {
         CreateAssets.CreateScriptableObjectAsset<DialogueContainer>("New Dialogue", "Dialogues");
     }
     
-    private static DialogueContainer GetFirstOrNewDialogue()
+    public static DialogueContainer GetFirstOrNewDialogue()
     {
         CreateAssets.CreateFolders();
 
@@ -60,7 +60,6 @@ public class DialogueGraphEditor : EditorWindow
         root.styleSheets.Add(styleSheet);
 
         _graphView = root.Q<DialogueGraphView>();
-        _graphView.Initialize(this);
         _inspectorView = root.Q<InspectorView>();
 
         var runTestButton = root.Q<Button>("TestVariables");
@@ -70,9 +69,7 @@ public class DialogueGraphEditor : EditorWindow
         }
         
         var container = Selection.activeObject as DialogueContainer;
-        _graphView.Container = container ? container : GetFirstOrNewDialogue();
-        
-        UpdateContainer(_graphView.Container);
+        UpdateContainer(container ? container : GetFirstOrNewDialogue());
         
         AssetDatabase.SaveAssets();
     }

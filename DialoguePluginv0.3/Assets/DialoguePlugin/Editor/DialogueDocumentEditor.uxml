@@ -4,13 +4,11 @@
         <SplitView fixed-pane-initial-dimension="200" style="flex-grow: 1;">
             <ui:VisualElement name="left-region" style="width: 26px;">
                 <ui:Label text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
-                <InspectorView name="inspectorView" style="flex-grow: 1;">
-                    <ui:Button text="Test Variables" display-tooltip-when-elided="true" name="TestVariables" />
-                </InspectorView>
+                <InspectorView name="inspectorView" style="flex-grow: 1;" />
             </ui:VisualElement>
             <ui:VisualElement name="right-region">
-                <ui:Label text="Graph View" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
-                <DialogueGraphView focusable="true" name="dialogueGraphView" style="flex-grow: 1;" />
+                <ui:Label text="Document View" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
+                <DialogueDocumentView name="dialogueDocumentView" />
             </ui:VisualElement>
         </SplitView>
     </ui:VisualElement>

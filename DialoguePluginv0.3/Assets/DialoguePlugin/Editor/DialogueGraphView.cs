@@ -26,44 +26,16 @@ public class DialogueGraphView : GraphView
         styleSheets.Add(styleSheet);
     }
     
-    public Blackboard Blackboard;
-
-    private Editor _editor;
-
-    //private NodeSearchWindow _nodeSearchWindow;
-    
-    private DialogueGraphEditor _dialogueEditor;
-    
     public DialogueContainer Container;
 
-    private float _timer;
     private Vector2 _localMousePosition;
-
-    public void Initialize(DialogueGraphEditor window)
-    {
-        _dialogueEditor = window;
-        //AddSearchWindow();
-    }
-    
-    /*private void AddSearchWindow()
-    {
-        _nodeSearchWindow = ScriptableObject.CreateInstance<NodeSearchWindow>();
-        _nodeSearchWindow.Initialize(_dialogueEditor, this);
-        nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _nodeSearchWindow);
-    }*/
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
-        //Done to allow ports of different types to connect as we don't need dataflow between them atm
         return ports.ToList().Where(endPort =>
             endPort.direction != startPort.direction &&
             endPort.node != startPort.node).ToList();
     }
-
-    /*private Port GeneratePort(GraphNodeView nodeView, Direction portOrientation, Port.Capacity capacity = Port.Capacity.Single)
-    {
-        return nodeView.InstantiatePort(Orientation.Horizontal, portOrientation, capacity, typeof(float));
-    }*/
 
     private GraphNodeView FindNodeView(GraphNode node)
     {
@@ -104,16 +76,6 @@ public class DialogueGraphView : GraphView
                 case GraphNodeView graphNode:
                     Container.DeleteGraphNode(graphNode.Node);
                     break;
-                /*case Port port:
-                    if (port.direction != Direction.Output)
-                        break;
-                    var edges = port.connections;
-                    port.DisconnectAll();
-                    foreach (var edge in edges)
-                    {
-                        RemoveElement(edge);
-                    }
-                    break;*/
                 case Edge edge:
                     var parentView = edge.output.node as GraphNodeView;
                     var childView = edge.input.node as GraphNodeView;
@@ -138,7 +100,6 @@ public class DialogueGraphView : GraphView
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
         _localMousePosition = contentViewContainer.WorldToLocal(evt.mousePosition);
-        //base.BuildContextualMenu(evt);
         var types = TypeCache.GetTypesDerivedFrom<GraphNode>();
         foreach (var type in types.Where(type => type.Name != "EntryNodeData" && type.Name != "EntryNode"))
         {
@@ -152,16 +113,8 @@ public class DialogueGraphView : GraphView
             return;
 
         AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
-        //DelayEntryNode();
     }
 
-    // private async void DelayEntryNode()
-    // {
-    //     await Task.Delay(50);
-    //     Selection.activeGameObject = null;
-    //     AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
-    // }
-    
     private void CreateGraphNode(Type type, Vector2 pos)
     {
         var node = Container.CreateGraphNode(type, pos);
