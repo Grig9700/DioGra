@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="base" style="flex-grow: 1;">
+        <ui:VisualElement style="flex-grow: 1; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
+            <ui:TextField picking-mode="Ignore" label="Currently Displaying" value="filler text" text="filler text" name="textField" />
+            <ui:VisualElement name="buttonContainer" style="flex-direction: row; justify-content: space-around;">
+                <ui:Button text="Previous Choice" display-tooltip-when-elided="true" name="previousChoice" />
+                <ui:Button text="Next Choice" display-tooltip-when-elided="true" name="nextChoice" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

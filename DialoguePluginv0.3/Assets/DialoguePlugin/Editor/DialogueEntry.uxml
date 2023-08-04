@@ -11,7 +11,7 @@
             <ui:TextField picking-mode="Ignore" name="textField" style="flex-grow: 1; flex-shrink: 0;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement />
+    <ui:VisualElement name="VisualElement" />
     <ui:VisualElement name="v2" style="flex-direction: row;">
         <ui:VisualElement name="character" style="width: 126px;">
             <ui:TextField picking-mode="Ignore" text="name" name="nameField" style="flex-grow: 1; flex-shrink: 0;" />

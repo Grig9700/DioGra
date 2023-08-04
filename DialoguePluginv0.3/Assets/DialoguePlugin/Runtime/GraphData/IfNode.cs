@@ -8,10 +8,9 @@ public class IfNode : GraphNode
     public VariableObject comparisonTarget;
     public string comparisonValue;
 
-    public int binaryTracker;
     public string[] binaryComp = {"=", "!="};
     public int numTracker;
-    public string[] numComp = {">", ">=", "=", "<=", "<", "!="};
+    public string[] numComp = {"=", "!=", ">", ">=", "<=", "<"};
     
     public override NodeReturn Run(DialogueManager manager)
     {
@@ -39,7 +38,7 @@ public class IfNode : GraphNode
         {
             case BoolVariable boolVariable:
             case StringVariable stringVariable:
-                return ComparisonOperation(binaryComp[binaryTracker]);
+                return ComparisonOperation(binaryComp[numTracker]);
             
             case FloatVariable floatVariable:
             case IntVariable intVariable:

@@ -14,8 +14,9 @@ public class DialogueDocumentView : VisualElement
     private ListView _document;
     
     
-    private VisualTreeAsset _dialogueEntry;
     private VisualTreeAsset _baseEntry;
+    private VisualTreeAsset _dialogueEntry;
+    private VisualTreeAsset _multipleOutcomeEntry;
         
         
     private List<DialogueCharacter> _characters;
@@ -25,8 +26,9 @@ public class DialogueDocumentView : VisualElement
         _container = container;
         _trace = new List<GraphNode>();
         _document = this.Q<ListView>();
-        _dialogueEntry = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialoguePlugin/Editor/DialogueEntry.uxml");
         _baseEntry = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialoguePlugin/Editor/BaseEntry.uxml");
+        _dialogueEntry = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialoguePlugin/Editor/DialogueEntry.uxml");
+        _multipleOutcomeEntry = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialoguePlugin/Editor/MultipleOutcomeEntry.uxml");
         _characters = FindAssets.GetAllInstances<DialogueCharacter>();
         
         TraceDialogue(_container.graphNodes.First(node => node.entryNode));
@@ -36,6 +38,7 @@ public class DialogueDocumentView : VisualElement
 
     private void TraceDialogue(GraphNode node)
     {
+        int iterator = 0;
         while (node.children.Any())
         {
             node = node.children[0];
@@ -44,6 +47,10 @@ public class DialogueDocumentView : VisualElement
             {
                 _trace.Add(node);
             }
+
+            iterator++;
+            if (iterator > 10000)
+                break;
         }
     }
 
@@ -64,6 +71,11 @@ public class DialogueDocumentView : VisualElement
                     break;
                 
                 case ChoiceNode choiceNode:
+                    ChoiceEntry(element, choiceNode);
+                    break;
+                
+                case IfNode ifNode:
+                    IfEntry(element, ifNode);
                     break;
 
                 default:
@@ -73,6 +85,8 @@ public class DialogueDocumentView : VisualElement
 
         };
 
+        _document.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
+        
         _document.itemsSource = _trace;
     }
 
@@ -92,5 +106,26 @@ public class DialogueDocumentView : VisualElement
             characterSelector.index = j;
             break;
         }
+    }
+
+    private void ChoiceEntry(VisualElement element, ChoiceNode node)
+    {
+        element.Add(_multipleOutcomeEntry.Instantiate());
+        
+        element.Q<TextField>().value = node.outputOptions[0];
+    }
+    
+    private void IfEntry(VisualElement element, IfNode node)
+    {
+        element.Add(_multipleOutcomeEntry.Instantiate());
+
+        element.Q<TextField>().value = node.children.Any() ? 
+            $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: {_trace.Contains(node.children[0])}" : 
+            $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: True";
+    }
+
+    private bool IfEntryOutput(IfNode node)
+    {
+        return !node.children.Any() || _trace.Contains(node.children[0]);
     }
 }

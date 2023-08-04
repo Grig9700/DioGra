@@ -42,7 +42,7 @@ public class IfNodeEditor : Editor
             {
                 case BoolVariable boolVariable:
                 case StringVariable stringVariable:
-                    _ifNode.binaryTracker = EditorGUI.Popup(new Rect(60, 0, 40, 20), _ifNode.binaryTracker, _ifNode.binaryComp);
+                    _ifNode.numTracker = EditorGUI.Popup(new Rect(60, 0, 40, 20), _ifNode.numTracker, _ifNode.binaryComp);
                     break;
                 case FloatVariable floatVariable:
                 case IntVariable intVariable:

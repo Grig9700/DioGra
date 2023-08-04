@@ -1,5 +1,59 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3685528736048116444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 62fc7a3ec4b16174dad8780657ea4992
+  position: {x: 1475.8075, y: 101}
+  children: []
+  childPortName: []
+  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
+  expressionSelector: 0
+  dialogueText: true
+--- !u!114 &-2247968830371926799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0436a84f0c6204fb6e899c92878fa1, type: 3}
+  m_Name: IfNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 2daff93945ee6c74a9a9969666d5b5c8
+  position: {x: 1247.0477, y: 100.99999}
+  children:
+  - {fileID: -3685528736048116444}
+  - {fileID: 8680564818038810463}
+  childPortName:
+  - True
+  - False
+  comparisonTarget: {fileID: 11400000, guid: 112448fa5c9602e4e9c898c81fb66b31, type: 2}
+  comparisonValue: 5
+  binaryComp:
+  - =
+  - '!='
+  numTracker: 2
+  numComp:
+  - =
+  - '!='
+  - '>'
+  - '>='
+  - <=
+  - <
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20,6 +74,9 @@ MonoBehaviour:
   - {fileID: 212790364508771973}
   - {fileID: 293800543654558757}
   - {fileID: 5778221676734275620}
+  - {fileID: -3685528736048116444}
+  - {fileID: 8680564818038810463}
+  - {fileID: -2247968830371926799}
   sceneLayoutPrefab: {fileID: 1662424870414749273, guid: b248e4324ecb82348a423ce472289797, type: 3}
   defaultBackground: {fileID: 0}
 --- !u!114 &212790364508771973
@@ -166,8 +223,30 @@ MonoBehaviour:
   entryNode: 0
   GUID: 773c78bf4d3456e4aafcf84fb7517be7
   position: {x: 984, y: 101}
+  children:
+  - {fileID: -2247968830371926799}
+  childPortName:
+  - Output
+  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
+  expressionSelector: 0
+  dialogueText: This is so stupid
+--- !u!114 &8680564818038810463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 178b3316e7a3d08468c2150dbe45dcb2
+  position: {x: 1476, y: 249.74501}
   children: []
   childPortName: []
   speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
   expressionSelector: 0
-  dialogueText: This is so stupid
+  dialogueText: false
