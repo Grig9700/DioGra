@@ -11,22 +11,16 @@ public class DialogueDocumentView : VisualElement
     
     private DialogueContainer _container;
     private List<GraphNode> _trace;
-    private ListView _document;
-    
-    
-    private VisualTreeAsset _baseEntry;
+    private ScrollView _document;
     private VisualTreeAsset _dialogueEntry;
     private VisualTreeAsset _multipleOutcomeEntry;
-        
-        
     private List<DialogueCharacter> _characters;
 
     public void PopulateView(DialogueContainer container)
     {
         _container = container;
         _trace = new List<GraphNode>();
-        _document = this.Q<ListView>();
-        _baseEntry = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialoguePlugin/Editor/BaseEntry.uxml");
+        _document = this.Q<ScrollView>();
         _dialogueEntry = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialoguePlugin/Editor/DialogueEntry.uxml");
         _multipleOutcomeEntry = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialoguePlugin/Editor/MultipleOutcomeEntry.uxml");
         _characters = FindAssets.GetAllInstances<DialogueCharacter>();
@@ -56,43 +50,32 @@ public class DialogueDocumentView : VisualElement
 
     private void AddEntries()
     {
-        _document.makeItem = () =>
-        {
-            var newEntry = _baseEntry.Instantiate();
-            return newEntry;
-        };
-
-        _document.bindItem = (element, i) =>
+        for (int i = 0; i < _trace.Count; i++)
         {
             switch (_trace[i])
             {
                 case DialogueNode dialogueNode:
-                    DialogueEntry(element, dialogueNode);
+                    _document.Add(DialogueEntry(dialogueNode));
                     break;
                 
                 case ChoiceNode choiceNode:
-                    ChoiceEntry(element, choiceNode);
+                    _document.Add(ChoiceEntry(choiceNode));
                     break;
                 
                 case IfNode ifNode:
-                    IfEntry(element, ifNode);
+                    _document.Add(IfEntry(ifNode));
                     break;
 
                 default:
                     Debug.LogError($"{_trace[i]} is not implemented");
                     break;
             }
-
-        };
-
-        _document.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
-        
-        _document.itemsSource = _trace;
+        }
     }
 
-    private void DialogueEntry(VisualElement element, DialogueNode node)
+    private VisualElement DialogueEntry(DialogueNode node)
     {
-        element.Add(_dialogueEntry.Instantiate());
+        var element = _dialogueEntry.Instantiate();
             
         element.Q<TextField>().value = node.dialogueText;
         
@@ -100,7 +83,7 @@ public class DialogueDocumentView : VisualElement
         characterSelector.choices = _characters.Select(character => character.name).ToList();
 
         if (!node.speaker || !characterSelector.choices.Any())
-            return;
+            return element;
 
         var charIndex = 0;
         for (var i = 0; i < characterSelector.choices.Count; i++)
@@ -116,27 +99,31 @@ public class DialogueDocumentView : VisualElement
         expressionSelector.index = node.expressionSelector;
         
         if (!expressionSelector.choices.Any())
-            return;
+            return element;
         
         var display = element.Q<VisualElement>("expressionDisplay");
         
         display.style.backgroundImage = new StyleBackground(node.speaker.expressions[node.expressionSelector].image);
+
+        return element;
     }
 
-    private void ChoiceEntry(VisualElement element, ChoiceNode node)
+    private VisualElement ChoiceEntry(ChoiceNode node)
     {
-        element.Add(_multipleOutcomeEntry.Instantiate());
+        var element = _multipleOutcomeEntry.Instantiate();
         
         element.Q<TextField>().value = node.outputOptions[0];
 
         var selector = element.Q<DropdownField>();
         selector.choices = node.childPortName;
         selector.index = 0;
+
+        return element;
     }
     
-    private void IfEntry(VisualElement element, IfNode node)
+    private VisualElement IfEntry(IfNode node)
     {
-        element.Add(_multipleOutcomeEntry.Instantiate());
+        var element = _multipleOutcomeEntry.Instantiate();
 
         element.Q<TextField>().value = node.children.Any() ? 
             $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: {_trace.Contains(node.children[0])}" : 
@@ -145,5 +132,7 @@ public class DialogueDocumentView : VisualElement
         var selector = element.Q<DropdownField>();
         selector.choices = node.childPortName;
         selector.index = 0;
+
+        return element;
     }
 }

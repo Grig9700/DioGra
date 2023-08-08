@@ -9,7 +9,7 @@
             <ui:VisualElement name="right-region">
                 <ui:Label text="Document View" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
                 <DialogueDocumentView name="dialogueDocumentView">
-                    <ui:ListView focusable="true" name="document" />
+                    <ui:ScrollView name="document" style="flex-grow: 1;" />
                 </DialogueDocumentView>
             </ui:VisualElement>
         </SplitView>
