@@ -228,7 +228,7 @@ MonoBehaviour:
   position: {x: 1729.5004, y: 101}
   children: []
   childPortName: []
-  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
+  speaker: {fileID: 0}
   expressionSelector: 0
   dialogueText: moo
 --- !u!114 &8595038062140843120

@@ -81,28 +81,22 @@ public class DialogueDocumentView : VisualElement
         
         var characterSelector = element.Q<DropdownField>("characterSelect");
         characterSelector.choices = _characters.Select(character => character.name).ToList();
+        characterSelector.RegisterValueChangedCallback(evt => OnCharacterChange(evt, node, element));
 
         if (!node.speaker || !characterSelector.choices.Any())
             return element;
-
-        var charIndex = 0;
-        for (var i = 0; i < characterSelector.choices.Count; i++)
-        {
-            if (characterSelector.choices[i] != node.speaker.name)
-                continue;
-            characterSelector.index = charIndex = i;
-            break;
-        }
+        var charIndex = GetIndexOfDropdownChoice(characterSelector.choices, node.speaker.name);
+        characterSelector.index = charIndex;
         
         var expressionSelector = element.Q<DropdownField>("expressionSelect");
         expressionSelector.choices = _characters[charIndex].expressions.Select(expression => expression.emotion).ToList();
-        expressionSelector.index = node.expressionSelector;
-        
-        if (!expressionSelector.choices.Any())
+
+        if (!expressionSelector.choices.Any() || node.expressionSelector < 0)
             return element;
+        expressionSelector.index = node.expressionSelector;
+        expressionSelector.RegisterValueChangedCallback(evt => OnExpressionChange(evt, node, element));
         
         var display = element.Q<VisualElement>("expressionDisplay");
-        
         display.style.backgroundImage = new StyleBackground(node.speaker.expressions[node.expressionSelector].image);
 
         return element;
@@ -134,5 +128,39 @@ public class DialogueDocumentView : VisualElement
         selector.index = 0;
 
         return element;
+    }
+
+    private int GetIndexOfDropdownChoice(IReadOnlyList<string> choices, string choice)
+    {
+        for (var i = 0; i < choices.Count; i++)
+        {
+            if (choices[i] != choice)
+                continue;
+            return i;
+        }
+
+        return 0;
+    }
+
+    private void OnCharacterChange(ChangeEvent<string> evt, DialogueNode node, VisualElement element)
+    {
+        node.speaker = _characters.First(c => c.name == evt.newValue);
+
+        node.expressionSelector = 0;
+        var expressionSelector = element.Q<DropdownField>("expressionSelect");
+        expressionSelector.UnregisterValueChangedCallback(expressionEvt => OnExpressionChange(expressionEvt, node, element));
+        expressionSelector.choices = node.speaker.expressions.Select(expression => expression.emotion).ToList();
+        expressionSelector.index = node.expressionSelector;
+        expressionSelector.RegisterValueChangedCallback(expressionEvt => OnExpressionChange(expressionEvt, node, element));
+        
+        element.Q<VisualElement>("expressionDisplay").style.backgroundImage = new StyleBackground(node.speaker.expressions[node.expressionSelector].image);
+    }
+
+    private void OnExpressionChange(ChangeEvent<string> evt, DialogueNode node, VisualElement element)
+    {
+        node.expressionSelector =
+            GetIndexOfDropdownChoice(node.speaker.expressions.Select(expression => expression.emotion).ToList(), evt.newValue);
+        
+        element.Q<VisualElement>("expressionDisplay").style.backgroundImage = new StyleBackground(node.speaker.expressions[node.expressionSelector].image);
     }
 }
