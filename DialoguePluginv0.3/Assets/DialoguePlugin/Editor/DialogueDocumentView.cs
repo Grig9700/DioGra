@@ -11,6 +11,7 @@ public class DialogueDocumentView : VisualElement
     
     private DialogueContainer _container;
     private List<GraphNode> _trace;
+    private Dictionary<GraphNode, int> _traceChoices;
     private ScrollView _document;
     private VisualTreeAsset _dialogueEntry;
     private VisualTreeAsset _multipleOutcomeEntry;
@@ -20,6 +21,7 @@ public class DialogueDocumentView : VisualElement
     {
         _container = container;
         _trace = new List<GraphNode>();
+        _traceChoices = new Dictionary<GraphNode, int>();
         _document = this.Q<ScrollView>();
         _dialogueEntry = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialoguePlugin/Editor/DialogueEntry.uxml");
         _multipleOutcomeEntry = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialoguePlugin/Editor/MultipleOutcomeEntry.uxml");
@@ -30,18 +32,26 @@ public class DialogueDocumentView : VisualElement
         AddEntries();
     }
 
-    private void TraceDialogue(GraphNode node)
+    private void TraceDialogue(GraphNode node, int choice = 0)
     {
-        int iterator = 0;
+        var iterator = 0;
         while (node.children.Any())
         {
-            node = node.children[0];
+            node = node.children[choice];
 
-            if (node is DialogueNode or ChoiceNode or IfNode)
+            switch (node)
             {
-                _trace.Add(node);
+                case DialogueNode:
+                    _trace.Add(node);
+                    break;
+                case ChoiceNode or IfNode:
+                    _trace.Add(node);
+                    _traceChoices.Add(node, choice);
+                    break;
             }
 
+            choice = 0;
+            
             iterator++;
             if (iterator > 10000)
                 break;
@@ -102,35 +112,39 @@ public class DialogueDocumentView : VisualElement
         return element;
     }
 
-    private VisualElement ChoiceEntry(ChoiceNode node, int index = 0)
+    private VisualElement ChoiceEntry(ChoiceNode node)
     {
         var element = _multipleOutcomeEntry.Instantiate();
         
-        element.Q<TextField>().value = node.outputOptions.Any() ? node.outputOptions[index] : $"No choice options have been created";
+        element.Q<TextField>().value = node.children.Any() ? node.childPortName[_traceChoices[node]] : $"No choice options have been created";
 
-        IndexChildPort(element, node, index);
+        SetupChoiceControls(element, node);
 
         return element;
     }
     
-    private VisualElement IfEntry(IfNode node, int index = 0)
+    private VisualElement IfEntry(IfNode node)
     {
         var element = _multipleOutcomeEntry.Instantiate();
 
-        element.Q<TextField>().value = node.children.Any() ? 
-            $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: {_trace.Contains(node.children[index])}" : 
+        element.Q<TextField>().value = node.children.Any() && _traceChoices[node] == 1 ? 
+            $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: False" : 
             $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: True";
         
-        IndexChildPort(element, node, index);
-
+        SetupChoiceControls(element, node);
+        
         return element;
     }
 
-    private void IndexChildPort(VisualElement element, GraphNode node, int index)
+    private void SetupChoiceControls(VisualElement element, GraphNode node)
     {
+        element.Q<Button>("previousChoice").clicked += () => ChangeChoice(node, false);
+        element.Q<Button>("nextChoice").clicked += () => ChangeChoice(node, true);
+        
         var selector = element.Q<DropdownField>();
         selector.choices = node.childPortName;
-        selector.index = index;
+        selector.index = _traceChoices[node];
+        selector.RegisterValueChangedCallback(evt => ChangeChoice(node, GetIndexOfDropdownChoice(selector.choices, evt.newValue)));
     }
     
     private int GetIndexOfDropdownChoice(IReadOnlyList<string> choices, string choice)
@@ -167,32 +181,27 @@ public class DialogueDocumentView : VisualElement
         element.Q<VisualElement>("expressionDisplay").style.backgroundImage = new StyleBackground(node.speaker.expressions[node.expressionSelector].image);
     }
 
-    private void ChangeChoice(IfNode node, bool nextChoice)
-    {
-        var choice = 0;
-        for (var i = 0; i < node.children.Count; i++)
-        {
-            if (!_trace.Contains(node.children[i]))
-                continue;
-            choice = i;
-            
-            ClearOldBranch(node);
-            
-            //_trace.Add();
-            
-            //TraceDialogue();
-            
-            break;
-        }
-    }
-
-    private void ChangeChoice(ChoiceNode node)
+    private void ChangeChoice(GraphNode node, bool nextChoice)
     {
         ClearOldBranch(node);
         
+        if (nextChoice && _traceChoices[node] + 1 < node.children.Count)
+            _traceChoices[node]++;
+        if (!nextChoice && _traceChoices[node] - 1 >= 0)
+            _traceChoices[node]--;
         
+        TraceDialogue(node, _traceChoices[node]);
     }
 
+    private void ChangeChoice(GraphNode node, int setChoice)
+    {
+        ClearOldBranch(node);
+
+        _traceChoices[node] = setChoice;
+        
+        TraceDialogue(node, _traceChoices[node]);
+    }
+    
     private void ClearOldBranch(GraphNode node)
     {
         var index = 0;
@@ -204,8 +213,9 @@ public class DialogueDocumentView : VisualElement
             break;
         }
 
-        for (var i = _trace.Count; i >= index; i--)
+        for (var i = _trace.Count - 1; i > index; i--)
         {
+            _traceChoices.Remove(_trace[i]);
             _trace.Remove(_trace[i]);
         }
     }
