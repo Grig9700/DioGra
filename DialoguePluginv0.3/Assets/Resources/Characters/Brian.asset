@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expressions:
   - emotion: angry
-    image: {fileID: 21300000, guid: 3d50f0d02f184b1408a25f27f77878a0, type: 3}
+    image: {fileID: 21300000, guid: e579e93340a41864fbe73c7ee95f5410, type: 3}
   - emotion: tired
     image: {fileID: 21300000, guid: 4dde4c56efff23340a285fc66a0c0376, type: 3}
   - emotion: irritated
