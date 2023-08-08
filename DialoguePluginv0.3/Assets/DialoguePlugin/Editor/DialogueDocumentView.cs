@@ -95,17 +95,32 @@ public class DialogueDocumentView : VisualElement
         element.Add(_dialogueEntry.Instantiate());
             
         element.Q<TextField>().value = node.dialogueText;
-            
-        var characterSelector = element.Q<DropdownField>();
+        
+        var characterSelector = element.Q<DropdownField>("characterSelect");
         characterSelector.choices = _characters.Select(character => character.name).ToList();
 
-        for (var j = 0; j < characterSelector.choices.Count; j++)
+        if (!node.speaker || !characterSelector.choices.Any())
+            return;
+
+        var charIndex = 0;
+        for (var i = 0; i < characterSelector.choices.Count; i++)
         {
-            if (characterSelector.choices[j] != node.speaker.name)
+            if (characterSelector.choices[i] != node.speaker.name)
                 continue;
-            characterSelector.index = j;
+            characterSelector.index = charIndex = i;
             break;
         }
+        
+        var expressionSelector = element.Q<DropdownField>("expressionSelect");
+        expressionSelector.choices = _characters[charIndex].expressions.Select(expression => expression.emotion).ToList();
+        expressionSelector.index = node.expressionSelector;
+        
+        if (!expressionSelector.choices.Any())
+            return;
+        
+        var display = element.Q<VisualElement>("expressionDisplay");
+        
+        display.style.backgroundImage = new StyleBackground(node.speaker.expressions[node.expressionSelector].image);
     }
 
     private void ChoiceEntry(VisualElement element, ChoiceNode node)
@@ -113,6 +128,10 @@ public class DialogueDocumentView : VisualElement
         element.Add(_multipleOutcomeEntry.Instantiate());
         
         element.Q<TextField>().value = node.outputOptions[0];
+
+        var selector = element.Q<DropdownField>();
+        selector.choices = node.childPortName;
+        selector.index = 0;
     }
     
     private void IfEntry(VisualElement element, IfNode node)
@@ -122,10 +141,9 @@ public class DialogueDocumentView : VisualElement
         element.Q<TextField>().value = node.children.Any() ? 
             $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: {_trace.Contains(node.children[0])}" : 
             $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: True";
-    }
-
-    private bool IfEntryOutput(IfNode node)
-    {
-        return !node.children.Any() || _trace.Contains(node.children[0]);
+        
+        var selector = element.Q<DropdownField>();
+        selector.choices = node.childPortName;
+        selector.index = 0;
     }
 }

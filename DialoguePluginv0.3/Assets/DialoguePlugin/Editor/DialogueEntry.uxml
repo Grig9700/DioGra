@@ -1,23 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="base" style="flex-direction: row;">
-        <ui:VisualElement name="character" style="width: 126px;">
-            <ui:VisualElement style="flex-direction: row;">
-                <ui:Button text="clear" display-tooltip-when-elided="true" />
+    <ui:VisualElement name="base" style="flex-direction: row; flex-grow: 1;">
+        <ui:VisualElement style="flex-direction: column; flex-grow: 0;">
+            <ui:VisualElement name="character" style="width: 126px; flex-direction: row;">
                 <ui:DropdownField index="-1" choices="System.Collections.Generic.List`1[System.String]" name="characterSelect" style="flex-grow: 1;" />
+                <ui:DropdownField index="-1" choices="System.Collections.Generic.List`1[System.String]" name="expressionSelect" />
             </ui:VisualElement>
-            <ui:VisualElement />
+            <ui:VisualElement name="expressionDisplay" style="flex-grow: 1; min-width: 80px; min-height: 80px; background-image: none; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
         </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 1;">
-            <ui:TextField picking-mode="Ignore" name="textField" style="flex-grow: 1; flex-shrink: 0;" />
-        </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement name="VisualElement" />
-    <ui:VisualElement name="v2" style="flex-direction: row;">
-        <ui:VisualElement name="character" style="width: 126px;">
-            <ui:TextField picking-mode="Ignore" text="name" name="nameField" style="flex-grow: 1; flex-shrink: 0;" />
-        </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 1;">
-            <ui:TextField picking-mode="Ignore" value="filler text" name="textField" style="flex-grow: 1; flex-shrink: 0;" />
-        </ui:VisualElement>
+        <ui:TextField picking-mode="Ignore" name="textField" style="flex-grow: 1; flex-shrink: 0;" />
     </ui:VisualElement>
 </ui:UXML>

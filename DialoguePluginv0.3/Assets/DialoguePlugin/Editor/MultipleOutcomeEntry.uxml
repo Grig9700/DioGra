@@ -4,6 +4,7 @@
             <ui:TextField picking-mode="Ignore" label="Currently Displaying" value="filler text" text="filler text" name="textField" />
             <ui:VisualElement name="buttonContainer" style="flex-direction: row; justify-content: space-around;">
                 <ui:Button text="Previous Choice" display-tooltip-when-elided="true" name="previousChoice" />
+                <ui:DropdownField index="-1" choices="System.Collections.Generic.List`1[System.String]" name="choices" />
                 <ui:Button text="Next Choice" display-tooltip-when-elided="true" name="nextChoice" />
             </ui:VisualElement>
         </ui:VisualElement>

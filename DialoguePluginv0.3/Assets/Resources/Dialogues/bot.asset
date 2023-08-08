@@ -15,8 +15,10 @@ MonoBehaviour:
   entryNode: 0
   GUID: 62fc7a3ec4b16174dad8780657ea4992
   position: {x: 1475.8075, y: 101}
-  children: []
-  childPortName: []
+  children:
+  - {fileID: 8352522917198424702}
+  childPortName:
+  - Output
   speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
   expressionSelector: 0
   dialogueText: true
@@ -77,6 +79,7 @@ MonoBehaviour:
   - {fileID: -3685528736048116444}
   - {fileID: 8680564818038810463}
   - {fileID: -2247968830371926799}
+  - {fileID: 8352522917198424702}
   sceneLayoutPrefab: {fileID: 1662424870414749273, guid: b248e4324ecb82348a423ce472289797, type: 3}
   defaultBackground: {fileID: 0}
 --- !u!114 &212790364508771973
@@ -208,6 +211,26 @@ MonoBehaviour:
   speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
   expressionSelector: 2
   dialogueText: Ugh
+--- !u!114 &8352522917198424702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  entryNode: 0
+  GUID: 27bb2e1d81a4f4448ae51faa07ee2ed9
+  position: {x: 1729.5004, y: 101}
+  children: []
+  childPortName: []
+  speaker: {fileID: 11400000, guid: 68177ad66bdff7c4cb9da6ca291b5f26, type: 2}
+  expressionSelector: 0
+  dialogueText: moo
 --- !u!114 &8595038062140843120
 MonoBehaviour:
   m_ObjectHideFlags: 0
