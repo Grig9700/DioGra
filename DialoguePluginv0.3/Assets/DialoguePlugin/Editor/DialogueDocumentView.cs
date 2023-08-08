@@ -102,34 +102,37 @@ public class DialogueDocumentView : VisualElement
         return element;
     }
 
-    private VisualElement ChoiceEntry(ChoiceNode node)
+    private VisualElement ChoiceEntry(ChoiceNode node, int index = 0)
     {
         var element = _multipleOutcomeEntry.Instantiate();
         
-        element.Q<TextField>().value = node.outputOptions[0];
+        element.Q<TextField>().value = node.outputOptions.Any() ? node.outputOptions[index] : $"No choice options have been created";
 
-        var selector = element.Q<DropdownField>();
-        selector.choices = node.childPortName;
-        selector.index = 0;
+        IndexChildPort(element, node, index);
 
         return element;
     }
     
-    private VisualElement IfEntry(IfNode node)
+    private VisualElement IfEntry(IfNode node, int index = 0)
     {
         var element = _multipleOutcomeEntry.Instantiate();
 
         element.Q<TextField>().value = node.children.Any() ? 
-            $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: {_trace.Contains(node.children[0])}" : 
+            $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: {_trace.Contains(node.children[index])}" : 
             $"{node.comparisonTarget.name} {node.numComp[node.numTracker]} {node.comparisonValue} is: True";
         
-        var selector = element.Q<DropdownField>();
-        selector.choices = node.childPortName;
-        selector.index = 0;
+        IndexChildPort(element, node, index);
 
         return element;
     }
 
+    private void IndexChildPort(VisualElement element, GraphNode node, int index)
+    {
+        var selector = element.Q<DropdownField>();
+        selector.choices = node.childPortName;
+        selector.index = index;
+    }
+    
     private int GetIndexOfDropdownChoice(IReadOnlyList<string> choices, string choice)
     {
         for (var i = 0; i < choices.Count; i++)
@@ -162,5 +165,48 @@ public class DialogueDocumentView : VisualElement
             GetIndexOfDropdownChoice(node.speaker.expressions.Select(expression => expression.emotion).ToList(), evt.newValue);
         
         element.Q<VisualElement>("expressionDisplay").style.backgroundImage = new StyleBackground(node.speaker.expressions[node.expressionSelector].image);
+    }
+
+    private void ChangeChoice(IfNode node, bool nextChoice)
+    {
+        var choice = 0;
+        for (var i = 0; i < node.children.Count; i++)
+        {
+            if (!_trace.Contains(node.children[i]))
+                continue;
+            choice = i;
+            
+            ClearOldBranch(node);
+            
+            //_trace.Add();
+            
+            //TraceDialogue();
+            
+            break;
+        }
+    }
+
+    private void ChangeChoice(ChoiceNode node)
+    {
+        ClearOldBranch(node);
+        
+        
+    }
+
+    private void ClearOldBranch(GraphNode node)
+    {
+        var index = 0;
+        for (var i = 0; i < _trace.Count; i++)
+        {
+            if (_trace[i] != node)
+                continue;
+            index = i;
+            break;
+        }
+
+        for (var i = _trace.Count; i >= index; i--)
+        {
+            _trace.Remove(_trace[i]);
+        }
     }
 }
