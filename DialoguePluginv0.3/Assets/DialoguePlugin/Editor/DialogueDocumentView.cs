@@ -86,9 +86,14 @@ public class DialogueDocumentView : VisualElement
     private VisualElement DialogueEntry(DialogueNode node)
     {
         var element = _dialogueEntry.Instantiate();
-            
-        element.Q<TextField>().value = node.dialogueText;
-        
+
+        var text = element.Q<TextField>();
+        text.value = node.dialogueText;
+        text.RegisterValueChangedCallback(evt =>
+        {
+            node.dialogueText = evt.newValue;
+        });
+
         var characterSelector = element.Q<DropdownField>("characterSelect");
         characterSelector.choices = _characters.Select(character => character.name).ToList();
         characterSelector.RegisterValueChangedCallback(evt => OnCharacterChange(evt, node, element));
