@@ -58,9 +58,9 @@ public class DialogueDocumentView : VisualElement
         }
     }
 
-    private void AddEntries()
+    private void AddEntries(int startPoint = 0)
     {
-        for (int i = 0; i < _trace.Count; i++)
+        for (var i = startPoint; i < _trace.Count; i++)
         {
             switch (_trace[i])
             {
@@ -190,7 +190,7 @@ public class DialogueDocumentView : VisualElement
         if (!nextChoice && _traceChoices[node] - 1 >= 0)
             _traceChoices[node]--;
         
-        TraceDialogue(node, _traceChoices[node]);
+        UpdateTrace(node);
     }
 
     private void ChangeChoice(GraphNode node, int setChoice)
@@ -199,7 +199,16 @@ public class DialogueDocumentView : VisualElement
 
         _traceChoices[node] = setChoice;
         
+        UpdateTrace(node);
+    }
+
+    private void UpdateTrace(GraphNode node)
+    {
+        var startPoint = _trace.Count - 1;
+        
         TraceDialogue(node, _traceChoices[node]);
+        
+        AddEntries(startPoint);
     }
     
     private void ClearOldBranch(GraphNode node)
@@ -217,6 +226,13 @@ public class DialogueDocumentView : VisualElement
         {
             _traceChoices.Remove(_trace[i]);
             _trace.Remove(_trace[i]);
+        }
+
+        var documentEntries = _document.Children().ToList();
+        
+        for (var i = _document.childCount - 1; i >= index; i--)
+        {
+            _document.Remove(documentEntries[i]);
         }
     }
 }
