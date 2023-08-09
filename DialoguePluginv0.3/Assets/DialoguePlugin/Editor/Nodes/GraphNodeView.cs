@@ -26,19 +26,18 @@ public abstract class GraphNodeView : Node
         inspector = mainContainer.Q<VisualElement>("inspector");
     }
     
-    protected void GenerateMultiOutputButton(DialogueGraphView graphView)
+    protected void GenerateMultiOutputButton(DialogueGraphView graphView, GraphNode node)
     {
-        var button = new Button(() => { AddChoicePort(graphView); })
+        var button = new Button(() => { AddChoicePort(graphView, node); })
         {
             text = "New Output"
         };
         inputContainer.Add(button);
     }
     
-    protected void AddChoicePort(DialogueGraphView graphView, string overriddenPortName = "")
+    protected void AddChoicePort(DialogueGraphView graphView, GraphNode node, string overriddenPortName = "")
     {
         var generatedPort = GeneratePort(Direction.Output);
-        OutputPorts.Add(generatedPort);
 
         //removes duplicate label
         var oldLabel = generatedPort.contentContainer.Q<Label>("type");
@@ -55,12 +54,7 @@ public abstract class GraphNodeView : Node
 
         if (string.IsNullOrEmpty(overriddenPortName))
         {
-            switch (Node)
-            {
-                case ChoiceNode choiceNode:
-                    choiceNode.outputOptions.Add(choicePortName);
-                    break;
-            }
+            node.childPortName.Add(choicePortName);
         }
         
         var textField = new TextField
@@ -70,35 +64,27 @@ public abstract class GraphNodeView : Node
         };
         textField.RegisterValueChangedCallback(evt =>
         {
-            switch (Node)
-            {
-                case ChoiceNode choiceNode:
-                    for (var i = 0; i < choiceNode.outputOptions.Count; i++)
-                    {
-                        if (choiceNode.outputOptions[i] != generatedPort.portName) continue;
-                        choiceNode.outputOptions[i] = evt.newValue;
-                        break;
-                    }
-                    break;
-            }
-            generatedPort.portName = evt.newValue;
+            node.childPortName[node.childPortName.FindIndex(p => p == evt.previousValue)] = evt.newValue;
         });
         generatedPort.contentContainer.Add(textField);
 
         //permits removal of port
-        var deleteButton = new Button(() => RemovePort(graphView, generatedPort)) { text = "X" };
+        var deleteButton = new Button(() => RemovePort(graphView, node, generatedPort)) { text = "X" };
         generatedPort.contentContainer.Add(deleteButton);
         
         generatedPort.portName = choicePortName;
         outputContainer.Add(generatedPort);
+        OutputPorts.Add(generatedPort);
         
         //prevents visual glitch
         RefreshExpandedState();
         RefreshPorts();
     }
 
-    private void RemovePort(GraphView graphView, Port generatedPort)
+    private void RemovePort(GraphView graphView, GraphNode node, Port generatedPort)
     {
+        node.childPortName.Remove(generatedPort.portName);
+        
         var edges = generatedPort.connections.ToList();
 
         if (edges.Any())

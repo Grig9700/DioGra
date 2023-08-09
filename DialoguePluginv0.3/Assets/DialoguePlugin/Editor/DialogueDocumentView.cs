@@ -101,8 +101,9 @@ public class DialogueDocumentView : VisualElement
 
         if (!node.speaker || !characterSelector.choices.Any())
             return element;
-        var charIndex = GetIndexOfDropdownChoice(characterSelector.choices, node.speaker.name);
+        var charIndex = characterSelector.choices.FindIndex(c => c == node.speaker.name);
         characterSelector.index = charIndex;
+        characterSelector.choices.FindIndex(c => c == "dop");
         
         var expressionSelector = element.Q<DropdownField>("expressionSelect");
         expressionSelector.choices = _characters[charIndex].expressions.Select(expression => expression.emotion).ToList();
@@ -122,7 +123,13 @@ public class DialogueDocumentView : VisualElement
     {
         var element = _multipleOutcomeEntry.Instantiate();
         
-        element.Q<TextField>().value = node.children.Any() ? node.childPortName[_traceChoices[node]] : $"No choice options have been created";
+        var choice = element.Q<TextField>();
+        choice.value = node.children.Any() ? node.childPortName[_traceChoices[node]] : $"No choice options have been created";
+        choice.RegisterValueChangedCallback(evt =>
+        {
+            node.childPortName[_traceChoices[node]] = evt.newValue;
+            EditorUtility.SetDirty(node);
+        });
 
         SetupChoiceControls(element, node);
 
@@ -150,19 +157,7 @@ public class DialogueDocumentView : VisualElement
         var selector = element.Q<DropdownField>();
         selector.choices = node.childPortName;
         selector.index = _traceChoices[node];
-        selector.RegisterValueChangedCallback(evt => ChangeChoice(node, GetIndexOfDropdownChoice(selector.choices, evt.newValue)));
-    }
-    
-    private int GetIndexOfDropdownChoice(IReadOnlyList<string> choices, string choice)
-    {
-        for (var i = 0; i < choices.Count; i++)
-        {
-            if (choices[i] != choice)
-                continue;
-            return i;
-        }
-
-        return 0;
+        selector.RegisterValueChangedCallback(evt => ChangeChoice(node, selector.choices.FindIndex(c => c == evt.newValue)));
     }
 
     private void OnCharacterChange(ChangeEvent<string> evt, DialogueNode node, VisualElement element)
@@ -183,8 +178,7 @@ public class DialogueDocumentView : VisualElement
 
     private void OnExpressionChange(ChangeEvent<string> evt, DialogueNode node, VisualElement element)
     {
-        node.expressionSelector =
-            GetIndexOfDropdownChoice(node.speaker.expressions.Select(expression => expression.emotion).ToList(), evt.newValue);
+        node.expressionSelector = node.speaker.expressions.Select(expression => expression.emotion).ToList().FindIndex(e => e == evt.newValue);
         
         element.Q<VisualElement>("expressionDisplay").style.backgroundImage = new StyleBackground(node.speaker.expressions[node.expressionSelector].image);
         

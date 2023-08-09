@@ -21,12 +21,12 @@ public sealed class ChoiceNodeView : GraphNodeView
         style.top = node.position.y;
         
         GenerateInputPort();
-        GenerateMultiOutputButton(_graphView);
+        GenerateMultiOutputButton(_graphView, node);
         
         var choiceNode = Node as ChoiceNode;
-        foreach (var choicePortName in choiceNode.outputOptions)
+        foreach (var choicePortName in choiceNode.childPortName)
         {
-            AddChoicePort(graphView, choicePortName);
+            AddChoicePort(graphView, node, choicePortName);
         }
     }
     

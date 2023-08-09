@@ -7,8 +7,6 @@ using UnityEngine.UIElements;
 [Serializable]
 public class ChoiceNode : GraphNode
 {
-    public List<string> outputOptions = new List<string>();
-
     private List<VisualElement> _buttons = new List<VisualElement>();
 
     private DialogueManager _manager;
