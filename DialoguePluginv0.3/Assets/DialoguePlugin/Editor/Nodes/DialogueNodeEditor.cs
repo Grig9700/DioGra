@@ -40,8 +40,8 @@ public class DialogueNodeEditor : Editor
 
         if (_dialogueNode.speaker != null)
         {
-            string[] expressions = _dialogueNode.speaker.expressions
-                .Where(expression => !String.IsNullOrEmpty(expression.emotion))
+            var expressions = _dialogueNode.speaker.expressions
+                .Where(expression => !string.IsNullOrEmpty(expression.emotion))
                 .Select(expression => expression.emotion).ToArray();
 
             _dialogueNode.expressionSelector = EditorGUILayout.Popup(_dialogueNode.expressionSelector, expressions);
@@ -49,7 +49,6 @@ public class DialogueNodeEditor : Editor
         
         EditorGUILayout.LabelField("Dialogue Text");
         EditorGUILayout.PropertyField(_dialogueText, GUIContent.none);
-        //_dialogueNode.dialogueText = EditorGUI.TextArea(new Rect(0, 0, 120, 120), _dialogueNode.dialogueText);
         
         serializedObject.ApplyModifiedProperties();
     }
