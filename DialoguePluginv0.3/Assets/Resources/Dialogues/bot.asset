@@ -251,7 +251,7 @@ MonoBehaviour:
   childPortName: []
   speaker: {fileID: 11400000, guid: 062a7fc2d86bff6418de830f87db7205, type: 2}
   expressionSelector: 0
-  dialogueText: baaa
+  dialogueText: lol
 --- !u!114 &8595038062140843120
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,16 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
 public sealed class DialogueNodeView : GraphNodeView
 {
-    public DialogueCharacter speaker;
-    public string dialogueText;
-
-    private IMGUIContainer _container;
+    private readonly IMGUIContainer _container;
     
     public DialogueNodeView(GraphNode node)
     {

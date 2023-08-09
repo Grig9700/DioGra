@@ -92,6 +92,7 @@ public class DialogueDocumentView : VisualElement
         text.RegisterValueChangedCallback(evt =>
         {
             node.dialogueText = evt.newValue;
+            EditorUtility.SetDirty(node);
         });
 
         var characterSelector = element.Q<DropdownField>("characterSelect");
@@ -176,6 +177,8 @@ public class DialogueDocumentView : VisualElement
         expressionSelector.RegisterValueChangedCallback(expressionEvt => OnExpressionChange(expressionEvt, node, element));
         
         element.Q<VisualElement>("expressionDisplay").style.backgroundImage = new StyleBackground(node.speaker.expressions[node.expressionSelector].image);
+        
+        EditorUtility.SetDirty(node);
     }
 
     private void OnExpressionChange(ChangeEvent<string> evt, DialogueNode node, VisualElement element)
@@ -184,6 +187,8 @@ public class DialogueDocumentView : VisualElement
             GetIndexOfDropdownChoice(node.speaker.expressions.Select(expression => expression.emotion).ToList(), evt.newValue);
         
         element.Q<VisualElement>("expressionDisplay").style.backgroundImage = new StyleBackground(node.speaker.expressions[node.expressionSelector].image);
+        
+        EditorUtility.SetDirty(node);
     }
 
     private void ChangeChoice(GraphNode node, bool nextChoice)
