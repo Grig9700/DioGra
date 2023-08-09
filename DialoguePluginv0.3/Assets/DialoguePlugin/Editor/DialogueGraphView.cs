@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -25,8 +22,8 @@ public class DialogueGraphView : GraphView
         var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/DialoguePlugin/Editor/DialogueGraphEditor.uss"); 
         styleSheets.Add(styleSheet);
     }
-    
-    public DialogueContainer Container;
+
+    private DialogueContainer _container;
 
     private Vector2 _localMousePosition;
 
@@ -44,7 +41,7 @@ public class DialogueGraphView : GraphView
     
     public void PopulateView(DialogueContainer container)
     {
-        Container = container;
+        _container = container;
 
         graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements);
@@ -74,13 +71,13 @@ public class DialogueGraphView : GraphView
             switch (elem)
             {
                 case GraphNodeView graphNode:
-                    Container.DeleteGraphNode(graphNode.Node);
+                    _container.DeleteGraphNode(graphNode.Node);
                     break;
                 case Edge edge:
                     var parentView = edge.output.node as GraphNodeView;
                     var childView = edge.input.node as GraphNodeView;
             
-                    Container.RemoveChild(parentView!.Node, childView!.Node);
+                    _container.RemoveChild(parentView!.Node, childView!.Node);
                     break;
                     
             }
@@ -91,7 +88,7 @@ public class DialogueGraphView : GraphView
             var parentView = edge.output.node as GraphNodeView;
             var childView = edge.input.node as GraphNodeView;
             
-            Container.AddChild(parentView!.Node, childView!.Node, edge.output.portName);
+            _container.AddChild(parentView!.Node, childView!.Node, edge.output.portName);
         });
         
         return graphViewChange;
@@ -109,15 +106,15 @@ public class DialogueGraphView : GraphView
 
     private void CreateEntryPoint()
     {
-        if (Container.graphNodes.Any(node => node.entryNode))
+        if (_container.graphNodes.Any(node => node.entryNode))
             return;
 
-        AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
+        AddElement(new EntryNodeView(_container.CreateEntryGraphNode()));
     }
 
     private void CreateGraphNode(Type type, Vector2 pos)
     {
-        var node = Container.CreateGraphNode(type, pos);
+        var node = _container.CreateGraphNode(type, pos);
         
         CreateNodeViewElement(node);
     }

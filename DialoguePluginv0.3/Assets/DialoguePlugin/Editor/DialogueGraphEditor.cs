@@ -2,7 +2,6 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using UnityEditor.Callbacks;
 
 public class DialogueGraphEditor : EditorWindow

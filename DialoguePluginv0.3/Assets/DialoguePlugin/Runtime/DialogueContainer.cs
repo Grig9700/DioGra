@@ -8,11 +8,9 @@ using UnityEditor;
 #endif
 
 [Serializable]
-//[CreateAssetMenu(fileName = "New Dialogue", menuName = "New Dialogue")]
 public class DialogueContainer : ScriptableObject
 {
     public List<GraphNode> graphNodes = new List<GraphNode>();
-    //public List<NodeLinkData> NodeLinks = new List<NodeLinkData>();
     public GameObject sceneLayoutPrefab;
     public Image defaultBackground;
 
