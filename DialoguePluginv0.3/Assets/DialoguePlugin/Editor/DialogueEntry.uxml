@@ -7,6 +7,6 @@
             </ui:VisualElement>
             <ui:VisualElement name="expressionDisplay" style="flex-grow: 1; min-width: 80px; min-height: 80px; background-image: none; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
         </ui:VisualElement>
-        <ui:TextField picking-mode="Ignore" name="textField" style="flex-grow: 1; flex-shrink: 0;" />
+        <ui:TextField picking-mode="Ignore" name="textField" style="white-space: normal; flex-grow: 1; position: absolute; top: 5px; right: 5px; bottom: 5px; left: 125px;" />
     </ui:VisualElement>
 </ui:UXML>
