@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -64,7 +65,7 @@ public abstract class GraphNodeView : Node
         };
         textField.RegisterValueChangedCallback(evt =>
         {
-            node.childPortName[node.childPortName.FindIndex(p => p == evt.previousValue)] = evt.newValue;
+            node.childPortName[node.childPortName.FindIndex(n => n == evt.previousValue)] = evt.newValue;
         });
         generatedPort.contentContainer.Add(textField);
 
@@ -75,6 +76,8 @@ public abstract class GraphNodeView : Node
         generatedPort.portName = choicePortName;
         outputContainer.Add(generatedPort);
         OutputPorts.Add(generatedPort);
+        
+        
         
         //prevents visual glitch
         RefreshExpandedState();
