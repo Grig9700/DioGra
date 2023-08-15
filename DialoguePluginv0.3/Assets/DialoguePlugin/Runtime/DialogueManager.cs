@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class DialogueManager : MonoBehaviour
 {
+    public VariableContainer variableContainer;
     public DialogueContainer container;
     public GameObject dialogueUI;
     

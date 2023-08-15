@@ -18,8 +18,11 @@ public class EventNode : GraphNode
     public override NodeReturn Run(DialogueManager manager)
     {
         //functionCalls.Invoke();
-        foreach (var dialogueEvent in invokedEvents)
-            dialogueEvent.Raise();
+        if (invokedEvents.Count > 0)
+            foreach (var dialogueEvent in invokedEvents)
+                dialogueEvent.Raise();
+        else
+            Debug.LogError($"No events present in {this}", this);
         
         manager.SetTargetNode(children.First());
         

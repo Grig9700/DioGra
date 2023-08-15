@@ -17,7 +17,7 @@ public class IfNode : GraphNode
         if (IsNullOrEmpty())
             return NodeReturn.End;
         
-        manager.SetTargetNode(RunComparison() ? 
+        manager.SetTargetNode(RunComparison(manager) ? 
             childPortName[0] == "True" ? children[0] : children[1] : 
             childPortName[0] == "False" ? children[0] : children[1]);
 
@@ -26,193 +26,217 @@ public class IfNode : GraphNode
 
     public override void Clear(){}
 
-    public bool RunComparison()
+    public bool RunComparison(DialogueManager manager)
     {
-        if (comparisonTarget == null)
-        {
-            Debug.LogError($"IfNode did not contain a comparison target");
-            return false;
-        }
+        if (comparisonTarget != null) 
+            return ComparisonOperation(numComp[numTracker], manager);
+        
+        Debug.LogError($"IfNode did not contain a comparison target");
+        return false;
 
-        switch (comparisonTarget)
-        {
-            case BoolVariable boolVariable:
-            case StringVariable stringVariable:
-                return ComparisonOperation(binaryComp[numTracker]);
-            
-            case FloatVariable floatVariable:
-            case IntVariable intVariable:
-                return ComparisonOperation(numComp[numTracker]);
-            
-            default:
-                Debug.LogError($"Invalid comparison target");
-                return false;
-        }
     }
 
-    private bool ComparisonOperation(string operation)
+    private bool ComparisonOperation(string operation, DialogueManager manager)
     {
-        float floatResult;
-        int intResult;
-        bool boolResult;
-        
+        var val = manager.variableContainer.GetVariable(comparisonTarget);
+
         switch (operation)
         {
             case ">":
-                switch (comparisonTarget)
-                {
-                    case FloatVariable floatVariable:
-                        if (float.TryParse(comparisonValue, out floatResult)) 
-                            return floatVariable.Value > floatResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-
-                    case IntVariable intVariable:
-                        if (int.TryParse(comparisonValue, out intResult)) 
-                            return intVariable.Value > intResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-
-                    default:
-                        Debug.LogError($"{comparisonTarget} is not part of this update and could not be read");
-                        return false;
-                }
+                return Greater(val);
                 
             case ">=":
-                switch (comparisonTarget)
-                {
-                    case FloatVariable floatVariable:
-                        if (float.TryParse(comparisonValue, out floatResult)) 
-                            return floatVariable.Value >= floatResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    case IntVariable intVariable:
-                        if (int.TryParse(comparisonValue, out intResult)) 
-                            return intVariable.Value >= intResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    default:
-                        Debug.LogError($"{comparisonTarget} is not part of this update and could not be read");
-                        return false;
-                }
-            
+                return GreaterOrEqual(val);
+                
             case "=":
-                switch (comparisonTarget)
-                {
-                    case BoolVariable boolVariable:
-                        if (bool.TryParse(comparisonValue, out boolResult)) 
-                            return boolVariable.Value == boolResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    case FloatVariable floatVariable:
-                        if (float.TryParse(comparisonValue, out floatResult)) 
-                            return Math.Abs(floatVariable.Value - floatResult) < 0.001f;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    case IntVariable intVariable:
-                        if (int.TryParse(comparisonValue, out intResult)) 
-                            return intVariable.Value == intResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    case StringVariable stringVariable:
-                        return stringVariable.Value == comparisonValue;
-                    
-                    default:
-                        Debug.LogError($"{comparisonTarget} is not part of this update and could not be read");
-                        return false;
-                }
+                return Equal(val);
             
             case "<=":
-                switch (comparisonTarget)
-                {
-                    case FloatVariable floatVariable:
-                        if (float.TryParse(comparisonValue, out floatResult)) 
-                            return floatVariable.Value <= floatResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    case IntVariable intVariable:
-                        if (int.TryParse(comparisonValue, out intResult)) 
-                            return intVariable.Value <= intResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    default:
-                        Debug.LogError($"{comparisonTarget} is not part of this update and could not be read");
-                        return false;
-                }
+                return LessOrEqual(val);
             
             case "<":
-                switch (comparisonTarget)
-                {
-                    case FloatVariable floatVariable:
-                        if (float.TryParse(comparisonValue, out floatResult)) 
-                            return floatVariable.Value < floatResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    case IntVariable intVariable:
-                        if (int.TryParse(comparisonValue, out intResult)) 
-                            return intVariable.Value < intResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    default:
-                        Debug.LogError($"{comparisonTarget} is not part of this update and could not be read");
-                        return false;
-                }
+                return Less(val);
             
             case "!=":
-                switch (comparisonTarget)
-                {
-                    case BoolVariable boolVariable:
-                        if (bool.TryParse(comparisonValue, out boolResult)) 
-                            return boolVariable.Value != boolResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    case FloatVariable floatVariable:
-                        if (float.TryParse(comparisonValue, out floatResult)) 
-                            return Math.Abs(floatVariable.Value - floatResult) > 0.001f;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    case IntVariable intVariable:
-                        if (int.TryParse(comparisonValue, out intResult)) 
-                            return intVariable.Value != intResult;
-                        
-                        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
-                        return false;
-                    
-                    case StringVariable stringVariable:
-                        return stringVariable.Value != comparisonValue;
-                    
-                    default:
-                        Debug.LogError($"{comparisonTarget} is not part of this update and could not be read");
-                        return false;
-                }
+                return NotEqual(val);
                 
             default:
                 Debug.LogError($"Invalid Comparison", this);
                 return false;
         }
+    }
+
+    private bool Greater(VariableObject val)
+    {
+        switch (val)
+        {
+            case FloatVariable floatVariable:
+                if (float.TryParse(comparisonValue, out var floatResult)) 
+                    return floatVariable.Value > floatResult;
+                        
+                InvalidComparison();
+                return false;
+
+            case IntVariable intVariable:
+                if (int.TryParse(comparisonValue, out var intResult)) 
+                    return intVariable.Value > intResult;
+                        
+                InvalidComparison();
+                return false;
+
+            default:
+                NotImplementedComparison();
+                return false;
+        }
+    }
+    
+    private bool GreaterOrEqual(VariableObject val)
+    {
+        switch (val)
+        {
+            case FloatVariable floatVariable:
+                if (float.TryParse(comparisonValue, out var floatResult)) 
+                    return floatVariable.Value >= floatResult;
+                        
+                InvalidComparison();
+                return false;
+                    
+            case IntVariable intVariable:
+                if (int.TryParse(comparisonValue, out var intResult)) 
+                    return intVariable.Value >= intResult;
+                        
+                InvalidComparison();
+                return false;
+                    
+            default:
+                NotImplementedComparison();
+                return false;
+        }
+    }
+    
+    private bool Equal(VariableObject val)
+    {
+        switch (val)
+        {
+            case BoolVariable boolVariable:
+                if (bool.TryParse(comparisonValue, out var boolResult)) 
+                    return boolVariable.Value == boolResult;
+                        
+                InvalidComparison();
+                return false;
+                    
+            case FloatVariable floatVariable:
+                if (float.TryParse(comparisonValue, out var floatResult)) 
+                    return Math.Abs(floatVariable.Value - floatResult) < 0.001f;
+                        
+                InvalidComparison();
+                return false;
+                    
+            case IntVariable intVariable:
+                if (int.TryParse(comparisonValue, out var intResult)) 
+                    return intVariable.Value == intResult;
+                        
+                InvalidComparison();
+                return false;
+                    
+            case StringVariable stringVariable:
+                return stringVariable.Value == comparisonValue;
+                    
+            default:
+                NotImplementedComparison();
+                return false;
+        }
+    }
+    
+    private bool LessOrEqual(VariableObject val)
+    {
+        switch (val)
+        {
+            case FloatVariable floatVariable:
+                if (float.TryParse(comparisonValue, out var floatResult)) 
+                    return floatVariable.Value <= floatResult;
+                        
+                InvalidComparison();
+                return false;
+                    
+            case IntVariable intVariable:
+                if (int.TryParse(comparisonValue, out var intResult)) 
+                    return intVariable.Value <= intResult;
+                        
+                InvalidComparison();
+                return false;
+                    
+            default:
+                NotImplementedComparison();
+                return false;
+        }
+    }
+    
+    private bool Less(VariableObject val)
+    {
+        switch (val)
+        {
+            case FloatVariable floatVariable:
+                if (float.TryParse(comparisonValue, out var floatResult)) 
+                    return floatVariable.Value < floatResult;
+                        
+                InvalidComparison();
+                return false;
+                    
+            case IntVariable intVariable:
+                if (int.TryParse(comparisonValue, out var intResult)) 
+                    return intVariable.Value < intResult;
+                        
+                InvalidComparison();
+                return false;
+                    
+            default:
+                NotImplementedComparison();
+                return false;
+        }
+    }
+    
+    private bool NotEqual(VariableObject val)
+    {
+        switch (val)
+        {
+            case BoolVariable boolVariable:
+                if (bool.TryParse(comparisonValue, out var boolResult)) 
+                    return boolVariable.Value != boolResult;
+                        
+                InvalidComparison();
+                return false;
+                    
+            case FloatVariable floatVariable:
+                if (float.TryParse(comparisonValue, out var floatResult)) 
+                    return Math.Abs(floatVariable.Value - floatResult) > 0.001f;
+                        
+                InvalidComparison();
+                return false;
+                    
+            case IntVariable intVariable:
+                if (int.TryParse(comparisonValue, out var intResult)) 
+                    return intVariable.Value != intResult;
+                        
+                InvalidComparison();
+                return false;
+                    
+            case StringVariable stringVariable:
+                return stringVariable.Value != comparisonValue;
+                    
+            default:
+                NotImplementedComparison();
+                return false;
+        }
+    }
+
+    private void InvalidComparison()
+    {
+        Debug.LogError($"{comparisonValue} is not a valid input for this comparison");
+    }
+
+    private void NotImplementedComparison()
+    {
+        Debug.LogError($"{comparisonTarget} might be an invalid type of comparison or simply one not implemented yet.");
     }
 }

@@ -17,7 +17,7 @@ public class IntVariable : VariableObject
     [MenuItem("Assets/Create Variable/Int Variable")]
     private static void MakeVariable()
     {
-        CreateAssets.CreateScriptableObjectAsset<FloatVariable>("New Int Variable", "Variables");
+        CreateAssets.CreateScriptableObjectAsset<IntVariable>("New Int Variable", "Variables");
     }
     
 #endif
