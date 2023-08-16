@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
 using Debug = UnityEngine.Debug;
 
@@ -16,6 +17,8 @@ public class DialogueDocumentView : VisualElement
     private VisualTreeAsset _dialogueEntry;
     private VisualTreeAsset _multipleOutcomeEntry;
     private List<DialogueCharacter> _characters;
+
+    private readonly Vector2 _offset = new Vector2(250, 0);
 
     public void PopulateView(DialogueContainer container)
     {
@@ -242,5 +245,34 @@ public class DialogueDocumentView : VisualElement
         {
             _document.Remove(documentEntries[i]);
         }
+    }
+
+    public void CreateDialogueNode()
+    {
+        var nodeType = typeof(DialogueNode);
+
+        var parentNode = _trace.Last();
+        
+        var node = _container.CreateGraphNode(nodeType, parentNode.position + _offset);
+
+        switch (parentNode)
+        {
+            case DialogueNode:
+                _container.AddChild(parentNode, node, "Output");
+                break;
+            
+            case IfNode or ChoiceNode:
+                _container.AddChild(parentNode, node, parentNode.childPortName[_traceChoices[parentNode]]);
+                break;
+        }
+        
+        _trace.Add(node);
+
+        var entry = DialogueEntry((DialogueNode)node);
+        
+        _document.Add(entry);
+        _document.ScrollTo(entry);
+        
+        EditorUtility.SetDirty(node);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -50,5 +51,20 @@ public class DialogueDocumentEditor : EditorWindow
     {
         _documentView.PopulateView(container);
         _inspectorView.UpdateSelection(container);
+    }
+
+    private void OnGUI()
+    {
+        var evt = Event.current;
+        if (evt.type != EventType.KeyDown)
+            return;
+
+        switch (evt.keyCode)
+        {
+            case KeyCode.Return:
+                if (evt.shift)
+                    _documentView.CreateDialogueNode();
+                break;
+        }
     }
 }

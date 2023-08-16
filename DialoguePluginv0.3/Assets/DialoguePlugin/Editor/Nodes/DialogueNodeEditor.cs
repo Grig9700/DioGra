@@ -35,6 +35,9 @@ public class DialogueNodeEditor : Editor
         
         if(_firstCall)
             Initialize();
+        
+        if (_speaker == null)
+            return;
 
         EditorGUILayout.PropertyField(_speaker, GUIContent.none);
 
