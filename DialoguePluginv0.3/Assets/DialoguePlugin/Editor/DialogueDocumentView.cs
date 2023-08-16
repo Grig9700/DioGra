@@ -130,21 +130,8 @@ public class DialogueDocumentView : VisualElement
             node.childPortName[_traceChoices[node]] = evt.newValue;
             
             var selector = element.Q<DropdownField>();
-            selector.value = evt.newValue;
+            selector.SetValueWithoutNotify(evt.newValue);
             
-            /* Figure out a way to mark it dirty or change the port name without actually repainting it
-            var graph = EditorWindow.GetWindow<DialogueGraphEditor>();
-            var graphNode = graph.rootVisualElement.Q<ChoiceNodeView>();
-            List<TextField> fields = new List<TextField>();
-            foreach (var e in graphNode.outputContainer.Children())
-            {
-                fields.Add(e.Q<TextField>());
-            }
-            fields.First(t => t.value == evt.previousValue).value = evt.newValue;
-            */
-
-
-
             EditorUtility.SetDirty(node);
         });
 
