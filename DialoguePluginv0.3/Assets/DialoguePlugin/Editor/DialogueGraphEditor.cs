@@ -44,8 +44,12 @@ public class DialogueGraphEditor : EditorWindow
         AssetDatabase.SaveAssets();
 
         dialogueContainers = FindAssets.GetAllInstances<DialogueContainer>();
+
+        var newDialogue = dialogueContainers.First();
+
+        newDialogue.CreateEntryGraphNode();
         
-        return dialogueContainers.First();
+        return newDialogue;
     }
     
     public void CreateGUI()
