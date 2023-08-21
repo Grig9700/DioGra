@@ -162,7 +162,7 @@ public class DialogueManagerLegacy : MonoBehaviour
         //bool sceneExists = false;
         //GameObject obj = null;
         
-        if (container.sceneLayoutPrefab == null)
+        //if (container.sceneLayoutPrefab == null)
         {
             Debug.LogError($"No scene layout present in Dialogue");
             //obj = Resources.Load<GameObject>("SceneLayout");
@@ -176,8 +176,8 @@ public class DialogueManagerLegacy : MonoBehaviour
             // }
         }
         
-        _scene = //obj != null ? Instantiate(obj, _canvas.transform).GetComponent<SceneLayout>() : 
-            Instantiate(container.sceneLayoutPrefab, _canvas.transform).GetComponent<SceneLayout>();
+        //_scene = //obj != null ? Instantiate(obj, _canvas.transform).GetComponent<SceneLayout>() : 
+            //Instantiate(container.sceneLayoutPrefab, _canvas.transform).GetComponent<SceneLayout>();
         PrepareScene();
         
         //GetNodeByGuid("StartPoint",true);
@@ -194,10 +194,10 @@ public class DialogueManagerLegacy : MonoBehaviour
         _scene.nextButton.GetComponent<Button>().onClick.AddListener(Next);
         _scene.skipButton.GetComponent<Button>().onClick.AddListener(Skip);
 
-        if (container.defaultBackground != null)
-            _scene.background = container.defaultBackground;
-        else
-            _scene.background.gameObject.SetActive(false);
+        //if (container.defaultBackground != null)
+            //_scene.background = container.defaultBackground;
+        //else
+            //_scene.background.gameObject.SetActive(false);
         
         _scene.dialogueCharacter.gameObject.SetActive(false);
     }

@@ -62,7 +62,7 @@ MonoBehaviour:
   - True
   - False
   comparisonTarget: {fileID: 11400000, guid: 112448fa5c9602e4e9c898c81fb66b31, type: 2}
-  comparisonValue: 5
+  comparisonValue: -5
   binaryComp:
   - =
   - '!='
@@ -100,7 +100,6 @@ MonoBehaviour:
   - {fileID: 8352522917198424702}
   - {fileID: 3874092812705881661}
   - {fileID: -3316748422288577396}
-  - {fileID: 2402284064898067198}
   sceneLayoutPrefab: {fileID: 1662424870414749273, guid: b248e4324ecb82348a423ce472289797, type: 3}
   defaultBackground: {fileID: 0}
 --- !u!114 &212790364508771973
@@ -166,26 +165,6 @@ MonoBehaviour:
   - {fileID: 5778221676734275620}
   childPortName:
   - Output
---- !u!114 &2402284064898067198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b811f892908ae584aba0f9ce169f9271, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  entryNode: 0
-  GUID: a3a78bfe3bd06574f8d7904606c12c22
-  position: {x: 2000.7003, y: -177.00005}
-  children: []
-  childPortName: []
-  speaker: {fileID: 0}
-  expressionSelector: 0
-  dialogueText: 
 --- !u!114 &3874092812705881661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +205,7 @@ MonoBehaviour:
   childPortName:
   - Oh shut it
   - Cheer up Brian
-  - welp, it is what it is
+  - 'I '
 --- !u!114 &5749000160877740734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,11 +264,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryNode: 0
   GUID: 27bb2e1d81a4f4448ae51faa07ee2ed9
-  position: {x: 1750.7003, y: -177.00005}
-  children:
-  - {fileID: 2402284064898067198}
-  childPortName:
-  - Output
+  position: {x: 1729.9999, y: -177.2958}
+  children: []
+  childPortName: []
   speaker: {fileID: 11400000, guid: 062a7fc2d86bff6418de830f87db7205, type: 2}
   expressionSelector: 0
   dialogueText: lol

@@ -11,8 +11,8 @@ using UnityEditor;
 public class DialogueContainer : ScriptableObject
 {
     public List<GraphNode> graphNodes = new List<GraphNode>();
-    public GameObject sceneLayoutPrefab;
-    public Image defaultBackground;
+    //public GameObject sceneLayoutPrefab;
+    //public Image defaultBackground;
 
 #if UNITY_EDITOR
     public GraphNode CreateEntryGraphNode()
