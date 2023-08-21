@@ -57,13 +57,13 @@ public class DialogueManager : MonoBehaviour
         }
 
         //Debugging function
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            if (container)
-                LoadNewDialogue(container);
-            else
-                LoadNewDialogue("bot");
-        }
+        // if (Input.GetKeyDown(KeyCode.T))
+        // {
+        //     if (container)
+        //         LoadNewDialogue(container);
+        //     else
+        //         LoadNewDialogue("bot");
+        // }
     }
 
     public void Back()

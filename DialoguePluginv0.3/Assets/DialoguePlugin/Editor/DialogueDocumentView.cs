@@ -251,7 +251,7 @@ public class DialogueDocumentView : VisualElement
     {
         var nodeType = typeof(DialogueNode);
 
-        var parentNode = _trace.Last();
+        var parentNode = _trace.Any() ? _trace.Last() : _container.graphNodes.First(n => n.entryNode);
         
         var node = _container.CreateGraphNode(nodeType, parentNode.position + _offset);
 

@@ -61,11 +61,11 @@ public class DialogueGraphEditor : EditorWindow
         _graphView = root.Q<DialogueGraphView>();
         _inspectorView = root.Q<InspectorView>();
 
-        var runTestButton = root.Q<Button>("TestVariables");
-        if (runTestButton is not null)
-        {
-            runTestButton.clickable.clicked += GetListeners.TestVariableObjectConnections;
-        }
+        // var runTestButton = root.Q<Button>("TestVariables");
+        // if (runTestButton is not null)
+        // {
+        //     runTestButton.clickable.clicked += GetListeners.TestVariableObjectConnections;
+        // }
         
         var container = Selection.activeObject as DialogueContainer;
         UpdateContainer(container ? container : GetFirstOrNewDialogue());
