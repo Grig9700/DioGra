@@ -132,4 +132,11 @@ public abstract class GraphNodeView : Node
     {
         return InstantiatePort(Orientation.Horizontal, portOrientation, capacity, typeof(float));
     }
+    
+    public override void SetPosition(Rect newPos)
+    {
+        base.SetPosition(newPos);
+        Node.position.x = newPos.xMin;
+        Node.position.y = newPos.yMin;
+    }
 }

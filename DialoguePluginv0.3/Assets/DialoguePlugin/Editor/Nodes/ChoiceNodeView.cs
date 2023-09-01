@@ -19,11 +19,4 @@ public sealed class ChoiceNodeView : GraphNodeView
             AddChoicePort(graphView, node, choicePortName);
         }
     }
-    
-    public override void SetPosition(Rect newPos)
-    {
-        base.SetPosition(newPos);
-        Node.position.x = newPos.xMin;
-        Node.position.y = newPos.yMin;
-    }
 }
