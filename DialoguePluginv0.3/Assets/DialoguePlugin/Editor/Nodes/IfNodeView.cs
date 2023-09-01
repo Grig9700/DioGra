@@ -1,12 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[Serializable]
 public sealed class IfNodeView : GraphNodeView
 {
     private IMGUIContainer _container;
@@ -18,7 +13,7 @@ public sealed class IfNodeView : GraphNodeView
         GenerateInputPort();
 
         var ifNode = Node as IfNode;
-        UnityEngine.Object.DestroyImmediate(editor);
+        Object.DestroyImmediate(editor);
         editor = Editor.CreateEditor(ifNode);
         _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
         inspector.Add(_container);

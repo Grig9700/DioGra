@@ -1,12 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-[Serializable]
 public sealed class EventNodeView : GraphNodeView
 {
     private IMGUIContainer _container;
@@ -19,7 +14,7 @@ public sealed class EventNodeView : GraphNodeView
         GenerateOutputPort();
         
         var eventNode = Node as EventNode;
-        UnityEngine.Object.DestroyImmediate(editor);
+        Object.DestroyImmediate(editor);
         editor = Editor.CreateEditor(eventNode);
         _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
         inspector.Add(_container);
