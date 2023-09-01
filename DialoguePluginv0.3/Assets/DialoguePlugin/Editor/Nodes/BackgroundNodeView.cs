@@ -1,22 +1,25 @@
-using UnityEditor;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.UIElements;
 
-public sealed class DialogueNodeView : GraphNodeView
+public class BackgroundNodeView : GraphNodeView
 {
-    private readonly IMGUIContainer _container;
+    private IMGUIContainer _container;
     
-    public DialogueNodeView(GraphNode node)
+    public BackgroundNodeView(GraphNode node)
     {
-        Setup(node, "dialogue");
+        Setup(node, "background");
         
         GenerateInputPort();
         GenerateOutputPort();
         
-        Object.DestroyImmediate(editor);
+        UnityEngine.Object.DestroyImmediate(editor);
         
-        var dialogueNode = Node as DialogueNode;
-        editor = Editor.CreateEditor(dialogueNode);
+        var backgroundNode = Node as BackgroundNode;
+        editor = Editor.CreateEditor(backgroundNode);
         _container = new IMGUIContainer(() => { editor.OnInspectorGUI(); });
         inspector.Add(_container);
     }

@@ -13,13 +13,7 @@ public sealed class EventNodeView : GraphNodeView
     
     public EventNodeView(GraphNode node)
     {
-        Node = node;
-        title = node.name;
-        viewDataKey = node.GUID;
-        AddToClassList("event");
-        
-        style.left = node.position.x;
-        style.top = node.position.y;
+        Setup(node, "event");
         
         GenerateInputPort();
         GenerateOutputPort();

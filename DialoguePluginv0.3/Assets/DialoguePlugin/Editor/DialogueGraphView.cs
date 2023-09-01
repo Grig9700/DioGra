@@ -124,20 +124,23 @@ public class DialogueGraphView : GraphView
         GraphNodeView graphNodeView;
         switch (node)
         {
-            case EntryNode:
-                graphNodeView = new EntryNodeView(node);
-                break;
-            case DialogueNode:
-                graphNodeView = new DialogueNodeView(node);
+            case BackgroundNode:
+                graphNodeView = new BackgroundNodeView(node);
                 break;
             case ChoiceNode: 
                 graphNodeView = new ChoiceNodeView(node, this);
                 break;
-            case IfNode:
-                graphNodeView = new IfNodeView(node);
+            case DialogueNode:
+                graphNodeView = new DialogueNodeView(node);
+                break;
+            case EntryNode:
+                graphNodeView = new EntryNodeView(node);
                 break;
             case EventNode:
                 graphNodeView = new EventNodeView(node);
+                break;
+            case IfNode:
+                graphNodeView = new IfNodeView(node);
                 break;
             default:
                 Debug.LogWarning($"{node.name} is not a valid node type");

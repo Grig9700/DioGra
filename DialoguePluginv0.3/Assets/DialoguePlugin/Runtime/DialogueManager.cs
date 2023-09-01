@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     private GraphNode _currentNode;
     private GraphNode _targetNode;
 
+    public VisualElement Background;
     public VisualElement Character;
     public Label Name;
     public Label Text;
@@ -31,6 +32,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueUI.SetActive(true);
         _root = dialogueUI.GetComponent<UIDocument>().rootVisualElement;
+        Background = _root.Q<VisualElement>("background");
         Character = _root.Q<VisualElement>("character");
         Name = _root.Q<Label>("name");
         Text = _root.Q<Label>("text");

@@ -7,13 +7,7 @@ public sealed class EntryNodeView : GraphNodeView
 {
     public EntryNodeView(GraphNode node)
     {
-        Node = node;
-        title = node.name;
-        viewDataKey = node.GUID;
-        AddToClassList("entry");
-        
-        style.left = node.position.x;
-        style.top = node.position.y;
+        Setup(node, "entry");
         
         capabilities &= ~Capabilities.Movable;
         capabilities &= ~Capabilities.Deletable;

@@ -26,6 +26,17 @@ public abstract class GraphNodeView : Node
     {
         inspector = mainContainer.Q<VisualElement>("inspector");
     }
+
+    protected void Setup(GraphNode node, string classListing)
+    {
+        Node = node;
+        title = node.name;
+        viewDataKey = node.GUID;
+        AddToClassList(classListing);
+        
+        style.left = node.position.x;
+        style.top = node.position.y;
+    }
     
     protected void GenerateMultiOutputButton(DialogueGraphView graphView, GraphNode node)
     {

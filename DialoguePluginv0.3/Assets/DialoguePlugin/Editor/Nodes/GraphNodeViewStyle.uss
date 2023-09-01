@@ -137,3 +137,23 @@
     position: absolute;
     right: 0;
 }
+
+.background #title {
+    background-color: rgb(200, 95, 0);
+}
+
+.background #top {
+    flex-direction: row;
+    justify-content: center;
+    min-height: 25px;
+}
+
+.background #input {
+    position: absolute;
+    left: 0;
+}
+
+.background #output {
+    position: absolute;
+    right: 0;
+}

@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public abstract class GraphNode : ScriptableObject
 {
+    [HideInInspector]
     public bool entryNode;
     [HideInInspector]
     public string GUID;

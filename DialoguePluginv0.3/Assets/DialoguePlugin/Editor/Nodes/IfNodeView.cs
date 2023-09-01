@@ -13,13 +13,7 @@ public sealed class IfNodeView : GraphNodeView
     
     public IfNodeView(GraphNode node)
     {
-        Node = node;
-        title = node.name;
-        viewDataKey = node.GUID;
-        AddToClassList("if");
-        
-        style.left = node.position.x;
-        style.top = node.position.y;
+        Setup(node, "if");
 
         GenerateInputPort();
 

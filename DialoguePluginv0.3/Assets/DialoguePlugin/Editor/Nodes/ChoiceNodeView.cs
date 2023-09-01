@@ -10,15 +10,9 @@ public sealed class ChoiceNodeView : GraphNodeView
     
     public ChoiceNodeView(GraphNode node, DialogueGraphView graphView)
     {
+        Setup(node, "choice");
+        
         _graphView = graphView;
-        
-        Node = node;
-        title = node.name;
-        viewDataKey = node.GUID;
-        AddToClassList("choice");
-        
-        style.left = node.position.x;
-        style.top = node.position.y;
         
         GenerateInputPort();
         GenerateMultiOutputButton(_graphView, node);
