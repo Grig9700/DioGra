@@ -93,9 +93,19 @@
     background-color: rgb(46, 196, 182);
 }
 
+.choice #top {
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 .choice #input {
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
+    left: 0;
+}
+
+.choice #output {
+    right: 0;
 }
 
 .if #title {

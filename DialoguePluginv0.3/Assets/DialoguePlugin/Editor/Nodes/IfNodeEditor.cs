@@ -34,7 +34,7 @@ public class IfNodeEditor : Editor
         if(_firstCall)
             Initialize();
 
-        EditorGUI.PropertyField(new Rect(0, 0, 60, 20), _variableTarget, GUIContent.none);
+        EditorGUI.PropertyField(new Rect(0, 0, 100, 20), _variableTarget, GUIContent.none);
 
         if (_ifNode.comparisonTarget != null)
         {
@@ -42,11 +42,11 @@ public class IfNodeEditor : Editor
             {
                 case BoolVariable boolVariable:
                 case StringVariable stringVariable:
-                    _ifNode.numTracker = EditorGUI.Popup(new Rect(60, 0, 40, 20), _ifNode.numTracker, _ifNode.binaryComp);
+                    _ifNode.numTracker = EditorGUI.Popup(new Rect(100, 0, 40, 20), _ifNode.numTracker, _ifNode.binaryComp);
                     break;
                 case FloatVariable floatVariable:
                 case IntVariable intVariable:
-                    _ifNode.numTracker = EditorGUI.Popup(new Rect(60, 0, 40, 20), _ifNode.numTracker, _ifNode.numComp);
+                    _ifNode.numTracker = EditorGUI.Popup(new Rect(100, 0, 40, 20), _ifNode.numTracker, _ifNode.numComp);
                     break;
                 default:
                     Debug.LogError($"Invalid comparison target");
@@ -60,7 +60,7 @@ public class IfNodeEditor : Editor
         GUILayout.EndHorizontal();
         
         if (_ifNode.comparisonTarget != null)
-            EditorGUI.PropertyField(new Rect(0, 20, 100, 20), _comparisonValue, GUIContent.none);
+            EditorGUI.PropertyField(new Rect(0, 20, 140, 20), _comparisonValue, GUIContent.none);
         
         serializedObject.ApplyModifiedProperties();
     }
