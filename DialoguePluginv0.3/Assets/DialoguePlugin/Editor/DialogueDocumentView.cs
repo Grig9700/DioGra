@@ -37,9 +37,17 @@ public class DialogueDocumentView : VisualElement
 
     private void TraceDialogue(GraphNode node, int choice = 0)
     {
+        if (choice < 0)
+        {
+            Debug.LogError($"{choice} does not fit range");
+            return;
+        }
+        
         var iterator = 0;
         while (node.children.Any())
         {
+            if (node.children.Count <= choice)
+                break;
             node = node.children[choice];
 
             switch (node)
@@ -162,7 +170,17 @@ public class DialogueDocumentView : VisualElement
         element.Q<Button>("nextChoice").clicked += () => ChangeChoice(node, true);
         
         var selector = element.Q<DropdownField>();
-        selector.choices = node.childPortName;
+
+        var choices = new List<string>();
+        foreach (var option in node.childPortName.Where(option => !choices.Contains(option)))
+        {
+            choices.Add(option);
+        }
+        
+        if (node is ChoiceNode && !choices.Contains("+"))
+            choices.Add("+");
+        
+        selector.choices = choices;
         selector.index = _traceChoices[node];
         selector.RegisterValueChangedCallback(evt => ChangeChoice(node, selector.choices.FindIndex(c => c == evt.newValue)));
     }
@@ -208,6 +226,9 @@ public class DialogueDocumentView : VisualElement
     {
         ClearOldBranch(node);
 
+        if (node.childPortName.Count == setChoice)
+            CreateChoice(node);
+        
         _traceChoices[node] = setChoice;
         
         UpdateTrace(node);
@@ -215,7 +236,7 @@ public class DialogueDocumentView : VisualElement
 
     private void UpdateTrace(GraphNode node)
     {
-        var startPoint = _trace.Count - 1;
+        var startPoint = _trace.FindIndex(x => x == node);
         
         TraceDialogue(node, _traceChoices[node]);
         
@@ -274,5 +295,12 @@ public class DialogueDocumentView : VisualElement
         _document.ScrollTo(entry);
         
         EditorUtility.SetDirty(node);
+    }
+
+    private void CreateChoice(GraphNode node)
+    {
+        var choiceNode = node as ChoiceNode;
+        
+        choiceNode.childPortName.Add("");
     }
 }
