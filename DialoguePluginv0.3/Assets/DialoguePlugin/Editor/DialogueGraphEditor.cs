@@ -9,7 +9,7 @@ public class DialogueGraphEditor : EditorWindow
     private DialogueGraphView _graphView;
     private InspectorView _inspectorView;
     
-    [MenuItem("Dialogue Editor/Editor Window")]
+    [MenuItem("Dialogue Editor/Editor Window ^#e")]
     public static void CreateEditorWindow()
     {
         var window = GetWindow<DialogueGraphEditor>();
@@ -26,7 +26,7 @@ public class DialogueGraphEditor : EditorWindow
         return true;
     }
     
-    [MenuItem("Dialogue Editor/New Dialogue")]
+    [MenuItem("Dialogue Editor/New Dialogue ^#d")]
     public static void MakeNewDialogueMenuItem()
     {
         CreateAssets.CreateScriptableObjectAsset<DialogueContainer>("New Dialogue", "Dialogues");

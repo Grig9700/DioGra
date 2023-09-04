@@ -11,7 +11,7 @@ public class DialogueDocumentEditor : EditorWindow
     private DialogueDocumentView _documentView;
     private InspectorView _inspectorView;
     
-    [MenuItem("Dialogue Editor/Document Window")]
+    [MenuItem("Dialogue Editor/Document Window ^#w")]
     public static void CreateDocumentWindow()
     {
         var window = GetWindow<DialogueDocumentEditor>();
@@ -61,9 +61,30 @@ public class DialogueDocumentEditor : EditorWindow
 
         switch (evt.keyCode)
         {
+            case KeyCode.D: //needs to be changed
             case KeyCode.Return:
-                if (evt.shift)
-                    _documentView.CreateDialogueNode();
+                // if (evt.shift && evt.control)
+                //     _documentView.CreateDialogueNode();
+                break;
+            
+            case KeyCode.C: //needs to be changed
+                // if (evt.shift && evt.control)
+                //     _documentView.CreateDialogueNode();
+                break;
+            
+            case KeyCode.O:
+                // if (evt.shift && evt.control)
+                //     _documentView.CreateChoice();
+                break;
+            
+            case KeyCode.I:
+                // if (evt.shift && evt.control)
+                //     _documentView.CreateDialogueNode();
+                break;
+            
+            case KeyCode.B: //needs to be changed
+                // if (evt.shift && evt.control)
+                //     _documentView.CreateDialogueNode();
                 break;
         }
     }
