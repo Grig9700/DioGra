@@ -8,13 +8,8 @@ using UnityEngine.UIElements;
 public abstract class GraphNodeView : Node
 {
     public GraphNode Node;
-    
-    public string GUID;
-    public bool EntryPoint = false;
     public Port InputPort;
     public readonly List<Port> OutputPorts = new List<Port>();
-
-    public readonly Vector2 DefaultNodeSize = new Vector2(400, 400);
 
     protected Editor editor;
     protected VisualElement inspector;
@@ -64,6 +59,7 @@ public abstract class GraphNodeView : Node
         if (string.IsNullOrEmpty(overriddenPortName))
         {
             node.childPortName.Add(choicePortName);
+            EditorUtility.SetDirty(node);
         }
         
         var textField = new TextField
@@ -74,6 +70,7 @@ public abstract class GraphNodeView : Node
         textField.RegisterValueChangedCallback(evt =>
         {
             node.childPortName[node.childPortName.FindIndex(n => n == evt.previousValue)] = evt.newValue;
+            EditorUtility.SetDirty(node);
         });
         generatedPort.contentContainer.Add(textField);
 
@@ -85,8 +82,6 @@ public abstract class GraphNodeView : Node
         outputContainer.Add(generatedPort);
         OutputPorts.Add(generatedPort);
         
-        
-        
         //prevents visual glitch
         RefreshExpandedState();
         RefreshPorts();
@@ -94,7 +89,11 @@ public abstract class GraphNodeView : Node
 
     private void RemovePort(GraphView graphView, GraphNode node, Port generatedPort)
     {
-        node.childPortName.Remove(generatedPort.portName);
+        var e = generatedPort.connections.First();
+        var parentNode = e.output.node as GraphNodeView;
+        var childNode = e.input.node as GraphNodeView;
+        var view = graphView as DialogueGraphView;
+        view!.Container.RemoveChild(parentNode!.Node, childNode!.Node);
         
         var edges = generatedPort.connections.ToList();
 

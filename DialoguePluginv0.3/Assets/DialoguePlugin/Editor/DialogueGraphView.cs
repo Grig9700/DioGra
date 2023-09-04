@@ -23,7 +23,7 @@ public class DialogueGraphView : GraphView
         styleSheets.Add(styleSheet);
     }
 
-    private DialogueContainer _container;
+    public DialogueContainer Container;
 
     private Vector2 _localMousePosition;
 
@@ -41,7 +41,7 @@ public class DialogueGraphView : GraphView
     
     public void PopulateView(DialogueContainer container)
     {
-        _container = container;
+        Container = container;
 
         graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements);
@@ -71,13 +71,13 @@ public class DialogueGraphView : GraphView
             switch (elem)
             {
                 case GraphNodeView graphNode:
-                    _container.DeleteGraphNode(graphNode.Node);
+                    Container.DeleteGraphNode(graphNode.Node);
                     break;
                 case Edge edge:
                     var parentView = edge.output.node as GraphNodeView;
                     var childView = edge.input.node as GraphNodeView;
             
-                    _container.RemoveChild(parentView!.Node, childView!.Node);
+                    Container.RemoveChild(parentView!.Node, childView!.Node);
                     break;
                     
             }
@@ -88,7 +88,7 @@ public class DialogueGraphView : GraphView
             var parentView = edge.output.node as GraphNodeView;
             var childView = edge.input.node as GraphNodeView;
             
-            _container.AddChild(parentView!.Node, childView!.Node, edge.output.portName);
+            Container.AddChild(parentView!.Node, childView!.Node, edge.output.portName);
         });
         
         return graphViewChange;
@@ -106,15 +106,15 @@ public class DialogueGraphView : GraphView
 
     private void CreateEntryPoint()
     {
-        if (_container.graphNodes.Any(node => node.entryNode))
+        if (Container.graphNodes.Any(node => node.entryNode))
             return;
 
-        AddElement(new EntryNodeView(_container.CreateEntryGraphNode()));
+        AddElement(new EntryNodeView(Container.CreateEntryGraphNode()));
     }
 
     private void CreateGraphNode(Type type, Vector2 pos)
     {
-        var node = _container.CreateGraphNode(type, pos);
+        var node = Container.CreateGraphNode(type, pos);
         
         CreateNodeViewElement(node);
     }
