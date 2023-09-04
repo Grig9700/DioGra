@@ -170,7 +170,14 @@ public class DialogueDocumentView : VisualElement
         element.Q<Button>("nextChoice").clicked += () => ChangeChoice(node, true);
         
         var selector = element.Q<DropdownField>();
+        
+        selector.choices = FillChoices(node);
+        selector.index = _traceChoices[node];
+        selector.RegisterValueChangedCallback(evt => ChangeChoice(node, selector, evt));
+    }
 
+    private List<string> FillChoices(GraphNode node)
+    {
         var choices = new List<string>();
         foreach (var option in node.childPortName.Where(option => !choices.Contains(option)))
         {
@@ -179,10 +186,8 @@ public class DialogueDocumentView : VisualElement
         
         if (node is ChoiceNode && !choices.Contains("+"))
             choices.Add("+");
-        
-        selector.choices = choices;
-        selector.index = _traceChoices[node];
-        selector.RegisterValueChangedCallback(evt => ChangeChoice(node, selector.choices.FindIndex(c => c == evt.newValue)));
+
+        return choices;
     }
 
     private void OnCharacterChange(ChangeEvent<string> evt, DialogueNode node, VisualElement element)
@@ -222,12 +227,14 @@ public class DialogueDocumentView : VisualElement
         UpdateTrace(node);
     }
 
-    private void ChangeChoice(GraphNode node, int setChoice)
+    private void ChangeChoice(GraphNode node, DropdownField selector, ChangeEvent<string> evt)
     {
         ClearOldBranch(node);
 
+        var setChoice = selector.choices.FindIndex(x => x == evt.newValue);
+        
         if (node.childPortName.Count == setChoice)
-            CreateChoice(node);
+            CreateChoice(node, selector);
         
         _traceChoices[node] = setChoice;
         
@@ -297,10 +304,14 @@ public class DialogueDocumentView : VisualElement
         EditorUtility.SetDirty(node);
     }
 
-    private void CreateChoice(GraphNode node)
+    private void CreateChoice(GraphNode node, DropdownField selector)
     {
         var choiceNode = node as ChoiceNode;
         
-        choiceNode.childPortName.Add("");
+        choiceNode.childPortName.Add($"Output {choiceNode.childPortName.Count}");
+
+        selector.choices = FillChoices(node);
+        
+        EditorUtility.SetDirty(node);
     }
 }
