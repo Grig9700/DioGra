@@ -89,18 +89,16 @@ public abstract class GraphNodeView : Node
 
     private void RemovePort(GraphView graphView, GraphNode node, Port generatedPort)
     {
-        var e = generatedPort.connections.First();
-        var parentNode = e.output.node as GraphNodeView;
-        var childNode = e.input.node as GraphNodeView;
-        var view = graphView as DialogueGraphView;
-        view!.Container.RemoveChild(parentNode!.Node, childNode!.Node);
-        
-        var edges = generatedPort.connections.ToList();
-
-        if (edges.Any())
+        if (generatedPort.connections.Any())
         {
+            var portEdge = generatedPort.connections.First();
+            var parentNode = portEdge.output.node as GraphNodeView;
+            var childNode = portEdge.input.node as GraphNodeView;
+            var view = graphView as DialogueGraphView;
+            view!.Container.RemoveChild(parentNode!.Node, childNode!.Node);
+            
             generatedPort.DisconnectAll();
-            foreach (var edge in edges)
+            foreach (var edge in generatedPort.connections)
             {
                 graphView.RemoveElement(edge);
             }
