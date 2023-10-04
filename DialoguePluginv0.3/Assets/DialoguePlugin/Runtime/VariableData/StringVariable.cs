@@ -35,9 +35,11 @@ public class StringVariable : VariableObject
         Value = baseValue;
     }
     
-    public void SetValue(string value)
+    public void SetValue(string value, bool ignoreInvoke = false)
     {
         Value = value;
+        if (ignoreInvoke)
+            return;
         valueChanged.Invoke();
     }
 }

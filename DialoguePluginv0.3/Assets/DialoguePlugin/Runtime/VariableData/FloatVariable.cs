@@ -34,9 +34,11 @@ public class FloatVariable : VariableObject
         Value = baseValue;
     }
     
-    public void SetValue(float value)
+    public void SetValue(float value, bool ignoreInvoke = false)
     {
         Value = value;
+        if (ignoreInvoke)
+            return;
         valueChanged.Invoke();
     }
 }

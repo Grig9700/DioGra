@@ -35,9 +35,11 @@ public class BoolVariable : VariableObject
         Value = baseValue;
     }
     
-    public void SetValue(bool value)
+    public void SetValue(bool value, bool ignoreInvoke = false)
     {
         Value = value;
+        if (ignoreInvoke)
+            return;
         valueChanged.Invoke();
     }
 }

@@ -34,9 +34,11 @@ public class IntVariable : VariableObject
         Value = baseValue;
     }
     
-    public void SetValue(int value)
+    public void SetValue(int value, bool ignoreInvoke = false)
     {
         Value = value;
+        if (ignoreInvoke)
+            return;
         valueChanged.Invoke();
     }
 }
