@@ -14,7 +14,7 @@ public class IntVariable : VariableObject
 
 #if UNITY_EDITOR
     
-    [MenuItem("Assets/Create Variable/Int Variable")]
+    [MenuItem("Assets/Create/Variables/Int Variable")]
     private static void MakeVariable()
     {
         CreateAssets.CreateScriptableObjectAsset<IntVariable>("New Int Variable", "Variables");

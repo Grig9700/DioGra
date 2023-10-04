@@ -15,7 +15,7 @@ public class BoolVariable : VariableObject
 
 #if UNITY_EDITOR
     
-    [MenuItem("Assets/Create Variable/Bool Variable")]
+    [MenuItem("Assets/Create/Variables/Bool Variable")]
     private static void MakeVariable()
     {
         CreateAssets.CreateScriptableObjectAsset<BoolVariable>("New Bool Variable", "Variables");

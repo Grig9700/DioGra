@@ -15,7 +15,7 @@ public class StringVariable : VariableObject
 
 #if UNITY_EDITOR
     
-    [MenuItem("Assets/Create Variable/String Variable")]
+    [MenuItem("Assets/Create/Variables/String Variable")]
     private static void MakeVariable()
     {
         CreateAssets.CreateScriptableObjectAsset<StringVariable>("New String Variable", "Variables");

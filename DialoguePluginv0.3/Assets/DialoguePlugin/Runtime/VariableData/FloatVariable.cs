@@ -14,7 +14,7 @@ public class FloatVariable : VariableObject
 
 #if UNITY_EDITOR
     
-    [MenuItem("Assets/Create Variable/Float Variable")]
+    [MenuItem("Assets/Create/Variables/Float Variable")]
     private static void MakeVariable()
     {
         CreateAssets.CreateScriptableObjectAsset<FloatVariable>("New Float Variable", "Variables");
