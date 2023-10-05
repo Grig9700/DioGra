@@ -37,9 +37,12 @@ MonoBehaviour:
   entryNode: 0
   GUID: d10c6f4e75d82cc4487590da16143922
   position: {x: 699, y: 171.88457}
-  children: []
-  childPortName: []
-  invokedEvents: []
+  children:
+  - {fileID: 293800543654558757}
+  childPortName:
+  - Output
+  invokedEvents:
+  - {fileID: 11400000, guid: bb7ba98cb59aba248a39e42b211113cb, type: 2}
 --- !u!114 &-2247968830371926799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,7 +64,7 @@ MonoBehaviour:
   childPortName:
   - True
   - False
-  comparisonTarget: {fileID: 11400000, guid: 112448fa5c9602e4e9c898c81fb66b31, type: 2}
+  comparisonTarget: {fileID: 11400000, guid: a0dadbe892acaed4d8f42f3e3ff1e446, type: 2}
   comparisonValue: -5
   binaryComp:
   - =

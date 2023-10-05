@@ -10,20 +10,19 @@ public class VariableContainer : MonoBehaviour, IPersistentDialogueData
 
     public VariableObject GetVariable(string variableName)
     {
-        if (dialogueValues.ContainsKey(variableName))
-            return dialogueValues[variableName];
-
-        var obj = FindAssets.GetResourceByName<VariableObject>(variableName);
-        dialogueValues.Add(obj.name, obj);
-        return obj;
+        return dialogueValues.ContainsKey(variableName) ? dialogueValues[variableName] : CreateVariable(FindAssets.GetResourceByName<VariableObject>(variableName));
     }
     
     public VariableObject GetVariable(VariableObject variable)
     {
-        if (dialogueValues.ContainsValue(variable))
-            return dialogueValues[variable.name];
+        return dialogueValues.ContainsKey(variable.name) ? dialogueValues[variable.name] : CreateVariable(variable);
+    }
 
+    private VariableObject CreateVariable(VariableObject variable)
+    {
         var obj = Instantiate(variable);
+        obj.name = variable.name;
+        obj.ResetToDefault();
         dialogueValues.Add(obj.name, obj);
         return obj;
     }

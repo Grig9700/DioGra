@@ -11,6 +11,26 @@ using UnityEditor;
 public class FloatVariable : VariableObject
 {
     [SerializeField] private float baseValue;
+    
+    public float Value { get; private set; }
+
+    public FloatVariable()
+    {
+        Value = baseValue;
+    }
+
+    public override void ResetToDefault()
+    {
+        Value = baseValue;
+    }
+
+    public override void SetValue(float value, bool ignoreInvoke = false)
+    {
+        Value = value;
+        if (ignoreInvoke)
+            return;
+        valueChanged.Invoke();
+    }
 
 #if UNITY_EDITOR
     
@@ -21,24 +41,4 @@ public class FloatVariable : VariableObject
     }
     
 #endif
-    
-    public float Value { get; private set; }
-
-    private void OnValidate()
-    {
-        ResetToDefault();
-    }
-
-    public void ResetToDefault()
-    {
-        Value = baseValue;
-    }
-    
-    public void SetValue(float value, bool ignoreInvoke = false)
-    {
-        Value = value;
-        if (ignoreInvoke)
-            return;
-        valueChanged.Invoke();
-    }
 }

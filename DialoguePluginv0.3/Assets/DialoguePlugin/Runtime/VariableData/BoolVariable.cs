@@ -12,6 +12,26 @@ using UnityEditor;
 public class BoolVariable : VariableObject
 {
     [SerializeField] private bool baseValue;
+    
+    public bool Value { get; private set; }
+    
+    public BoolVariable()
+    {
+        Value = baseValue;
+    }
+
+    public override void ResetToDefault()
+    {
+        Value = baseValue;
+    }
+    
+    public override void SetValue(bool value, bool ignoreInvoke = false)
+    {
+        Value = value;
+        if (ignoreInvoke)
+            return;
+        valueChanged.Invoke();
+    }
 
 #if UNITY_EDITOR
     
@@ -22,24 +42,4 @@ public class BoolVariable : VariableObject
     }
     
 #endif
-    
-    public bool Value { get; private set; }
-
-    private void OnValidate()
-    {
-        ResetToDefault();
-    }
-
-    public void ResetToDefault()
-    {
-        Value = baseValue;
-    }
-    
-    public void SetValue(bool value, bool ignoreInvoke = false)
-    {
-        Value = value;
-        if (ignoreInvoke)
-            return;
-        valueChanged.Invoke();
-    }
 }

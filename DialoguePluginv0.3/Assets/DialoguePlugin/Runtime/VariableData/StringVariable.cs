@@ -11,7 +11,27 @@ using UnityEditor;
 
 public class StringVariable : VariableObject
 {
-    [SerializeField] private string baseValue;
+    [SerializeField] private string baseValue = "";
+    
+    public string Value { get; private set; }
+    
+    public StringVariable()
+    {
+        Value = baseValue;
+    }
+
+    public override void ResetToDefault()
+    {
+        Value = baseValue;
+    }
+    
+    public override void SetValue(string value, bool ignoreInvoke = false)
+    {
+        Value = value;
+        if (ignoreInvoke)
+            return;
+        valueChanged.Invoke();
+    }
 
 #if UNITY_EDITOR
     
@@ -22,24 +42,4 @@ public class StringVariable : VariableObject
     }
     
 #endif
-    
-    public string Value { get; private set; }
-
-    private void OnValidate()
-    {
-        ResetToDefault();
-    }
-
-    public void ResetToDefault()
-    {
-        Value = baseValue;
-    }
-    
-    public void SetValue(string value, bool ignoreInvoke = false)
-    {
-        Value = value;
-        if (ignoreInvoke)
-            return;
-        valueChanged.Invoke();
-    }
 }

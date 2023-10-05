@@ -11,9 +11,30 @@ using UnityEditor;
 public class IntVariable : VariableObject
 {
     [SerializeField] private int baseValue;
+    
+    public int Value { get; private set; }
+    
+    public IntVariable()
+    {
+        Value = baseValue;
+    }
+
+    public override void ResetToDefault()
+    {
+        Value = baseValue;
+    }
+    
+    public override void SetValue(int value, bool ignoreInvoke = false)
+    {
+        Value = value;
+        if (ignoreInvoke)
+            return;
+        valueChanged.Invoke();
+    }
 
 #if UNITY_EDITOR
-    
+
+
     [MenuItem("Assets/Create/Variables/Int Variable")]
     private static void MakeVariable()
     {
@@ -21,24 +42,4 @@ public class IntVariable : VariableObject
     }
     
 #endif
-    
-    public int Value { get; private set; }
-
-    private void OnValidate()
-    {
-        ResetToDefault();
-    }
-
-    public void ResetToDefault()
-    {
-        Value = baseValue;
-    }
-    
-    public void SetValue(int value, bool ignoreInvoke = false)
-    {
-        Value = value;
-        if (ignoreInvoke)
-            return;
-        valueChanged.Invoke();
-    }
 }
