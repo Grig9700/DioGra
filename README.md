@@ -1,4 +1,3 @@
 # DialoguePlugin
-Project for 2022-2023
 
-This is my atempt at gradually building a tool that can, in some capacity, be an alternative to fungus. We'll see how far I go with it, but hopefully this thing will prove a fun concept if nothing else
+A dialogue tool designed for general use in making non-scene dependent dialogues. Graph view is complete, Document view is mostly a preview feature right now to help with finding and correcting errors.
