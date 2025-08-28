@@ -49,7 +49,7 @@ public static class GetListeners
     private static List<Object> FindReferencesTo(Object to)
     {
         var referencedBy = new List<Object>();
-        var allObjects = Object.FindObjectsOfType<GameObject>();
+        var allObjects = Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
         foreach (var go in allObjects)
         {
             if (PrefabUtility.GetPrefabAssetType(go) == PrefabAssetType.Regular)

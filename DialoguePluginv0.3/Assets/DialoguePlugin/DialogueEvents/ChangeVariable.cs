@@ -8,7 +8,7 @@ public class ChangeVariable : MonoBehaviour
     
     public void ChangeValueBy(string value)
     {
-        var container = FindObjectOfType<VariableContainer>();
+        var container = FindFirstObjectByType<VariableContainer>();
 
         if (!container)
         {
@@ -49,7 +49,7 @@ public class ChangeVariable : MonoBehaviour
     
     public void SetValueTo(string value)
     {
-        var container = FindObjectOfType<VariableContainer>();
+        var container = FindFirstObjectByType<VariableContainer>();
 
         if (!container)
         {

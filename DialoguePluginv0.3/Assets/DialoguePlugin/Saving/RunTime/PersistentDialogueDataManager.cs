@@ -44,7 +44,7 @@ public class PersistentDialogueDataManager : MonoBehaviour
 
     private static List<IPersistentDialogueData> FindAllPersistentDataObjects()
     {
-        return FindObjectsOfType<MonoBehaviour>().OfType<IPersistentDialogueData>().ToList(); //Has to be MonoBehavior to exist as an object in the scene
+        return FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IPersistentDialogueData>().ToList(); //Has to be MonoBehavior to exist as an object in the scene
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

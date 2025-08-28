@@ -6,10 +6,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Debug = UnityEngine.Debug;
 
-public class DialogueDocumentView : VisualElement
+[UxmlElement]
+public partial class DialogueDocumentView : VisualElement
 {
-    public new class UxmlFactory : UxmlFactory<DialogueDocumentView, VisualElement.UxmlTraits> {}
-    
     private DialogueContainer _container;
     private List<GraphNode> _trace;
     private Dictionary<GraphNode, int> _traceChoices;

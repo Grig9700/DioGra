@@ -6,10 +6,9 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class DialogueGraphView : GraphView
+[UxmlElement]
+public partial class DialogueGraphView : GraphView
 {
-    public new class UxmlFactory : UxmlFactory<DialogueGraphView, GraphView.UxmlTraits> {}
-
     public DialogueGraphView()
     {
         Insert(0, new GridBackground());

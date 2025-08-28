@@ -5,10 +5,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.Experimental.GraphView;
 
-public class InspectorView : VisualElement
+[UxmlElement]
+public partial class InspectorView : VisualElement
 {
-    public new class UxmlFactory : UxmlFactory<InspectorView, VisualElement.UxmlTraits> {}
-
     private Editor _editor;
     
     public InspectorView()

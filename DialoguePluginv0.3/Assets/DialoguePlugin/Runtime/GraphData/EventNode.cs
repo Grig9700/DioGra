@@ -19,7 +19,7 @@ public class EventNode : GraphNode
             foreach (var dialogueEvent in invokedEvents)
                 dialogueEvent.Raise();
         else
-            Debug.LogError($"No events present in {this}", this);
+            Debug.LogWarning($"No events present in {this}", this);
         
         manager.SetTargetNode(children.First());
         
